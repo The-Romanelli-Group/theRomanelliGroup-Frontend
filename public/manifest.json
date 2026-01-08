@@ -1,0 +1,16 @@
+{
+  "short_name": "Romanelli Group",
+  "name": "The Romanelli Group - Premier Real Estate",
+  "icons": [
+    {
+      "src": "logoUrl.avif",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/avif"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "description": "Premier real estate services with expert agents and premium properties"
+}
