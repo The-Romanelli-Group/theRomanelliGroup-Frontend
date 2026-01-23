@@ -9,7 +9,7 @@ const Faces = () => {
       <div className="bg-backgroundColor ">
         <div className="flex flex-col items-center text-center py-10 -mb-1">
           <h1 className="sm:text-5xl text-2xl   mb-2 font-semibold text-white">
-            Meet the <span className="italic font-playfair">Faces</span> behind the
+            Meet the <span className="italic font-playfair">Faces</span> behind The
           </h1>
           <h1 className="sm:text-5xl text-2xl font-semibold text-white">Romanelli Group</h1>
         </div>
