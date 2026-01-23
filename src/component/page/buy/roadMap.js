@@ -16,10 +16,10 @@ const steps = [
     step: "Step 02",
     title: "Start Your Journey",
     description:
-      "Complete a quick form to share your goals, then book a consultation to plan your next steps—simple & stress-free.",
-    button: "Browse Properties",
+      "Once you are prequalified, get in touch with our expert realtors, so they can understand what you are looking for and help you better.",
+    button: "Start a Conversation",
     imgSrc: roadMapstep2,
-    link:"/properties",
+    link:"/contact-us",
     target:"_Self"
   },
   {
