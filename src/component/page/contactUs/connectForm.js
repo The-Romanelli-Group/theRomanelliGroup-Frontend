@@ -143,9 +143,11 @@ const ConnectForm = () => {
                                                 Submit Inquiry
                                             </AccessibleButton>
                                             <p className='text-center font-bold p-2'>OR</p>
-                                            <AccessibleButton onClick={handleScheduleCall} className="bg-black text-white px-4 py-2 w-full rounded" ariaLabel="Schedule a call with our team">
-                                                Contact Us
-                                            </AccessibleButton>
+                                           <a href="tel:+17408163112" className="w-full">
+                                                    <AccessibleButton   className="bg-black text-white px-4 py-2 w-full rounded"   ariaLabel="Call The Romanelli Group" >
+                                                    Call Us  </AccessibleButton>
+                                                    </a>
+
                                             <div className='mt-4'>
                                              {errors.privacy && <p className="text-red-500 text-left text-[10px]">{errors.privacy}</p>}
                                             <div className="flex items-start gap-2 text-xs text-gray-600">
