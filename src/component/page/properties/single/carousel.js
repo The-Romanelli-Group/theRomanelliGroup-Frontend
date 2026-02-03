@@ -173,4 +173,3 @@ const Carousel = ({ image }) => {
 }
 
 export default Carousel
-// testing deployment 
