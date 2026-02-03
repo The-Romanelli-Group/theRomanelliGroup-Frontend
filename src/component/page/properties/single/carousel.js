@@ -11,7 +11,7 @@ const Carousel = ({ image }) => {
   useEffect(() => {
     const updateVisibleImages = () => {
       if (window.innerWidth < 640) {
-        setVisibleImages(2);
+        setVisibleImages(1);
       } else if (window.innerWidth < 1024) {
         setVisibleImages(3);
       } else {
