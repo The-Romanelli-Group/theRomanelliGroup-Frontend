@@ -21,13 +21,13 @@ const Connected = () => {
       actionLink: "https://share.google/13Gj3qs24RJ3dtIub", // Add the actual link here
       target:"_Blank"
     },
-    {
-      icon: connect_url2,
-      title: "We’re Just a Call Away",
-      description: "Reach out for any questions—big or small!",
-      action: "Call Us Now",
-      actionLink: "#", // Add the actual link here
-    },
+   {
+  icon: connect_url2,
+  title: "We’re Just a Call Away",
+  description: "Reach out for any questions—big or small!",
+  action: "Call Us Now",
+  actionLink: "tel:+17408163112", // ← real phone number with country code
+},
     {
       icon: connect_url3,
       title: "You Can Reach Us",
