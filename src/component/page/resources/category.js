@@ -110,32 +110,34 @@ const Category = () => {
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-wrap justify-center lg:w-full mx-auto leading-relaxed text-base">
-            <button
-              onClick={() => setSelectedArea("all")}
-              className={`inline-flex py-2 px-4 sm:px-6 ${
-                selectedArea === "all" ? "text-white bg-red-800" : "text-black bg-white"
-              } text-base sm:text-lg mb-2 sm:mb-0 mx-2`}
-            >
-              All
-            </button>
-            <button
-              onClick={() => setSelectedArea("instagram")}
-              className={`inline-flex py-2 px-4 sm:px-6 ${
-                selectedArea === "instagram" ? "text-white bg-red-800" : "text-black bg-white"
-              } text-base sm:text-lg mb-2 sm:mb-0 mx-2`}
-            >
-              Instagram Reels
-            </button>
-            <button
-              onClick={() => setSelectedArea("blog")}
-              className={`inline-flex py-2 px-4 sm:px-6 ${
-                selectedArea === "blog" ? "text-white bg-red-800" : "text-black bg-white"
-              } text-base sm:text-lg mb-2 sm:mb-0 mx-2`}
-            >
-              Case Studies
-            </button>
-          </div>
+         <div className="relative flex justify-center gap-8 border-b border-white/10 pb-2 mt-6">
+  {["all", "instagram", "blog"].map((tab) => {
+    const label =
+      tab === "all"
+        ? "All"
+        : tab === "instagram"
+        ? "Instagram Reels"
+        : "Case Studies";
+
+    return (
+      <button
+        key={tab}
+        onClick={() => setSelectedArea(tab)}
+        className={`relative text-sm sm:text-base font-medium transition-all duration-300 ${
+          selectedArea === tab
+            ? "text-red-600"
+            : "text-white/60 hover:text-white"
+        }`}
+      >
+        {label}
+
+        {selectedArea === tab && (
+          <span className="absolute left-0 -bottom-2 h-[2px] w-full bg-red-600"></span>
+        )}
+      </button>
+    );
+  })}
+</div>
         </div>
 
         {/* Grid */}
