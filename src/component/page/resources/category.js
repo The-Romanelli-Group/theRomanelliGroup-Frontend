@@ -166,10 +166,10 @@ const Category = () => {
                   <div className="absolute top-3 left-3 text-xs tracking-widest text-white/70 uppercase">
   {item.media === "blog" ? "Article" : "Reel"}
 </div>
-                  <div className="absolute flex items-center top-2 right-2 bg-white py-1 px-2 text-black font-semibold">
-                    <img src={item.media === "blog" ? time : trend} className="w-5 h-5 mr-1" alt="icon" />
-                    {item.timing}
-                  </div>
+                  <div className="absolute flex items-center top-3 right-3 text-xs text-white/80">
+  <img src={item.media === "blog" ? time : trend} className="w-4 h-4 mr-1 opacity-70" />
+  {item.timing}
+</div>
 
                   <p className="text-xl sm:text-xl font-normal mb-3 text-left">
                     {item.description.split(" ").slice(0, 10).join(" ")}
