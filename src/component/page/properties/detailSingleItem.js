@@ -39,6 +39,7 @@ useEffect(() => {
 if (!property) {
   return <p>Loading property...</p>;
 }
+  console.log("FALLBACK RUNNING", id);
   
 
   const propertyDetails = [
