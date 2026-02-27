@@ -162,7 +162,7 @@ const Category = () => {
                   </video>
                 )}
 
-                <div className="absolute inset-0 flex flex-col justify-end p-4 bg-black bg-opacity-50 text-white">
+                <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
                   <div className="absolute top-2 left-2 bg-white py-1 px-2 text-black font-semibold">
                     {item.title}
                   </div>
