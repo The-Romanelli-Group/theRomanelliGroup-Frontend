@@ -22,11 +22,7 @@ const DetailSingleItem = () => {
     }
   }
   
-  const unique = allData?.find(item => item.ListingKey === id);
   
-  if (!unique) {
-    return <p>No property found</p>; // Handles page refresh without state
-  }
 
   const propertyDetails = [
     { label: 'Property Type', value: unique.PropertySubType || 'N/A', img: propType },
