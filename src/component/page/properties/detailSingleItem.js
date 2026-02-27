@@ -21,26 +21,11 @@ const DetailSingleItem = () => {
       ({id, listings, allData} = JSON.parse(storedData));
     }
   }
-  const [property, setProperty] = useState(unique);
+  const unique = allData?.find(item => item.ListingKey === id);
 
-useEffect(() => {
-  if (!property && id) {
-    fetch(`/api/mls?ListingKey=${id}`) // adjust if needed
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.length > 0) {
-          setProperty(data[0]);
-        }
-      })
-      .catch(err => console.error(err));
-  }
-}, [id, property]);
-
-if (!property) {
-  return <p>Loading property...</p>;
+if (!unique) {
+  return <p>No property found</p>;
 }
-  console.log("FALLBACK RUNNING", id);
-  
 
   const propertyDetails = [
     { label: 'Property Type', value: unique.PropertySubType || 'N/A', img: propType },
