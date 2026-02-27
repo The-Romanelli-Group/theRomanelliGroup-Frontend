@@ -21,7 +21,24 @@ const DetailSingleItem = () => {
       ({id, listings, allData} = JSON.parse(storedData));
     }
   }
-  
+  const [property, setProperty] = useState(unique);
+
+useEffect(() => {
+  if (!property && id) {
+    fetch(`/api/mls?ListingKey=${id}`) // adjust if needed
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          setProperty(data[0]);
+        }
+      })
+      .catch(err => console.error(err));
+  }
+}, [id, property]);
+
+if (!property) {
+  return <p>Loading property...</p>;
+}
   
 
   const propertyDetails = [
