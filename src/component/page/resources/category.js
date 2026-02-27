@@ -163,9 +163,9 @@ const Category = () => {
                 )}
 
                 <div className="absolute inset-0 flex flex-col justify-end p-4 bg-black bg-opacity-50 text-white">
-                  <div className="absolute top-2 left-2 bg-white py-1 px-2 text-black font-semibold">
-                    {item.title}
-                  </div>
+                  <div className="absolute top-3 left-3 text-xs tracking-widest text-white/70 uppercase">
+  {item.media === "blog" ? "Article" : "Reel"}
+</div>
                   <div className="absolute flex items-center top-2 right-2 bg-white py-1 px-2 text-black font-semibold">
                     <img src={item.media === "blog" ? time : trend} className="w-5 h-5 mr-1" alt="icon" />
                     {item.timing}
