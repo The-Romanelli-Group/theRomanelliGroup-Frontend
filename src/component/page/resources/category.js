@@ -176,21 +176,27 @@ const Category = () => {
 {item.description.split(" ").length > 10 && " ..."}
                   </p>
 
-                  <div className="flex gap-2">
-                    {item.button === "Read Now" ? (
-                      <button
-                        onClick={() => navigate(`/resources/blogs/${item.id}`, { state: { showData } })}
-                        className="flex-1 bg-red-700 py-2 text-sm sm:text-lg font-semibold text-white transition hover:bg-red-800"
-                      >
-                        {item.button}
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => window.open(item.url, "_blank")}
-                        className="flex-1 bg-red-700 py-2 text-sm sm:text-lg font-semibold text-white transition hover:bg-red-800"
-                      >
-                        {item.button}
-                      </button>
+                 <div className="flex gap-2 mt-3">
+  {item.button === "Read Now" ? (
+    <button
+      onClick={() =>
+        navigate(`/resources/blogs/${item.id}`, {
+          state: { showData },
+        })
+      }
+      className="inline-block bg-red-700 px-4 py-2.5 text-sm font-semibold tracking-wide text-white rounded-md transition-all duration-300 hover:bg-red-600 hover:scale-[1.02] hover:shadow-lg hover:shadow-red-900/30"
+    >
+      Read the Guide
+    </button>
+  ) : (
+    <button
+      onClick={() => window.open(item.url, "_blank")}
+      className="inline-block bg-red-700 px-4 py-2.5 text-sm font-semibold tracking-wide text-white rounded-md transition-all duration-300 hover:bg-red-600 hover:scale-[1.02] hover:shadow-lg hover:shadow-red-900/30"
+    >
+      Watch the Reel
+    </button>
+  )}
+</div>
                     )}
                   </div>
                 </div>
