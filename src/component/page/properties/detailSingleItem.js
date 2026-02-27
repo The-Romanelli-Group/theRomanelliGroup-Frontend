@@ -6,6 +6,7 @@ import RelatedItem from './single/relatedItem';
 import { aeroplane, bathroom, bed, bus, city, globe, hoa, hospital, hvac, medical, park, parkIcon, propType, size, square, train, year } from '../../../assets/allImg';
 import Footer from '../Default Pages/footer';
 import PropertyMap from './single/propertymap';
+import React, { useState, useEffect } from 'react'
 
 const DetailSingleItem = () => {
   const location = useLocation();
@@ -21,10 +22,33 @@ const DetailSingleItem = () => {
       ({id, listings, allData} = JSON.parse(storedData));
     }
   }
-  const unique = allData?.find(item => item.ListingKey === id);
+  const foundProperty = allData?.find(item => item.ListingKey === id);
+
+const [unique, setUnique] = useState(foundProperty);
+
+useEffect(() => {
+  if (!unique && id) {
+    console.log("Fallback fetching property:", id);
+
+    fetch(`/api/mls?ListingKey=${id}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log("API RESPONSE:", data);
+
+        const item = data?.value?.[0];
+
+        if (item) {
+          setUnique(item);
+        } else {
+          console.log("No property from API");
+        }
+      })
+      .catch(err => console.error(err));
+  }
+}, [id, unique]);
 
 if (!unique) {
-  return <p>No property found</p>;
+  return <p>Loading property...</p>;
 }
 
   const propertyDetails = [
