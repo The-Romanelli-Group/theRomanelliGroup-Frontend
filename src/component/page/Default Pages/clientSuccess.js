@@ -44,7 +44,7 @@ const ClientSuccess = () => {
                         Celebrating Our Clients  <span className="italic  font-playfair">Success Stories</span>
                     </h1>
                     <p className="lg:w-2/3 mx-auto leading-relaxed text-xl">
-                        Explore our proudest moments—because every sold home is a success story we’re honored to be part of. Get a quick sneak peak into some of the smiling faces of our happy past clients.
+                        Explore our proudest moments—because every sold home is a success story we’re honored to be part of. Get a sneak peak into some of the smiling faces of our happy past clients.
                     </p>
                 </div>
             </div>
