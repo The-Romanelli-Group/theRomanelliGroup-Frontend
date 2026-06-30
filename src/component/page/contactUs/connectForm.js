@@ -47,7 +47,7 @@ const ConnectForm = () => {
 
 
         try {
-            const response = await fetch('https://api.followupboss.com/v1/event', {
+            const response = await fetch('https://api.followupboss.com/v1/events', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Basic ' + btoa(process.env.REACT_APP_FOLLOWUPBOSS_API_KEY + ':'),
