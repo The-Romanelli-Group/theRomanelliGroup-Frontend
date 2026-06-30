@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Form = () => {
+const Form = ({ property }) => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -45,34 +45,48 @@ const Form = () => {
 
 
         try {
-            const response = await fetch('https://api.followupboss.com/v1/people', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Basic ' + btoa(process.env.REACT_APP_FOLLOWUPBOSS_API_KEY + ':'),
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    firstName: formData.name.split(' ')[0],
-                    lastName: formData.name.split(' ').slice(1).join(' ') || '',
-                    emails: [{ value: formData.email }],
-                    tags: [`Reason: ${formData.reason}`, `Message: ${formData.message}`],
-                    source: source
-                })
-            });
+    const response = await fetch(
+        'https://secure-pleasure-8cb8bfce78.strapiapp.com/api/contact',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: formData.name,
+                email: formData.email,
+                reason: formData.reason,
+                message: formData.message,
 
-            if (response.ok) {
-                alert('Thank you! We will contact you soon.');
-                setFormData({ name: "", email: "", reason: "", message: "" });
-            } else {
-                console.error('❌ FAILED: Lead submission failed');
-                alert('Something went wrong. Please try again.');
-            }
-        } catch (error) {
-            console.error('❌ ERROR:', error);
-            alert('Network error. Please try again.');
+                source: source,
+
+                propertyAddress:
+                    property?.UnparsedAddress ||
+                    `${property?.StreetNumber || ""} ${property?.StreetName || ""}, ${property?.City || ""}, ${property?.StateOrProvince || ""} ${property?.PostalCode || ""}`,
+
+                listingKey: property?.ListingKey,
+
+                propertyUrl: window.location.href,
+            }),
         }
-    };
+    );
 
+    if (response.ok) {
+        alert('Thank you! We will contact you soon.');
+        setFormData({
+            name: "",
+            email: "",
+            reason: "",
+            message: "",
+        });
+    } else {
+        console.error('❌ FAILED: Lead submission failed');
+        alert('Something went wrong. Please try again.');
+    }
+} catch (error) {
+    console.error('❌ ERROR:', error);
+    alert('Network error. Please try again.');
+}
     const handleSubmit = () => submitToAPI('Property Form - Submit');
     const handleScheduleCall = () => submitToAPI('Property Form - Schedule Call');
     return (
