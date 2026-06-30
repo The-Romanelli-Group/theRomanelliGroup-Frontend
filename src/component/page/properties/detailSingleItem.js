@@ -11,6 +11,8 @@ import React, { useState, useEffect } from 'react'
 const DetailSingleItem = () => {
   const location = useLocation();
   const { id: routeId } = useParams();
+  console.log("routeId:", routeId);
+console.log("id:", id);
   
   // Get data from location.state or sessionStorage
   let id = routeId;
@@ -55,7 +57,7 @@ useEffect(() => {
       })
       .catch(err => console.error(err));
   }
-}, [id, unique]);
+}, [id]);
 
 if (!unique) {
   return <p>Loading property...</p>;
