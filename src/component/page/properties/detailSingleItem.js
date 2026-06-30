@@ -1,5 +1,5 @@
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import Carousel from './single/carousel';
 import Form from './single/form';
 import RelatedItem from './single/relatedItem';
@@ -10,18 +10,26 @@ import React, { useState, useEffect } from 'react'
 
 const DetailSingleItem = () => {
   const location = useLocation();
+  const { id: routeId } = useParams();
   
   // Get data from location.state or sessionStorage
-  let id, listings, allData;
-  if (location.state) {
-    ({id, listings, allData} = location.state);
-  } else {
-    // Fallback to sessionStorage for new tab
-    const storedData = sessionStorage.getItem('propertyData');
+  let id = routeId;
+let listings = [];
+let allData = [];
+
+if (location.state) {
+    ({ id, listings, allData } = location.state);
+} else {
+    const storedData = sessionStorage.getItem("propertyData");
+
     if (storedData) {
-      ({id, listings, allData} = JSON.parse(storedData));
+        const parsed = JSON.parse(storedData);
+
+        id = parsed.id || routeId;
+        listings = parsed.listings || [];
+        allData = parsed.allData || [];
     }
-  }
+}
   const foundProperty = allData?.find(item => item.ListingKey === id);
 
 const [unique, setUnique] = useState(foundProperty);
