@@ -70,7 +70,6 @@ const Form = ({ property }) => {
             }),
         }
     );
-
     if (response.ok) {
         alert('Thank you! We will contact you soon.');
         setFormData({
