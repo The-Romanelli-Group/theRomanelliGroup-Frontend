@@ -87,6 +87,7 @@ const Form = ({ property }) => {
     console.error('❌ ERROR:', error);
     alert('Network error. Please try again.');
 }
+}; 
     const handleSubmit = () => submitToAPI('Property Form - Submit');
     const handleScheduleCall = () => submitToAPI('Property Form - Schedule Call');
     return (
