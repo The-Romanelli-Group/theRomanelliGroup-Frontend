@@ -38,7 +38,9 @@ useEffect(() => {
   if (!unique && id) {
     console.log("Fallback fetching property:", id);
 
-    fetch(`/api/mls?ListingKey=${id}`)
+    fetch(
+  `${process.env.REACT_APP_FEATURE_LISTINGS}/property-listings/property?ListingKey=${id}`
+)
       .then(res => res.json())
       .then(data => {
         console.log("API RESPONSE:", data);
