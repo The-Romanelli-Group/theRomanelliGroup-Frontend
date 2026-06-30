@@ -11,14 +11,14 @@ import React, { useState, useEffect } from 'react'
 const DetailSingleItem = () => {
   const location = useLocation();
   const { id: routeId } = useParams();
-  console.log("routeId:", routeId);
-console.log("id:", id);
+  
   
   // Get data from location.state or sessionStorage
   let id = routeId;
 let listings = [];
 let allData = [];
-
+console.log("routeId:", routeId);
+console.log("id:", id);
 if (location.state) {
     ({ id, listings, allData } = location.state);
 } else {
