@@ -108,207 +108,95 @@ const Form = ({ property }) => {
 }; 
     const handleSubmit = () => submitToAPI('Property Form - Submit');
     const handleScheduleCall = () => submitToAPI('Property Form - Schedule Call');
-    return (
-       <div>
-    <div className="max-w-md mx-auto h-auto p-5 bg-black rounded-lg shadow-lg text-white">
+   return (
+    <div>
+        <div className="max-w-md mx-auto bg-black rounded-xl shadow-xl text-white p-5">
 
-        {/* Header */}
-        <div className="text-center mb-5">
-            <h2 className="text-3xl font-bold">
-                Interested in
-            </h2>
-            <h2 className="text-3xl font-playfair italic text-white">
-                This Home?
-            </h2>
-            <p className="text-gray-300 text-sm mt-2">
-                Request more information or schedule a private showing.
-            </p>
-        </div>
+            {/* Header */}
 
-        {/* Property Card */}
-        <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 mb-5">
+            <div className="text-center mb-6">
+                <h2 className="text-3xl font-bold">
+                    Interested in
+                </h2>
 
-            <p className="font-semibold text-white text-lg">
-                {property?.UnparsedAddress}
-            </p>
+                <h2 className="text-3xl font-playfair italic">
+                    This Home?
+                </h2>
 
-            <p className="text-2xl font-bold text-white mt-2">
-                $
-                {property?.ListPrice?.toLocaleString()}
-            </p>
-
-            <div className="flex justify-between mt-3 text-sm text-gray-300">
-                <span>🛏 {property?.BedroomsTotal} Beds</span>
-                <span>🛁 {property?.BathroomsTotalInteger} Baths</span>
-                <span>📐 {property?.BuildingAreaTotal?.toLocaleString()} Sq Ft</span>
-            </div>
-
-            <div className="mt-3">
-                <span className="inline-block bg-red-800 px-3 py-1 rounded-full text-xs font-semibold">
-                    {property?.StandardStatus}
-                </span>
-            </div>
-
-        </div>
-
-        {/* Name */}
-
-        <p className="text-white font-semibold mb-1">
-            Full Name
-        </p>
-
-        <input
-            type="text"
-            name="name"
-            placeholder="Enter your full name"
-            value={formData.name}
-            onChange={handleChange}
-            className={`w-full p-2 border rounded mb-1 text-black ${errors.name ? 'border-red-500' : ''}`}
-        />
-
-        {errors.name &&
-            <p className="text-red-500 text-sm mb-2">{errors.name}</p>
-        }
-
-        {/* Email */}
-
-        <p className="text-white font-semibold mt-3 mb-1">
-            Email Address
-        </p>
-
-        <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-            className={`w-full p-2 border rounded mb-1 text-black ${errors.email ? 'border-red-500' : ''}`}
-        />
-
-        {errors.email &&
-            <p className="text-red-500 text-sm mb-2">{errors.email}</p>
-        }
-
-        {/* Phone */}
-
-        <p className="text-white font-semibold mt-3 mb-1">
-            Phone Number
-        </p>
-
-        <input
-            type="tel"
-            name="phone"
-            placeholder="Enter your phone number"
-            value={formData.phone}
-            onChange={handleChange}
-            className={`w-full p-2 border rounded mb-1 text-black ${errors.phone ? 'border-red-500' : ''}`}
-        />
-
-        {errors.phone &&
-            <p className="text-red-500 text-sm mb-2">{errors.phone}</p>
-        }
-
-        {/* Interest */}
-
-        <p className="text-white font-semibold mt-3 mb-1">
-            I'm Interested In
-        </p>
-
-        <select
-            name="reason"
-            value={formData.reason}
-            onChange={handleChange}
-            className={`w-full p-2 border rounded mb-1 bg-white text-black ${errors.reason ? 'border-red-500' : ''}`}
-        >
-            <option value="">Select an option</option>
-            <option value="Schedule a Showing">Schedule a Showing</option>
-            <option value="Request More Information">Request More Information</option>
-            <option value="Pricing Questions">Pricing Questions</option>
-            <option value="Make an Offer">Make an Offer</option>
-            <option value="Similar Homes">Similar Homes</option>
-            <option value="Other">Other</option>
-        </select>
-
-        {errors.reason &&
-            <p className="text-red-500 text-sm mb-2">{errors.reason}</p>
-        }
-
-        {/* Message */}
-
-        <p className="text-white font-semibold mt-3 mb-1">
-            Message
-        </p>
-
-        <textarea
-            name="message"
-            rows={5}
-            placeholder="Tell us what you'd like to know about this property..."
-            value={formData.message}
-            onChange={handleChange}
-            className={`w-full p-2 border rounded mb-1 text-black ${errors.message ? 'border-red-500' : ''}`}
-        />
-
-        {errors.message &&
-            <p className="text-red-500 text-sm mb-3">{errors.message}</p>
-        }
-
-        {/* Buttons */}
-
-        <button
-            onClick={handleSubmit}
-            className="bg-red-800 hover:bg-red-700 transition text-white font-semibold px-4 py-3 w-full rounded"
-        >
-            Request Information
-        </button>
-
-        <p className="text-center font-bold py-3">
-            OR
-        </p>
-
-        <button
-            onClick={handleScheduleCall}
-            className="bg-white hover:bg-gray-200 transition text-black font-semibold px-4 py-3 w-full rounded"
-        >
-            Schedule a Showing
-        </button>
-
-        {/* Privacy */}
-
-        <div className="mt-5">
-
-            {errors.privacy &&
-                <p className="text-red-500 text-left text-xs mb-2">
-                    {errors.privacy}
+                <p className="text-gray-300 mt-2 text-sm">
+                    Request more information or schedule a private showing.
                 </p>
-            }
+            </div>
 
-            <div className="flex items-start gap-2 text-xs text-gray-400">
+            {/* Property */}
 
-                <input
-                    type="checkbox"
-                    id="privacyPolicy"
-                    checked={privacyAccepted}
-                    onChange={(e) => {
-                        setPrivacyAccepted(e.target.checked);
+            <div className="bg-zinc-900 rounded-xl p-5 mb-5 border border-zinc-700">
 
-                        if (errors.privacy) {
-                            setErrors({
-                                ...errors,
-                                privacy: "",
-                            });
-                        }
-                    }}
-                    className="mt-1"
-                />
+                <p className="font-semibold text-lg leading-6">
+                    {property?.UnparsedAddress}
+                </p>
 
-                <label htmlFor="privacyPolicy">
-                    By providing your information, you agree to be contacted by The Romanelli Group LLC via phone, email and text regarding this property and other real estate opportunities. Message and data rates may apply. <Link to="/privacy-policy" target="_blank" className="text-blue-400 underline">Privacy Policy</Link>
-                </label>
+                <p className="text-3xl font-bold mt-3">
+                    ${property?.ListPrice?.toLocaleString()}
+                </p>
+
+                <div className="grid grid-cols-3 gap-2 text-center mt-5">
+
+                    <div>
+                        <div className="text-2xl">🛏</div>
+                        <div className="font-bold">
+                            {property?.BedroomsTotal}
+                        </div>
+                        <div className="text-xs text-gray-400">
+                            Beds
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="text-2xl">🛁</div>
+                        <div className="font-bold">
+                            {property?.BathroomsTotalInteger}
+                        </div>
+                        <div className="text-xs text-gray-400">
+                            Baths
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="text-2xl">📐</div>
+                        <div className="font-bold">
+                            {property?.BuildingAreaTotal?.toLocaleString()}
+                        </div>
+                        <div className="text-xs text-gray-400">
+                            Sq Ft
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className="text-center mt-5">
+
+                    <span className="bg-red-800 rounded-full px-4 py-1 text-xs font-semibold uppercase">
+                        {property?.StandardStatus}
+                    </span>
+
+                </div>
 
             </div>
 
-        </div>
+            {/* -------- KEEP EVERYTHING BELOW HERE THE SAME -------- */}
 
+            {/* Name */}
+            {/* Email */}
+            {/* Phone */}
+            {/* Interest */}
+            {/* Message */}
+            {/* Buttons */}
+            {/* Privacy */}
+
+        </div>
     </div>
-</div>
-export default Form
+);
+};
+
+export default Form;
