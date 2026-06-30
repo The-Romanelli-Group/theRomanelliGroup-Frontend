@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom'
 const Form = ({ property }) => {
     console.log(property);
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        reason: "",
-        message: ""
-    });
+    name: "",
+    email: "",
+    phone: "",
+    reason: "",
+    message: ""
+});
     const [privacyAccepted, setPrivacyAccepted] = useState(false);
     const [errors, setErrors] = useState({});
 
@@ -20,17 +21,32 @@ const Form = ({ property }) => {
     };
 
     const validateForm = () => {
-        const newErrors = {};
-        if (!formData.name.trim()) newErrors.name = "Name is required";
-        if (!formData.email.trim()) {
-            newErrors.email = "Email is required";
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = "Email is invalid";
-        }
-        if (!formData.reason) newErrors.reason = "Reason is required";
-        if (!formData.message.trim()) newErrors.message = "Message is required";
-        return newErrors;
-    };
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+        newErrors.name = "Name is required";
+    }
+
+    if (!formData.email.trim()) {
+        newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        newErrors.email = "Email is invalid";
+    }
+
+    if (!formData.phone.trim()) {
+        newErrors.phone = "Phone number is required";
+    }
+
+    if (!formData.reason) {
+        newErrors.reason = "Please select an option";
+    }
+
+    if (!formData.message.trim()) {
+        newErrors.message = "Message is required";
+    }
+
+    return newErrors;
+};
 
     const submitToAPI = async (source) => {
         const formErrors = validateForm();
@@ -56,6 +72,7 @@ const Form = ({ property }) => {
             body: JSON.stringify({
                 name: formData.name,
                 email: formData.email,
+                phone: formData.phone,
                 reason: formData.reason,
                 message: formData.message,
 
@@ -74,11 +91,12 @@ const Form = ({ property }) => {
     if (response.ok) {
         alert('Thank you! We will contact you soon.');
         setFormData({
-            name: "",
-            email: "",
-            reason: "",
-            message: "",
-        });
+    name: "",
+    email: "",
+    phone: "",
+    reason: "",
+    message: "",
+});
     } else {
         console.error('❌ FAILED: Lead submission failed');
         alert('Something went wrong. Please try again.');
