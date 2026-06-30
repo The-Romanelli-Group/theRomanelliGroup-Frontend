@@ -53,13 +53,21 @@ const ConnectForm = () => {
                     'Authorization': 'Basic ' + btoa(process.env.REACT_APP_FOLLOWUPBOSS_API_KEY + ':'),
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    firstName: formData.name.split(' ')[0],
-                    lastName: formData.name.split(' ').slice(1).join(' ') || '',
-                    emails: [{ value: formData.email }],
-                    tags: [`Reason: ${formData.reason}`, `Message: ${formData.message}`],
-                    source: source
-                })
+               body: JSON.stringify({
+    source: source,
+    system: "The Romanelli Group Website",
+    type: "General Inquiry",
+    message: `Reason: ${formData.reason}\n\n${formData.message}`,
+    person: {
+        firstName: formData.name.split(' ')[0],
+        lastName: formData.name.split(' ').slice(1).join(' ') || '',
+        emails: [
+            {
+                value: formData.email
+            }
+        ]
+    }
+})
             });
 
             if (response.ok) {
