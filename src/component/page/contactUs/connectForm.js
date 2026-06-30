@@ -46,29 +46,23 @@ const ConnectForm = () => {
 
 
 
-        try {
-            const response = await fetch('https://api.followupboss.com/v1/events', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Basic ' + btoa(process.env.REACT_APP_FOLLOWUPBOSS_API_KEY + ':'),
-                    'Content-Type': 'application/json'
-                },
-               body: JSON.stringify({
-    source: source,
-    system: "The Romanelli Group Website",
-    type: "General Inquiry",
-    message: `Reason: ${formData.reason}\n\n${formData.message}`,
-    person: {
-        firstName: formData.name.split(' ')[0],
-        lastName: formData.name.split(' ').slice(1).join(' ') || '',
-        emails: [
-            {
-                value: formData.email
-            }
-        ]
-    }
-})
-            });
+       try {
+    const response = await fetch(
+        'https://secure-pleasure-8cb8bfce78.strapiapp.com/api/contact',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: formData.name,
+                email: formData.email,
+                reason: formData.reason,
+                message: formData.message,
+                source: source,
+            }),
+        }
+    );
 
             if (response.ok) {
                 alert('Thank you! We will contact you soon.');
