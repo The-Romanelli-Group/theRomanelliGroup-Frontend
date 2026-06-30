@@ -109,88 +109,206 @@ const Form = ({ property }) => {
     const handleSubmit = () => submitToAPI('Property Form - Submit');
     const handleScheduleCall = () => submitToAPI('Property Form - Schedule Call');
     return (
-        <div>
-            <div className="max-w-md mx-auto h-auto p-4 bg-black rounded-lg shadow-lg text-white ">
-                <div>
-                    <h2 className="text-2xl font-bold mt-2 text-center">Connect with Us </h2>
-                    <h2 className="text-2xl font-bold mb-4 text-center"> <span className="font-playfair  italic">Directly</span></h2>
-                    <p className='text-white font-semibold text-left text-md mb-1'>Full Name</p>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Enter your full name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className={`w-full text-md p-2 border rounded mb-1 text-black ${errors.name ? 'border-red-500' : ''}`}
-                    />
-                    {errors.name && <p className="text-red-500 text-sm mb-2">{errors.name}</p>}
-                    <p className='text-white font-semibold text-left text-md mb-1'>Email</p>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Enter your email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className={`w-full text-md p-2 border rounded mb-1 text-black ${errors.email ? 'border-red-500' : ''}`}
-                    />
-                    {errors.email && <p className="text-red-500 text-sm mb-2">{errors.email}</p>}
-                    <p className='text-white font-semibold text-left text-md mb-1'>Reason for Contact*</p>
-                    <select
-                        name="reason"
-                        id="reason"
-                        value={formData.reason}
-                        onChange={handleChange}
-                        className={`w-full text-md p-2 border rounded mb-1 bg-white text-black ${errors.reason ? 'border-red-500' : ''}`}
-                    >
-                        <option value="">Choose from Options</option>
-                        <option value="buyingInquiry">Buying Inquiry</option>
-                        <option value="sellingInquiry">Selling Inquiry</option>
-                        <option value="generalQuestion">General Question</option>
-                        <option value="partnershipOpportunities">Partnership Opportunities</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    {errors.reason && <p className="text-red-500 text-sm mb-2">{errors.reason}</p>}
-                    <p className='text-white font-semibold text-left text-md mb-1'>Message*</p>
-                    <textarea
-                        type="text"
-                        name="message"
-                        placeholder="How can we help you?"
-                        value={formData.message}
-                        onChange={handleChange}
-                        className={`w-full text-md p-2 border rounded mb-1 text-black ${errors.message ? 'border-red-500' : ''}`}
-                    />
-                    {errors.message && <p className="text-red-500 text-sm mb-2">{errors.message}</p>}
-                    <button onClick={handleSubmit} className="bg-red-800 text-white px-4 py-2 w-full rounded">
-                        Submit Inquiry
-                    </button>
-                    <p className='text-center font-bold p-2'>OR</p>
-                    <button onClick={handleScheduleCall} className="bg-white text-black px-4 py-2 w-full rounded">
-                        Contact Us
-                    </button>
-                    <div className='mt-4'>
-                     {errors.privacy && <p className="text-red-500 text-left text-[10px]">{errors.privacy}</p>}
-                    <div className="flex items-start gap-2 text-xs text-gray-400">
-                        <input 
-                            type="checkbox" 
-                            id="privacyPolicy" 
-                            checked={privacyAccepted}
-                            onChange={(e) => {
-                                setPrivacyAccepted(e.target.checked);
-                                if (errors.privacy) {
-                                    setErrors({ ...errors, privacy: "" });
-                                }
-                            }}
-                            className={`mt-1 flex-shrink-0 ${errors.privacy ? 'border-red-500' : ''}`}
-                        />
-                        <label htmlFor="privacyPolicy" className="text-left">
-                            By providing your information, you agree to be contacted by The Romanelli Group LLC via phone call, email, and text for real estate services. To opt out, you can reply "STOP" to any text at any time or click the unsubscribe link in emails. For help, reply "HELP." Message and data rates may apply. Message frequency varies. <Link to="/privacy-policy" target='_blank' className="text-blue-400 hover:text-blue-300 underline">View our Privacy Policy</Link>.
-                        </label>
-                    </div>   
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+       <div>
+    <div className="max-w-md mx-auto h-auto p-5 bg-black rounded-lg shadow-lg text-white">
 
+        {/* Header */}
+        <div className="text-center mb-5">
+            <h2 className="text-3xl font-bold">
+                Interested in
+            </h2>
+            <h2 className="text-3xl font-playfair italic text-white">
+                This Home?
+            </h2>
+            <p className="text-gray-300 text-sm mt-2">
+                Request more information or schedule a private showing.
+            </p>
+        </div>
+
+        {/* Property Card */}
+        <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 mb-5">
+
+            <p className="font-semibold text-white text-lg">
+                {property?.UnparsedAddress}
+            </p>
+
+            <p className="text-2xl font-bold text-white mt-2">
+                $
+                {property?.ListPrice?.toLocaleString()}
+            </p>
+
+            <div className="flex justify-between mt-3 text-sm text-gray-300">
+                <span>🛏 {property?.BedroomsTotal} Beds</span>
+                <span>🛁 {property?.BathroomsTotalInteger} Baths</span>
+                <span>📐 {property?.BuildingAreaTotal?.toLocaleString()} Sq Ft</span>
+            </div>
+
+            <div className="mt-3">
+                <span className="inline-block bg-red-800 px-3 py-1 rounded-full text-xs font-semibold">
+                    {property?.StandardStatus}
+                </span>
+            </div>
+
+        </div>
+
+        {/* Name */}
+
+        <p className="text-white font-semibold mb-1">
+            Full Name
+        </p>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Enter your full name"
+            value={formData.name}
+            onChange={handleChange}
+            className={`w-full p-2 border rounded mb-1 text-black ${errors.name ? 'border-red-500' : ''}`}
+        />
+
+        {errors.name &&
+            <p className="text-red-500 text-sm mb-2">{errors.name}</p>
+        }
+
+        {/* Email */}
+
+        <p className="text-white font-semibold mt-3 mb-1">
+            Email Address
+        </p>
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+            className={`w-full p-2 border rounded mb-1 text-black ${errors.email ? 'border-red-500' : ''}`}
+        />
+
+        {errors.email &&
+            <p className="text-red-500 text-sm mb-2">{errors.email}</p>
+        }
+
+        {/* Phone */}
+
+        <p className="text-white font-semibold mt-3 mb-1">
+            Phone Number
+        </p>
+
+        <input
+            type="tel"
+            name="phone"
+            placeholder="Enter your phone number"
+            value={formData.phone}
+            onChange={handleChange}
+            className={`w-full p-2 border rounded mb-1 text-black ${errors.phone ? 'border-red-500' : ''}`}
+        />
+
+        {errors.phone &&
+            <p className="text-red-500 text-sm mb-2">{errors.phone}</p>
+        }
+
+        {/* Interest */}
+
+        <p className="text-white font-semibold mt-3 mb-1">
+            I'm Interested In
+        </p>
+
+        <select
+            name="reason"
+            value={formData.reason}
+            onChange={handleChange}
+            className={`w-full p-2 border rounded mb-1 bg-white text-black ${errors.reason ? 'border-red-500' : ''}`}
+        >
+            <option value="">Select an option</option>
+            <option value="Schedule a Showing">Schedule a Showing</option>
+            <option value="Request More Information">Request More Information</option>
+            <option value="Pricing Questions">Pricing Questions</option>
+            <option value="Make an Offer">Make an Offer</option>
+            <option value="Similar Homes">Similar Homes</option>
+            <option value="Other">Other</option>
+        </select>
+
+        {errors.reason &&
+            <p className="text-red-500 text-sm mb-2">{errors.reason}</p>
+        }
+
+        {/* Message */}
+
+        <p className="text-white font-semibold mt-3 mb-1">
+            Message
+        </p>
+
+        <textarea
+            name="message"
+            rows={5}
+            placeholder="Tell us what you'd like to know about this property..."
+            value={formData.message}
+            onChange={handleChange}
+            className={`w-full p-2 border rounded mb-1 text-black ${errors.message ? 'border-red-500' : ''}`}
+        />
+
+        {errors.message &&
+            <p className="text-red-500 text-sm mb-3">{errors.message}</p>
+        }
+
+        {/* Buttons */}
+
+        <button
+            onClick={handleSubmit}
+            className="bg-red-800 hover:bg-red-700 transition text-white font-semibold px-4 py-3 w-full rounded"
+        >
+            Request Information
+        </button>
+
+        <p className="text-center font-bold py-3">
+            OR
+        </p>
+
+        <button
+            onClick={handleScheduleCall}
+            className="bg-white hover:bg-gray-200 transition text-black font-semibold px-4 py-3 w-full rounded"
+        >
+            Schedule a Showing
+        </button>
+
+        {/* Privacy */}
+
+        <div className="mt-5">
+
+            {errors.privacy &&
+                <p className="text-red-500 text-left text-xs mb-2">
+                    {errors.privacy}
+                </p>
+            }
+
+            <div className="flex items-start gap-2 text-xs text-gray-400">
+
+                <input
+                    type="checkbox"
+                    id="privacyPolicy"
+                    checked={privacyAccepted}
+                    onChange={(e) => {
+                        setPrivacyAccepted(e.target.checked);
+
+                        if (errors.privacy) {
+                            setErrors({
+                                ...errors,
+                                privacy: "",
+                            });
+                        }
+                    }}
+                    className="mt-1"
+                />
+
+                <label htmlFor="privacyPolicy">
+                    By providing your information, you agree to be contacted by The Romanelli Group LLC via phone, email and text regarding this property and other real estate opportunities. Message and data rates may apply. <Link to="/privacy-policy" target="_blank" className="text-blue-400 underline">Privacy Policy</Link>
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
 export default Form
