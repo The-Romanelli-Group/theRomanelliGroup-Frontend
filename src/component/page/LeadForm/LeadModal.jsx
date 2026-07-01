@@ -17,14 +17,14 @@ const LeadModal = ({ open, onClose }) => {
 
             {/* Modal */}
 
-            <div className="relative w-full max-w-lg mx-4">
+            <div className="relative w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
 
-                <button
-                    onClick={onClose}
-                    className="absolute -top-12 right-0 text-white text-3xl hover:opacity-80"
-                >
-                    ×
-                </button>
+                    <button
+            onClick={onClose}
+            className="absolute -top-5 -right-5 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-all duration-300"
+        >
+            ✕
+        </button>
 
                 <LeadForm variant="contact" />
 
