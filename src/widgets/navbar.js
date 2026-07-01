@@ -44,7 +44,7 @@ useEffect(() => {
   initial={{ opacity: 0, y: -70 }} // Start higher for a more noticeable effect
   animate={{ opacity: 1, y: 0 }} // Smooth slide-down
   transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }} // Smooth and natural
-  className="bg-backgroundColor font-inter border-gray-200 fixed top-0 left-0 w-full z-50 shadow-md"
+className="fixed top-0 left-0 w-full z-50 bg-backgroundColor/90 backdrop-blur-lg border-b border-white/10 shadow-lg font-inter transition-all duration-300"
 >
 
         <div className="max-w-screen-xl mx-auto flex items-center justify-between p-4 md:px-6">
@@ -75,7 +75,7 @@ useEffect(() => {
     onClick={() => setShowLeadModal(true)}
     className="text-black bg-white hover:bg-gray-300 font-medium text-sm px-4 py-2 rounded-md"
 >
-    Talk to an Agent
+   Let's Talk →
 </button>
           </div>
 
@@ -89,7 +89,7 @@ useEffect(() => {
     }}
     className="text-black bg-white hover:bg-gray-300 font-medium rounded-md text-sm px-4 py-2"
 >
-    Talk to an Agent
+   Let's Talk →
 </button>
             {/* Mobile Menu Button */}
             <button
