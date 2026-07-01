@@ -82,22 +82,28 @@ const Form = ({ property }) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    phone: formData.phone,
-                    reason: formData.reason,
-                    message: formData.message,
+    name: formData.name,
+    email: formData.email,
+    phone: formData.phone,
+    reason: formData.reason,
+    message: formData.message,
 
-                    source,
+    source,
 
-                    propertyAddress:
-                        property?.UnparsedAddress ||
-                        `${property?.StreetNumber || ""} ${property?.StreetName || ""}, ${property?.City || ""}, ${property?.StateOrProvince || ""} ${property?.PostalCode || ""}`,
+    propertyAddress:
+        property?.UnparsedAddress ||
+        `${property?.StreetNumber || ""} ${property?.StreetName || ""}, ${property?.City || ""}, ${property?.StateOrProvince || ""} ${property?.PostalCode || ""}`,
 
-                    listingKey: property?.ListingKey,
+    listingKey: property?.ListingKey,
 
-                    propertyUrl: window.location.href,
-                }),
+    propertyUrl: window.location.href,
+
+    propertyPrice: property?.ListPrice,
+    propertyStatus: property?.StandardStatus,
+    beds: property?.BedroomsTotal,
+    baths: property?.BathroomsTotalInteger,
+    sqft: property?.BuildingAreaTotal,
+}),
             }
         );
 
