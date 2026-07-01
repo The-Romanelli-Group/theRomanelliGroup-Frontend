@@ -1,19 +1,21 @@
 import { useEffect } from "react";
 import LeadForm from "./LeadForm";
+
 const LeadModal = ({ open, onClose }) => {
+
     useEffect(() => {
 
-    if (open) {
-        document.body.style.overflow = "hidden";
-    } else {
-        document.body.style.overflow = "";
-    }
+        if (open) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
 
-    return () => {
-        document.body.style.overflow = "";
-    };
+        return () => {
+            document.body.style.overflow = "";
+        };
 
-}, [open]);
+    }, [open]);
 
     if (!open) return null;
 
@@ -29,14 +31,18 @@ const LeadModal = ({ open, onClose }) => {
             />
 
             {/* Modal */}
-            <div className="relative w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto no-scrollbar">           
 
-                    <button
-            onClick={onClose}
-            className="absolute -top-5 -right-5 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-all duration-300"
-        >
-            ✕
-        </button>
+            <div className="relative w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto no-scrollbar">
+
+                {/* Close Button */}
+
+                <button
+                    onClick={onClose}
+                    aria-label="Close"
+                    className="absolute top-5 right-5 z-20 w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xl flex items-center justify-center transition-all duration-300"
+                >
+                    ✕
+                </button>
 
                 <LeadForm variant="contact" />
 
