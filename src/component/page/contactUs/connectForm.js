@@ -166,8 +166,8 @@ return (
 
     <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-8 text-center">
 
-        <div className="w-20 h-20 mx-auto rounded-full bg-green-100 flex items-center justify-center text-5xl mb-6 animate-bounce">
-            🎉
+        <div className="w-20 h-20 mx-auto rounded-full bg-green-100 flex items-center justify-center mb-6">
+            <span className="text-5xl">🏡</span>
         </div>
 
         <h2 className="text-3xl font-bold text-gray-900">
@@ -175,24 +175,24 @@ return (
         </h2>
 
         <p className="text-gray-600 leading-7 mt-4">
-            Thanks for reaching out to
+            Thanks for contacting
             <strong> The Romanelli Group.</strong>
             <br />
-            We've received your message and someone from our team will contact you shortly.
+            Your message has been received, and one of our agents will reach out as soon as possible.
         </p>
 
-        <div className="bg-red-50 border border-red-100 rounded-2xl p-5 mt-8">
+        <div className="mt-8 bg-green-50 border border-green-100 rounded-2xl p-5">
 
-            <div className="text-5xl mb-3">
-                🏡
+            <div className="text-3xl mb-2">
+                ✅
             </div>
 
             <p className="font-semibold text-gray-900">
-                Need immediate assistance?
+                What happens next?
             </p>
 
-            <p className="text-gray-500 text-sm mt-2">
-                Give us a call and we'll be happy to help.
+            <p className="text-sm text-gray-600 mt-2 leading-6">
+                We'll review your inquiry and contact you by phone or email—typically within one business day.
             </p>
 
         </div>
@@ -201,14 +201,12 @@ return (
             href="tel:+17408163112"
             className="block mt-8"
         >
-
             <AccessibleButton
                 ariaLabel="Call The Romanelli Group"
-                className="w-full h-14 rounded-2xl bg-red-700 hover:bg-red-800 text-white font-semibold text-lg transition"
+                className="w-full h-14 rounded-2xl bg-red-700 hover:bg-red-800 text-white font-semibold text-lg transition-all duration-300"
             >
-                📞 Call Our Team
+                📞 Need Help Now? Call Us
             </AccessibleButton>
-
         </a>
 
         <button
@@ -223,24 +221,15 @@ return (
 </div>
 
 ) : (
-
 <div className="w-full lg:w-1/2 lg:pl-12">
 
-    <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-6 md:p-8">
+    <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-5 md:p-6">
 
         {/* Header */}
 
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
 
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-50 mb-5">
-                <span className="text-3xl">🏡</span>
-            </div>
-
-            <p className="text-red-700 uppercase tracking-[0.3em] text-xs font-semibold">
-                THE ROMANELLI GROUP
-            </p>
-
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-4 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
                 Let's
             </h2>
 
@@ -248,28 +237,24 @@ return (
                 Connect
             </h2>
 
-            <p className="text-gray-500 mt-5 leading-7 text-base max-w-sm mx-auto">
-                Buying, selling, investing, or simply have a question? We'd love to hear from you and help however we can.
+            <p className="text-gray-500 mt-3 text-sm leading-6 max-w-xs mx-auto">
+                We'll get back to you within one business day.
             </p>
 
         </div>
 
         {/* Form */}
 
-        <div className="space-y-6">
+        <div className="space-y-4">
 
             {/* Full Name */}
 
             <div>
 
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Full Name
-                </label>
-
                 <input
                     type="text"
                     name="name"
-                    placeholder="John Smith"
+                    placeholder="Full Name"
                     value={formData.name}
                     onChange={handleChange}
                     aria-label="Full name"
@@ -287,75 +272,63 @@ return (
                     </p>
                 )}
 
-            </div>
-
+            </div>            
             {/* Email */}
-
-            <div>
-
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Email Address
-                </label>
-
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="john@email.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    aria-label="Email address"
-                    aria-required="true"
-                    className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
-                        errors.email
-                            ? "border-red-500"
-                            : "border-gray-300 hover:border-gray-400"
-                    }`}
-                />
-
-                {errors.email && (
-                    <p className="text-red-600 text-sm mt-2">
-                        {errors.email}
-                    </p>
-                )}
-
-            </div>
-
-            {/* Phone */}
-
-            <div>
-
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Phone Number
-                </label>
-
-                <input
-                    type="tel"
-                    name="phone"
-                    placeholder="(740) 555-1234"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    aria-label="Phone Number"
-                    className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
-                        errors.phone
-                            ? "border-red-500"
-                            : "border-gray-300 hover:border-gray-400"
-                    }`}
-                />
-
-                {errors.phone && (
-                    <p className="text-red-600 text-sm mt-2">
-                        {errors.phone}
-                    </p>
-                )}
-
-            </div>
-{/* Reason */}
 
 <div>
 
-    <label className="block text-sm font-semibold text-gray-700 mb-2">
-        How Can We Help?
-    </label>
+    <input
+        type="email"
+        name="email"
+        placeholder="Email Address"
+        value={formData.email}
+        onChange={handleChange}
+        aria-label="Email address"
+        aria-required="true"
+        className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+            errors.email
+                ? "border-red-500"
+                : "border-gray-300 hover:border-gray-400"
+        }`}
+    />
+
+    {errors.email && (
+        <p className="text-red-600 text-sm mt-2">
+            {errors.email}
+        </p>
+    )}
+
+</div>
+
+{/* Phone */}
+
+<div>
+
+    <input
+        type="tel"
+        name="phone"
+        placeholder="Mobile Number"
+        value={formData.phone}
+        onChange={handleChange}
+        aria-label="Phone Number"
+        className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+            errors.phone
+                ? "border-red-500"
+                : "border-gray-300 hover:border-gray-400"
+        }`}
+    />
+
+    {errors.phone && (
+        <p className="text-red-600 text-sm mt-2">
+            {errors.phone}
+        </p>
+    )}
+
+</div>
+
+{/* Reason */}
+
+<div>
 
     <select
         name="reason"
@@ -369,13 +342,11 @@ return (
                 : "border-gray-300 hover:border-gray-400"
         }`}
     >
-        <option value="">Choose an option</option>
+        <option value="">How can we help?</option>
         <option value="Buying Inquiry">🏡 Buying a Home</option>
         <option value="Selling Inquiry">🏠 Selling My Home</option>
         <option value="Home Valuation">💰 Home Valuation</option>
-        <option value="Investment Property">📈 Investment Property</option>
         <option value="General Question">💬 General Question</option>
-        <option value="Partnership Opportunity">🤝 Partnership Opportunity</option>
         <option value="Other">✨ Other</option>
     </select>
 
@@ -386,27 +357,14 @@ return (
     )}
 
 </div>
-
 {/* Message */}
 
 <div>
 
-    <div className="flex justify-between mb-2">
-
-        <label className="text-sm font-semibold text-gray-700">
-            Message
-        </label>
-
-        <span className="text-xs text-gray-400">
-            Tell us a little about your goals
-        </span>
-
-    </div>
-
     <textarea
         name="message"
-        rows={6}
-        placeholder="I'm looking to buy my first home in Columbus..."
+        rows={4}
+        placeholder="Tell us how we can help..."
         value={formData.message}
         onChange={handleChange}
         aria-label="Message"
@@ -431,7 +389,7 @@ return (
 {/* Submit Error */}
 
 {errors.submit && (
-    <p className="text-center text-red-600 text-sm mt-6">
+    <p className="text-center text-red-600 text-sm mt-5">
         {errors.submit}
     </p>
 )}
@@ -442,7 +400,7 @@ return (
     onClick={handleSubmit}
     disabled={loading}
     ariaLabel="Submit enquiry form"
-    className="w-full h-14 mt-6 rounded-2xl bg-red-700 hover:bg-red-800 disabled:bg-red-400 disabled:cursor-not-allowed text-white font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center"
+    className="w-full h-14 mt-5 rounded-2xl bg-red-700 hover:bg-red-800 disabled:bg-red-400 disabled:cursor-not-allowed text-white font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center"
 >
     {loading ? (
         <div className="flex items-center gap-3">
@@ -454,16 +412,14 @@ return (
     )}
 </AccessibleButton>
 
-<p className="text-center text-sm text-gray-500 mt-4">
-    We typically respond within{" "}
-    <span className="font-semibold text-gray-700">
-        1 business day
-    </span>.
+<p className="text-center text-xs text-gray-500 mt-3">
+    Typically responds within
+    <span className="font-semibold text-gray-700"> 1 business day.</span>
 </p>
 
 {/* Divider */}
 
-<div className="flex items-center my-8">
+<div className="flex items-center my-6">
 
     <div className="flex-1 h-px bg-gray-200"></div>
 
@@ -486,14 +442,14 @@ return (
         ariaLabel="Call The Romanelli Group"
         className="w-full h-14 rounded-2xl border-2 border-gray-900 bg-white text-gray-900 font-semibold text-lg hover:bg-gray-900 hover:text-white transition-all duration-300"
     >
-        📞 Call Our Team
+        📞 Call Us Now
     </AccessibleButton>
 
 </a>
 
 {/* Privacy */}
 
-<div className="mt-8 pt-6 border-t border-gray-200">
+<div className="mt-6 pt-5 border-t border-gray-200">
 
     {errors.privacy && (
         <p className="text-red-600 text-sm mb-3">
@@ -526,17 +482,19 @@ return (
 
         <label
             htmlFor="privacyPolicy"
-            className="text-sm leading-6 text-gray-500"
+            className="text-xs leading-5 text-gray-500"
         >
             By submitting this form, you agree to be contacted by{" "}
-            <strong>The Romanelli Group LLC</strong> via phone, email, and text regarding your real estate inquiry. Message and data rates may apply. You may opt out at any time.{" "}
+            <strong>The Romanelli Group LLC</strong> via phone, email, or text regarding your real estate inquiry.
+
+            {" "}
 
             <Link
                 to="/privacy-policy"
                 target="_blank"
                 className="font-medium text-red-700 hover:text-red-800 underline underline-offset-2"
             >
-                Read our Privacy Policy
+                Privacy Policy
             </Link>
 
         </label>
@@ -548,7 +506,6 @@ return (
 </div>
 
 </div>
-
 )}
     </>
   )
