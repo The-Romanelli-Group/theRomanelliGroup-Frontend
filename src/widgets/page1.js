@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import LoadingScreen from "../loading/loadingScreen";
 import { video_url1,video_url2,video_url3,video_url4,video_url5 } from "../assets/allImg";
 import Pages from "./pages";
 
@@ -100,9 +99,13 @@ useEffect(() => {
   return (
     <>
       {/* Loading Screen */}
-      {loading && <LoadingScreen progress={progress} />}
+     
       {/* Always render video in background */}
-      <div  className="mainVideo" style={{ visibility: loading ? "hidden" : "visible" }}>
+     <div
+    className={`mainVideo transition-opacity duration-500 ${
+        loading ? "opacity-0" : "opacity-100"
+    }`}
+>
         <section className="relative w-full min-h-screen flex items-center justify-center text-white body-font overflow-hidden">
           <div className="absolute inset-0 w-full h-[100%]">
             <video
