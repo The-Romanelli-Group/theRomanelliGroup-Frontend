@@ -10,7 +10,7 @@ const FORM_CONFIG = {
 
         successTitle: "You're All Set!",
         successMessage:
-            "Thanks for your interest in this property. One of our agents will reach out shortly with the information you requested.",
+    "Thanks for your interest in this property. A member of The Romanelli Group will contact you within one business day.",
 
         source: "Property Inquiry Form",
 
@@ -34,8 +34,7 @@ const FORM_CONFIG = {
 
         successTitle: "You're All Set!",
         successMessage:
-            "Thanks for contacting The Romanelli Group. We've received your message and someone from our team will contact you shortly.",
-
+    "Thanks for contacting The Romanelli Group. We've received your message and a member of our team will be in touch within one business day.",
         source: "Contact Form",
 
         reasons: [
@@ -198,10 +197,8 @@ if (submitted) {
             </h2>
 
             <p className="text-gray-600 leading-7 mt-4">
-                 {config.successMessage}
-                <br />
-                One of our agents will reach out shortly with the information you requested.
-            </p>
+    {config.successMessage}
+</p>
 
             <div className="mt-8 bg-green-50 border border-green-100 rounded-2xl p-5">
 
@@ -411,7 +408,7 @@ return (
     {isSubmitting ? (
         <div className="flex items-center gap-3">
             <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-            Sending...
+            Hold On...
         </div>
     ) : (
         "Request Information"
