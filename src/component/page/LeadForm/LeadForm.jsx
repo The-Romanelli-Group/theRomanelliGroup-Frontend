@@ -389,7 +389,7 @@ if (submitted) {
 return (
 <div>
 
-    <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] pt-8 pb-6 px-6 sticky top-24"">
+    <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] pt-8 pb-6 px-6 sticky top-24">
 
         {/* Header */}
 
