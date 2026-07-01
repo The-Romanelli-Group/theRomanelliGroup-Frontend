@@ -383,46 +383,55 @@ return (
 
         {/* Header */}
 
-        <div className="text-center mb-6">
+<div className="text-center mb-8">
 
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+    <h2 className="text-4xl md:text-5xl font-bold leading-tight">
 
-                <span className="text-gray-900">
-                    {config.title}
-                </span>
+        <span className="text-gray-900">
+            {config.title}
+        </span>
 
-                {" "}
+        {" "}
 
-                <span className="font-playfair italic font-normal text-red-700 whitespace-nowrap">
-                    {config.titleAccent}
-                </span>
+        <span className="font-playfair italic font-normal text-red-700 whitespace-nowrap">
+            {config.titleAccent}
+        </span>
 
-            </h2>
+    </h2>
 
-            {isSell && (
-                <div className="flex items-center justify-center gap-2 mt-5">
+    {/* Property & Sell Subtitle */}
 
-                    <div
-                        className={`h-2 w-10 rounded-full transition ${
-                            step === 1
-                                ? "bg-red-700"
-                                : "bg-gray-200"
-                        }`}
-                    />
+    {variant !== "contact" && (
+        <p className="mt-4 text-lg text-gray-500 leading-7 max-w-sm mx-auto">
+            {config.subtitle}
+        </p>
+    )}
 
-                    <div
-                        className={`h-2 w-10 rounded-full transition ${
-                            step === 2
-                                ? "bg-red-700"
-                                : "bg-gray-200"
-                        }`}
-                    />
+    {/* Sell Progress Indicator */}
 
-                </div>
-            )}
+    {isSell && (
+        <div className="flex items-center justify-center gap-2 mt-5">
+
+            <div
+                className={`h-2 w-10 rounded-full transition-all duration-300 ${
+                    step === 1
+                        ? "bg-red-700"
+                        : "bg-gray-200"
+                }`}
+            />
+
+            <div
+                className={`h-2 w-10 rounded-full transition-all duration-300 ${
+                    step === 2
+                        ? "bg-red-700"
+                        : "bg-gray-200"
+                }`}
+            />
 
         </div>
+    )}
 
+</div>
         {/* Form */}
 
         <div className="space-y-4">
@@ -725,13 +734,11 @@ return (
 
         </div>
 
-        <p className="text-center text-sm text-gray-500 mt-4">
-            {config.subtitle}
-        </p>
+      
 
         {/* Divider */}
 
-        <div className="flex items-center my-8">
+     <div className="flex items-center mt-4 mb-4">
 
             <div className="flex-1 h-px bg-gray-200"></div>
 
@@ -746,9 +753,9 @@ return (
         {/* Call CTA */}
 
         <a
-            href="tel:+17408163112"
-            className="block"
-        >
+    href="tel:+17408163112"
+    className="block mt-3"
+>
 
             <button className="w-full h-14 rounded-2xl border-2 border-gray-900 bg-white text-gray-900 font-semibold text-lg hover:bg-gray-900 hover:text-white transition-all duration-300">
                 📞 Call an Agent
