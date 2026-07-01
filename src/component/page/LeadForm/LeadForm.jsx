@@ -356,7 +356,7 @@ return (
     <option key={reason} value={reason}>
         {reason}
     </option>
-))}
+))} 
         </select>
 
         {errors.reason && (
