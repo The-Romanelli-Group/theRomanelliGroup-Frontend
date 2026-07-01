@@ -5,35 +5,35 @@ const FirstPageSell = () => {
     return (
         <div className="relative w-full">
 
-            <div className="container mx-auto px-5 pt-8 lg:pt-14 pb-16 lg:pb-24">
-
+            <div className="container mx-auto px-5 pt-6 lg:pt-14 pb-8 lg:pb-24">
                 <div className="grid lg:grid-cols-[1fr_470px] gap-16 xl:gap-24 items-start">
 
-                    {/* Left Content */}
-                       <div className="lg:pt-24 xl:pt-28 lg:pr-10 xl:pr-16">
+                  {/* Left Content */}
 
-                        <p className="uppercase tracking-[0.35em] text-red-500 text-xs font-semibold mb-5">
-                            CONTACT THE ROMANELLI GROUP
-                        </p>
+<div className="lg:pt-24 xl:pt-28 lg:pr-10 xl:pr-16">
 
-                        <h1 className="text-5xl lg:text-7xl font-bold leading-tight text-white">
-                            Let's Start
-                        </h1>
+    <p className="uppercase tracking-[0.35em] text-red-500 text-xs font-semibold mb-5 text-center lg:text-left">
+        CONTACT THE ROMANELLI GROUP
+    </p>
 
-                        <h2 className="text-5xl lg:text-7xl font-playfair italic text-red-400 leading-none">
-                            the Conversation
-                        </h2>
+    <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight text-white text-center lg:text-left">
+        Let's Start
+    </h1>
 
-                        <p className="mt-8 text-xl text-gray-300 leading-9 max-w-xl">
-                            Whether you're buying your first home, selling your current
-                            one, exploring investment opportunities, or simply have a
-                            question, our team is here to help.
-                        </p>
+    <h2 className="text-4xl sm:text-5xl lg:text-7xl font-playfair italic text-red-400 leading-none text-center lg:text-left">
+        the Conversation
+    </h2>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-12">
+    <p className="mt-6 lg:mt-8 text-lg sm:text-xl text-gray-300 leading-8 lg:leading-9 max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
+        Whether you're buying your first home, selling your current home,
+        exploring investment opportunities, or simply have a question,
+        our team is here to help.
+    </p>
 
-                            {/* cards */}
+    {/* Desktop Only Cards */}
 
+    <div className="hidden lg:grid grid-cols-2 gap-5 mt-12">
+                            
                         </div>
 
                     </div>
