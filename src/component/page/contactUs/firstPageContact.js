@@ -5,8 +5,8 @@ const FirstPageSell = () => {
     return (
         <div className="relative w-full">
 
-            <div className="container mx-auto px-5 pt-6 lg:pt-14 pb-8 lg:pb-24">
-                <div className="grid lg:grid-cols-[1fr_470px] gap-16 xl:gap-24 items-start">
+            <div className="container mx-auto px-5 pt-8 lg:pt-14 pb-8 lg:pb-24">
+                <div className="grid lg:grid-cols-[1fr_470px] gap-10 xl:gap-24 items-start">
 
                   {/* Left Content */}
 
