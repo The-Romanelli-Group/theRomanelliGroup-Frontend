@@ -137,217 +137,234 @@ const Form = ({ property }) => {
     
 if (submitted) {
     return (
-        <div className="max-w-md mx-auto bg-white rounded-3xl shadow-2xl border border-gray-200 p-8 text-center">
+        <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-8 text-center">
 
-            <div className="text-6xl mb-5">
-                🏡
+            <div className="w-20 h-20 mx-auto rounded-full bg-green-100 flex items-center justify-center mb-6">
+                <span className="text-5xl">🏡</span>
             </div>
 
             <h2 className="text-3xl font-bold text-gray-900">
-                Request Sent!
+                You're All Set!
             </h2>
 
-            <p className="text-gray-600 mt-4 leading-7">
-                Thanks for reaching out.
-                One of our agents will contact you shortly regarding this property.
+            <p className="text-gray-600 leading-7 mt-4">
+                Thanks for your interest in this property.
+                <br />
+                One of our agents will reach out shortly with the information you requested.
             </p>
 
-            <div className="bg-green-50 border border-green-200 rounded-xl p-4 mt-8">
+            <div className="mt-8 bg-green-50 border border-green-100 rounded-2xl p-5">
 
-                <p className="text-green-700 font-semibold">
-                    ✓ Your inquiry has been received.
+                <div className="text-3xl mb-2">
+                    ✅
+                </div>
+
+                <p className="font-semibold text-gray-900">
+                    What happens next?
+                </p>
+
+                <p className="text-sm text-gray-600 mt-2 leading-6">
+                    We'll review your inquiry and contact you by phone or email—typically within one business day.
                 </p>
 
             </div>
 
             <a
                 href="tel:+17408163112"
-                className="block mt-8 w-full h-14 rounded-xl bg-red-700 hover:bg-red-800 text-white font-semibold leading-[56px] transition"
+                className="block mt-8"
             >
-                📞 Speak with an agent
+                <button className="w-full h-14 rounded-2xl bg-red-700 hover:bg-red-800 text-white font-semibold text-lg transition-all duration-300">
+                    📞 Need Help Now? Call Us
+                </button>
             </a>
+
+            <button
+                onClick={() => setSubmitted(false)}
+                className="mt-5 text-red-700 hover:underline font-medium"
+            >
+                Send Another Request
+            </button>
 
         </div>
     );
 }
-  return (
-  <div>
-    <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-2xl p-8 sticky top-24">
+
+return (
+<div>
+
+    <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-5 md:p-6 sticky top-24">
 
         {/* Header */}
 
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
 
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-red-50 mb-5">
-                <span className="text-2xl">🏡</span>
-            </div>
-
-            <p className="text-red-700 uppercase tracking-[0.25em] text-xs font-semibold">
-                PROPERTY INQUIRY
-            </p>
-
-            <h2 className="text-4xl font-bold text-gray-900 mt-3 leading-tight">
-                Love this
+            <h2 className="text-4xl font-bold text-gray-900 leading-tight">
+                Love This
             </h2>
 
             <h2 className="text-4xl font-playfair italic text-red-700">
                 Property?
             </h2>
 
-            <p className="text-gray-500 mt-5 leading-7 text-base">
-                Request more information, schedule a private showing, or ask us anything about this property.
+            <p className="text-gray-500 mt-3 text-sm leading-6 max-w-xs mx-auto">
+                We'll get back to you within one business day.
             </p>
 
         </div>
 
-           {/* Full Name */}
+        {/* Form */}
 
-<div className="space-y-5">
+        <div className="space-y-4">
+
+    {/* Full Name */}
 
     <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
-            Full Name
-        </label>
 
         <input
             type="text"
             name="name"
-            placeholder="John Smith"
+            placeholder="Full Name"
             value={formData.name}
             onChange={handleChange}
-            className={`w-full h-12 px-4 rounded-xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 transition ${
-                errors.name ? "border-red-500" : "border-gray-300"
+            className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                errors.name
+                    ? "border-red-500"
+                    : "border-gray-300 hover:border-gray-400"
             }`}
         />
 
         {errors.name && (
-            <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+            <p className="text-red-600 text-sm mt-2">
+                {errors.name}
+            </p>
         )}
+
     </div>
 
+    {/* Email */}
+
     <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
-            Email Address
-        </label>
 
         <input
             type="email"
             name="email"
-            placeholder="john@email.com"
+            placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
-            className={`w-full h-12 px-4 rounded-xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 transition ${
-                errors.email ? "border-red-500" : "border-gray-300"
+            className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                errors.email
+                    ? "border-red-500"
+                    : "border-gray-300 hover:border-gray-400"
             }`}
         />
 
         {errors.email && (
-            <p className="text-red-600 text-sm mt-1">{errors.email}</p>
+            <p className="text-red-600 text-sm mt-2">
+                {errors.email}
+            </p>
         )}
+
     </div>
 
+    {/* Phone */}
+
     <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
-            Phone Number
-        </label>
 
         <input
             type="tel"
             name="phone"
-            placeholder="(740) 816-3112"
+            placeholder="Mobile Number"
             value={formData.phone}
             onChange={handleChange}
-            className={`w-full h-12 px-4 rounded-xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 transition ${
-                errors.phone ? "border-red-500" : "border-gray-300"
+            className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                errors.phone
+                    ? "border-red-500"
+                    : "border-gray-300 hover:border-gray-400"
             }`}
         />
 
         {errors.phone && (
-            <p className="text-red-600 text-sm mt-1">{errors.phone}</p>
+            <p className="text-red-600 text-sm mt-2">
+                {errors.phone}
+            </p>
         )}
+
     </div>
 
+    {/* Reason */}
+
     <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
-            How can we help?
-        </label>
 
         <select
             name="reason"
             value={formData.reason}
             onChange={handleChange}
-            className={`w-full h-12 px-4 rounded-xl border bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 transition ${
-                errors.reason ? "border-red-500" : "border-gray-300"
+            className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                errors.reason
+                    ? "border-red-500"
+                    : "border-gray-300 hover:border-gray-400"
             }`}
         >
-            <option value="">Select an option</option>
+            <option value="">How can we help?</option>
             <option value="Schedule a Showing">🏡 Schedule a Showing</option>
             <option value="Request Information">📄 Request Information</option>
             <option value="Ask a Question">💬 Ask a Question</option>
+            <option value="Make an Offer">💰 Make an Offer</option>
+            <option value="Other">✨ Other</option>
         </select>
 
         {errors.reason && (
-            <p className="text-red-600 text-sm mt-1">{errors.reason}</p>
+            <p className="text-red-600 text-sm mt-2">
+                {errors.reason}
+            </p>
         )}
+
     </div>
 
+    {/* Message */}
+
     <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
-            Additional Details
-            <span className="text-gray-400 font-normal ml-1">(Optional)</span>
-        </label>
 
         <textarea
             name="message"
-            rows={5}
-            placeholder="Tell us anything that will help us assist you..."
+            rows={4}
+            placeholder="Tell us how we can help..."
             value={formData.message}
             onChange={handleChange}
-            className={`w-full rounded-xl border bg-gray-50 p-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 transition ${
-                errors.message ? "border-red-500" : "border-gray-300"
+            className={`w-full rounded-2xl border bg-gray-50 p-5 text-gray-900 placeholder:text-gray-400 transition-all duration-300 resize-none focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                errors.message
+                    ? "border-red-500"
+                    : "border-gray-300 hover:border-gray-400"
             }`}
         />
 
         {errors.message && (
-            <p className="text-red-600 text-sm mt-1">{errors.message}</p>
+            <p className="text-red-600 text-sm mt-2">
+                {errors.message}
+            </p>
         )}
+
     </div>
 
 </div>
+{/* Submit Error */}
+
+{errors.submit && (
+    <p className="text-center text-red-600 text-sm">
+        {errors.submit}
+    </p>
+)}
+
+{/* Submit */}
 
 <button
     disabled={isSubmitting}
     onClick={() => submitToAPI("Property Inquiry Form")}
-    className={`w-full h-14 mt-8 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg ${
-        isSubmitting
-            ? "bg-gray-400 cursor-not-allowed"
-            : "bg-red-700 hover:bg-red-800 hover:-translate-y-0.5 text-white"
-    }`}
+    className="w-full h-14 mt-6 rounded-2xl bg-red-700 hover:bg-red-800 disabled:bg-red-400 disabled:cursor-not-allowed text-white font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center"
 >
     {isSubmitting ? (
-        <div className="flex items-center justify-center gap-2">
-            <svg
-                className="animate-spin h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-            >
-                <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                />
-
-                <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                />
-            </svg>
-
+        <div className="flex items-center gap-3">
+            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
             Sending...
         </div>
     ) : (
@@ -355,23 +372,45 @@ if (submitted) {
     )}
 </button>
 
-<div className="flex items-center gap-3 my-6">
-    <div className="flex-1 border-t border-gray-200"></div>
-    <span className="text-gray-400 text-sm font-medium">
+<p className="text-center text-sm text-gray-500 mt-4">
+    We'll get back to you within{" "}
+    <span className="font-semibold text-gray-700">
+        1 business day
+    </span>.
+</p>
+
+{/* Divider */}
+
+<div className="flex items-center my-8">
+
+    <div className="flex-1 h-px bg-gray-200"></div>
+
+    <span className="px-4 text-xs uppercase tracking-[0.25em] text-gray-400 font-semibold">
         OR
     </span>
-    <div className="flex-1 border-t border-gray-200"></div>
+
+    <div className="flex-1 h-px bg-gray-200"></div>
+
 </div>
+
+{/* Call CTA */}
+
 <a
     href="tel:+17408163112"
-    className="block w-full h-14 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 text-gray-800 font-semibold text-center leading-[56px] transition-all duration-300 hover:shadow-md"
+    className="block"
 >
-    📞 Speak with an Agent
+
+    <button
+        className="w-full h-14 rounded-2xl border-2 border-gray-900 bg-white text-gray-900 font-semibold text-lg hover:bg-gray-900 hover:text-white transition-all duration-300"
+    >
+        📞 Call an Agent
+    </button>
+
 </a>
 
 {/* Privacy */}
 
-<div className="mt-8">
+<div className="mt-8 pt-6 border-t border-gray-200">
 
     {errors.privacy && (
         <p className="text-red-600 text-sm mb-3">
@@ -386,6 +425,7 @@ if (submitted) {
             id="privacyPolicy"
             checked={privacyAccepted}
             onChange={(e) => {
+
                 setPrivacyAccepted(e.target.checked);
 
                 if (errors.privacy) {
@@ -394,26 +434,30 @@ if (submitted) {
                         privacy: "",
                     });
                 }
+
             }}
-            className="mt-1 h-4 w-4 rounded border-gray-300 accent-red-700"
+            className={`mt-1 h-4 w-4 rounded border-gray-300 text-red-700 focus:ring-red-700 ${
+                errors.privacy ? "border-red-500" : ""
+            }`}
         />
 
         <label
             htmlFor="privacyPolicy"
-            className="text-xs leading-6 text-gray-500"
+            className="text-sm leading-6 text-gray-500"
         >
-            By submitting this form, you agree to be contacted by
-            <span className="font-semibold text-gray-700">
-                {" "}The Romanelli Group
-            </span>{" "}
-            via phone, email, or text regarding this property and other real estate opportunities. Message and data rates may apply. View our{" "}
+            By submitting this form, you agree to be contacted by{" "}
+            <strong>The Romanelli Group LLC</strong> via phone, email, and text
+            regarding this property. Message and data rates may apply. You may
+            opt out at any time.{" "}
+
             <Link
                 to="/privacy-policy"
                 target="_blank"
-                className="font-semibold text-red-700 hover:text-red-800 underline"
+                className="font-medium text-red-700 hover:text-red-800 underline underline-offset-2"
             >
-                Privacy Policy
-            </Link>.
+                Read our Privacy Policy
+            </Link>
+
         </label>
 
     </div>
@@ -421,6 +465,7 @@ if (submitted) {
 </div>
 
 </div>
+
 </div>
 );
 };
