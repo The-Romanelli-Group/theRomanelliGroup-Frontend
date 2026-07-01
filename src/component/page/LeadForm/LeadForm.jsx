@@ -516,4 +516,4 @@ return (
 );
 };
 
-export default Form;
+export default LeadForm;
