@@ -44,7 +44,10 @@ const LeadModal = ({ open, onClose }) => {
                     ✕
                 </button>
 
-                <LeadForm variant="contact" />
+               <LeadForm
+    variant="contact"
+    onClose={onClose}
+/>
 
             </div>
 
