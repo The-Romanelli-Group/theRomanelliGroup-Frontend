@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { HiOutlineChevronLeft } from "react-icons/hi";
 const FORM_CONFIG = {
     property: {
         title: "Love This",
@@ -715,13 +716,12 @@ return (
 
             {isSell && step === 2 && (
 
-                <button
+                            <button
                     onClick={prevStep}
-                    className="w-1/3 h-14 rounded-2xl border border-gray-300 font-semibold hover:bg-gray-50 transition"
+                    className="w-14 h-14 rounded-2xl border border-gray-300 bg-white text-gray-900 hover:bg-gray-50 transition-all duration-300 flex items-center justify-center"
                 >
-                    Back
+                    <HiOutlineChevronLeft size={24} />
                 </button>
-
             )}
 
             <button
