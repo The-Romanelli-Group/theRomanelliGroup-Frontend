@@ -84,6 +84,7 @@ const FORM_CONFIG = {
 const LeadForm = ({
     variant = "property",
     property = null,
+    onClose = null,
 }) => {
 
     const config = FORM_CONFIG[variant];
@@ -326,6 +327,7 @@ const submitToAPI = async (source) => {
 if (submitted) {
     return (
        <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-8 text-center">
+        
 
     <div className="w-44 h-44 mx-auto mb-0 flex items-center justify-center">
 

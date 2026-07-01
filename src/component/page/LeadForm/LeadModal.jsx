@@ -36,13 +36,7 @@ const LeadModal = ({ open, onClose }) => {
 
                 {/* Close Button */}
 
-                <button
-                    onClick={onClose}
-                    aria-label="Close"
-                    className="absolute top-5 right-5 z-20 w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xl flex items-center justify-center transition-all duration-300"
-                >
-                    ✕
-                </button>
+            
 
                <LeadForm
     variant="contact"
