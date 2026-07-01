@@ -1,7 +1,7 @@
 
 import { useLocation, useParams } from 'react-router-dom';
 import Carousel from './single/carousel';
-import LeadForm from '../LeadForm/LeadForm';
+import LeadForm from '../LeadForm/LeadForm'; 
 import RelatedItem from './single/relatedItem';
 import { aeroplane, bathroom, bed, bus, city, globe, hoa, hospital, hvac, medical, park, parkIcon, propType, size, square, train, year } from '../../../assets/allImg';
 import Footer from '../Default Pages/footer';
