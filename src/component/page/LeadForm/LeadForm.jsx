@@ -1,5 +1,10 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import SellSuccess from "../../../assets/images/illustrations/sell-success.svg";
+import PropertySuccess from "../../../assets/images/illustrations/property-success.svg";
+import ContactSuccess from "../../../assets/images/illustrations/contact-success.svg";
+
 
 const FORM_CONFIG = {
     property: {
