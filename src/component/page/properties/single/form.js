@@ -129,6 +129,41 @@ const Form = ({ property }) => {
     }
 };
     
+if (submitted) {
+    return (
+        <div className="max-w-md mx-auto bg-white rounded-3xl shadow-2xl border border-gray-200 p-8 text-center">
+
+            <div className="text-6xl mb-5">
+                🏡
+            </div>
+
+            <h2 className="text-3xl font-bold text-gray-900">
+                Request Sent!
+            </h2>
+
+            <p className="text-gray-600 mt-4 leading-7">
+                Thanks for reaching out.
+                One of our agents will contact you shortly regarding this property.
+            </p>
+
+            <div className="bg-green-50 border border-green-200 rounded-xl p-4 mt-8">
+
+                <p className="text-green-700 font-semibold">
+                    ✓ Your inquiry has been received.
+                </p>
+
+            </div>
+
+            <a
+                href="tel:+17408163112"
+                className="block mt-8 w-full h-14 rounded-xl bg-red-700 hover:bg-red-800 text-white font-semibold leading-[56px] transition"
+            >
+                📞 Speak with an agent
+            </a>
+
+        </div>
+    );
+}
   return (
   <div>
     <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-2xl p-8 sticky top-24">
@@ -275,10 +310,43 @@ const Form = ({ property }) => {
 </div>
 
 <button
+    disabled={isSubmitting}
     onClick={() => submitToAPI("Property Inquiry Form")}
-    className="w-full h-14 mt-8 rounded-xl bg-red-700 hover:bg-red-800 text-white font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+    className={`w-full h-14 mt-8 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg ${
+        isSubmitting
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-red-700 hover:bg-red-800 hover:-translate-y-0.5 text-white"
+    }`}
 >
-    Request Information
+    {isSubmitting ? (
+        <div className="flex items-center justify-center gap-2">
+            <svg
+                className="animate-spin h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+            >
+                <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                />
+
+                <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                />
+            </svg>
+
+            Sending...
+        </div>
+    ) : (
+        "Request Information"
+    )}
 </button>
 
 <div className="flex items-center gap-3 my-6">
