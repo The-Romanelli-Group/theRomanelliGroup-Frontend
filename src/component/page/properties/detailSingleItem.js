@@ -1,7 +1,7 @@
 
 import { useLocation, useParams } from 'react-router-dom';
 import Carousel from './single/carousel';
-import Form from './single/form';
+import LeadForm from '../../LeadForm/LeadForm';
 import RelatedItem from './single/relatedItem';
 import { aeroplane, bathroom, bed, bus, city, globe, hoa, hospital, hvac, medical, park, parkIcon, propType, size, square, train, year } from '../../../assets/allImg';
 import Footer from '../Default Pages/footer';
@@ -300,7 +300,7 @@ if (!unique) {
         {/* Right Column - Contact Form */}
         <div className="lg:col-span-1 ml-0 order-last">
           <div className="sticky top-4">
-           <Form property={unique} /> 
+          <LeadForm variant="property" property={unique}/>
           </div>
         </div>
       </div>
