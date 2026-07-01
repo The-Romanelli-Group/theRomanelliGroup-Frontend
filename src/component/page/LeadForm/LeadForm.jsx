@@ -15,7 +15,7 @@ const FORM_CONFIG = {
             "We'll get back to you within one business day.",
 
         submitText: "Request Information",
-
+        successImage: PropertySuccess,
         successTitle: "You're All Set!",
 
         successMessage:
@@ -40,7 +40,7 @@ const FORM_CONFIG = {
             "We'll get back to you within one business day.",
 
         submitText: "Submit Inquiry",
-
+        successImage: ContactSuccess,
         successTitle: "You're All Set!",
 
         successMessage:
@@ -69,7 +69,7 @@ const FORM_CONFIG = {
 
         // Step 2
         submitText: "Get My Home Value",
-
+        successImage: SellSuccess,
         successTitle: "You're All Set!",
 
         successMessage:
@@ -327,11 +327,15 @@ if (submitted) {
     return (
        <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-8 text-center">
 
-    <div className="w-20 h-20 mx-auto rounded-full bg-green-100 flex items-center justify-center mb-6">
-        <span className="text-5xl">
-            {isSell ? "🏠" : "🏡"}
-        </span>
-    </div>
+    <div className="w-44 h-44 mx-auto mb-0 flex items-center justify-center">
+
+    <img
+        src={config.successImage}
+        alt={config.successTitle}
+        className="w-full h-full object-contain"
+    />
+
+</div>
 
     <h2 className="text-3xl font-bold text-gray-900">
         {config.successTitle}
