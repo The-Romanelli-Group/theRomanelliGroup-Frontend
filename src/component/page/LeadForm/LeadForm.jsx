@@ -49,21 +49,47 @@ const FORM_CONFIG = {
             "Other",
         ],
     },
+    sell: {
+    title: "Free Home",
+    titleAccent: "Valuation",
+
+    subtitle:
+        "Find out what your home is worth with a complimentary market analysis.",
+
+    submitText: "Continue",
+
+    successTitle: "You're All Set!",
+
+    successMessage:
+        "Thanks for requesting your complimentary home valuation. A member of The Romanelli Group will contact you within one business day.",
+
+    source: "Sell Website Form",
+
+    reasons: [],
+},
 };
 const LeadForm = ({
     variant = "property",
     property = null,
 }) => {
     const config = FORM_CONFIG[variant];
+    const [step, setStep] = useState(1);
+
+const isSell = variant === "sell";
     console.log(property);
 
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        reason: "",
-        message: "",
-    });
+   const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+
+    reason: "",
+    message: "",
+
+    address: "",
+    propertyType: "",
+    timeline: "",
+});
 
     const [privacyAccepted, setPrivacyAccepted] = useState(false);
     const [errors, setErrors] = useState({});
@@ -84,7 +110,26 @@ const LeadForm = ({
         }
     };
 
-    const validateForm = () => {
+   const validateStep1 = () => {
+    const validateStep2 = () => {
+
+    const newErrors = {};
+
+    if (!formData.address.trim()) {
+        newErrors.address = "Property address is required";
+    }
+
+    if (!formData.propertyType) {
+        newErrors.propertyType = "Please select a property type";
+    }
+
+    if (!formData.timeline) {
+        newErrors.timeline = "Please select a timeline";
+    }
+
+    return newErrors;
+
+};
         const newErrors = {};
 
         if (!formData.name.trim()) {
@@ -110,7 +155,7 @@ const LeadForm = ({
         return newErrors;
     };
     const submitToAPI = async (source) => {
-    const formErrors = validateForm();
+    const formErrors = validateStep1();
 
     if (Object.keys(formErrors).length > 0) {
         setErrors(formErrors);
