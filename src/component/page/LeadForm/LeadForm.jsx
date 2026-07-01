@@ -2,15 +2,17 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 const FORM_CONFIG = {
     property: {
-        title1: "Love This",
-        title2: "Property?",
+        title: "Love This",
+        titleAccent: "Property?",
+
         subtitle: "We'll get back to you within one business day.",
 
         submitText: "Request Information",
 
         successTitle: "You're All Set!",
+
         successMessage:
-    "Thanks for your interest in this property. A member of The Romanelli Group will contact you within one business day.",
+            "Thanks for your interest in this property. A member of The Romanelli Group will contact you within one business day.",
 
         source: "Property Inquiry Form",
 
@@ -24,8 +26,8 @@ const FORM_CONFIG = {
     },
 
     contact: {
-        title1: "Let's",
-        title2: "Connect",
+        title: "Let's",
+        titleAccent: "Connect",
 
         subtitle:
             "We'll get back to you within one business day.",
@@ -33,8 +35,10 @@ const FORM_CONFIG = {
         submitText: "Submit Inquiry",
 
         successTitle: "You're All Set!",
+
         successMessage:
-    "Thanks for contacting The Romanelli Group. We've received your message and a member of our team will be in touch within one business day.",
+            "Thanks for contacting The Romanelli Group. We've received your message and a member of our team will be in touch within one business day.",
+
         source: "Contact Form",
 
         reasons: [
@@ -243,17 +247,23 @@ return (
 
         {/* Header */}
 
-        <div className="text-center mb-6">
+<div className="text-center mb-6">
 
-            <h2 className="text-4xl font-bold text-gray-900 leading-tight">
-                 {config.title1}
-            </h2>
+    <h2 className="text-4xl md:text-5xl font-bold leading-tight">
 
-            <h2 className="text-4xl font-playfair italic text-red-700">
-                 {config.title2}
-            </h2>
+        <span className="text-gray-900">
+            {config.title}
+        </span>
 
-        </div>
+        {" "}
+
+        <span className="font-playfair italic font-normal text-red-700 whitespace-nowrap">
+            {config.titleAccent}
+        </span>
+
+    </h2>
+
+</div>
 
         {/* Form */}
 
