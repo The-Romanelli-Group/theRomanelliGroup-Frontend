@@ -159,22 +159,6 @@ const LeadForm = ({
 
     };
     
-    // Contact & Property only
-if (!isSell) {
-
-    if (!formData.reason) {
-        newErrors.reason = "Please select an option";
-    }
-
-    if (!formData.message.trim()) {
-        newErrors.message = "Message is required";
-    }
-
-}
-
-return newErrors;
-
-};
 
 const validateStep2 = () => {
 
@@ -332,7 +316,7 @@ const submitToAPI = async (source) => {
     }
 
 };
-    
+
 if (submitted) {
     return (
         <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-8 text-center">
