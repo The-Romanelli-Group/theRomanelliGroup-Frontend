@@ -206,10 +206,6 @@ return (
                 Property?
             </h2>
 
-            <p className="text-gray-500 mt-3 text-sm leading-6 max-w-xs mx-auto">
-                We'll get back to you within one business day.
-            </p>
-
         </div>
 
         {/* Form */}
