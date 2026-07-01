@@ -786,6 +786,7 @@ return (
 
         </a>
 {/* Privacy */}
+<div className="mt-4 pt-4 border-t border-gray-200">
 
     {errors.privacy && (
         <p className="text-red-600 text-sm mb-3">
