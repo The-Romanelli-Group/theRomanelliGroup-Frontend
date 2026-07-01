@@ -402,8 +402,7 @@ return (
     </button>
 )}
         {/* Header */}
-
-<div className="text-center mb-8">
+<div className="text-center mt-4 mb-8">
 
     <h2 className="text-4xl md:text-5xl font-bold leading-tight">
 
