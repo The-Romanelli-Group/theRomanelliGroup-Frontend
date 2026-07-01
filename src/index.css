@@ -39,3 +39,13 @@ code {
   height: 100% !important;
   image-rendering: crisp-edges; /* makes tiles sharper */
 }
+/* Hide scrollbars while preserving scrolling */
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
