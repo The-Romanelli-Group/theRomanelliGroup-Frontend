@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
 import Page1 from "./page1";
 import { logoUrl } from "../assets/allImg";
+import LeadModal from "../common/LeadModal";
 
 const navLinksLeft = [
     { title: "Home", href: "/" },
@@ -17,6 +18,7 @@ const navLinksLeft = [
   ];
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showLeadModal, setShowLeadModal] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -69,21 +71,26 @@ useEffect(() => {
                 {link.title}
               </Link>
             ))}
-            <Link to='/contact-us'>
-            <button className="text-black bg-white hover:bg-gray-300 font-medium  text-sm px-4 py-2 rounded-md">
-              Talk to our Team!
-            </button>
-            </Link>
+            <button
+    onClick={() => setShowLeadModal(true)}
+    className="text-black bg-white hover:bg-gray-300 font-medium text-sm px-4 py-2 rounded-md"
+>
+    Talk to an Agent
+</button>
           </div>
 
           {/* Mobile CTA + Hamburger Menu */}
           <div className="flex items-center md:hidden space-x-2">
             {/* Talk to our Team! - Left of Hamburger */}
-            <Link to='/contact-us'>
-            <button className="text-black bg-white hover:bg-gray-300 font-medium rounded-md text-sm px-4 py-2">
-              Talk to our Team!
-            </button>
-            </Link>
+            <button
+    onClick={() => {
+        setShowLeadModal(true);
+        setIsMenuOpen(false);
+    }}
+    className="text-black bg-white hover:bg-gray-300 font-medium rounded-md text-sm px-4 py-2"
+>
+    Talk to an Agent
+</button>
             {/* Mobile Menu Button */}
             <button
               type="button"
@@ -139,6 +146,10 @@ useEffect(() => {
     <Page1 page={activeLink} />
   )}
 </div>
+<LeadModal
+    open={showLeadModal}
+    onClose={() => setShowLeadModal(false)}
+/>
     </>
   );
 };
