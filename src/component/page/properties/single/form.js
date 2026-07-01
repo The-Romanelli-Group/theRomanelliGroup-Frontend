@@ -128,7 +128,7 @@ const Form = ({ property }) => {
             </h2>
 
             <h2 className="text-4xl font-playfair italic text-red-700">
-                Home?
+                Property?
             </h2>
 
             <p className="text-gray-500 mt-5 leading-7 text-base">
