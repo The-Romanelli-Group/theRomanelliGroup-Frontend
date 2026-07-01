@@ -391,8 +391,16 @@ if (submitted) {
 return (
 <div>
 
-    <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] pt-8 pb-6 px-6 sticky top-24">
-
+    <div className="relative max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] pt-8 pb-6 px-6 sticky top-24">
+{onClose && (
+    <button
+        onClick={onClose}
+        aria-label="Close"
+        className="absolute top-5 right-5 z-20 w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition-all duration-300"
+    >
+        ✕
+    </button>
+)}
         {/* Header */}
 
 <div className="text-center mb-8">
