@@ -1,4 +1,4 @@
-import LeadForm from "../page/LeadForm/LeadForm";
+import LeadForm from "./LeadForm";
 
 const LeadModal = ({ open, onClose }) => {
 
