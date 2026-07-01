@@ -397,25 +397,37 @@ return (
 
     <h2 className="text-4xl md:text-5xl font-bold leading-tight">
 
-        <span className="text-gray-900">
-            {config.title}
-        </span>
+    <span className="text-gray-900">
 
-        {" "}
+        {isSell && step === 2
+            ? "Tell Us About"
+            : config.title}
 
-        <span className="font-playfair italic font-normal text-red-700 whitespace-nowrap">
-            {config.titleAccent}
-        </span>
+    </span>
 
-    </h2>
+    {" "}
+
+    <span className="font-playfair italic font-normal text-red-700 whitespace-nowrap">
+
+        {isSell && step === 2
+            ? "Your Home"
+            : config.titleAccent}
+
+    </span>
+
+</h2>
 
     {/* Property & Sell Subtitle */}
 
     {variant !== "contact" && (
-        <p className="mt-4 text-lg text-gray-500 leading-7 max-w-sm mx-auto">
-            {config.subtitle}
-        </p>
-    )}
+    <p className="mt-4 text-lg text-gray-500 leading-7 max-w-sm mx-auto">
+
+        {isSell && step === 2
+            ? "Just a few more details so we can prepare a more accurate home valuation."
+            : config.subtitle}
+
+    </p>
+)}
 
     {/* Sell Progress Indicator */}
 
