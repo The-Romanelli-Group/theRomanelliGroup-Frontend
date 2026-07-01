@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
 import Page1 from "./page1";
 import { logoUrl } from "../assets/allImg";
-import LeadModal from "../component/page/LeadForm/LeadModal";
+import LeadModal from "../component/page/LeadForm/LeadModal"; 
 
 const navLinksLeft = [
     { title: "Home", href: "/" },
