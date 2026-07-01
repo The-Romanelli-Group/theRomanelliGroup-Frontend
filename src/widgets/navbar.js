@@ -50,13 +50,31 @@ className="fixed top-0 left-0 w-full z-50 bg-backgroundColor/90 backdrop-blur-lg
         <div className="max-w-screen-xl mx-auto flex items-center justify-between p-4 md:px-6">
           {/* Left Nav Links */}
           <ul className="hidden md:flex space-x-6">
-            {navLinksLeft.map((link, index) => (
-              <li key={index}>
-                <Link to={link.href} className={`text-white hover:text-gray-300 ${activeLink === link.title ? "underline underline-offset-4":""}`}>
-                  {link.title}
-                </Link>
-              </li>
-            ))}
+           {navLinksLeft.map((link, index) => (
+    <li key={index} className="relative">
+
+        <Link
+            to={link.href}
+           className="relative text-white font-medium hover:text-white transition-colors duration-300"
+        >
+            {link.title}
+
+            {activeLink === link.title && (
+                <motion.div
+                    layoutId="navbarUnderline"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-white rounded-full"
+                    transition={{
+                        type: "spring",
+                        stiffness: 450,
+                        damping: 35,
+                    }}
+                />
+            )}
+
+        </Link>
+
+    </li>
+))}
           </ul>
 
           {/* Centered Logo */}
@@ -66,11 +84,31 @@ className="fixed top-0 left-0 w-full z-50 bg-backgroundColor/90 backdrop-blur-lg
 
           {/* Right Nav Links + CTA */}
           <div className="hidden md:flex items-center space-x-6">
-            {navLinksRight.map((link, index) => (
-              <Link key={index} to={link.href} className={`text-white hover:text-gray-300 ${activeLink === link.title ? "underline underline-offset-4"  :''}`}>
-                {link.title}
-              </Link>
-            ))}
+          {navLinksRight.map((link, index) => (
+    <div key={index} className="relative">
+
+        <Link
+            to={link.href}
+           className="relative text-white font-medium hover:text-white transition-colors duration-300"
+        >
+            {link.title}
+
+            {activeLink === link.title && (
+                <motion.div
+                    layoutId="navbarUnderline"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-white rounded-full"
+                    transition={{
+                        type: "spring",
+                        stiffness: 450,
+                        damping: 35,
+                    }}
+                />
+            )}
+
+        </Link>
+
+    </div>
+))}
             <button
     onClick={() => setShowLeadModal(true)}
     className="text-black bg-white hover:bg-gray-300 font-medium text-sm px-4 py-2 rounded-md"
