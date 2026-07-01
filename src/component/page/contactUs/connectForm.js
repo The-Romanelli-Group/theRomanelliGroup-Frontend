@@ -3,176 +3,453 @@ import { Link } from 'react-router-dom'
 import AccessibleButton from '../../../components/AccessibleButton'
 
 const ConnectForm = () => {
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        phone: "",
         reason: "",
-        message: ""
+        message: "",
     });
+
     const [privacyAccepted, setPrivacyAccepted] = useState(false);
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+
         if (errors[e.target.name]) {
-            setErrors({ ...errors, [e.target.name]: "" });
+            setErrors({
+                ...errors,
+                [e.target.name]: "",
+            });
         }
     };
 
     const validateForm = () => {
+
         const newErrors = {};
-        if (!formData.name.trim()) newErrors.name = "Name is required";
+
+        if (!formData.name.trim()) {
+            newErrors.name = "Name is required";
+        }
+
         if (!formData.email.trim()) {
             newErrors.email = "Email is required";
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
             newErrors.email = "Email is invalid";
         }
-        if (!formData.reason) newErrors.reason = "Reason is required";
-        if (!formData.message.trim()) newErrors.message = "Message is required";
+
+        if (!formData.phone.trim()) {
+            newErrors.phone = "Phone number is required";
+        }
+
+        if (!formData.reason) {
+            newErrors.reason = "Please select an option";
+        }
+
+        if (!formData.message.trim()) {
+            newErrors.message = "Message is required";
+        }
+
         return newErrors;
     };
 
     const submitToAPI = async (source) => {
+
         const formErrors = validateForm();
+
         if (Object.keys(formErrors).length > 0) {
             setErrors(formErrors);
             return;
         }
 
         if (!privacyAccepted) {
-            setErrors({ privacy: "You must accept the privacy policy to continue" });
+            setErrors({
+                privacy: "You must accept the privacy policy to continue",
+            });
             return;
         }
 
+        setLoading(true);
 
+        try {
 
-       try {
-    const response = await fetch(
-        'https://secure-pleasure-8cb8bfce78.strapiapp.com/api/contact',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: formData.name,
-                email: formData.email,
-                reason: formData.reason,
-                message: formData.message,
-                source: source,
-            }),
-        }
-    );
+            const response = await fetch(
+                "https://secure-pleasure-8cb8bfce78.strapiapp.com/api/contact",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        name: formData.name,
+                        email: formData.email,
+                        phone: formData.phone,
+                        reason: formData.reason,
+                        message: formData.message,
+                        source,
+                    }),
+                }
+            );
 
             if (response.ok) {
-                alert('Thank you! We will contact you soon.');
-                setFormData({ name: "", email: "", reason: "", message: "" });
+
+                setSubmitted(true);
+
+                setFormData({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    reason: "",
+                    message: "",
+                });
+
+                setPrivacyAccepted(false);
+                setErrors({});
+
             } else {
-                console.error('❌ FAILED: Lead submission failed');
-                alert('Something went wrong. Please try again.');
+
+                console.error("❌ FAILED: Lead submission failed");
+                alert("Something went wrong. Please try again.");
+
             }
+
         } catch (error) {
-            console.error('❌ ERROR:', error);
-            alert('Network error. Please try again.');
+
+            console.error("❌ ERROR:", error);
+            alert("Network error. Please try again.");
+
+        } finally {
+
+            setLoading(false);
+
         }
     };
 
-    const handleSubmit = () => submitToAPI('Contact Form - Submit');
-    const handleScheduleCall = () => submitToAPI('Contact Form - Schedule Call');
-  return (
+    const handleSubmit = () => submitToAPI("Contact Form");
+    
+    return (
     <>
                     {/* Right Section (Form) */}
-                            <div className="w-full  md:w-1/2 md:pl-12">
-                                <div className="max-w-md mx-auto h-auto p-4 bg-white rounded-lg shadow-lg text-gray-800">
-                                        <div>
-                                            <h2 className="text-2xl font-bold mt-2 text-center">Connect with Us </h2>
-                                            <h2 className="text-2xl font-bold mb-4 text-center"> <span className="font-playfair  italic">Directly</span></h2>
-                                            <p className='text-black font-semibold text-left text-md mb-1'>Full Name</p>
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                placeholder="Enter your full name"
-                                                value={formData.name}
-                                                onChange={handleChange}
-                                                className={`w-full text-md p-2 border rounded mb-1 ${errors.name ? 'border-red-500' : ''}`}
-                                                aria-label="Full name"
-                                                aria-required="true"
-                                            />
-                                            {errors.name && <p className="text-red-500 text-sm mb-2">{errors.name}</p>}
-                                            <p className='text-black font-semibold text-left text-md mb-1'>Email</p>
-                                            <input
-                                                type="email"
-                                                name="email"
-                                                placeholder="Enter your email"
-                                                value={formData.email}
-                                                onChange={handleChange}
-                                                className={`w-full text-md p-2 border rounded mb-1 ${errors.email ? 'border-red-500' : ''}`}
-                                                aria-label="Email address"
-                                                aria-required="true"
-                                            />
-                                            {errors.email && <p className="text-red-500 text-sm mb-2">{errors.email}</p>}
-                                            <p className='text-black font-semibold text-left text-md mb-1'>Reason for Contact*</p>
-                                            <select
-                                                name="reason"
-                                                id="reason"
-                                                value={formData.reason}
-                                                onChange={handleChange}
-                                                className={`w-full text-md p-2 border rounded mb-1 bg-white ${errors.reason ? 'border-red-500' : ''}`}
-                                                aria-label="Reason for contact"
-                                                aria-required="true"
-                                            >
-                                                <option value="">Choose from Options</option>
-                                                <option value="buyingInquiry">Buying Inquiry</option>
-                                                <option value="sellingInquiry">Selling Inquiry</option>
-                                                <option value="generalQuestion">General Question</option>
-                                                <option value="partnershipOpportunities">Partnership Opportunities</option>
-                                                <option value="Other">Other</option>
-                                            </select>
-                                            {errors.reason && <p className="text-red-500 text-sm mb-2">{errors.reason}</p>}
-                                            <p className='text-black font-semibold text-left text-md mb-1'>Message*</p>
-                                            <textarea
-                                                name="message"
-                                                placeholder="How can we help you?"
-                                                value={formData.message}
-                                                onChange={handleChange}
-                                                className={`w-full text-md p-2 border rounded mb-1 ${errors.message ? 'border-red-500' : ''}`}
-                                                aria-label="Message"
-                                                aria-required="true"
-                                                rows="4"
-                                            />
-                                            {errors.message && <p className="text-red-500 text-sm mb-2">{errors.message}</p>}
-                                            <AccessibleButton onClick={handleSubmit} className="bg-red-800 text-white px-4 py-2 w-full rounded" ariaLabel="Submit enquiry form">
-                                                Submit Inquiry
-                                            </AccessibleButton>
-                                            <p className='text-center font-bold p-2'>OR</p>
-                                           <a href="tel:+17408163112" className="w-full">
-                                                    <AccessibleButton   className="bg-black text-white px-4 py-2 w-full rounded"   ariaLabel="Call The Romanelli Group" >
-                                                    Call Us  </AccessibleButton>
-                                                    </a>
 
-                                            <div className='mt-4'>
-                                             {errors.privacy && <p className="text-red-500 text-left text-[10px]">{errors.privacy}</p>}
-                                            <div className="flex items-start gap-2 text-xs text-gray-600">
-                                                <input 
-                                                    type="checkbox" 
-                                                    id="privacyPolicy" 
-                                                    checked={privacyAccepted}
-                                                    onChange={(e) => {
-                                                        setPrivacyAccepted(e.target.checked);
-                                                        if (errors.privacy) {
-                                                            setErrors({ ...errors, privacy: "" });
-                                                        }
-                                                    }}
-                                                    className={`mt-1 flex-shrink-0 ${errors.privacy ? 'border-red-500' : ''}`}
-                                                />
-                                                <label htmlFor="privacyPolicy" className="text-left">
-                                                    By providing your information, you agree to be contacted by The Romanelli Group LLC via phone call, email, and text for real estate services. To opt out, you can reply "STOP" to any text at any time or click the unsubscribe link in emails. For help, reply "HELP." Message and data rates may apply. Message frequency varies. <Link to="/privacy-policy" target='_blank' className="text-blue-600 hover:text-blue-800 underline">View our Privacy Policy</Link>.
-                                                </label>
-                                            </div>   
-                                            </div>
-                                        </div>        
-                                </div>
-                            </div>
+<div className="w-full lg:w-1/2 lg:pl-12">
+
+    <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-6 md:p-8">
+
+        {/* Header */}
+
+        <div className="text-center mb-8">
+
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-50 mb-5">
+                <span className="text-3xl">🏡</span>
+            </div>
+
+            <p className="text-red-700 uppercase tracking-[0.3em] text-xs font-semibold">
+                THE ROMANELLI GROUP
+            </p>
+
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-4 leading-tight">
+                Let's
+            </h2>
+
+            <h2 className="text-4xl md:text-5xl font-playfair italic text-red-700">
+                Connect
+            </h2>
+
+            <p className="text-gray-500 mt-5 leading-7 text-base max-w-sm mx-auto">
+                Buying, selling, investing, or simply have a question? We'd love to hear from you and help however we can.
+            </p>
+
+        </div>
+
+        {/* Form */}
+
+        <div className="space-y-6">
+
+            {/* Full Name */}
+
+            <div>
+
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="John Smith"
+                    value={formData.name}
+                    onChange={handleChange}
+                    aria-label="Full name"
+                    aria-required="true"
+                    className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                        errors.name
+                            ? "border-red-500"
+                            : "border-gray-300 hover:border-gray-400"
+                    }`}
+                />
+
+                {errors.name && (
+                    <p className="text-red-600 text-sm mt-2">
+                        {errors.name}
+                    </p>
+                )}
+
+            </div>            
+            {/* Email */}
+
+<div>
+
+    <label className="block text-sm font-semibold text-gray-700 mb-2">
+        Email Address
+    </label>
+
+    <input
+        type="email"
+        name="email"
+        placeholder="john@email.com"
+        value={formData.email}
+        onChange={handleChange}
+        aria-label="Email address"
+        aria-required="true"
+        className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+            errors.email
+                ? "border-red-500"
+                : "border-gray-300 hover:border-gray-400"
+        }`}
+    />
+
+    {errors.email && (
+        <p className="text-red-600 text-sm mt-2">
+            {errors.email}
+        </p>
+    )}
+
+</div>
+
+{/* Phone */}
+
+<div>
+
+    <label className="block text-sm font-semibold text-gray-700 mb-2">
+        Phone Number
+    </label>
+
+    <input
+        type="tel"
+        name="phone"
+        placeholder="(740) 555-1234"
+        value={formData.phone}
+        onChange={handleChange}
+        aria-label="Phone Number"
+        className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+            errors.phone
+                ? "border-red-500"
+                : "border-gray-300 hover:border-gray-400"
+        }`}
+    />
+
+    {errors.phone && (
+        <p className="text-red-600 text-sm mt-2">
+            {errors.phone}
+        </p>
+    )}
+
+</div>
+
+{/* Reason */}
+
+<div>
+
+    <label className="block text-sm font-semibold text-gray-700 mb-2">
+        How Can We Help?
+    </label>
+
+    <select
+        name="reason"
+        value={formData.reason}
+        onChange={handleChange}
+        aria-label="Reason for contact"
+        aria-required="true"
+        className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+            errors.reason
+                ? "border-red-500"
+                : "border-gray-300 hover:border-gray-400"
+        }`}
+    >
+        <option value="">Choose an option</option>
+        <option value="Buying Inquiry">🏡 Buying a Home</option>
+        <option value="Selling Inquiry">🏠 Selling My Home</option>
+        <option value="Home Valuation">💰 Home Valuation</option>
+        <option value="Investment Property">📈 Investment Property</option>
+        <option value="General Question">💬 General Question</option>
+        <option value="Partnership Opportunity">🤝 Partnership Opportunity</option>
+        <option value="Other">✨ Other</option>
+    </select>
+
+    {errors.reason && (
+        <p className="text-red-600 text-sm mt-2">
+            {errors.reason}
+        </p>
+    )}
+
+</div>
+
+{/* Message */}
+
+<div>
+
+    <div className="flex justify-between mb-2">
+
+        <label className="text-sm font-semibold text-gray-700">
+            Message
+        </label>
+
+        <span className="text-xs text-gray-400">
+            Tell us a little about your goals
+        </span>
+
+    </div>
+
+    <textarea
+        name="message"
+        rows={6}
+        placeholder="I'm looking to buy my first home in Columbus..."
+        value={formData.message}
+        onChange={handleChange}
+        aria-label="Message"
+        aria-required="true"
+        className={`w-full rounded-2xl border bg-gray-50 p-5 text-gray-900 placeholder:text-gray-400 transition-all duration-300 resize-none focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+            errors.message
+                ? "border-red-500"
+                : "border-gray-300 hover:border-gray-400"
+        }`}
+    />
+
+    {errors.message && (
+        <p className="text-red-600 text-sm mt-2">
+            {errors.message}
+        </p>
+    )}
+
+</div>
+
+</div>
+
+        {/* Submit */}
+
+<AccessibleButton
+    onClick={handleSubmit}
+    disabled={loading}
+    ariaLabel="Submit enquiry form"
+    className="w-full h-14 mt-8 rounded-2xl bg-red-700 hover:bg-red-800 disabled:bg-red-400 disabled:cursor-not-allowed text-white font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center"
+>
+    {loading ? (
+        <div className="flex items-center gap-3">
+            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            Sending...
+        </div>
+    ) : (
+        "Submit Inquiry"
+    )}
+</AccessibleButton>
+
+<p className="text-center text-sm text-gray-500 mt-4">
+    We typically respond within
+    <span className="font-semibold text-gray-700"> 1 business day.</span>
+</p>
+
+{/* Divider */}
+
+<div className="flex items-center my-8">
+    <div className="flex-1 h-px bg-gray-200"></div>
+
+    <span className="px-4 text-xs uppercase tracking-[0.25em] text-gray-400 font-semibold">
+        OR
+    </span>
+
+    <div className="flex-1 h-px bg-gray-200"></div>
+</div>
+
+{/* Call CTA */}
+
+<a href="tel:+17408163112" className="block">
+
+    <AccessibleButton
+        ariaLabel="Call The Romanelli Group"
+        className="w-full h-14 rounded-2xl border-2 border-gray-900 bg-white text-gray-900 font-semibold text-lg hover:bg-gray-900 hover:text-white transition-all duration-300"
+    >
+        📞 Call Our Team
+    </AccessibleButton>
+
+</a>
+
+{/* Privacy */}
+
+<div className="mt-8 pt-6 border-t border-gray-200">
+
+    {errors.privacy && (
+        <p className="text-red-600 text-sm mb-3">
+            {errors.privacy}
+        </p>
+    )}
+
+    <div className="flex items-start gap-3">
+
+        <input
+            type="checkbox"
+            id="privacyPolicy"
+            checked={privacyAccepted}
+            onChange={(e) => {
+                setPrivacyAccepted(e.target.checked);
+
+                if (errors.privacy) {
+                    setErrors({
+                        ...errors,
+                        privacy: "",
+                    });
+                }
+            }}
+            className={`mt-1 h-4 w-4 rounded border-gray-300 text-red-700 focus:ring-red-700 ${
+                errors.privacy ? "border-red-500" : ""
+            }`}
+        />
+
+        <label
+            htmlFor="privacyPolicy"
+            className="text-sm leading-6 text-gray-500"
+        >
+            By submitting this form, you agree to be contacted by{" "}
+            <strong>The Romanelli Group LLC</strong> via phone, email, and text
+            regarding your real estate inquiry. Message and data rates may
+            apply. You may opt out at any time.
+
+            {" "}
+
+            <Link
+                to="/privacy-policy"
+                target="_blank"
+                className="font-medium text-red-700 hover:text-red-800 underline underline-offset-2"
+            >
+                Read our Privacy Policy
+            </Link>
+        </label>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
     </>
   )
 }
