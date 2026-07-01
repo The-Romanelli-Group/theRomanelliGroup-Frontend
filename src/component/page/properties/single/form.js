@@ -3,109 +3,131 @@ import { Link } from 'react-router-dom'
 
 const Form = ({ property }) => {
     console.log(property);
+
     const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    reason: "",
-    message: ""
-});
+        name: "",
+        email: "",
+        phone: "",
+        reason: "",
+        message: "",
+    });
+
     const [privacyAccepted, setPrivacyAccepted] = useState(false);
     const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+
         if (errors[e.target.name]) {
-            setErrors({ ...errors, [e.target.name]: "" });
+            setErrors({
+                ...errors,
+                [e.target.name]: "",
+            });
         }
     };
 
     const validateForm = () => {
-    const newErrors = {};
+        const newErrors = {};
 
-    if (!formData.name.trim()) {
-        newErrors.name = "Name is required";
-    }
+        if (!formData.name.trim()) {
+            newErrors.name = "Name is required";
+        }
 
-    if (!formData.email.trim()) {
-        newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-        newErrors.email = "Email is invalid";
-    }
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = "Please enter a valid email.";
+        }
 
-    if (!formData.phone.trim()) {
-        newErrors.phone = "Phone number is required";
-    }
+        if (!formData.phone.trim()) {
+            newErrors.phone = "Phone number is required";
+        }
 
-    if (!formData.reason) {
-        newErrors.reason = "Please select an option";
-    }
+        if (!formData.reason) {
+            newErrors.reason = "Please select an option";
+        }
 
-    if (!formData.message.trim()) {
-        newErrors.message = "Message is required";
-    }
+        // Message is OPTIONAL now
 
-    return newErrors;
-};
-
+        return newErrors;
+    };
     const submitToAPI = async (source) => {
-        const formErrors = validateForm();
-        if (Object.keys(formErrors).length > 0) {
-            setErrors(formErrors);
-            return;
-        }
+    const formErrors = validateForm();
 
-        if (!privacyAccepted) {
-            setErrors({ privacy: "You must accept the privacy policy to continue" });
-            return;
-        }
-
-
-        try {
-    const response = await fetch(
-        'https://secure-pleasure-8cb8bfce78.strapiapp.com/api/contact',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: formData.name,
-                email: formData.email,
-                phone: formData.phone,
-                reason: formData.reason,
-                message: formData.message,
-
-                source: source,
-
-                propertyAddress:
-                    property?.UnparsedAddress ||
-                    `${property?.StreetNumber || ""} ${property?.StreetName || ""}, ${property?.City || ""}, ${property?.StateOrProvince || ""} ${property?.PostalCode || ""}`,
-
-                listingKey: property?.ListingKey,
-
-                propertyUrl: window.location.href,
-            }),
-        }
-    );
-    if (response.ok) {
-        alert('Thank you! We will contact you soon.');
-        setFormData({
-    name: "",
-    email: "",
-    phone: "",
-    reason: "",
-    message: "",
-});
-    } else {
-        console.error('❌ FAILED: Lead submission failed');
-        alert('Something went wrong. Please try again.');
+    if (Object.keys(formErrors).length > 0) {
+        setErrors(formErrors);
+        return;
     }
-} catch (error) {
-    console.error('❌ ERROR:', error);
-    alert('Network error. Please try again.');
-}
-}; 
+
+    if (!privacyAccepted) {
+        setErrors({
+            privacy: "Please accept the Privacy Policy to continue.",
+        });
+        return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+        const response = await fetch(
+            "https://secure-pleasure-8cb8bfce78.strapiapp.com/api/contact",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    reason: formData.reason,
+                    message: formData.message,
+
+                    source,
+
+                    propertyAddress:
+                        property?.UnparsedAddress ||
+                        `${property?.StreetNumber || ""} ${property?.StreetName || ""}, ${property?.City || ""}, ${property?.StateOrProvince || ""} ${property?.PostalCode || ""}`,
+
+                    listingKey: property?.ListingKey,
+
+                    propertyUrl: window.location.href,
+                }),
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Submission failed");
+        }
+
+        setSubmitted(true);
+
+        setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            reason: "",
+            message: "",
+        });
+
+        setPrivacyAccepted(false);
+        setErrors({});
+
+    } catch (error) {
+        console.error("❌ ERROR:", error);
+
+        alert(
+            "Sorry, something went wrong while sending your request. Please try again."
+        );
+    } finally {
+        setIsSubmitting(false);
+    }
+};
     
   return (
   <div>
@@ -270,7 +292,7 @@ const Form = ({ property }) => {
     href="tel:+17408163112"
     className="block w-full h-14 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 text-gray-800 font-semibold text-center leading-[56px] transition-all duration-300 hover:shadow-md"
 >
-    📞 Need Help Now? Call an Agent
+    📞 Speak with an Agent
 </a>
 
 {/* Privacy */}
