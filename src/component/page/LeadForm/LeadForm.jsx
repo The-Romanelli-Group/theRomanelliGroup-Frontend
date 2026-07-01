@@ -593,89 +593,112 @@ return (
 
             {isSell && step === 2 && (
 
-                <>
+    <>
 
-                    <input
-                        type="text"
-                        name="address"
-                        placeholder="Property Address"
-                        value={formData.address}
-                        onChange={handleChange}
-                                    className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+        {/* Property Address */}
+
+        <div>
+
+            <input
+                type="text"
+                name="address"
+                placeholder="Property Address"
+                value={formData.address}
+                onChange={handleChange}
+                className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
                     errors.address
                         ? "border-red-500"
                         : "border-gray-300 hover:border-gray-400"
                 }`}
-                    />
+            />
 
-                    {errors.address && (
-                        <p className="text-red-600 text-sm">
-                            {errors.address}
-                        </p>
-                    )}
-
-                    <select
-                        name="propertyType"
-                        value={formData.propertyType}
-                        onChange={handleChange}
-                       className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
-    errors.propertyType
-        ? "border-red-500"
-        : "border-gray-300 hover:border-gray-400"
-}`}
-                    >
-                        <option value="">Property Type</option>
-                        <option>Single Family</option>
-                        <option>Condo</option>
-                        <option>Townhome</option>
-                        <option>Multi-Family</option>
-                        <option>Land</option>
-                        <option>Other</option>
-                    </select>
-
-                    {errors.propertyType && (
-                        <p className="text-red-600 text-sm">
-                            {errors.propertyType}
-                        </p>
-                    )}
-
-                    <select
-                        name="timeline"
-                        value={formData.timeline}
-                        onChange={handleChange}
-                        className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
-    errors.timeline
-        ? "border-red-500"
-        : "border-gray-300 hover:border-gray-400"
-}`}
-                    >
-                        <option value="">When are you looking to sell?</option>
-                        <option>Immediately</option>
-                        <option>1–3 Months</option>
-                        <option>3–6 Months</option>
-                        <option>6+ Months</option>
-                        <option>Just Researching</option>
-                    </select>
-
-                    {errors.timeline && (
-                        <p className="text-red-600 text-sm">
-                            {errors.timeline}
-                        </p>
-                    )}
-
-                    <textarea
-                        name="message"
-                        rows={4}
-                        placeholder="Tell us anything you'd like us to know (optional)"
-                        value={formData.message}
-                        onChange={handleChange}
-                   className="w-full rounded-2xl border border-gray-300 bg-gray-50 p-5 text-gray-900 placeholder:text-gray-400 transition-all duration-300 resize-none focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 hover:border-gray-400" className="w-full rounded-2xl border border-gray-300 bg-gray-50 p-5 resize-none"
-                    />
-
-                </>
-
+            {errors.address && (
+                <p className="text-red-600 text-sm mt-2">
+                    {errors.address}
+                </p>
             )}
 
+        </div>
+
+        {/* Property Type */}
+
+        <div>
+
+            <select
+                name="propertyType"
+                value={formData.propertyType}
+                onChange={handleChange}
+                className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                    errors.propertyType
+                        ? "border-red-500"
+                        : "border-gray-300 hover:border-gray-400"
+                }`}
+            >
+                <option value="">Property Type</option>
+                <option>Single Family</option>
+                <option>Condo</option>
+                <option>Townhome</option>
+                <option>Multi-Family</option>
+                <option>Land</option>
+                <option>Other</option>
+            </select>
+
+            {errors.propertyType && (
+                <p className="text-red-600 text-sm mt-2">
+                    {errors.propertyType}
+                </p>
+            )}
+
+        </div>
+
+        {/* Timeline */}
+
+        <div>
+
+            <select
+                name="timeline"
+                value={formData.timeline}
+                onChange={handleChange}
+                className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                    errors.timeline
+                        ? "border-red-500"
+                        : "border-gray-300 hover:border-gray-400"
+                }`}
+            >
+                <option value="">When are you looking to sell?</option>
+                <option>Immediately</option>
+                <option>1–3 Months</option>
+                <option>3–6 Months</option>
+                <option>6+ Months</option>
+                <option>Just Researching</option>
+            </select>
+
+            {errors.timeline && (
+                <p className="text-red-600 text-sm mt-2">
+                    {errors.timeline}
+                </p>
+            )}
+
+        </div>
+
+        {/* Notes */}
+
+        <div>
+
+            <textarea
+                name="message"
+                rows={4}
+                placeholder="Tell us anything you'd like us to know (optional)"
+                value={formData.message}
+                onChange={handleChange}
+                className="w-full rounded-2xl border border-gray-300 bg-gray-50 p-5 text-gray-900 placeholder:text-gray-400 transition-all duration-300 resize-none focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 hover:border-gray-400"
+            />
+
+        </div>
+
+    </>
+
+)}
         </div>
 
         {/* Submit Error */}
@@ -763,8 +786,6 @@ return (
 
         </a>
 {/* Privacy */}
-
-<div className="mt-8 pt-6 border-t border-gray-200">
 
     {errors.privacy && (
         <p className="text-red-600 text-sm mb-3">
