@@ -1,6 +1,19 @@
+import { useEffect } from "react";
 import LeadForm from "./LeadForm";
-
 const LeadModal = ({ open, onClose }) => {
+    useEffect(() => {
+
+    if (open) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "";
+    }
+
+    return () => {
+        document.body.style.overflow = "";
+    };
+
+}, [open]);
 
     if (!open) return null;
 
@@ -16,8 +29,7 @@ const LeadModal = ({ open, onClose }) => {
             />
 
             {/* Modal */}
-
-            <div className="relative w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="relative w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto no-scrollbar">           
 
                     <button
             onClick={onClose}
