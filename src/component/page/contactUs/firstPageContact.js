@@ -10,7 +10,7 @@ const FirstPageSell = () => {
                 <div className="grid lg:grid-cols-[1fr_470px] gap-16 xl:gap-24 items-start">
 
                     {/* Left Content */}
-                       <div className="self-center lg:pr-10 xl:pr-16">
+                       <div className="lg:pt-24 xl:pt-28 lg:pr-10 xl:pr-16">
 
                         <p className="uppercase tracking-[0.35em] text-red-500 text-xs font-semibold mb-5">
                             CONTACT THE ROMANELLI GROUP
