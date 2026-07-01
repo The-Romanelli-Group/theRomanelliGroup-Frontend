@@ -5,7 +5,8 @@ const FORM_CONFIG = {
         title: "Love This",
         titleAccent: "Property?",
 
-        subtitle: "We'll get back to you within one business day.",
+        subtitle:
+            "We'll get back to you within one business day.",
 
         submitText: "Request Information",
 
@@ -49,47 +50,56 @@ const FORM_CONFIG = {
             "Other",
         ],
     },
+
     sell: {
-    title: "Free Home",
-    titleAccent: "Valuation",
+        title: "Free Home",
+        titleAccent: "Valuation",
 
-    subtitle:
-        "Find out what your home is worth with a complimentary market analysis.",
+        subtitle:
+            "Find out what your home is worth with a complimentary market analysis.",
 
-    submitText: "Continue",
+        // Step 1
+        continueText: "Continue",
 
-    successTitle: "You're All Set!",
+        // Step 2
+        submitText: "Get My Home Value",
 
-    successMessage:
-        "Thanks for requesting your complimentary home valuation. A member of The Romanelli Group will contact you within one business day.",
+        successTitle: "You're All Set!",
 
-    source: "Sell Website Form",
+        successMessage:
+            "Thanks for requesting your complimentary home valuation. A member of The Romanelli Group will contact you within one business day.",
 
-    reasons: [],
-},
+        source: "Sell Website Form",
+
+        reasons: [],
+    },
 };
+
 const LeadForm = ({
     variant = "property",
     property = null,
 }) => {
+
     const config = FORM_CONFIG[variant];
+    const isSell = variant === "sell";
+
     const [step, setStep] = useState(1);
 
-const isSell = variant === "sell";
-    console.log(property);
+    const [formData, setFormData] = useState({
+        // Shared
+        name: "",
+        email: "",
+        phone: "",
 
-   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
+        // Contact & Property
+        reason: "",
+        message: "",
 
-    reason: "",
-    message: "",
-
-    address: "",
-    propertyType: "",
-    timeline: "",
-});
+        // Sell
+        address: "",
+        propertyType: "",
+        timeline: "",
+    });
 
     const [privacyAccepted, setPrivacyAccepted] = useState(false);
     const [errors, setErrors] = useState({});
@@ -97,21 +107,76 @@ const isSell = variant === "sell";
     const [submitted, setSubmitted] = useState(false);
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
 
-        if (errors[e.target.name]) {
-            setErrors({
-                ...errors,
-                [e.target.name]: "",
-            });
+        const { name, value } = e.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+
+        if (errors[name]) {
+            setErrors((prev) => ({
+                ...prev,
+                [name]: "",
+            }));
         }
+
     };
 
-   const validateStep1 = () => {
-    const validateStep2 = () => {
+    const validateStep1 = () => {
+
+        const newErrors = {};
+
+        if (!formData.name.trim()) {
+            newErrors.name = "Name is required";
+        }
+
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = "Please enter a valid email.";
+        }
+
+        if (!formData.phone.trim()) {
+            newErrors.phone = "Phone number is required";
+        }
+
+        // Contact & Property only
+        if (!isSell) {
+
+            if (!formData.reason) {
+                newErrors.reason = "Please select an option";
+            }
+
+            if (!formData.message.trim()) {
+                newErrors.message = "Message is required";
+            }
+
+        }
+
+        return newErrors;
+
+    };
+    
+    // Contact & Property only
+if (!isSell) {
+
+    if (!formData.reason) {
+        newErrors.reason = "Please select an option";
+    }
+
+    if (!formData.message.trim()) {
+        newErrors.message = "Message is required";
+    }
+
+}
+
+return newErrors;
+
+};
+
+const validateStep2 = () => {
 
     const newErrors = {};
 
@@ -130,32 +195,44 @@ const isSell = variant === "sell";
     return newErrors;
 
 };
-        const newErrors = {};
 
-        if (!formData.name.trim()) {
-            newErrors.name = "Name is required";
-        }
+const nextStep = () => {
 
-        if (!formData.email.trim()) {
-            newErrors.email = "Email is required";
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = "Please enter a valid email.";
-        }
+    const stepErrors = validateStep1();
 
-        if (!formData.phone.trim()) {
-            newErrors.phone = "Phone number is required";
-        }
+    if (Object.keys(stepErrors).length > 0) {
+        setErrors(stepErrors);
+        return;
+    }
 
-        if (!formData.reason) {
-            newErrors.reason = "Please select an option";
-        }
+    setErrors({});
+    setStep(2);
 
-        // Message is OPTIONAL now
+};
 
-        return newErrors;
-    };
-    const submitToAPI = async (source) => {
-    const formErrors = validateStep1();
+const prevStep = () => {
+
+    setErrors({});
+    setStep(1);
+
+};
+
+const submitToAPI = async (source) => {
+
+    let formErrors = {};
+
+    if (isSell) {
+
+        formErrors =
+            step === 1
+                ? validateStep1()
+                : validateStep2();
+
+    } else {
+
+        formErrors = validateStep1();
+
+    }
 
     if (Object.keys(formErrors).length > 0) {
         setErrors(formErrors);
@@ -169,9 +246,11 @@ const isSell = variant === "sell";
         return;
     }
 
+
     setIsSubmitting(true);
 
     try {
+
         const response = await fetch(
             "https://secure-pleasure-8cb8bfce78.strapiapp.com/api/contact",
             {
@@ -180,28 +259,37 @@ const isSell = variant === "sell";
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-    name: formData.name,
-    email: formData.email,
-    phone: formData.phone,
-    reason: formData.reason,
-    message: formData.message,
 
-    source,
+                    // Shared
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
 
-    propertyAddress:
-        property?.UnparsedAddress ||
-        `${property?.StreetNumber || ""} ${property?.StreetName || ""}, ${property?.City || ""}, ${property?.StateOrProvince || ""} ${property?.PostalCode || ""}`,
+                    // Contact / Property
+                    reason: formData.reason,
+                    message: formData.message,
 
-    listingKey: property?.ListingKey,
+                    // Sell
+                    address: formData.address,
+                    propertyType: formData.propertyType,
+                    timeline: formData.timeline,
 
-    propertyUrl: window.location.href,
+                    source,
 
-    propertyPrice: property?.ListPrice,
-    propertyStatus: property?.StandardStatus,
-    beds: property?.BedroomsTotal,
-    baths: property?.BathroomsTotalInteger,
-    sqft: property?.BuildingAreaTotal,
-}),
+                    // Property Only
+                    propertyAddress:
+                        property?.UnparsedAddress ||
+                        `${property?.StreetNumber || ""} ${property?.StreetName || ""}, ${property?.City || ""}, ${property?.StateOrProvince || ""} ${property?.PostalCode || ""}`,
+
+                    listingKey: property?.ListingKey,
+                    propertyUrl: window.location.href,
+                    propertyPrice: property?.ListPrice,
+                    propertyStatus: property?.StandardStatus,
+                    beds: property?.BedroomsTotal,
+                    baths: property?.BathroomsTotalInteger,
+                    sqft: property?.BuildingAreaTotal,
+
+                }),
             }
         );
 
@@ -215,22 +303,34 @@ const isSell = variant === "sell";
             name: "",
             email: "",
             phone: "",
+
             reason: "",
             message: "",
+
+            address: "",
+            propertyType: "",
+            timeline: "",
         });
 
+        setStep(1);
         setPrivacyAccepted(false);
         setErrors({});
 
     } catch (error) {
+
         console.error("❌ ERROR:", error);
 
-        alert(
-            "Sorry, something went wrong while sending your request. Please try again."
-        );
+        setErrors({
+            submit:
+                "Sorry, something went wrong while sending your request. Please try again.",
+        });
+
     } finally {
+
         setIsSubmitting(false);
+
     }
+
 };
     
 if (submitted) {
