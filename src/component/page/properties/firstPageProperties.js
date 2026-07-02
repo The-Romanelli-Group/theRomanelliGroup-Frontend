@@ -257,7 +257,7 @@ const parseWithGoogle = (searchText) => {
       }
       className={`relative z-10
         w-28 md:w-32
-        py-2.5 md:py-3
+        py-2 md:py-2.5
         rounded-full
         text-base md:text-lg
         font-medium
@@ -280,7 +280,7 @@ const parseWithGoogle = (searchText) => {
       }
       className={`relative z-10
         w-28 md:w-32
-        py-2.5 md:py-3
+        py-2 md:py-2.5
         rounded-full
         text-base md:text-lg
         font-medium
