@@ -57,13 +57,9 @@ console.log(response);
     <section className="bg-backgroundColor py-20 text-white">
       <div className="max-w-7xl mx-auto px-6">
 
-        <p className="uppercase tracking-[4px] text-gray-400 mb-2">
-          Handpicked Homes
-        </p>
-
-        <h2 className="text-5xl font-semibold mb-10">
-          Featured Listings
-        </h2>
+       <h2 className="text-5xl font-semibold mb-10">
+    Curated for You
+</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
 
@@ -118,15 +114,11 @@ console.log(response);
 
                     <div>
 
-                        <p className="uppercase tracking-[4px] text-gray-400 mb-2">
-                            Handpicked Homes
-                        </p>
+                        
 
-                        <h2 className="text-5xl font-semibold">
-
-                            Featured Listings
-
-                        </h2>
+                        <h2 className="text-5xl font-semibold mb-10">
+    Curated for You
+</h2>
 
                     </div>
 
