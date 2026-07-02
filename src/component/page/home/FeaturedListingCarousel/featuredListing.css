@@ -53,6 +53,7 @@
 
     padding-left: 16px;
     padding-right: 16px;
+  scroll-padding-left: 16px;
   }
 .featured-carousel-track {
   width: max-content;
