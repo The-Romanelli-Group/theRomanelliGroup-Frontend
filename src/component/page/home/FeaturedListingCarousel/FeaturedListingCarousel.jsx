@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import apiServices from "../../../../Service/apiService";
 import FeaturedListingCard from "./FeaturedListingCard";
 import "./featuredListing.css"; 
+import { useNavigate } from "react-router-dom";
 
 const FeaturedListingCarousel = () => {
 
@@ -9,6 +10,7 @@ const FeaturedListingCarousel = () => {
     const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const carouselRef = useRef(null);
+    const navigate = useNavigate();
     useEffect(() => {
         loadProperties();
     }, []);
@@ -111,19 +113,13 @@ console.log("Properties:", response.value);
 
             <div className="max-w-7xl mx-auto px-6">
 
-                <div className="flex justify-between items-end mb-10">
+              <div className="text-center mb-14">
 
-                    <div>
+    <h2 className="text-5xl font-semibold">
+        Curated for You
+    </h2>
 
-                        
-
-                        <h2 className="text-5xl font-semibold mb-10">
-    Curated for You
-</h2>
-
-                    </div>
-
-                </div>
+</div>
 
                 <div className="relative">
 
@@ -173,7 +169,20 @@ console.log("Properties:", response.value);
 </div>
 
 </div>
+                    <div className="mt-16 flex flex-col items-center text-center">
 
+    <p className="text-lg text-gray-300 mb-6">
+        Didn't find the perfect home?
+    </p>
+
+    <button
+        onClick={() => navigate("/properties")}
+        className="border border-white text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 hover:bg-[#A61E22] hover:border-[#A61E22] hover:-translate-y-1"
+    >
+        Explore All Listings
+    </button>
+
+</div>
             </div>
 
         </section>
