@@ -473,13 +473,13 @@ const parseWithGoogle = (searchText) => {
           {/* Text */}
           <div className="flex-1 min-w-0">
 
-            <div className="text-[15px] font-medium text-gray-900 truncate">
+            <div className="text-[12px] font-medium text-gray-900 truncate">
               {s.description}
             </div>
 
-            <div className="mt-0.5">
+            <div className="mt-0.2">
 
-              <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-[2px] text-[11px] font-medium text-gray-600">
+              <span className="inline-flex items-center rounded-full bg-gray-100 px-1 py-[1px] text-[10px] font-medium text-gray-600">
                 {getLocationType(s.types || [])}
               </span>
 
