@@ -27,3 +27,47 @@
         transform: translateX(100%);
     }
 }
+
+/* Hide scrollbar */
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile carousel */
+
+@media (max-width: 767px) {
+
+  .featured-carousel {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .featured-carousel-track {
+    transform: none !important;
+    width: max-content;
+  }
+
+  .featured-card {
+    width: 86vw !important;
+    scroll-snap-align: center;
+  }
+
+}
+
+/* Desktop */
+
+@media (min-width: 768px) {
+
+  .featured-carousel {
+    overflow: hidden;
+  }
+
+}
