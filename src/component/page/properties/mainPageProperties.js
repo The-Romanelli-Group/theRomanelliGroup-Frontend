@@ -1,5 +1,5 @@
 import React from 'react'
-import FeaureListing from '../Default Pages/feaureListing'
+import FeaturedListingCarousel from "../home/FeaturedListingCarousel/FeaturedListingCarousel";
 import NumberSpeak from '../Default Pages/numberSpeak'
 import Families from '../Default Pages/families'
 import ClientSay from '../Default Pages/Client Review/clientSay'
@@ -9,7 +9,7 @@ import Footer from '../Default Pages/footer'
 const MainPageProperties = () => {
   return (
     <div>
-        <FeaureListing/>
+        <FeaturedListingCarousel />
         <NumberSpeak/>
         <Families/>
         <ClientSay/>
