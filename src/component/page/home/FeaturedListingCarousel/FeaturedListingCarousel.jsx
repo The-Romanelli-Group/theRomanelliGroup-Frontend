@@ -26,7 +26,8 @@ const response = await apiServices.get(
     null
 );
 
-console.log(response);
+console.log("Featured Response:", response);
+console.log("Properties:", response.value);
 
             setProperties(response.value || []);
 
