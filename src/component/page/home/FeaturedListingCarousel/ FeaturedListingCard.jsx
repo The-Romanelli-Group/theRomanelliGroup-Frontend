@@ -74,4 +74,4 @@ const FeaturedListingCard = ({ property }) => {
   );
 };
 
-export default FeaturedListingCard;
+export default FeaturedListingCard; 
