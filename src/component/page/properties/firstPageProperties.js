@@ -242,42 +242,41 @@ const parseWithGoogle = (searchText) => {
       </div>
 
       <input
-        ref={inputRef}
-        className="w-full h-12 md:h-14 md:h-[72px] bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-28 md:pr-36 text-base md:text-lg text-gray-900 border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22]"
-        placeholder={placeholder}
-        value={filters.searchCity}
-        onChange={(e) => {
-          const value = e.target.value;
-          setFilters({ ...filters, searchCity: value });
+  ref={inputRef}
+  className="w-full h-14 md:h-16 bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-40 md:pr-52 text-base md:text-lg text-gray-900 border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22] transition-all duration-300"
+  placeholder={placeholder}
+  value={filters.searchCity}
+  onChange={(e) => {
+    const value = e.target.value;
+    setFilters({ ...filters, searchCity: value });
 
-          if (value.length > 2 && autocompleteService.current) {
-            autocompleteService.current.getPlacePredictions(
-              {
-                input: value,
-                componentRestrictions: { country: "us" }
-              },
-              (predictions, status) => {
-                if (
-                  status ===
-                    window.google.maps.places.PlacesServiceStatus.OK &&
-                  predictions
-                ) {
-                  setSuggestions(predictions);
-                  setShowDropdown(true);
-                } else {
-                  setSuggestions([]);
-                  setShowDropdown(false);
-                }
-              }
-            );
+    if (value.length > 2 && autocompleteService.current) {
+      autocompleteService.current.getPlacePredictions(
+        {
+          input: value,
+          componentRestrictions: { country: "us" },
+        },
+        (predictions, status) => {
+          if (
+            status === window.google.maps.places.PlacesServiceStatus.OK &&
+            predictions
+          ) {
+            setSuggestions(predictions);
+            setShowDropdown(true);
           } else {
             setSuggestions([]);
             setShowDropdown(false);
           }
-        }}
-        onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
-        onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
-      />
+        }
+      );
+    } else {
+      setSuggestions([]);
+      setShowDropdown(false);
+    }
+  }}
+  onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
+  onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
+/>
 
       {/* Suggestions Dropdown */}
       {showDropdown && suggestions.length > 0 && (
