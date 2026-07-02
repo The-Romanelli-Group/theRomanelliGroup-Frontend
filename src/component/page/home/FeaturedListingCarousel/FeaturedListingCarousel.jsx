@@ -43,16 +43,15 @@ console.log("Properties:", response.value);
 
       const visibleCards = window.innerWidth >= 1280 ? 3 : window.innerWidth >= 640 ? 2 : 1;
 
-            const nextSlide = () => {
-            setCurrentIndex((prev) =>
-                prev >= properties.length - visibleCards ? 0 : prev + 1
-            );
+                    const nextSlide = () => {
+                if (currentIndex < properties.length - visibleCards) {
+                    setCurrentIndex(currentIndex + 1);
+                }
             };
-
             const prevSlide = () => {
-            setCurrentIndex((prev) =>
-                prev <= 0 ? properties.length - visibleCards : prev - 1
-            );
+                if (currentIndex > 0) {
+                    setCurrentIndex(currentIndex - 1);
+                }
             };
 
    if (loading) {
@@ -126,19 +125,29 @@ console.log("Properties:", response.value);
     {/* Left Arrow */}
 <button
     onClick={prevSlide}
-   className="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white text-black w-12 h-12 rounded-full shadow-xl hover:scale-105 transition"
+    disabled={currentIndex === 0}
+    className={`absolute left-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full shadow-xl transition-all duration-300
+    ${
+        currentIndex === 0
+            ? "bg-white/50 text-gray-400 cursor-not-allowed"
+            : "bg-white text-black hover:scale-110"
+    }`}
 >
     ←
 </button>
-
 {/* Right Arrow */}
 <button
     onClick={nextSlide}
-  className="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white text-black w-12 h-12 rounded-full shadow-xl hover:scale-105 transition"
+    disabled={currentIndex >= properties.length - visibleCards}
+    className={`absolute right-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full shadow-xl transition-all duration-300
+    ${
+        currentIndex >= properties.length - visibleCards
+            ? "bg-white/50 text-gray-400 cursor-not-allowed"
+            : "bg-white text-black hover:scale-110"
+    }`}
 >
     →
 </button>
-
 {/* Carousel */}
 <div className="overflow-hidden">
 
