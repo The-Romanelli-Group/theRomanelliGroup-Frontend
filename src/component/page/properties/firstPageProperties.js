@@ -460,7 +460,7 @@ const parseWithGoogle = (searchText) => {
 >
 
   {/* Icon */}
-  <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center">
+  <div className="flex-shrink-0 w-7 h-7 flex items-center justify-center">
 
     <img
       src={LocationIcon}
@@ -503,7 +503,7 @@ const parseWithGoogle = (searchText) => {
   {/* Filter Button */}
   <button
     onClick={() => setFilterOpen(true)}
-    className="w-9 h-9 md:w-11 md:h-11 bg-white border border-gray-200 rounded-lg md:rounded-xl flex items-center justify-center hover:bg-gray-50 transition-all duration-300"
+    className="w-9 h-9 md:w-11 md:h-11 rounded-lg md:rounded-xl flex items-center justify-center hover:bg-gray-50 transition-all duration-300"
     aria-label="Open filters"
   >
     <img
