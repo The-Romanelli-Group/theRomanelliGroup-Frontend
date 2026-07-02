@@ -1,5 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import BedIcon from "../../../assets/images/illustrations/Bed.svg";
+import BathroomIcon from "../../../assets/images/illustrations/Bathroom.svg";
+import AreaIcon from "../../../assets/images/illustrations/Area.svg";
 
 const FeaturedListingCard = ({ property }) => {
   const navigate = useNavigate();
@@ -59,11 +62,36 @@ const FeaturedListingCard = ({ property }) => {
           {address}
         </h3>
 
-        <div className="flex gap-6 mt-5 text-gray-600">
-          <span>🛏 {property.BedroomsTotal || "--"}</span>
-          <span>🛁 {property.BathroomsTotalInteger || "--"}</span>
-          <span>📐 {property.BuildingAreaTotal || "--"} sqft</span>
-        </div>
+        <div className="flex items-center gap-6 mt-5 text-gray-600">
+
+  <div className="flex items-center gap-2">
+    <img
+      src={BedIcon}
+      alt="Bedrooms"
+      className="w-5 h-5"
+    />
+    <span>{property.BedroomsTotal || "--"}</span>
+  </div>
+
+  <div className="flex items-center gap-2">
+    <img
+      src={BathroomIcon}
+      alt="Bathrooms"
+      className="w-5 h-5"
+    />
+    <span>{property.BathroomsTotalInteger || "--"}</span>
+  </div>
+
+  <div className="flex items-center gap-2">
+    <img
+      src={AreaIcon}
+      alt="Area"
+      className="w-5 h-5"
+    />
+    <span>{property.BuildingAreaTotal || "--"} sqft</span>
+  </div>
+
+</div>
 
         <button
           className="mt-6 w-full bg-[#A61E22] hover:bg-[#8d181b] text-white py-4 rounded-xl font-semibold transition"
