@@ -235,7 +235,7 @@ const parseWithGoogle = (searchText) => {
     {/* Buy / Rent */}
 <div className="flex justify-center mb-5">
 
-  <div className="relative inline-flex bg-white rounded-full p-.5 shadow-xl">
+  <div className="relative inline-flex bg-white rounded-full p-0.5 shadow-xl">
 
     {/* Sliding Pill */}
     <div
