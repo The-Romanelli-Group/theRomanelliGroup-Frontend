@@ -75,11 +75,52 @@ const FeaturedListingCarousel = () => {
 
                 </div>
 
-                <div className="bg-red-500 rounded-2xl h-[500px] flex items-center justify-center">
+                <div className="relative">
 
-                    Carousel goes here
+    {/* Left Arrow */}
+    <button
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black w-12 h-12 rounded-full shadow-lg"
+    >
+        ←
+    </button>
+
+    {/* Right Arrow */}
+    <button
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black w-12 h-12 rounded-full shadow-lg"
+    >
+        →
+    </button>
+
+    {/* Carousel */}
+
+    <div className="overflow-hidden">
+
+        <div className="flex gap-6">
+
+            {properties.map((property) => (
+
+                <div
+                    key={property.ListingKey}
+                    className="
+                        flex-none
+                        w-[88%]
+                        sm:w-[48%]
+                        xl:w-[31.5%]
+                        h-[520px]
+                        rounded-3xl
+                        bg-white
+                    "
+                >
 
                 </div>
+
+            ))}
+
+        </div>
+
+    </div>
+
+</div>
 
             </div>
 
