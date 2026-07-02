@@ -63,9 +63,9 @@ console.log("Properties:", response.value);
     Curated for You
 </h2>
 
-     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
-          {[1,2,3].map((item) => (
+        {(window.innerWidth < 768 ? [1] : [1, 2, 3]).map((item) => (
 
             <div
               key={item}
@@ -144,19 +144,23 @@ console.log("Properties:", response.value);
     <div
     ref={carouselRef}
     className="featured-carousel-track flex gap-4 md:gap-6 transition-transform duration-500 ease-in-out"
-        style={{
-    transform: `translateX(-${
-        currentIndex *
-        (carouselRef.current?.children[0]?.offsetWidth + 24 || 0)
-    }px)`,
-}}
+       style={
+    window.innerWidth >= 768
+        ? {
+              transform: `translateX(-${
+                  currentIndex *
+                  (carouselRef.current?.children[0]?.offsetWidth + 24 || 0)
+              }px)`,
+          }
+        : {}
+}
     >
 
             {properties.map((property) => (
 
                 <div
                     key={property.ListingKey}
-                   className="featured-card flex-none w-[88%] sm:w-[48%] xl:w-[31.5%]"
+                 className="featured-card flex-none md:w-[48%] xl:w-[31.5%]"
                 >
                     <FeaturedListingCard property={property} />
                 </div>
