@@ -427,7 +427,7 @@ const parseWithGoogle = (searchText) => {
 
           }}
         >
-          Search Homes
+          Search
         </button>
 
       </div>
