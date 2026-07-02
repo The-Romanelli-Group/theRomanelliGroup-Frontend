@@ -1,4 +1,4 @@
- import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import apiServices from "../../../../Service/apiService";
 import FeaturedListingCard from "./FeaturedListingCard";
 
@@ -6,7 +6,7 @@ const FeaturedListingCarousel = () => {
 
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const [currentIndex, setCurrentIndex] = useState(0);
     useEffect(() => {
         loadProperties();
     }, []);
@@ -36,6 +36,20 @@ console.log(response);
 
     };
 
+      const visibleCards = window.innerWidth >= 1280 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+
+            const nextSlide = () => {
+            setCurrentIndex((prev) =>
+                prev >= properties.length - visibleCards ? 0 : prev + 1
+            );
+            };
+
+            const prevSlide = () => {
+            setCurrentIndex((prev) =>
+                prev <= 0 ? properties.length - visibleCards : prev - 1
+            );
+            };
+
     if (loading) {
 
         return (
@@ -55,7 +69,7 @@ console.log(response);
         );
 
     }
-
+          
     return (
 
         <section className="bg-backgroundColor py-20 text-white">
@@ -83,28 +97,34 @@ console.log(response);
                 <div className="relative">
 
     {/* Left Arrow */}
-    <button
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black w-12 h-12 rounded-full shadow-lg"
+<button
+    onClick={prevSlide}
+   className="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white text-black w-12 h-12 rounded-full shadow-xl hover:scale-105 transition"
+>
+    ←
+</button>
+
+{/* Right Arrow */}
+<button
+    onClick={nextSlide}
+  className="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white text-black w-12 h-12 rounded-full shadow-xl hover:scale-105 transition"
+>
+    →
+</button>
+
+{/* Carousel */}
+<div className="overflow-hidden">
+
+    <div
+        className="flex gap-6 transition-transform duration-500 ease-in-out"
+        style={{
+            transform: `translateX(-${currentIndex * 34}%)`,
+        }}
     >
-        ←
-    </button>
-
-    {/* Right Arrow */}
-    <button
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black w-12 h-12 rounded-full shadow-lg"
-    >
-        →
-    </button>
-
-    {/* Carousel */}
-
-    <div className="overflow-hidden">
-
-        <div className="flex gap-6">
 
             {properties.map((property) => (
 
-                                <div
+                <div
                     key={property.ListingKey}
                     className="flex-none w-[88%] sm:w-[48%] xl:w-[31.5%]"
                 >
@@ -113,9 +133,9 @@ console.log(response);
 
             ))}
 
-        </div>
-
     </div>
+
+</div>
 
 </div>
 
