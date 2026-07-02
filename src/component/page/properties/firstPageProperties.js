@@ -180,218 +180,267 @@ const parseWithGoogle = (searchText) => {
   Search by city, neighborhood, ZIP code, or address across Central Ohio's
   latest MLS listings.
 </p>
-        {/* Buy / Rent */}
-        <div className="flex justify-start items-center mx-auto max-w-2xl">
-          <div className="px-1 py-1 bg-white">
-            <button
-              className={`p-2 px-4 ${
-                filters.selectedOption === "Buy"
-                  ? "bg-gray-900 text-white"
-                  : "text-gray-900 bg-white"
-              }`}
-              onClick={() =>
-                setFilters((prev) => ({ ...prev, selectedOption: "Buy" }))
-              }
-            >
-              Buy
-            </button>
-          </div>
-          <div className="py-1 pr-1 bg-white">
-            <button
-              className={`p-2 px-4 ${
-                filters.selectedOption === "Rent"
-                  ? "bg-gray-900 text-white"
-                  : "text-gray-900 bg-white"
-              }`}
-              onClick={() =>
-                setFilters((prev) => ({ ...prev, selectedOption: "Rent" }))
-              }
-            >
-              Rent
-            </button>
-          </div>
-        </div>
+       
+      <div className="max-w-4xl mx-auto mt-10">
 
-        {/* Search Input */}
-        <div className="relative w-full max-w-2xl mx-auto">
-          <div className="absolute left-5 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-6 h-6 text-gray-400"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-    >
-        <path
+  <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-5 md:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
+
+    {/* Buy / Rent */}
+    <div className="flex justify-center mb-8">
+
+      <div className="inline-flex bg-white rounded-full p-1 shadow-lg">
+
+        <button
+          className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+            filters.selectedOption === "Buy"
+              ? "bg-[#A61E22] text-white shadow-md"
+              : "text-gray-700 hover:bg-gray-100"
+          }`}
+          onClick={() =>
+            setFilters((prev) => ({ ...prev, selectedOption: "Buy" }))
+          }
+        >
+          Buy
+        </button>
+
+        <button
+          className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+            filters.selectedOption === "Rent"
+              ? "bg-[#A61E22] text-white shadow-md"
+              : "text-gray-700 hover:bg-gray-100"
+          }`}
+          onClick={() =>
+            setFilters((prev) => ({ ...prev, selectedOption: "Rent" }))
+          }
+        >
+          Rent
+        </button>
+
+      </div>
+
+    </div>
+
+    {/* Search Input */}
+    <div className="relative w-full">
+
+      <div className="absolute left-5 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6 text-gray-400"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
             d="M21 21l-5.2-5.2m2.2-5.3a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
-    </svg>
-</div>
-          <input
-            ref={inputRef}
-            className="w-full h-16 bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-40 text-gray-900 text-lg border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22]"
-            placeholder={placeholder}
-            value={filters.searchCity}
-            onChange={(e) => {
-              const value = e.target.value;
-              setFilters({ ...filters, searchCity: value });
+          />
+        </svg>
+      </div>
 
-              if (value.length > 2 && autocompleteService.current) {
-                autocompleteService.current.getPlacePredictions(
-                  {
-                    input: value,
-                    componentRestrictions: { country: "us" }
-                  },
-                  (predictions, status) => {
-                    if (
-                      status ===
-                        window.google.maps.places.PlacesServiceStatus.OK &&
-                      predictions
-                    ) {
-                      setSuggestions(predictions);
-                      setShowDropdown(true);
-                    } else {
+      <input
+        ref={inputRef}
+        className="w-full h-14 md:h-16 bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-40 md:pr-44 text-base md:text-lg text-gray-900 border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22]"
+        placeholder={placeholder}
+        value={filters.searchCity}
+        onChange={(e) => {
+          const value = e.target.value;
+          setFilters({ ...filters, searchCity: value });
+
+          if (value.length > 2 && autocompleteService.current) {
+            autocompleteService.current.getPlacePredictions(
+              {
+                input: value,
+                componentRestrictions: { country: "us" }
+              },
+              (predictions, status) => {
+                if (
+                  status ===
+                    window.google.maps.places.PlacesServiceStatus.OK &&
+                  predictions
+                ) {
+                  setSuggestions(predictions);
+                  setShowDropdown(true);
+                } else {
+                  setSuggestions([]);
+                  setShowDropdown(false);
+                }
+              }
+            );
+          } else {
+            setSuggestions([]);
+            setShowDropdown(false);
+          }
+        }}
+        onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
+        onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
+      />
+
+      {/* Suggestions Dropdown */}
+      {showDropdown && suggestions.length > 0 && (
+        <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 shadow-xl z-50 max-h-56 overflow-y-auto rounded-2xl mt-2">
+
+          {suggestions.map((s) => {
+
+            const getLocationType = (types) => {
+              if (types?.includes("locality")) return "City";
+              if (types?.includes("administrative_area_level_2")) return "County";
+              if (types?.includes("administrative_area_level_1")) return "State";
+              if (types?.includes("neighborhood")) return "Neighborhood";
+              if (types?.includes("sublocality")) return "Area";
+              if (types?.includes("postal_code")) return "ZIP Code";
+              if (types?.includes("route")) return "Street";
+              return types?.[0] || "Location";
+            };
+
+            return (
+
+              <div
+                key={s.place_id}
+                className="flex items-center text-left px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors duration-150"
+                onMouseDown={() => {
+                  if (!placesService.current) return;
+
+                  placesService.current.getDetails(
+                    { placeId: s.place_id },
+                    (place) => {
+
+                      if (!place) return;
+
+                      const parsed = extractAddressComponents(place);
+
+                      setFilters(prev => ({
+                        ...prev,
+                        searchCity: s.description,
+                        city: parsed.city,
+                        state: parsed.state,
+                        country: parsed.country,
+                        street: parsed.street,
+                        streetNumber: parsed.streetNumber,
+                        postalCode: parsed.postalCode
+                      }));
+
                       setSuggestions([]);
                       setShowDropdown(false);
+
                     }
-                  }
-                );
-              } else {
-                setSuggestions([]);
-                setShowDropdown(false);
-              }
-            }}
-            onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
-            onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
-          />
+                  );
+                }}
+              >
 
-          {/* Suggestions Dropdown */}
-          {showDropdown && suggestions.length > 0 && (
-            <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 shadow-lg z-50 max-h-40 overflow-y-auto rounded-b-lg">
-              {suggestions.map((s) => {
-                const getLocationType = (types) => {
-                  if (types?.includes('locality')) return 'City';
-                  if (types?.includes('administrative_area_level_2')) return 'County';
-                  if (types?.includes('administrative_area_level_1')) return 'State';
-                  if (types?.includes('neighborhood')) return 'Neighborhood';
-                  if (types?.includes('sublocality')) return 'Area';
-                  if (types?.includes('postal_code')) return 'ZIP Code';
-                  if (types?.includes('route')) return 'Street';
-                  return types?.[0] || 'Location';
-                };
-                
-                return (
-                  <div
-             
-                    key={s.place_id}
-                    className="flex items-center text-left px-3 py-2 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors duration-150"
-                   onMouseDown={() => {
-                    if(!placesService.current) return;
-                    placesService.current.getDetails(
-                      { placeId: s.place_id },
-                      (place) => {
-                        if (!place) return;
+                <div className="flex-shrink-0 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mr-4">
 
-                        const parsed = extractAddressComponents(place);
-
-                        setFilters(prev => ({
-                          ...prev,
-                          searchCity: s.description,
-                          city: parsed.city,
-                          state: parsed.state,
-                          country: parsed.country,
-                          street: parsed.street,
-                          streetNumber: parsed.streetNumber,
-                          postalCode: parsed.postalCode
-                        }));
-
-                        setSuggestions([]);
-                        setShowDropdown(false);
-                      }
-                    );
-                  }}
-
+                  <svg
+                    className="w-5 h-5 text-gray-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
                   >
-                    {/* Map Icon */}
-                    <div className="flex-shrink-0 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
-                      <svg 
-                        className="w-4 h-4 text-gray-600" 
-                        fill="currentColor" 
-                        viewBox="0 0 20 20"
-                      >
-                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    
-                    {/* Location Details */}
-                    <div className="flex-1 min-w-0 font-dmsans">
-                      <div className="text-xs font-medium text-gray-900 truncate">
-                        {s.description}
-                      </div>
-                      <div className="text-[10px] text-gray-500 font-light font-playfair">
-                        {getLocationType(s.types || [])}
-                      </div>
-                    </div>
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+
+                </div>
+
+                <div className="flex-1 min-w-0">
+
+                  <div className="font-medium text-gray-900 truncate">
+                    {s.description}
                   </div>
-                );
-              })}
-            </div>
-          )}
 
-          {/* Buttons */}
-          <div className="absolute right-1 top-2 md:top-1 bottom-1 z-10 flex gap-2">
-            <button
-             className="bg-white text-gray-700 border border-gray-200 rounded-xl px-5 hover:bg-gray-50 transition"
-              onClick={() => setFilterOpen(true)}
-            >
-              Filters
-            </button>
+                  <div className="text-sm text-gray-500">
+                    {getLocationType(s.types || [])}
+                  </div>
 
-            <button
-             className="bg-[#A61E22] hover:bg-[#8d181b] text-white px-6 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02]"
-              onClick={async () => {
-                if(!filters.searchCity){
-                  alert("Please enter a city");
-                  return;
-                }
-                
-                let finalFilters;
-                
-                if(!filters.city) {
-                  // Use Google geocoding to parse the search text
-                  const parsed = await parseWithGoogle(filters.searchCity);
-                  finalFilters = {
-                    ...filters,
-                    ...parsed,
-                    listingType: filters.selectedOption
-                  };
-                } else {
-                  // Use already parsed Google data
-                  finalFilters = {
-                    ...filters,
-                    listingType: filters.selectedOption
-                  };
-                }
+                </div>
 
-                setLoading(true);
-                const data = await checkProperty(finalFilters);
-                setLoading(false);
+              </div>
 
-                if (data) {
-                  navigate(`/details/properties`, {
-                    state: { data, filters: finalFilters }
-                  });
-                }
-              }}
-            >
-             Search
-            </button>
-          </div>
+            );
+
+          })}
+
         </div>
+      )}
+
+      {/* Buttons */}
+
+      <div className="absolute right-2 top-2 bottom-2 flex gap-2 z-10">
+
+        <button
+          className="bg-white text-gray-700 border border-gray-200 rounded-xl px-5 hover:bg-gray-50 transition"
+          onClick={() => setFilterOpen(true)}
+        >
+          Filters
+        </button>
+
+        <button
+          className="bg-[#A61E22] hover:bg-[#8d181b] text-white px-6 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02]"
+          onClick={async () => {
+
+            if (!filters.searchCity) {
+              alert("Please enter a city");
+              return;
+            }
+
+            let finalFilters;
+
+            if (!filters.city) {
+
+              const parsed = await parseWithGoogle(filters.searchCity);
+
+              finalFilters = {
+                ...filters,
+                ...parsed,
+                listingType: filters.selectedOption
+              };
+
+            } else {
+
+              finalFilters = {
+                ...filters,
+                listingType: filters.selectedOption
+              };
+
+            }
+
+            setLoading(true);
+
+            const data = await checkProperty(finalFilters);
+
+            setLoading(false);
+
+            if (data) {
+
+              navigate("/details/properties", {
+                state: {
+                  data,
+                  filters: finalFilters
+                }
+              });
+
+            }
+
+          }}
+        >
+          Search Homes
+        </button>
+
       </div>
+
+    </div>
+
+  </div>
+
+  <p className="text-center text-white/70 text-sm md:text-base mt-5">
+    Updated directly from the Central Ohio MLS.
+  </p>
+
+</div>
 
       <SideModal />
 
