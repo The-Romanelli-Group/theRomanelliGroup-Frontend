@@ -409,83 +409,84 @@ const parseWithGoogle = (searchText) => {
 
       return (
 
-        <button
-          key={s.place_id}
-          type="button"
-          className="
-            w-full
-            flex
-            items-center
-            gap-3
-            px-4
-            py-2
-            text-left
-            border-b
-            border-gray-100
-            last:border-0
-            hover:bg-gray-50
-            transition-colors
-            duration-200
-          "
-          onMouseDown={() => {
+       <button
+  key={s.place_id}
+  type="button"
+  className="
+    w-full
+    flex
+    items-center
+    gap-2.5
+    px-4
+    py-1.5
+    text-left
+    border-b
+    border-gray-100
+    last:border-0
+    hover:bg-gray-50
+    transition-colors
+    duration-200
+  "
+  onMouseDown={() => {
 
-            if (!placesService.current) return;
+    if (!placesService.current) return;
 
-            placesService.current.getDetails(
-              { placeId: s.place_id },
-              (place) => {
+    placesService.current.getDetails(
+      { placeId: s.place_id },
+      (place) => {
 
-                if (!place) return;
+        if (!place) return;
 
-                const parsed = extractAddressComponents(place);
+        const parsed = extractAddressComponents(place);
 
-                setFilters(prev => ({
-                  ...prev,
-                  searchCity: s.description,
-                  city: parsed.city,
-                  state: parsed.state,
-                  country: parsed.country,
-                  street: parsed.street,
-                  streetNumber: parsed.streetNumber,
-                  postalCode: parsed.postalCode
-                }));
+        setFilters(prev => ({
+          ...prev,
+          searchCity: s.description,
+          city: parsed.city,
+          state: parsed.state,
+          country: parsed.country,
+          street: parsed.street,
+          streetNumber: parsed.streetNumber,
+          postalCode: parsed.postalCode
+        }));
 
-                setSuggestions([]);
-                setShowDropdown(false);
+        setSuggestions([]);
+        setShowDropdown(false);
 
-              }
-            );
+      }
+    );
 
-          }}
-        >
+  }}
+>
 
-          {/* Icon */}
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+  {/* Icon */}
+  <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center">
 
-            <img
-              src={LocationIcon}
-              alt="Location"
-              className="w-4 h-4"
-            />
+    <img
+      src={LocationIcon}
+      alt="Location"
+      className="w-3.5 h-3.5"
+    />
 
-          </div>
+  </div>
 
-          {/* Text */}
-          <div className="flex-1 min-w-0">
+  {/* Text */}
+  <div className="flex-1 min-w-0">
 
-            <div className="text-[12px] font-medium text-gray-900 truncate">
-              {s.description}
-            </div>
+    <div className="text-[14px] font-medium text-gray-900 leading-tight truncate">
+      {s.description}
+    </div>
 
-            <div className="mt-0.2">
+    <div className="mt-px">
 
-              <span className="inline-flex items-center rounded-full bg-gray-100 px-1 py-[1px] text-[10px] font-medium text-gray-600">
-                {getLocationType(s.types || [])}
-              </span>
+      <span className="inline-flex items-center rounded-full bg-gray-100 px-1.5 py-0 text-[10px] font-medium text-gray-600 leading-none">
+        {getLocationType(s.types || [])}
+      </span>
 
-            </div>
+    </div>
 
-          </div>
+  </div>
+
 
         </button>
 
