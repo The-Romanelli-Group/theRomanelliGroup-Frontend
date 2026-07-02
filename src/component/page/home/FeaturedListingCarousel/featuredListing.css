@@ -49,16 +49,16 @@
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
+    scroll-snap-type: x mandatory;
 
     padding-left: 16px;
     padding-right: 16px;
   }
-
-  .featured-carousel-track {
-    transform: none !important;
-    width: max-content;
-  }
+.featured-carousel-track {
+  width: max-content;
+  transform: none !important;
+  scroll-snap-stop: always;
+}
 
   .featured-card {
     width: 82vw !important;
