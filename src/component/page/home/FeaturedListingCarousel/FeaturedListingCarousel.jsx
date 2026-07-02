@@ -73,28 +73,27 @@ console.log(response);
               key={item}
               className="bg-white rounded-3xl overflow-hidden animate-pulse"
             >
+                    <div className="h-[300px] skeleton"></div>
 
-              <div className="h-[300px] bg-gray-300"></div>
+                    <div className="p-6">
 
-              <div className="p-6">
+                        <div className="h-8 w-40 skeleton rounded mb-6"></div>
 
-                <div className="h-8 w-40 bg-gray-300 rounded mb-6"></div>
+                        <div className="h-5 w-full skeleton rounded mb-3"></div>
 
-                <div className="h-5 w-full bg-gray-200 rounded mb-3"></div>
+                        <div className="h-5 w-3/4 skeleton rounded mb-6"></div>
 
-                <div className="h-5 w-3/4 bg-gray-200 rounded mb-6"></div>
+                        <div className="flex gap-4 mb-6">
 
-                <div className="flex gap-4 mb-6">
+                            <div className="h-4 w-12 skeleton rounded"></div>
 
-                  <div className="h-4 w-12 bg-gray-200 rounded"></div>
+                            <div className="h-4 w-12 skeleton rounded"></div>
 
-                  <div className="h-4 w-12 bg-gray-200 rounded"></div>
+                            <div className="h-4 w-20 skeleton rounded"></div>
 
-                  <div className="h-4 w-20 bg-gray-200 rounded"></div>
+                        </div>
 
-                </div>
-
-                <div className="h-14 w-full bg-gray-300 rounded-xl"></div>
+                        <div className="h-14 w-full skeleton rounded-xl"></div>
 
               </div>
 
