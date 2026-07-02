@@ -41,13 +41,18 @@
 
 /* Mobile carousel */
 
+/* Mobile carousel */
+
 @media (max-width: 767px) {
 
   .featured-carousel {
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .featured-carousel-track {
@@ -56,12 +61,12 @@
   }
 
   .featured-card {
-    width: 86vw !important;
-    scroll-snap-align: center;
+    width: 82vw !important;
+    flex-shrink: 0;
+    scroll-snap-align: start;
   }
 
 }
-
 /* Desktop */
 
 @media (min-width: 768px) {

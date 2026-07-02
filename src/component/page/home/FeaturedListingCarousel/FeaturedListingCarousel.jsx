@@ -143,7 +143,7 @@ console.log("Properties:", response.value);
 
     <div
     ref={carouselRef}
-    className="featured-carousel-track flex gap-6 transition-transform duration-500 ease-in-out"
+    className="featured-carousel-track flex gap-4 md:gap-6 transition-transform duration-500 ease-in-out"
         style={{
     transform: `translateX(-${
         currentIndex *
