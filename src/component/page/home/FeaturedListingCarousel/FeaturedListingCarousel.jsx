@@ -105,12 +105,11 @@ console.log(response);
             {properties.map((property) => (
   <div
     key={property.ListingKey}
-    className="flex-none w-[88%] sm:w-[48%] xl:w-[31.5%] bg-white text-black p-6"
+    className="flex-none w-[88%] sm:w-[48%] xl:w-[31.5%]"
   >
-    Test Card
+    <CarouselArrow />
   </div>
-
-            ))}
+))}
 
         </div>
 
