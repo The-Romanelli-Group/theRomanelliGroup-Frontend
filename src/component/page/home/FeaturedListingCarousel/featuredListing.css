@@ -44,7 +44,6 @@
 /* =========================================
    Mobile Carousel
 ========================================= */
-
 @media (max-width: 767px) {
 
   .featured-carousel {
@@ -53,21 +52,21 @@
     -webkit-overflow-scrolling: touch;
 
     scroll-snap-type: x mandatory;
-    scroll-padding-left: 16px;
+    scroll-padding-left: 8px;
 
-    padding-left: 16px;
-    padding-right: 0;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
   .featured-carousel-track {
+    display: flex;
+    gap: 16px;
     width: max-content;
     transform: none !important;
-    scroll-snap-stop: always;
   }
 
   .featured-card {
-    width: 84vw !important;
-    flex-shrink: 0;
+    flex: 0 0 88%;
     scroll-snap-align: start;
   }
 

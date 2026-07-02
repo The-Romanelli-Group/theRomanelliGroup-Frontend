@@ -57,7 +57,7 @@ console.log("Properties:", response.value);
    if (loading) {
   return (
     <section className="bg-backgroundColor py-20 text-white">
-      <div className="max-w-7xl mx-auto px-6">
+<div className="max-w-7xl mx-auto px-2 md:px-6">
 
        <h2 className="text-5xl font-semibold mb-10">
     Curated for You
@@ -110,7 +110,7 @@ console.log("Properties:", response.value);
 
         <section className="bg-backgroundColor py-20 text-white">
 
-            <div className="max-w-7xl mx-auto px-6">
+           <div className="max-w-7xl mx-auto px-2 md:px-6">
 
               <div className="text-center mb-14">
 
