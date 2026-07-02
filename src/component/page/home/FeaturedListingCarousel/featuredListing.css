@@ -71,3 +71,53 @@
   }
 
 }
+/* =========================================
+   Carousel Arrows
+========================================= */
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  background: #fff;
+  color: #000;
+
+  border-radius: 9999px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+  transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover:not(:disabled) {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.carousel-arrow-left {
+  left: 8px;
+}
+
+.carousel-arrow-right {
+  right: 8px;
+}
+
+/* Hide arrows on mobile */
+
+@media (max-width: 767px) {
+  .carousel-arrow {
+    display: none;
+  }
+}

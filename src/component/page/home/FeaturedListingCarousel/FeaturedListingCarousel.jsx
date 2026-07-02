@@ -126,12 +126,7 @@ console.log("Properties:", response.value);
 <button
     onClick={prevSlide}
     disabled={currentIndex === 0}
-    className={`absolute left-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full shadow-xl transition-all duration-300
-    ${
-        currentIndex === 0
-            ? "bg-white/50 text-gray-400 cursor-not-allowed"
-            : "bg-white text-black hover:scale-110"
-    }`}
+    className="carousel-arrow carousel-arrow-left"
 >
     ←
 </button>
@@ -139,12 +134,7 @@ console.log("Properties:", response.value);
 <button
     onClick={nextSlide}
     disabled={currentIndex >= properties.length - visibleCards}
-    className={`absolute right-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full shadow-xl transition-all duration-300
-    ${
-        currentIndex >= properties.length - visibleCards
-            ? "bg-white/50 text-gray-400 cursor-not-allowed"
-            : "bg-white text-black hover:scale-110"
-    }`}
+    className="carousel-arrow carousel-arrow-right"
 >
     →
 </button>
