@@ -442,9 +442,6 @@ const parseWithGoogle = (searchText) => {
 
   </div>
 
-  <p className="text-center text-white/70 text-sm md:text-base mt-3">
-    Updated directly from the Central Ohio MLS.
-  </p>
 
 </div>
 </div>
