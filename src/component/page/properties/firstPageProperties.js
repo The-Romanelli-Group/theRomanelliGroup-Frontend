@@ -385,7 +385,7 @@ const parseWithGoogle = (searchText) => {
 </button>
 
         <button
-          className="bg-[#A61E22] hover:bg-[#8d181b] text-white px-6 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02]"
+         className="h-12 md:h-[56px] bg-[#A61E22] hover:bg-[#8d181b] text-white px-7 md:px-8 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] shadow-lg"
           onClick={async () => {
 
             if (!filters.searchCity) {
