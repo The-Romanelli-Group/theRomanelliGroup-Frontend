@@ -375,93 +375,102 @@ const parseWithGoogle = (searchText) => {
 
 
       {/* Suggestions Dropdown */}
-      {showDropdown && suggestions.length > 0 && (
-        <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 shadow-xl z-50 max-h-56 overflow-y-auto rounded-2xl mt-2">
+{showDropdown && suggestions.length > 0 && (
+  <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-2xl border border-gray-200 shadow-2xl overflow-hidden z-50">
 
-          {suggestions.map((s) => {
+    {suggestions.map((s) => {
 
-            const getLocationType = (types) => {
-              if (types?.includes("locality")) return "City";
-              if (types?.includes("administrative_area_level_2")) return "County";
-              if (types?.includes("administrative_area_level_1")) return "State";
-              if (types?.includes("neighborhood")) return "Neighborhood";
-              if (types?.includes("sublocality")) return "Area";
-              if (types?.includes("postal_code")) return "ZIP Code";
-              if (types?.includes("route")) return "Street";
-              return types?.[0] || "Location";
-            };
+      const getLocationType = (types) => {
+        if (types?.includes("locality")) return "City";
+        if (types?.includes("administrative_area_level_2")) return "County";
+        if (types?.includes("administrative_area_level_1")) return "State";
+        if (types?.includes("neighborhood")) return "Neighborhood";
+        if (types?.includes("sublocality")) return "Area";
+        if (types?.includes("postal_code")) return "ZIP";
+        if (types?.includes("route")) return "Street";
+        return "Location";
+      };
 
-            return (
+      return (
 
-              <div
-                key={s.place_id}
-                className="flex items-center text-left px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors duration-150"
-                onMouseDown={() => {
-                  if (!placesService.current) return;
+        <button
+          key={s.place_id}
+          type="button"
+          className="w-full flex items-center gap-4 px-5 py-4 text-left border-b border-gray-100 last:border-0 hover:bg-gray-50 hover:pl-6 transition-all duration-200"
+          onMouseDown={() => {
 
-                  placesService.current.getDetails(
-                    { placeId: s.place_id },
-                    (place) => {
+            if (!placesService.current) return;
 
-                      if (!place) return;
+            placesService.current.getDetails(
+              { placeId: s.place_id },
+              (place) => {
 
-                      const parsed = extractAddressComponents(place);
+                if (!place) return;
 
-                      setFilters(prev => ({
-                        ...prev,
-                        searchCity: s.description,
-                        city: parsed.city,
-                        state: parsed.state,
-                        country: parsed.country,
-                        street: parsed.street,
-                        streetNumber: parsed.streetNumber,
-                        postalCode: parsed.postalCode
-                      }));
+                const parsed = extractAddressComponents(place);
 
-                      setSuggestions([]);
-                      setShowDropdown(false);
+                setFilters(prev => ({
+                  ...prev,
+                  searchCity: s.description,
+                  city: parsed.city,
+                  state: parsed.state,
+                  country: parsed.country,
+                  street: parsed.street,
+                  streetNumber: parsed.streetNumber,
+                  postalCode: parsed.postalCode
+                }));
 
-                    }
-                  );
-                }}
-              >
+                setSuggestions([]);
+                setShowDropdown(false);
 
-                <div className="flex-shrink-0 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mr-4">
-
-                  <svg
-                    className="w-5 h-5 text-gray-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-
-                </div>
-
-                <div className="flex-1 min-w-0">
-
-                  <div className="font-medium text-gray-900 truncate">
-                    {s.description}
-                  </div>
-
-                  <div className="text-sm text-gray-500">
-                    {getLocationType(s.types || [])}
-                  </div>
-
-                </div>
-
-              </div>
-
+              }
             );
 
-          })}
+          }}
+        >
 
-        </div>
-      )}
+          {/* Icon */}
+          <div className="flex-shrink-0 w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">
+
+            <svg
+              className="w-4 h-4 text-[#A61E22]"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                clipRule="evenodd"
+              />
+            </svg>
+
+          </div>
+
+          {/* Text */}
+          <div className="flex-1 min-w-0">
+
+            <div className="font-medium text-gray-900 truncate">
+              {s.description}
+            </div>
+
+            <div className="mt-1">
+
+              <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600">
+                {getLocationType(s.types || [])}
+              </span>
+
+            </div>
+
+          </div>
+
+        </button>
+
+      );
+
+    })}
+
+  </div>
+)}
 
       {/* Buttons */}
 
