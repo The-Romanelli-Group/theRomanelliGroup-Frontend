@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import BedIcon from "../../../assets/images/illustrations/Bed.svg";
-import BathroomIcon from "../../../assets/images/illustrations/Bathroom.svg";
-import AreaIcon from "../../../assets/images/illustrations/Area.svg";
+import BedIcon from "../../../../assets/images/illustrations/Bed.svg";
+import BathroomIcon from "../../../../assets/images/illustrations/Bathroom.svg";
+import AreaIcon from "../../../../assets/images/illustrations/Area.svg";
 
 const FeaturedListingCard = ({ property }) => {
   const navigate = useNavigate();
