@@ -169,18 +169,17 @@ const parseWithGoogle = (searchText) => {
 
       <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto font-dmsans">
         {/* Heading */}
-        <div className="flex flex-col text-center w-full mb-6">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-white mx-auto max-w-4xl px-4">
-            Your{" "}
-            <span className="italic font-playfair">Dream Property</span> is Just a
-            Click Away
-          </h1>
-          <p className="mx-auto leading-relaxed font-medium text-base sm:text-xl max-w-2xl">
-            From charming family homes to lucrative investment opportunities, your
-            ideal property is just a search away.
-          </p>
-        </div>
+       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center max-w-4xl mx-auto leading-tight">
+  Find Your
+  <span className="block font-playfair italic">
+    Next Home
+  </span>
+</h1>
 
+<p className="mt-6 text-base md:text-xl text-white/80 max-w-2xl mx-auto text-center leading-relaxed">
+  Search by city, neighborhood, ZIP code, or address across Central Ohio's
+  latest MLS listings.
+</p>
         {/* Buy / Rent */}
         <div className="flex justify-start items-center mx-auto max-w-2xl">
           <div className="px-1 py-1 bg-white">
@@ -215,9 +214,25 @@ const parseWithGoogle = (searchText) => {
 
         {/* Search Input */}
         <div className="relative w-full max-w-2xl mx-auto">
+          <div className="absolute left-5 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-6 h-6 text-gray-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+    >
+        <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 21l-5.2-5.2m2.2-5.3a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+    </svg>
+</div>
           <input
             ref={inputRef}
-            className="w-full bg-white p-3 pl-4 text-black focus:outline-none"
+            className="w-full h-16 bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-40 text-gray-900 text-lg border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22]"
             placeholder={placeholder}
             value={filters.searchCity}
             onChange={(e) => {
@@ -329,14 +344,14 @@ const parseWithGoogle = (searchText) => {
           {/* Buttons */}
           <div className="absolute right-1 top-2 md:top-1 bottom-1 z-10 flex gap-2">
             <button
-              className="bg-gray-100 text-black text-xs sm:text-sm px-3 sm:px-4 py-2 border border-gray-200"
+             className="bg-white text-gray-700 border border-gray-200 rounded-xl px-5 hover:bg-gray-50 transition"
               onClick={() => setFilterOpen(true)}
             >
-              Filter
+              Filters
             </button>
 
             <button
-              className="bg-red-800 text-white text-xs sm:text-sm px-3 sm:px-4 py-2"
+             className="bg-[#A61E22] hover:bg-[#8d181b] text-white px-6 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02]"
               onClick={async () => {
                 if(!filters.searchCity){
                   alert("Please enter a city");
@@ -372,7 +387,7 @@ const parseWithGoogle = (searchText) => {
                 }
               }}
             >
-              Check Now
+             Search
             </button>
           </div>
         </div>
