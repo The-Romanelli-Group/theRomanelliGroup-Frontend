@@ -51,25 +51,62 @@ console.log(response);
             );
             };
 
-    if (loading) {
+   if (loading) {
+  return (
+    <section className="bg-backgroundColor py-20 text-white">
+      <div className="max-w-7xl mx-auto px-6">
 
-        return (
-            <section className="bg-backgroundColor py-20 text-white">
-                <div className="max-w-7xl mx-auto px-6">
+        <p className="uppercase tracking-[4px] text-gray-400 mb-2">
+          Handpicked Homes
+        </p>
 
-                    <h2 className="text-5xl font-semibold mb-10">
+        <h2 className="text-5xl font-semibold mb-10">
+          Featured Listings
+        </h2>
 
-                        Featured Listings
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
 
-                    </h2>
+          {[1,2,3].map((item) => (
 
-                    <p>Loading...</p>
+            <div
+              key={item}
+              className="bg-white rounded-3xl overflow-hidden animate-pulse"
+            >
+
+              <div className="h-[300px] bg-gray-300"></div>
+
+              <div className="p-6">
+
+                <div className="h-8 w-40 bg-gray-300 rounded mb-6"></div>
+
+                <div className="h-5 w-full bg-gray-200 rounded mb-3"></div>
+
+                <div className="h-5 w-3/4 bg-gray-200 rounded mb-6"></div>
+
+                <div className="flex gap-4 mb-6">
+
+                  <div className="h-4 w-12 bg-gray-200 rounded"></div>
+
+                  <div className="h-4 w-12 bg-gray-200 rounded"></div>
+
+                  <div className="h-4 w-20 bg-gray-200 rounded"></div>
 
                 </div>
-            </section>
-        );
 
-    }
+                <div className="h-14 w-full bg-gray-300 rounded-xl"></div>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </div>
+    </section>
+  );
+}
           
     return (
 
