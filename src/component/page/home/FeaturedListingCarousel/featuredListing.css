@@ -1,34 +1,36 @@
-/* ===========================
+/* =========================================
    Skeleton Loading Animation
-=========================== */
+========================================= */
 
 .skeleton {
-    position: relative;
-    overflow: hidden;
-    background: #ececec;
+  position: relative;
+  overflow: hidden;
+  background: #ececec;
 }
 
 .skeleton::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    transform: translateX(-100%);
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.55),
-        transparent
-    );
-    animation: skeleton-shimmer 1.3s infinite;
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  animation: skeleton-shimmer 1.3s infinite;
 }
 
 @keyframes skeleton-shimmer {
-    100% {
-        transform: translateX(100%);
-    }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
-/* Hide scrollbar */
+/* =========================================
+   Hide Scrollbar
+========================================= */
 
 .no-scrollbar {
   -ms-overflow-style: none;
@@ -39,9 +41,9 @@
   display: none;
 }
 
-/* Mobile carousel */
-
-/* Mobile carousel */
+/* =========================================
+   Mobile Carousel
+========================================= */
 
 @media (max-width: 767px) {
 
@@ -49,26 +51,31 @@
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+
     scroll-snap-type: x mandatory;
+    scroll-padding-left: 16px;
 
     padding-left: 16px;
-    padding-right: 16px;
-  scroll-padding-left: 16px;
+    padding-right: 0;
   }
-.featured-carousel-track {
-  width: max-content;
-  transform: none !important;
-  scroll-snap-stop: always;
-}
+
+  .featured-carousel-track {
+    width: max-content;
+    transform: none !important;
+    scroll-snap-stop: always;
+  }
 
   .featured-card {
-    width: 82vw !important;
+    width: 84vw !important;
     flex-shrink: 0;
     scroll-snap-align: start;
   }
 
 }
-/* Desktop */
+
+/* =========================================
+   Desktop Carousel
+========================================= */
 
 @media (min-width: 768px) {
 
@@ -77,6 +84,7 @@
   }
 
 }
+
 /* =========================================
    Carousel Arrows
 ========================================= */
@@ -123,7 +131,9 @@
 /* Hide arrows on mobile */
 
 @media (max-width: 767px) {
+
   .carousel-arrow {
     display: none;
   }
+
 }
