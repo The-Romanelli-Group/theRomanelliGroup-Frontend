@@ -1,4 +1,4 @@
-import FeaturedListingCarousel from "../Default Pages/FeaturedListingCarousel/FeaturedListingCarousel";
+import FeaturedListingCarousel from "../home/FeaturedListingCarousel/FeaturedListingCarousel";
 import ClientSay from "../Default Pages/Client Review/clientSay";
 import RoadMap from "./roadMap";
 import QuestionAnswer from "../Default Pages/QuestionAnswer/questionAnswer";
