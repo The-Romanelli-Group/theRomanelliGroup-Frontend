@@ -14,12 +14,16 @@ const FeaturedListingCarousel = () => {
 
         try {
 
-            const response = await apiServices.get(
-                "authentication",
-                "/property-listings/featured",
-                null,
-                null
-            );
+         console.log("Fetching featured listings...");
+
+const response = await apiServices.get(
+    "authentication",
+    "/property-listings/featured",
+    null,
+    null
+);
+
+console.log(response);
 
             setProperties(response.value || []);
 
