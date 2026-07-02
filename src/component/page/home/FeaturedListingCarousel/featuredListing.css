@@ -65,12 +65,11 @@
     scroll-snap-stop: always;
   }
 
- .featured-card {
-    width: 86vw !important;
+  .featured-card {
+    width: 84vw !important;
     flex-shrink: 0;
     scroll-snap-align: start;
-    margin-right: -10vw;
-}
+  }
 
 }
 
