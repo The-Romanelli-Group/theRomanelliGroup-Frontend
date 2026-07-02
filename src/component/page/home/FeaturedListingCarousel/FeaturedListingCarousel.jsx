@@ -1,0 +1,92 @@
+import React, { useEffect, useState } from "react";
+import apiServices from "../../../../Service/apiService";
+
+const FeaturedListingCarousel = () => {
+
+    const [properties, setProperties] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        loadProperties();
+    }, []);
+
+    const loadProperties = async () => {
+
+        try {
+
+            const response = await apiServices.get(
+                "authentication",
+                "/property-listings/featured",
+                null,
+                null
+            );
+
+            setProperties(response.value || []);
+
+        } catch (err) {
+            console.error(err);
+        }
+
+        setLoading(false);
+
+    };
+
+    if (loading) {
+
+        return (
+            <section className="bg-backgroundColor py-20 text-white">
+                <div className="max-w-7xl mx-auto px-6">
+
+                    <h2 className="text-5xl font-semibold mb-10">
+
+                        Featured Listings
+
+                    </h2>
+
+                    <p>Loading...</p>
+
+                </div>
+            </section>
+        );
+
+    }
+
+    return (
+
+        <section className="bg-backgroundColor py-20 text-white">
+
+            <div className="max-w-7xl mx-auto px-6">
+
+                <div className="flex justify-between items-end mb-10">
+
+                    <div>
+
+                        <p className="uppercase tracking-[4px] text-gray-400 mb-2">
+                            Handpicked Homes
+                        </p>
+
+                        <h2 className="text-5xl font-semibold">
+
+                            Featured Listings
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <div className="bg-red-500 rounded-2xl h-[500px] flex items-center justify-center">
+
+                    Carousel goes here
+
+                </div>
+
+            </div>
+
+        </section>
+
+    );
+
+};
+
+export default FeaturedListingCarousel;
