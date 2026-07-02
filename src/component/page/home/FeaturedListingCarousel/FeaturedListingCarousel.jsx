@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import apiServices from "../../../../Service/apiService";
+import FeaturedListingCard from "./FeaturedListingCard";
 
 const FeaturedListingCarousel = () => {
 
@@ -103,19 +104,11 @@ console.log(response);
 
             {properties.map((property) => (
 
-                <div
+                                <div
                     key={property.ListingKey}
-                    className="
-                        flex-none
-                        w-[88%]
-                        sm:w-[48%]
-                        xl:w-[31.5%]
-                        h-[520px]
-                        rounded-3xl
-                        bg-white
-                    "
+                    className="flex-none w-[88%] sm:w-[48%] xl:w-[31.5%]"
                 >
-
+                    <FeaturedListingCard property={property} />
                 </div>
 
             ))}
