@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import apiServices from "../../../../Service/apiService";
-import CarouselArrow from "./CarouselArrow";
+import FeaturedListingCard from "./FeaturedListingCard";
 
 const FeaturedListingCarousel = () => {
 
@@ -103,13 +103,15 @@ console.log(response);
         <div className="flex gap-6">
 
             {properties.map((property) => (
-  <div
-    key={property.ListingKey}
-    className="flex-none w-[88%] sm:w-[48%] xl:w-[31.5%]"
-  >
-    <CarouselArrow />
-  </div>
-))}
+
+                                <div
+                    key={property.ListingKey}
+                    className="flex-none w-[88%] sm:w-[48%] xl:w-[31.5%]"
+                >
+                    <FeaturedListingCard property={property} />
+                </div>
+
+            ))}
 
         </div>
 
