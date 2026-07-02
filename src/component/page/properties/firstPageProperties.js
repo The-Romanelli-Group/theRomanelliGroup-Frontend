@@ -243,7 +243,7 @@ const parseWithGoogle = (searchText) => {
 
       <input
         ref={inputRef}
-        className="w-full h-16 md:h-[72px] bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-28 md:pr-36 text-base md:text-lg text-gray-900 border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22]"
+        className="w-full h-12 md:h-14 md:h-[72px] bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-28 md:pr-36 text-base md:text-lg text-gray-900 border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22]"
         placeholder={placeholder}
         value={filters.searchCity}
         onChange={(e) => {
