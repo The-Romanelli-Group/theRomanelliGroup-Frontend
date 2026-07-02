@@ -1,4 +1,4 @@
-import FeaureListing from "../Default Pages/feaureListing";
+import FeaturedListingCarousel from "../Default Pages/FeaturedListingCarousel/FeaturedListingCarousel";
 import ClientSay from "../Default Pages/Client Review/clientSay";
 import RoadMap from "./roadMap";
 import QuestionAnswer from "../Default Pages/QuestionAnswer/questionAnswer";
@@ -25,34 +25,36 @@ const MainPageBuy = () => {
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0 -my-1"
       >
-         <RoadMap />
-      
+        <RoadMap />
       </motion.div>
+
       <motion.div
         variants={fadeInUp}
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0"
       >
-          <FeaureListing />
-    
+        <FeaturedListingCarousel />
       </motion.div>
+
       <motion.div
         variants={fadeInUp}
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0"
       >
-           <ClientSay />
+        <ClientSay />
       </motion.div>
+
       <motion.div
         variants={fadeInUp}
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0 -my-1"
       >
-        <QuestionAnswer onSet={"buyer"}/>
+        <QuestionAnswer onSet={"buyer"} />
       </motion.div>
+
       <motion.div
         variants={fadeInUp}
         whileInView="visible"
