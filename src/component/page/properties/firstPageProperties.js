@@ -441,6 +441,7 @@ const parseWithGoogle = (searchText) => {
   </p>
 
 </div>
+</div>
 
       <SideModal />
 
