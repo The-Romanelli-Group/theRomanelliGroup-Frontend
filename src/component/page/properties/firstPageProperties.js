@@ -396,7 +396,7 @@ const parseWithGoogle = (searchText) => {
         <button
           key={s.place_id}
           type="button"
-          className="w-full flex items-center gap-4 px-5 py-4 text-left border-b border-gray-100 last:border-0 hover:bg-gray-50 hover:pl-6 transition-all duration-200"
+        className="w-full flex items-center gap-3 px-4 py-2.5 text-left border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors duration-200"
           onMouseDown={() => {
 
             if (!placesService.current) return;
@@ -430,10 +430,10 @@ const parseWithGoogle = (searchText) => {
         >
 
           {/* Icon */}
-          <div className="flex-shrink-0 w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">
+          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
 
             <svg
-              className="w-4 h-4 text-[#A61E22]"
+              className="w-3.5 h-3.5 text-[#A61E22]"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -453,9 +453,9 @@ const parseWithGoogle = (searchText) => {
               {s.description}
             </div>
 
-            <div className="mt-1">
+            <div className="mt-0.5">
 
-              <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600">
+              <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-[2px] text-xs font-medium text-gray-600">
                 {getLocationType(s.types || [])}
               </span>
 
