@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import apiServices from "../../../../Service/apiService";
 import FeaturedListingCard from "./FeaturedListingCard";
-import "./featuredListing.css";
+import "./featuredListing.css"; 
 
 const FeaturedListingCarousel = () => {
 
