@@ -232,40 +232,71 @@ const parseWithGoogle = (searchText) => {
 
  <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-3xl p-5 md:px-8 md:py-6 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
     {/* Buy / Rent */}
-    <div className="flex justify-center mb-5">
+<div className="flex justify-center mb-5">
 
-      <div className="inline-flex bg-white rounded-full p-1 shadow-lg">
+  <div className="relative inline-flex bg-white rounded-full p-1 shadow-xl">
 
-        <button
-          className={`px-7 md:px-8 py-3 rounded-full font-medium transition-all duration-300 ${
-            filters.selectedOption === "Buy"
-              ? "bg-[#A61E22] text-white shadow-md"
-              : "text-gray-700 hover:bg-gray-100"
-          }`}
-          onClick={() =>
-            setFilters((prev) => ({ ...prev, selectedOption: "Buy" }))
-          }
-        >
-          Buy
-        </button>
+    {/* Sliding Pill */}
+    <div
+      className={`absolute top-1 bottom-1 rounded-full bg-[#A61E22] shadow-md transition-transform duration-300 ease-in-out
+      w-[calc(50%-4px)]
+      ${
+        filters.selectedOption === "Buy"
+          ? "translate-x-0"
+          : "translate-x-full"
+      }`}
+      style={{ left: "4px" }}
+    />
 
-        <button
-          className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
-            filters.selectedOption === "Rent"
-              ? "bg-[#A61E22] text-white shadow-md"
-              : "text-gray-700 hover:bg-gray-100"
-          }`}
-          onClick={() =>
-            setFilters((prev) => ({ ...prev, selectedOption: "Rent" }))
-          }
-        >
-          Rent
-        </button>
+    <button
+      onClick={() =>
+        setFilters((prev) => ({
+          ...prev,
+          selectedOption: "Buy",
+        }))
+      }
+      className={`relative z-10
+        w-28 md:w-32
+        py-2.5 md:py-3
+        rounded-full
+        text-base md:text-lg
+        font-medium
+        transition-colors duration-300
+        ${
+          filters.selectedOption === "Buy"
+            ? "text-white"
+            : "text-gray-600"
+        }`}
+    >
+      Buy
+    </button>
 
-      </div>
+    <button
+      onClick={() =>
+        setFilters((prev) => ({
+          ...prev,
+          selectedOption: "Rent",
+        }))
+      }
+      className={`relative z-10
+        w-28 md:w-32
+        py-2.5 md:py-3
+        rounded-full
+        text-base md:text-lg
+        font-medium
+        transition-colors duration-300
+        ${
+          filters.selectedOption === "Rent"
+            ? "text-white"
+            : "text-gray-600"
+        }`}
+    >
+      Rent
+    </button>
 
-    </div>
+  </div>
 
+</div>
 {/* Search Input */}
 <div className="relative w-full">
 
