@@ -164,6 +164,52 @@ const parseWithGoogle = (searchText) => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleSearch = async () => {
+
+  if (!filters.searchCity) {
+    alert("Please enter a city");
+    return;
+  }
+
+  let finalFilters;
+
+  if (!filters.city) {
+
+    const parsed = await parseWithGoogle(filters.searchCity);
+
+    finalFilters = {
+      ...filters,
+      ...parsed,
+      listingType: filters.selectedOption
+    };
+
+  } else {
+
+    finalFilters = {
+      ...filters,
+      listingType: filters.selectedOption
+    };
+
+  }
+
+  setLoading(true);
+
+  const data = await checkProperty(finalFilters);
+
+  setLoading(false);
+
+  if (data) {
+    navigate("/details/properties", {
+      state: {
+        data,
+        filters: finalFilters
+      }
+    });
+  }
+
+};
+
+
   return (
     <div>
       {loading && <LoadingScreen progress={progress} />}
@@ -184,8 +230,7 @@ const parseWithGoogle = (searchText) => {
        
       <div className="max-w-4xl mx-auto mt-6">
 
-  <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-5 md:px-8 md:py-6 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
-
+ <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-3xl p-5 md:px-8 md:py-6 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
     {/* Buy / Rent */}
     <div className="flex justify-center mb-5">
 
@@ -221,62 +266,82 @@ const parseWithGoogle = (searchText) => {
 
     </div>
 
-    {/* Search Input */}
-    <div className="relative w-full">
+{/* Search Input */}
+<div className="relative w-full">
 
-      <div className="absolute left-5 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6 text-gray-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M21 21l-5.2-5.2m2.2-5.3a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
-      </div>
+  {/* Search Icon */}
+  <div className="absolute left-4 md:left-5 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-5 h-5 md:w-6 md:h-6 text-gray-400"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M21 21l-5.2-5.2m2.2-5.3a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+  </div>
 
-      <input
-  ref={inputRef}
-  className="w-full h-14 md:h-16 bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-40 md:pr-52 text-base md:text-lg text-gray-900 border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22] transition-all duration-300"
-  placeholder={placeholder}
-  value={filters.searchCity}
-  onChange={(e) => {
-    const value = e.target.value;
-    setFilters({ ...filters, searchCity: value });
+  <input
+    ref={inputRef}
+    className="
+      w-full
+      h-12 md:h-16
+      bg-white/95
+      backdrop-blur-md
+      rounded-2xl
+      pl-12 md:pl-14
+      pr-28 md:pr-52
+      text-sm md:text-lg
+      text-gray-900
+      placeholder:text-gray-400
+      border border-white/30
+      shadow-2xl
+      focus:outline-none
+      focus:ring-2
+      focus:ring-[#A61E22]
+      transition-all
+      duration-300
+    "
+    placeholder={placeholder}
+    value={filters.searchCity}
+    onChange={(e) => {
+      const value = e.target.value;
+      setFilters({ ...filters, searchCity: value });
 
-    if (value.length > 2 && autocompleteService.current) {
-      autocompleteService.current.getPlacePredictions(
-        {
-          input: value,
-          componentRestrictions: { country: "us" },
-        },
-        (predictions, status) => {
-          if (
-            status === window.google.maps.places.PlacesServiceStatus.OK &&
-            predictions
-          ) {
-            setSuggestions(predictions);
-            setShowDropdown(true);
-          } else {
-            setSuggestions([]);
-            setShowDropdown(false);
+      if (value.length > 2 && autocompleteService.current) {
+        autocompleteService.current.getPlacePredictions(
+          {
+            input: value,
+            componentRestrictions: { country: "us" },
+          },
+          (predictions, status) => {
+            if (
+              status === window.google.maps.places.PlacesServiceStatus.OK &&
+              predictions
+            ) {
+              setSuggestions(predictions);
+              setShowDropdown(true);
+            } else {
+              setSuggestions([]);
+              setShowDropdown(false);
+            }
           }
-        }
-      );
-    } else {
-      setSuggestions([]);
-      setShowDropdown(false);
-    }
-  }}
-  onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
-  onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
-/>
+        );
+      } else {
+        setSuggestions([]);
+        setShowDropdown(false);
+      }
+    }}
+    onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
+    onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
+  />
+
 
       {/* Suggestions Dropdown */}
       {showDropdown && suggestions.length > 0 && (
@@ -369,72 +434,30 @@ const parseWithGoogle = (searchText) => {
 
       {/* Buttons */}
 
-      <div className="absolute right-2 top-2 bottom-2 flex items-center gap-3">
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
 
-        <button
-  onClick={() => setFilterOpen(true)}
-  className="w-12 h-12 md:w-14 md:h-14 bg-white border border-gray-200 rounded-xl flex items-center justify-center hover:bg-gray-50 hover:scale-105 transition-all duration-300"
-  aria-label="Open filters"
->
-  <img
-    src={FilterIcon}
-    alt="Filters"
-    className="w-5 h-5 md:w-6 md:h-6"
-  />
-</button>
+  {/* Filter Button */}
+  <button
+    onClick={() => setFilterOpen(true)}
+    className="w-9 h-9 md:w-11 md:h-11 bg-white border border-gray-200 rounded-lg md:rounded-xl flex items-center justify-center hover:bg-gray-50 transition-all duration-300"
+    aria-label="Open filters"
+  >
+    <img
+      src={FilterIcon}
+      alt="Filters"
+      className="w-4 h-4 md:w-5 md:h-5"
+    />
+  </button>
 
-        <button
-         className="h-12 md:h-[56px] bg-[#A61E22] hover:bg-[#8d181b] text-white px-7 md:px-8 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] shadow-lg"
-          onClick={async () => {
+  {/* Search Button */}
+  <button
+    className="h-9 md:h-12 bg-[#A61E22] hover:bg-[#8d181b] text-white px-4 md:px-8 rounded-lg md:rounded-xl text-sm md:text-base font-semibold shadow-lg transition-all duration-300 hover:scale-[1.02]"
+    onClick={handleSearch}
+  >
+    Search
+  </button>
 
-            if (!filters.searchCity) {
-              alert("Please enter a city");
-              return;
-            }
-
-            let finalFilters;
-
-            if (!filters.city) {
-
-              const parsed = await parseWithGoogle(filters.searchCity);
-
-              finalFilters = {
-                ...filters,
-                ...parsed,
-                listingType: filters.selectedOption
-              };
-
-            } else {
-
-              finalFilters = {
-                ...filters,
-                listingType: filters.selectedOption
-              };
-
-            }
-
-            setLoading(true);
-
-            const data = await checkProperty(finalFilters);
-
-            setLoading(false);
-
-            if (data) {
-
-              navigate("/details/properties", {
-                state: {
-                  data,
-                  filters: finalFilters
-                }
-              });
-
-            }
-
-          }}
-        >
-          Search
-        </button>
-
+            </div>
       </div>
 
     </div>
