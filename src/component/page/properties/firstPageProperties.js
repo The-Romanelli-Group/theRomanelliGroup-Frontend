@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { usePropertySearch } from "./api/getCheckProperty";
 import LoadingScreen from "../../../loading/loadingScreen";
 import SideModal from "../home/sideModal";
+import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
 
 const FirstPageProperties = () => {
   const [loading, setLoading] = useState(false);
@@ -242,7 +243,7 @@ const parseWithGoogle = (searchText) => {
 
       <input
         ref={inputRef}
-        className="w-full h-16 md:h-[72px] bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-40 md:pr-44 text-base md:text-lg text-gray-900 border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22]"
+        className="w-full h-16 md:h-[72px] bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-28 md:pr-36 text-base md:text-lg text-gray-900 border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22]"
         placeholder={placeholder}
         value={filters.searchCity}
         onChange={(e) => {
@@ -369,14 +370,19 @@ const parseWithGoogle = (searchText) => {
 
       {/* Buttons */}
 
-      <div className="absolute right-2 top-2 bottom-2 flex gap-2 z-10">
+      <div className="absolute right-2 top-2 bottom-2 flex items-center gap-3">
 
         <button
-          className="bg-white text-gray-700 border border-gray-200 rounded-xl px-5 hover:bg-gray-50 transition"
-          onClick={() => setFilterOpen(true)}
-        >
-          Filters
-        </button>
+  onClick={() => setFilterOpen(true)}
+  className="w-12 h-12 md:w-14 md:h-14 bg-white border border-gray-200 rounded-xl flex items-center justify-center hover:bg-gray-50 hover:scale-105 transition-all duration-300"
+  aria-label="Open filters"
+>
+  <img
+    src={FilterIcon}
+    alt="Filters"
+    className="w-5 h-5 md:w-6 md:h-6"
+  />
+</button>
 
         <button
           className="bg-[#A61E22] hover:bg-[#8d181b] text-white px-6 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02]"
