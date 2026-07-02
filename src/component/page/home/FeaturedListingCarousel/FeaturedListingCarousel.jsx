@@ -108,7 +108,7 @@ console.log(response);
                     key={property.ListingKey}
                     className="flex-none w-[88%] sm:w-[48%] xl:w-[31.5%]"
                 >
-                    <FeaturedListingCard property={property} />
+                <CarouselArrow />
                 </div>
 
             ))}
