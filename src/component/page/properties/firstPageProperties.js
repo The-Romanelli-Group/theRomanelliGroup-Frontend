@@ -167,9 +167,9 @@ const parseWithGoogle = (searchText) => {
     <div>
       {loading && <LoadingScreen progress={progress} />}
 
-      <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto font-dmsans">
+      <div className="relative z-10 container px-4 sm:px-5 py-10 md:py-24 mx-auto font-dmsans">
         {/* Heading */}
-       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center max-w-4xl mx-auto leading-tight">
+       <h1 className=" text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center max-w-4xl mx-auto leading-tight">
   Find Your
   <span className="block font-playfair italic">
     Next Home
@@ -183,7 +183,7 @@ const parseWithGoogle = (searchText) => {
        
       <div className="max-w-4xl mx-auto mt-10">
 
-  <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-5 md:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
+  <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-5 md:px-8 md:py-6 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
 
     {/* Buy / Rent */}
     <div className="flex justify-center mb-8">
@@ -191,7 +191,7 @@ const parseWithGoogle = (searchText) => {
       <div className="inline-flex bg-white rounded-full p-1 shadow-lg">
 
         <button
-          className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+          className={`px-7 md:px-8 py-3 rounded-full font-medium transition-all duration-300 ${
             filters.selectedOption === "Buy"
               ? "bg-[#A61E22] text-white shadow-md"
               : "text-gray-700 hover:bg-gray-100"
@@ -242,7 +242,7 @@ const parseWithGoogle = (searchText) => {
 
       <input
         ref={inputRef}
-        className="w-full h-14 md:h-16 bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-40 md:pr-44 text-base md:text-lg text-gray-900 border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22]"
+        className="w-full h-16 md:h-[72px] bg-white/95 backdrop-blur-md rounded-2xl pl-14 pr-40 md:pr-44 text-base md:text-lg text-gray-900 border border-white/30 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#A61E22]"
         placeholder={placeholder}
         value={filters.searchCity}
         onChange={(e) => {
@@ -436,7 +436,7 @@ const parseWithGoogle = (searchText) => {
 
   </div>
 
-  <p className="text-center text-white/70 text-sm md:text-base mt-5">
+  <p className="text-center text-white/70 text-sm md:text-base mt-3">
     Updated directly from the Central Ohio MLS.
   </p>
 
