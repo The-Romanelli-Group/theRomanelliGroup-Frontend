@@ -5,6 +5,7 @@ import { usePropertySearch } from "./api/getCheckProperty";
 import LoadingScreen from "../../../loading/loadingScreen";
 import SideModal from "../home/sideModal";
 import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
+import LocationIcon from "../../../assets/images/illustrations/Location.svg";
 
 const FirstPageProperties = () => {
   const [loading, setLoading] = useState(false);
@@ -376,8 +377,23 @@ const parseWithGoogle = (searchText) => {
 
       {/* Suggestions Dropdown */}
 {showDropdown && suggestions.length > 0 && (
-  <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-2xl border border-gray-200 shadow-2xl overflow-hidden z-50">
-
+  <div
+    className="
+      absolute
+      top-full
+      left-0
+      right-0
+      mt-2
+      bg-white
+      rounded-3xl
+      border
+      border-gray-200
+      shadow-2xl
+      z-50
+      max-h-80
+      overflow-y-auto
+    "
+  >
     {suggestions.map((s) => {
 
       const getLocationType = (types) => {
@@ -386,7 +402,7 @@ const parseWithGoogle = (searchText) => {
         if (types?.includes("administrative_area_level_1")) return "State";
         if (types?.includes("neighborhood")) return "Neighborhood";
         if (types?.includes("sublocality")) return "Area";
-        if (types?.includes("postal_code")) return "ZIP";
+        if (types?.includes("postal_code")) return "ZIP Code";
         if (types?.includes("route")) return "Street";
         return "Location";
       };
@@ -396,7 +412,21 @@ const parseWithGoogle = (searchText) => {
         <button
           key={s.place_id}
           type="button"
-        className="w-full flex items-center gap-3 px-4 py-2.5 text-left border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors duration-200"
+          className="
+            w-full
+            flex
+            items-center
+            gap-3
+            px-4
+            py-2
+            text-left
+            border-b
+            border-gray-100
+            last:border-0
+            hover:bg-gray-50
+            transition-colors
+            duration-200
+          "
           onMouseDown={() => {
 
             if (!placesService.current) return;
@@ -432,30 +462,24 @@ const parseWithGoogle = (searchText) => {
           {/* Icon */}
           <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
 
-            <svg
-              className="w-3.5 h-3.5 text-[#A61E22]"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <img
+              src={LocationIcon}
+              alt="Location"
+              className="w-4 h-4"
+            />
 
           </div>
 
           {/* Text */}
           <div className="flex-1 min-w-0">
 
-            <div className="font-medium text-gray-900 truncate">
+            <div className="text-[15px] font-medium text-gray-900 truncate">
               {s.description}
             </div>
 
             <div className="mt-0.5">
 
-              <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-[2px] text-xs font-medium text-gray-600">
+              <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-[2px] text-[11px] font-medium text-gray-600">
                 {getLocationType(s.types || [])}
               </span>
 
@@ -468,7 +492,6 @@ const parseWithGoogle = (searchText) => {
       );
 
     })}
-
   </div>
 )}
 
