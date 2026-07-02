@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import apiServices from "../../../../Service/apiService";
 import FeaturedListingCard from "./FeaturedListingCard";
 
@@ -7,6 +7,7 @@ const FeaturedListingCarousel = () => {
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const carouselRef = useRef(null);
     useEffect(() => {
         loadProperties();
     }, []);
@@ -116,10 +117,14 @@ console.log(response);
 <div className="overflow-hidden">
 
     <div
-        className="flex gap-6 transition-transform duration-500 ease-in-out"
+    ref={carouselRef}
+    className="flex gap-6 transition-transform duration-500 ease-in-out"
         style={{
-            transform: `translateX(-${currentIndex * 34}%)`,
-        }}
+    transform: `translateX(-${
+        currentIndex *
+        (carouselRef.current?.children[0]?.offsetWidth + 24 || 0)
+    }px)`,
+}}
     >
 
             {properties.map((property) => (
