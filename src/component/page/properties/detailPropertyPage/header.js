@@ -19,9 +19,7 @@ const Header = ({ filter, onResults }) => {
   const navigate = useNavigate()
   const priceDropdownRef = useRef(null);
   const autocompleteService = useRef(null);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0)
-  const [filterOpen, setFilterOpen] = useState(false)
+    const [filterOpen, setFilterOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -286,8 +284,7 @@ const parseWithGoogle = (searchText) => {
   };
  return (
   <div className="mb-8">
-    {loading && <LoadingScreen progress={progress} />}
-
+   
     <div
       className="
         bg-white
