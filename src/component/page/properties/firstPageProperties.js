@@ -8,7 +8,7 @@ import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
 import LocationIcon from "../../../assets/images/illustrations/Location.svg";
 
 const FirstPageProperties = () => {
-  const [loading, setLoading] = useState(false);
+ const [loading, setLoading] = useState(null);
   const [filterOpen, setFilterOpen] = useState(false);
   const placesService = useRef(null);
   const [placeholder, setPlaceholder] = useState("Enter city");
@@ -128,34 +128,65 @@ const parseWithGoogle = (searchText) => {
   // --------------------------------------
   // FILTER SAVE HANDLER
   // --------------------------------------
-  const handleFilterSave = async (values) => {
-    const loc = {city: filters.city, state: filters.state, country: filters.country } 
-    const finalFilters = {
-      ...filters,
-      ...values,
-      city: loc.city,
-      state: loc.state,
-      country: loc.country,
-      listingType: filters.selectedOption
-    };
+ const handleFilterSave = async (values) => {
 
-    setFilters(finalFilters);
-    setFilterOpen(false);
-
-   if (!filters.searchCity) {
-  setFilterOpen(false);
-  return;
-}
-
-    setLoading(true);
-    const data = await checkProperty(finalFilters);
-    setLoading(false);
-
-    if (data) {
-      navigate(`/details/properties`, { state: { data, filters: finalFilters } });
-    }
+  const loc = {
+    city: filters.city,
+    state: filters.state,
+    country: filters.country,
   };
 
+  const finalFilters = {
+    ...filters,
+    ...values,
+    city: loc.city,
+    state: loc.state,
+    country: loc.country,
+    listingType: filters.selectedOption,
+  };
+
+  setFilters(finalFilters);
+  setFilterOpen(false);
+
+  if (!filters.searchCity) {
+    return;
+  }
+
+  try {
+
+    setLoading("loading");
+
+    const data = await checkProperty(finalFilters);
+
+    if (!data) {
+      setLoading("error");
+      return;
+    }
+
+    const properties = data.value || data;
+
+    if (!properties || properties.length === 0) {
+      setLoading("empty");
+      return;
+    }
+
+    setLoading(null);
+
+    navigate("/details/properties", {
+      state: {
+        data,
+        filters: finalFilters,
+      },
+    });
+
+  } catch (err) {
+
+    console.error(err);
+    setLoading("error");
+
+  }
+
+};
 
   const handleSearch = async () => {
 
@@ -164,40 +195,59 @@ const parseWithGoogle = (searchText) => {
     return;
   }
 
-  let finalFilters;
+  try {
 
-  if (!filters.city) {
+    let finalFilters;
 
-    const parsed = await parseWithGoogle(filters.searchCity);
+    if (!filters.city) {
 
-    finalFilters = {
-      ...filters,
-      ...parsed,
-      listingType: filters.selectedOption
-    };
+      const parsed = await parseWithGoogle(filters.searchCity);
 
-  } else {
+      finalFilters = {
+        ...filters,
+        ...parsed,
+        listingType: filters.selectedOption,
+      };
 
-    finalFilters = {
-      ...filters,
-      listingType: filters.selectedOption
-    };
+    } else {
 
-  }
+      finalFilters = {
+        ...filters,
+        listingType: filters.selectedOption,
+      };
 
-  setLoading(true);
+    }
 
-  const data = await checkProperty(finalFilters);
+    setLoading("loading");
 
-  setLoading(false);
+    const data = await checkProperty(finalFilters);
 
-  if (data) {
+    if (!data) {
+      setLoading("error");
+      return;
+    }
+
+    const properties = data.value || data;
+
+    if (!properties || properties.length === 0) {
+      setLoading("empty");
+      return;
+    }
+
+    setLoading(null);
+
     navigate("/details/properties", {
       state: {
         data,
-        filters: finalFilters
-      }
+        filters: finalFilters,
+      },
     });
+
+  } catch (err) {
+
+    console.error(err);
+    setLoading("error");
+
   }
 
 };
@@ -242,9 +292,11 @@ const filterCount =
 
   return (
     <div>
-     {loading && (
+    {loading && (
   <LoadingScreen
     location={filters.searchCity}
+    status={loading}
+    onClose={() => setLoading(null)}
   />
 )}
 

@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { logoUrl } from "../assets/allImg";
 
-const messages = [
+const loadingMessages = [
   "Finding your next home...",
   "Searching Central Ohio MLS...",
   "Matching active listings...",
   "Preparing beautiful photos...",
-  "Almost there..."
+  "Almost there...",
 ];
 
-const LoadingScreen = ({ location = "" }) => {
+const LoadingScreen = ({
+  location = "",
+  status = "loading",
+  onClose,
+}) => {
   const [messageIndex, setMessageIndex] = useState(0);
   const [dot, setDot] = useState(0);
 
   useEffect(() => {
+    if (status !== "loading") return;
+
     const messageTimer = setInterval(() => {
       setMessageIndex((prev) =>
-        prev < messages.length - 1 ? prev + 1 : prev
+        prev < loadingMessages.length - 1 ? prev + 1 : prev
       );
     }, 900);
 
@@ -28,46 +34,117 @@ const LoadingScreen = ({ location = "" }) => {
       clearInterval(messageTimer);
       clearInterval(dotTimer);
     };
-  }, []);
+  }, [status]);
+
+  const renderActionButton = () => (
+    <button
+      onClick={onClose}
+      className="
+        mt-10
+        inline-flex
+        items-center
+        justify-center
+        px-7
+        py-3
+        rounded-xl
+        bg-white
+        text-[#A61E22]
+        font-semibold
+        shadow-lg
+        hover:bg-gray-100
+        transition-all
+        duration-200
+      "
+    >
+      Modify Search
+    </button>
+  );
+
+  const renderContent = () => {
+    switch (status) {
+      case "empty":
+        return (
+          <>
+            <h2 className="text-white text-2xl md:text-4xl font-semibold">
+              No Homes Found
+            </h2>
+
+            <p className="mt-6 text-white/90 text-lg leading-relaxed">
+              We couldn't find any homes matching your search.
+            </p>
+
+            <p className="mt-2 text-white/70">
+              Try broadening your filters or searching another area.
+            </p>
+
+            {renderActionButton()}
+          </>
+        );
+
+      case "error":
+        return (
+          <>
+            <h2 className="text-white text-2xl md:text-4xl font-semibold">
+              Something Went Wrong
+            </h2>
+
+            <p className="mt-6 text-white/90 text-lg leading-relaxed">
+              We couldn't complete your search.
+            </p>
+
+            <p className="mt-2 text-white/70">
+              Please try again in a moment.
+            </p>
+
+            {renderActionButton()}
+          </>
+        );
+
+      default:
+        return (
+          <>
+            <h2 className="text-white text-2xl md:text-4xl font-semibold">
+              Finding Your Next Home
+            </h2>
+
+            {location && (
+              <p className="mt-3 text-white/80 text-base md:text-lg">
+                📍 {location}
+              </p>
+            )}
+
+            <p className="mt-8 text-white/90 text-lg md:text-xl">
+              {loadingMessages[messageIndex]}
+            </p>
+
+            <div className="flex justify-center gap-3 mt-10">
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    dot === i
+                      ? "bg-white scale-125"
+                      : "bg-white/30"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        );
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-[9999] bg-[#A61E22] flex items-center justify-center px-6">
-
       <div className="text-center max-w-md w-full">
-
         <img
           src={logoUrl}
           alt="The Romanelli Group"
           className="w-28 md:w-36 mx-auto mb-8"
         />
 
-        <h2 className="text-white text-2xl md:text-4xl font-semibold">
-          Finding your next home
-        </h2>
-
-        {location && (
-          <p className="mt-3 text-white/80 text-base md:text-lg">
-            📍 {location}
-          </p>
-        )}
-
-        <p className="mt-8 text-white/90 text-lg md:text-xl">
-          {messages[messageIndex]}
-        </p>
-
-        <div className="flex justify-center gap-3 mt-10">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                dot === i ? "bg-white scale-125" : "bg-white/30"
-              }`}
-            />
-          ))}
-        </div>
-
+        {renderContent()}
       </div>
-
     </div>
   );
 };
