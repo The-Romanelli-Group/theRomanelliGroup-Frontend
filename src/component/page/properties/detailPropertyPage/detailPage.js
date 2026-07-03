@@ -16,6 +16,8 @@ const DetailPage = () => {
 
   const { data, filters: initialFilters } = location.state || {};
 
+  const ITEMS_PER_PAGE = 10;
+
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -24,6 +26,8 @@ const DetailPage = () => {
   const [sortOption, setSortOption] = useState("Recently Updated");
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("Recently Updated");
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const options = [
     "Recently Updated",
@@ -97,44 +101,61 @@ const DetailPage = () => {
     return () => clearInterval(interval);
   }, []);
 
-    // Sort listings
-const sortedData = [...alldata].sort((a, b) => {
-  switch (sortOption) {
-    case "Price: Low to High":
-      return a.amount - b.amount;
+  // Reset pagination whenever search/sort changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filters, sortOption]);
 
-    case "Price: High to Low":
-      return b.amount - a.amount;
+  // Sort listings
+  const sortedData = [...alldata].sort((a, b) => {
+    switch (sortOption) {
+      case "Price: Low to High":
+        return a.amount - b.amount;
 
-    default:
-      // Recently Updated
-      return b.id - a.id;
-  }
-});
+      case "Price: High to Low":
+        return b.amount - a.amount;
 
-// No search data
-if (!data) {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="text-center max-w-md px-6">
-        <h2 className="text-3xl font-bold text-gray-900">
-          No Properties Found
-        </h2>
+      default:
+        return b.id - a.id;
+    }
+  });
 
-        <p className="mt-3 text-gray-600">
-          We couldn't find any listings for your search.
-        </p>
-
-        <button
-          onClick={() => navigate("/")}
-          className="mt-8 px-6 py-3 rounded-xl bg-[#A61E22] text-white font-semibold hover:bg-[#8d181b] transition-colors"
-        >
-          Start a New Search
-        </button>
-      </div>
-    </div>
+  // Pagination
+  const totalPages = Math.ceil(
+    sortedData.length / ITEMS_PER_PAGE
   );
-}
+
+  const currentProperties = sortedData.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  // Empty state
+  if (!data) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center max-w-md px-6">
+
+          <h2 className="text-3xl font-bold text-gray-900">
+            No Properties Found
+          </h2>
+
+          <p className="mt-3 text-gray-600">
+            We couldn't find any listings for your search.
+          </p>
+
+          <button
+            onClick={() => navigate("/")}
+            className="mt-8 px-6 py-3 rounded-xl bg-[#A61E22] text-white font-semibold hover:bg-[#8d181b] transition-colors"
+          >
+            Start a New Search
+          </button>
+
+        </div>
+      </div>
+    );
+  }
+  
   return (
   <div className="mainVideo bg-gray-50 min-h-screen">
     {loading && <LoadingScreen progress={progress} />}
@@ -250,7 +271,7 @@ if (!data) {
           </div>
 
 
-{sortedData?.map((item) => (
+{currentProperties.map((item) => (
   <div
     key={item.id}
     onClick={() => handleGetitem(item.id)}
@@ -400,6 +421,118 @@ if (!data) {
 
   </div>
 ))}
+<p className="text-center text-sm text-gray-500 mb-5">
+  Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1}–
+  {Math.min(currentPage * ITEMS_PER_PAGE, sortedData.length)} of{" "}
+  {sortedData.length} properties
+</p>
+
+{totalPages > 1 && (
+  <div className="mt-10 flex items-center justify-center gap-2 flex-wrap">
+
+    {/* Previous */}
+    <button
+      onClick={() => {
+        setCurrentPage((p) => Math.max(1, p - 1));
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }}
+      disabled={currentPage === 1}
+      className="
+        px-4
+        py-2
+        rounded-xl
+        border
+        bg-white
+        hover:bg-gray-50
+        disabled:opacity-40
+        disabled:cursor-not-allowed
+        transition
+      "
+    >
+      ← Previous
+    </button>
+
+    {/* First Page */}
+    {currentPage > 2 && (
+      <>
+        <button
+          onClick={() => setCurrentPage(1)}
+          className="w-10 h-10 rounded-xl border bg-white hover:bg-gray-100"
+        >
+          1
+        </button>
+
+        {currentPage > 3 && (
+          <span className="px-1 text-gray-400">...</span>
+        )}
+      </>
+    )}
+
+    {/* Previous Page */}
+    {currentPage > 1 && (
+      <button
+        onClick={() => setCurrentPage(currentPage - 1)}
+        className="w-10 h-10 rounded-xl border bg-white hover:bg-gray-100"
+      >
+        {currentPage - 1}
+      </button>
+    )}
+
+    {/* Current */}
+    <button className="w-10 h-10 rounded-xl bg-[#A61E22] text-white font-semibold shadow-md">
+      {currentPage}
+    </button>
+
+    {/* Next Page */}
+    {currentPage < totalPages && (
+      <button
+        onClick={() => setCurrentPage(currentPage + 1)}
+        className="w-10 h-10 rounded-xl border bg-white hover:bg-gray-100"
+      >
+        {currentPage + 1}
+      </button>
+    )}
+
+    {/* Last Page */}
+    {currentPage < totalPages - 1 && (
+      <>
+        {currentPage < totalPages - 2 && (
+          <span className="px-1 text-gray-400">...</span>
+        )}
+
+        <button
+          onClick={() => setCurrentPage(totalPages)}
+          className="w-10 h-10 rounded-xl border bg-white hover:bg-gray-100"
+        >
+          {totalPages}
+        </button>
+      </>
+    )}
+
+    {/* Next */}
+    <button
+      onClick={() => {
+        setCurrentPage((p) => Math.min(totalPages, p + 1));
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }}
+      disabled={currentPage === totalPages}
+      className="
+        px-4
+        py-2
+        rounded-xl
+        border
+        bg-white
+        hover:bg-gray-50
+        disabled:opacity-40
+        disabled:cursor-not-allowed
+        transition
+      "
+    >
+      Next →
+    </button>
+
+  </div>
+)}
                  {/* Map Section */}
         <div className="w-full lg:w-1/3 order-2">
 
@@ -423,7 +556,7 @@ if (!data) {
 
               {/* Map */}
               <div className="h-[700px]">
-                <Map alldata={alldata} />
+                <Map alldata={currentProperties} />
               </div>
 
             </div>
