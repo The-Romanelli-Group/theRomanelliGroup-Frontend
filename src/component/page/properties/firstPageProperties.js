@@ -236,12 +236,12 @@ const parseWithGoogle = (searchText) => {
   </span>
 </h1>
 
-<p className="mt-5 text-base md:text-xl text-white/80 max-w-2xl mx-auto text-center leading-relaxed">
+<p className="mt-3 md:mt-5 text-base md:text-xl text-white/80 max-w-2xl mx-auto text-center leading-relaxed">
   Search by city, neighborhood, ZIP code, or address across Central Ohio's
   latest MLS listings.
 </p>
        
-      <div className="max-w-4xl mx-auto mt-6">
+     <div className="max-w-4xl mx-auto mt-4 md:mt-6">
 
  <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-3xl p-5 md:px-8 md:py-6 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
     {/* Buy / Rent */}
@@ -430,7 +430,7 @@ const parseWithGoogle = (searchText) => {
     items-center
     gap-2.5
     px-4
-    py-1
+    py-2
     text-left
     border-b
     border-gray-100
