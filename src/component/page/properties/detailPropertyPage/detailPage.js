@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { bathroom, bed, square } from '../../../../assets/allImg';
 import Map from './map';
@@ -26,6 +26,7 @@ const DetailPage = () => {
   const [value, setValue] = useState("Recently Updated");
 
   const [currentPage, setCurrentPage] = useState(1);
+  const resultsRef = useRef(null);
 
   const options = [
     "Recently Updated",
@@ -69,6 +70,14 @@ const DetailPage = () => {
 
     window.open(`/properties/${id}`, "_blank");
   };
+  const handlePageChange = (page) => {
+  setCurrentPage(page);
+
+  resultsRef.current?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+};
 
   const handleResults = async (newFilters) => {
     setFilters(newFilters);
@@ -155,8 +164,11 @@ const DetailPage = () => {
       loading={loading}
       />
 
-      {/* Results Header */}
-      <div className="mt-8 mb-8">
+    {/* Results Header */}
+          <div
+            ref={resultsRef}
+            className="mt-8 mb-8"
+          >
 
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
           Homes for {filters.listingType === "Buy" ? "Sale" : "Rent"}
@@ -420,10 +432,11 @@ const DetailPage = () => {
 
     {/* Previous */}
     <button
-      onClick={() => {
-        setCurrentPage((p) => Math.max(1, p - 1));
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }}
+                onClick={() =>
+            handlePageChange(
+              Math.max(1, currentPage - 1)
+            )
+          }
       disabled={currentPage === 1}
       className="
         px-4
@@ -444,7 +457,7 @@ const DetailPage = () => {
     {currentPage > 2 && (
       <>
         <button
-          onClick={() => setCurrentPage(1)}
+          onClick={() => handlePageChange(1)}
           className="w-10 h-10 rounded-xl border bg-white hover:bg-gray-100"
         >
           1
@@ -459,7 +472,7 @@ const DetailPage = () => {
     {/* Previous Page */}
     {currentPage > 1 && (
       <button
-        onClick={() => setCurrentPage(currentPage - 1)}
+        onClick={() => handlePageChange(currentPage - 1)}
         className="w-10 h-10 rounded-xl border bg-white hover:bg-gray-100"
       >
         {currentPage - 1}
@@ -474,7 +487,7 @@ const DetailPage = () => {
     {/* Next Page */}
     {currentPage < totalPages && (
       <button
-        onClick={() => setCurrentPage(currentPage + 1)}
+       onClick={() => handlePageChange(currentPage + 1)}
         className="w-10 h-10 rounded-xl border bg-white hover:bg-gray-100"
       >
         {currentPage + 1}
@@ -489,7 +502,7 @@ const DetailPage = () => {
         )}
 
         <button
-          onClick={() => setCurrentPage(totalPages)}
+         onClick={() => handlePageChange(totalPages)}
           className="w-10 h-10 rounded-xl border bg-white hover:bg-gray-100"
         >
           {totalPages}
@@ -499,10 +512,11 @@ const DetailPage = () => {
 
     {/* Next */}
     <button
-      onClick={() => {
-        setCurrentPage((p) => Math.min(totalPages, p + 1));
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }}
+      onClick={() =>
+  handlePageChange(
+    Math.min(totalPages, currentPage + 1)
+  )
+}
       disabled={currentPage === totalPages}
       className="
         px-4
