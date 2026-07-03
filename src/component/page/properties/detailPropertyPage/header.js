@@ -4,7 +4,7 @@ import { ChevronDown, Filter } from 'lucide-react';
 import { usePropertySearch } from '../api/getCheckProperty';
 import { useNavigate } from 'react-router-dom';
 import DetailFilter from './detailFilter';
-import FilterIcon from "../../../../assets/images/illustrations/filter.svg";
+import FilterIcon from "../../../../assets/images/illustrations/Filter.svg";
 
 const allowedPropertyTypes = [
   "Residential",
@@ -287,8 +287,7 @@ const parseWithGoogle = (searchText) => {
   };
  return (
   <div className="mb-8">
-    {loading && <LoadingScreen progress={progress} />}
-
+    
     <div
       className="
         bg-white
@@ -443,30 +442,66 @@ const parseWithGoogle = (searchText) => {
                 </div>
               )}
               
-              <button
-                onClick={directSearch}
-               className="
-                      absolute
-                      right-2
-                      top-2
-                      bottom-2
-                      px-7
-                      rounded-xl
-                      bg-[#A61E22]
-                      hover:bg-[#8d181b]
-                      text-white
-                      font-semibold
-                      shadow-lg
-                      transition-all
-                      duration-200
-                      hover:scale-[1.02]
-                      disabled:opacity-60
-                      disabled:cursor-not-allowed
-                    "
-                disabled={loading}
-              >
-                {loading ? 'Searching...' : 'Search'}
-              </button>
+             <button
+  onClick={filteredSearch}
+  disabled={loading}
+  aria-label="Search"
+  className="
+    h-12
+    w-12
+    bg-[#A61E22]
+    hover:bg-[#8d181b]
+    text-white
+    rounded-xl
+    shadow-lg
+    transition-all
+    duration-300
+    hover:scale-[1.02]
+    disabled:opacity-60
+    disabled:cursor-not-allowed
+    flex
+    items-center
+    justify-center
+  "
+>
+  {loading ? (
+    <svg
+      className="w-5 h-5 animate-spin"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+      />
+    </svg>
+  ) : (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-5 h-5 md:w-6 md:h-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M21 21l-5.2-5.2m2.2-5.3a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+  )}
+</button>
             </div>
           </div>
 
