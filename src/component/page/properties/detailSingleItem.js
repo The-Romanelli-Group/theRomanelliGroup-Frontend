@@ -1,6 +1,6 @@
 
 import { useLocation, useParams } from 'react-router-dom';
-import PropertyGallery from "./PropertyGallery";
+import PropertyGallery from "./single/PropertyGallery";
 import LeadForm from '../LeadForm/LeadForm'; 
 import RelatedItem from './single/relatedItem';
 import { aeroplane, bathroom, bed, bus, city, globe, hoa, hospital, hvac, medical, park, parkIcon, propType, size, square, train, year } from '../../../assets/allImg';
