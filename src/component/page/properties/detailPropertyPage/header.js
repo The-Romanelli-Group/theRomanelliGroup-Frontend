@@ -4,7 +4,7 @@ import { ChevronDown, Filter } from 'lucide-react';
 import { usePropertySearch } from '../api/getCheckProperty';
 import { useNavigate } from 'react-router-dom';
 import DetailFilter from './detailFilter';
-import LoadingScreen from '../../../../loading/loadingScreen';
+import FilterIcon from "../../../../assets/images/illustrations/filter.svg";
 
 const allowedPropertyTypes = [
   "Residential",
@@ -285,10 +285,22 @@ const parseWithGoogle = (searchText) => {
       navigate(`/details/properties`, { state: { data, filters: f } });
     }
   };
-  return (
-    <div className="bg-white border-b border-gray-200">
-      {loading && <LoadingScreen progress={progress} />}
-      <div className="flex items-center py-4">
+ return (
+  <div className="mb-8">
+    {loading && <LoadingScreen progress={progress} />}
+
+    <div
+      className="
+        bg-white
+        rounded-3xl
+        border
+        border-gray-100
+        shadow-lg
+        px-5
+        py-5
+      "
+    >
+      <div className="flex flex-col gap-5">
         <div className="flex-1 flex space-x-2 w-full">
           <div className="relative flex-1 max-w-2xl">
             <div className="flex">
@@ -593,14 +605,23 @@ const parseWithGoogle = (searchText) => {
         justify-center
       "
     >
-      <Filter
-        size={20}
-        className={`transition-all duration-200 ${
-          filterCount > 0
-            ? "text-[#A61E22]"
-            : "text-gray-600"
-        }`}
-      />
+     <img
+  src={FilterIcon}
+  alt="Filters"
+  className={`
+    w-5
+    h-5
+    md:w-6
+    md:h-6
+    transition-all
+    duration-200
+    ${
+      filterCount > 0
+        ? "opacity-100 scale-105"
+        : "opacity-70"
+    }
+  `}
+/>
 
       {filterCount > 0 && (
         <span
@@ -641,6 +662,7 @@ const parseWithGoogle = (searchText) => {
             {loading ? 'Searching...' : 'Save search'}
           </button>
         </div>
+      </div>
       </div>
 
       {filterOpen && <DetailFilter close={() => { setFilterOpen(false) }} onSave={handleFilterSave} filterVal={localFilters} />}
