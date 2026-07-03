@@ -504,7 +504,7 @@ const parseWithGoogle = (searchText) => {
 </button>
            
             </div>
-          
+          </div>
 
           <div className="flex items-center ml-4 space-x-2">
             <div className="relative hidden xl:flex">
