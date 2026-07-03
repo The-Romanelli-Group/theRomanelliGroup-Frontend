@@ -153,7 +153,7 @@ const filterCount =
     </div>
 
     {/* Content */}
-    <div className="p-5 md:p-6 space-y-6">
+   <div className="p-5 md:p-6 space-y-6 pb-40">
 
       {/* Price Range */}
       <div>
@@ -342,7 +342,18 @@ const filterCount =
 
 {/* Sticky Footer */}
 
-<div className="sticky bottom-0 bg-white border-t border-gray-200 p-5 flex gap-3">
+<div className="
+sticky
+bottom-0
+bg-white/95
+backdrop-blur-md
+border-t
+border-gray-200
+p-5
+flex
+gap-3
+shadow-[0_-8px_24px_rgba(0,0,0,0.08)]
+">
 
   <button
     type="button"
