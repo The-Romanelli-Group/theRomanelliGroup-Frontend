@@ -533,6 +533,7 @@ const DetailPage = () => {
 
   </div>
 )}
+</div>
                  {/* Map Section */}
         <div className="w-full lg:w-1/3 order-2">
 
