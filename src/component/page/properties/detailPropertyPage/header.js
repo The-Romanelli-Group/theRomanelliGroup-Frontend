@@ -4,7 +4,6 @@ import { ChevronDown, Filter } from 'lucide-react';
 import { usePropertySearch } from '../api/getCheckProperty';
 import { useNavigate } from 'react-router-dom';
 import DetailFilter from './detailFilter';
-import FilterIcon from "../../../../assets/images/illustrations/Filter.svg";
 
 const allowedPropertyTypes = [
   "Residential",
@@ -287,7 +286,8 @@ const parseWithGoogle = (searchText) => {
   };
  return (
   <div className="mb-8">
-    
+    {loading && <LoadingScreen progress={progress} />}
+
     <div
       className="
         bg-white
@@ -301,28 +301,29 @@ const parseWithGoogle = (searchText) => {
     >
       <div className="flex flex-col gap-5">
         <div className="flex-1 flex space-x-2 w-full">
-         <div className="flex-1">
-            <div className="relative flex items-center gap-3 w-full">
+          <div className="relative flex-1 max-w-2xl">
+            <div className="flex">
               <input
                 type="text"
                 className="
-                  w-full
-                  h-14
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  bg-white
-                  px-5
-                  text-gray-900
-                  placeholder:text-gray-400
-                  shadow-sm
-                  transition-all
-                  duration-200
-                  focus:outline-none
-                  focus:ring-4
-                  focus:ring-[#A61E22]/10
-                  focus:border-[#A61E22]
-                  "
+                      flex-1
+                      h-14
+                      rounded-2xl
+                      border
+                      border-gray-200
+                      bg-white
+                      px-5
+                      pr-36
+                      text-gray-900
+                      placeholder:text-gray-400
+                      shadow-sm
+                      transition-all
+                      duration-200
+                      focus:outline-none
+                      focus:ring-4
+                      focus:ring-[#A61E22]/10
+                      focus:border-[#A61E22]
+                    "
                 value={localFilters.searchCity}
                 onChange={(e) => {
                   const value = e.target.value;
@@ -391,28 +392,28 @@ const parseWithGoogle = (searchText) => {
                                  onMouseDown={(e) => {
                            e.preventDefault();
                     if(!placesService.current) return;
-                placesService.current.getDetails(
-                  { placeId: suggestion.place_id },
-                  (place) => {
-                    if (!place) return;
+  placesService.current.getDetails(
+    { placeId: suggestion.place_id },
+    (place) => {
+      if (!place) return;
 
-                    const parsed = extractAddressComponents(place);
-                    setLocalFilters({
-                      ...localFilters,
-                      searchCity: suggestion.description,
-                      city: parsed.city,
-                      state: parsed.state,
-                      country: parsed.country,
-                      street: parsed.street,
-                      streetNumber: parsed.streetNumber,
-                      postalCode: parsed.postalCode
-                    });
+      const parsed = extractAddressComponents(place);
+      setLocalFilters({
+        ...localFilters,
+        searchCity: suggestion.description,
+        city: parsed.city,
+        state: parsed.state,
+        country: parsed.country,
+        street: parsed.street,
+        streetNumber: parsed.streetNumber,
+        postalCode: parsed.postalCode
+      });
 
-                    setSuggestions([]);
-                    setShowDropdown(false);
-                  }
-                );
-              }}
+      setSuggestions([]);
+      setShowDropdown(false);
+    }
+  );
+}}
 
                       >
                         {/* Map Icon */}
@@ -438,66 +439,33 @@ const parseWithGoogle = (searchText) => {
                       </div>
                     );
                   })}
-                    
                 </div>
               )}
+              
               <button
-                  onClick={filteredSearch}
-                  disabled={loading}
-                  aria-label="Search"
-                  className="
-                      flex-shrink-0
-                      w-14
-                      h-14
+                onClick={directSearch}
+               className="
+                      absolute
+                      right-2
+                      top-2
+                      bottom-2
+                      px-7
+                      rounded-xl
                       bg-[#A61E22]
                       hover:bg-[#8d181b]
                       text-white
-                      rounded-2xl
+                      font-semibold
                       shadow-lg
                       transition-all
-                      duration-300
+                      duration-200
                       hover:scale-[1.02]
-                      "
-                >
-                  {loading ? (
-                    <svg
-                      className="w-5 h-5 animate-spin"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      />
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 md:w-6 md:h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-5.2-5.2m2.2-5.3a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  )}
-                </button>
-           
+                      disabled:opacity-60
+                      disabled:cursor-not-allowed
+                    "
+                disabled={loading}
+              >
+                {loading ? 'Searching...' : 'Search'}
+              </button>
             </div>
           </div>
 
@@ -636,23 +604,14 @@ const parseWithGoogle = (searchText) => {
         justify-center
       "
     >
-     <img
-  src={FilterIcon}
-  alt="Filters"
-  className={`
-    w-5
-    h-5
-    md:w-6
-    md:h-6
-    transition-all
-    duration-200
-    ${
-      filterCount > 0
-        ? "opacity-100 scale-105"
-        : "opacity-70"
-    }
-  `}
-/>
+      <Filter
+        size={20}
+        className={`transition-all duration-200 ${
+          filterCount > 0
+            ? "text-[#A61E22]"
+            : "text-gray-600"
+        }`}
+      />
 
       {filterCount > 0 && (
         <span
