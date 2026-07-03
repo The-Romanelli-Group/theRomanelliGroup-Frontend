@@ -6,7 +6,6 @@ import Footer from '../../Default Pages/footer';
 import Header from './header';
 import useFilteredProperties from './hook/useFilterProperties';
 import { usePropertySearch } from '../api/getCheckProperty';
-import LoadingScreen from '../../../../loading/loadingScreen';
 import { locationIcon } from '../../../../assets/allImg';
 import { ChevronDown } from 'lucide-react';
 
@@ -19,7 +18,6 @@ const DetailPage = () => {
   const ITEMS_PER_PAGE = 10;
 
   const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   const [filters, setFilters] = useState(initialFilters || {});
 
@@ -90,18 +88,7 @@ const DetailPage = () => {
     }
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 90) return prev;
-        return prev + 5;
-      });
-    }, 300);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Reset pagination whenever search/sort changes
+    // Reset pagination whenever search/sort changes
   useEffect(() => {
     setCurrentPage(1);
   }, [filters, sortOption]);
@@ -158,13 +145,14 @@ const DetailPage = () => {
   
   return (
   <div className="mainVideo bg-gray-50 min-h-screen">
-    {loading && <LoadingScreen progress={progress} />}
+  
 
     <div className="max-w-7xl mx-auto px-4 lg:px-8 py-8">
 
       <Header
-        filter={filters}
-        onResults={handleResults}
+     filter={filters}
+      onResults={handleResults}
+      loading={loading}
       />
 
       {/* Results Header */}
