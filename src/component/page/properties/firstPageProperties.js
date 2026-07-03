@@ -341,9 +341,9 @@ const parseWithGoogle = (searchText) => {
       rounded-2xl
       pl-12 md:pl-14
       pr-28 md:pr-52
-      text-sm md:text-lg
+     text-base md:text-lg
       text-gray-900
-      placeholder:text-gray-400
+      placeholder:text-base md:placeholder:text-lg placeholder:text-gray-400
       border border-white/30
       shadow-2xl
       focus:outline-none
