@@ -9,7 +9,6 @@ import LocationIcon from "../../../assets/images/illustrations/Location.svg";
 
 const FirstPageProperties = () => {
   const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [filterOpen, setFilterOpen] = useState(false);
   const placesService = useRef(null);
   const [placeholder, setPlaceholder] = useState("Enter city");
@@ -157,12 +156,7 @@ const parseWithGoogle = (searchText) => {
   // --------------------------------------
   // PROGRESS BAR ANIMATION
   // --------------------------------------
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((old) => (old >= 90 ? old : old + 5));
-    }, 300);
-    return () => clearInterval(interval);
-  }, []);
+  
 
   const handleSearch = async () => {
 
@@ -254,7 +248,11 @@ const handleSuggestionSelect = async (suggestion) => {
 };
   return (
     <div>
-      {loading && <LoadingScreen progress={progress} />}
+     {loading && (
+  <LoadingScreen
+    location={filters.searchCity}
+  />
+)}
 
       <div className="
               relative

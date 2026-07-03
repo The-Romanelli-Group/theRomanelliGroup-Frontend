@@ -1,25 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { logoUrl } from "../assets/allImg";
 
-const LoadingScreen = ({ progress }) => {
+const messages = [
+  "Finding your next home...",
+  "Searching Central Ohio MLS...",
+  "Matching active listings...",
+  "Preparing beautiful photos...",
+  "Almost there..."
+];
 
+const LoadingScreen = ({ location = "" }) => {
+  const [messageIndex, setMessageIndex] = useState(0);
+  const [dot, setDot] = useState(0);
+
+  useEffect(() => {
+    const messageTimer = setInterval(() => {
+      setMessageIndex((prev) =>
+        prev < messages.length - 1 ? prev + 1 : prev
+      );
+    }, 900);
+
+    const dotTimer = setInterval(() => {
+      setDot((prev) => (prev + 1) % 3);
+    }, 350);
+
+    return () => {
+      clearInterval(messageTimer);
+      clearInterval(dotTimer);
+    };
+  }, []);
 
   return (
-    <div className="fixed inset-0 bg-red-600 flex flex-col items-center justify-center text-white z-50">
-      {/* Logo at the center */}
-      <img src={logoUrl} alt="logo" className="w-40 h-40 object-contain mb-6" loading="lazy" />
+    <div className="fixed inset-0 z-[9999] bg-[#8F1D21] flex items-center justify-center px-6">
 
-      {/* Progress Percentage above taskbar */}
-      <div className="absolute bottom-20 left-10 w-full h-4">
-        <p className="text-2xl xl:text-4xl font-semibold text-left">{progress}%</p>
+      <div className="text-center max-w-md w-full">
+
+        <img
+          src={logoUrl}
+          alt="The Romanelli Group"
+          className="w-28 md:w-36 mx-auto mb-8"
+        />
+
+        <h2 className="text-white text-2xl md:text-4xl font-semibold">
+          Finding your next home
+        </h2>
+
+        {location && (
+          <p className="mt-3 text-white/80 text-base md:text-lg">
+            📍 {location}
+          </p>
+        )}
+
+        <p className="mt-8 text-white/90 text-lg md:text-xl">
+          {messages[messageIndex]}
+        </p>
+
+        <div className="flex justify-center gap-3 mt-10">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                dot === i ? "bg-white scale-125" : "bg-white/30"
+              }`}
+            />
+          ))}
+        </div>
+
       </div>
-      {/* Taskbar-style Progress Bar */}
-      <div className="absolute bottom-0 left-0 w-full h-8 ">
-        <div
-          className="bg-white h-full transition-all duration-300"
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
+
     </div>
   );
 };
