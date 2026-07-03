@@ -461,7 +461,7 @@ const filterCount =
 
       return (
 
-       <button
+      <button
   key={s.place_id}
   type="button"
   className="
@@ -479,15 +479,7 @@ const filterCount =
     transition-colors
     duration-200
   "
-  onMouseDown={() => {
-
-    setFilters(...)
-
-    setSuggestions([])
-
-    setShowDropdown(false)
-
-}}
+  onMouseDown={() => handleSuggestionSelect(s)}
 >
 
   {/* Icon */}
