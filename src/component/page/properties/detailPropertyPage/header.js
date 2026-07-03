@@ -288,7 +288,7 @@ const parseWithGoogle = (searchText) => {
     }
   };
   return (
-    <div className="bg-white border-b border-gray-200">
+    <div className="border-b border-gray-200">
       {loading && <LoadingScreen progress={progress} />}
       <div className="flex items-center py-4">
         <div className="flex flex-1 items-center gap-2 min-w-0">
@@ -500,7 +500,7 @@ const parseWithGoogle = (searchText) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 flex-shrink-0 lg:ml-4">
+         <div className="flex items-center gap-3 lg:gap-4">
             {(() => {
   const filterCount =
     Number(!!localFilters.bedrooms) +
@@ -509,28 +509,28 @@ const parseWithGoogle = (searchText) => {
     Number(localFilters.min > 0 || localFilters.max < 5000001) +
     Number(localFilters.sqftMin > 0 || localFilters.sqftMax < 15001);
 
-  return (
-    <button
-  type="button"
-  onClick={() => setFilterOpen(true)}
-  aria-label="Open filters"
-  className="
-    relative
-    w-12
-    h-12
-    rounded-2xl
-    border
-    border-gray-200
-    bg-white
-    hover:bg-gray-50
-    hover:shadow-md
-    transition-all
-    duration-200
-    flex
-    items-center
-    justify-center
-  "
->
+                  return (
+                    <button
+                  type="button"
+                  onClick={() => setFilterOpen(true)}
+                  aria-label="Open filters"
+                  className="
+                  relative
+                  w-14
+                  h-14
+                  rounded-2xl
+                  border
+                  border-gray-200
+                  bg-white
+                  hover:bg-gray-50
+                  hover:shadow-md
+                  transition-all
+                  duration-200
+                  flex
+                  items-center
+                  justify-center
+                "
+                >
   <div className="relative">
 
     <img
@@ -584,7 +584,7 @@ const parseWithGoogle = (searchText) => {
  <button
   onClick={() => toggleDropdown("sale")}
   className="
-    h-12
+    h-14
     px-5
     rounded-2xl
     border
@@ -717,7 +717,7 @@ const parseWithGoogle = (searchText) => {
   <button
     onClick={() => toggleDropdown("price")}
     className="
-      h-12
+      h-14
       px-5
       rounded-2xl
       border
@@ -800,7 +800,7 @@ const parseWithGoogle = (searchText) => {
   <button
     onClick={() => toggleDropdown("type")}
     className="
-      h-12
+      h-14
       px-5
       rounded-2xl
       border
