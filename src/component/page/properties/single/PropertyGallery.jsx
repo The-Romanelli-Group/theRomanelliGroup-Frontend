@@ -155,38 +155,7 @@ const PropertyGallery = ({ image = [] }) => {
       >
         <ChevronRight size={22} />
       </button>
-       {/* Desktop Next */}
-
-      <button
-        onClick={() =>
-          changeImage((selected + 1) % image.length)
-        }
-        className="
-          hidden
-          md:flex
-          absolute
-          right-5
-          top-1/2
-          -translate-y-1/2
-          w-12
-          h-12
-          rounded-full
-          bg-white/90
-          backdrop-blur-xl
-          shadow-2xl
-          items-center
-          justify-center
-          text-gray-800
-          transition-all
-          duration-200
-          hover:bg-[#A61E22]
-          hover:text-white
-          hover:scale-105
-        "
-      >
-        <ChevronRight size={22} />
-      </button>
-
+       
       {/* Bottom Right Controls */}
 
       <div className="absolute bottom-5 right-5 hidden md:flex items-center gap-3">
@@ -220,6 +189,35 @@ const PropertyGallery = ({ image = [] }) => {
           <span className="text-xs text-white/70 ml-1">
             Photos
           </span>
+        </div>
+
+         {/* Mobile Bottom Bar */}
+
+      <div className="md:hidden flex items-center justify-between mt-4">
+
+        {/* Dots */}
+
+        <div className="flex items-center gap-2">
+
+          {image.map((_, index) => (
+
+            <button
+              key={index}
+              onClick={() => changeImage(index)}
+              className={`
+                rounded-full
+                transition-all
+                duration-300
+                ${
+                  selected === index
+                    ? "w-8 h-2 bg-[#A61E22]"
+                    : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
+                }
+              `}
+            />
+
+          ))}
+
         </div>
 
         {/* Favourite */}
@@ -296,35 +294,8 @@ const PropertyGallery = ({ image = [] }) => {
         </button>
 
       </div>
-
-        {/* Mobile Bottom Bar */}
-
-      <div className="md:hidden flex items-center justify-between mt-4">
-
-        {/* Dots */}
-
-        <div className="flex items-center gap-2">
-
-          {image.map((_, index) => (
-
-            <button
-              key={index}
-              onClick={() => changeImage(index)}
-              className={`
-                rounded-full
-                transition-all
-                duration-300
-                ${
-                  selected === index
-                    ? "w-8 h-2 bg-[#A61E22]"
-                    : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
-                }
-              `}
-            />
-
-          ))}
-
-        </div>
+</div>
+       
 
         {/* View All */}
 
@@ -518,6 +489,7 @@ const PropertyGallery = ({ image = [] }) => {
         }}
       />
     </div>
+
   );
 
 export default PropertyGallery;
