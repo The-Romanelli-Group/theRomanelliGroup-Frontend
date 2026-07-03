@@ -25,13 +25,12 @@ const FeaturedListingCard = ({ property }) => {
     }, ${property.StateOrProvince || ""}`;
 
   const handleViewProperty = () => {
-    sessionStorage.setItem(
-      "featuredProperty",
-      JSON.stringify(property)
-    );
-
-    navigate(`/properties/${property.ListingKey}`);
-  };
+  window.open(
+    `/properties/${property.ListingKey}`,
+    "_blank",
+    "noopener,noreferrer"
+  );
+};
 
   return (
     <div
