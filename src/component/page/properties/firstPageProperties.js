@@ -77,7 +77,6 @@ const parseWithGoogle = (searchText) => {
           (place, detailStatus) => {
             if (detailStatus === window.google.maps.places.PlacesServiceStatus.OK && place) {
               const parsed = extractAddressComponents(place);
-              console.log('Google parsed:', parsed);
               resolve(parsed);
             } else {
               resolve({ unparsedAddress: searchText });
@@ -85,7 +84,7 @@ const parseWithGoogle = (searchText) => {
           }
         );
       } else {
-        console.log('Places search failed:', status);
+      
         resolve({ unparsedAddress: searchText });
       }
     });
@@ -210,7 +209,49 @@ const parseWithGoogle = (searchText) => {
 
 };
 
+const handleSuggestionSelect = async (suggestion) => {
+  if (!placesService.current) return;
 
+  placesService.current.getDetails(
+    { placeId: suggestion.place_id },
+    async (place) => {
+      if (!place) return;
+
+      const parsed = extractAddressComponents(place);
+
+      const finalFilters = {
+        ...filters,
+        searchCity: suggestion.description,
+        city: parsed.city,
+        state: parsed.state,
+        country: parsed.country,
+        street: parsed.street,
+        streetNumber: parsed.streetNumber,
+        postalCode: parsed.postalCode,
+        listingType: filters.selectedOption,
+      };
+
+      setFilters(finalFilters);
+      setSuggestions([]);
+      setShowDropdown(false);
+
+      setLoading(true);
+
+      const data = await checkProperty(finalFilters);
+
+      setLoading(false);
+
+      if (data) {
+        navigate("/details/properties", {
+          state: {
+            data,
+            filters: finalFilters,
+          },
+        });
+      }
+    }
+  );
+};
   return (
     <div>
       {loading && <LoadingScreen progress={progress} />}
@@ -332,62 +373,66 @@ const parseWithGoogle = (searchText) => {
   </div>
 
   <input
-    ref={inputRef}
-    className="
-      w-full
-      h-12 md:h-16
-      bg-white/95
-      backdrop-blur-md
-      rounded-2xl
-      pl-12 md:pl-14
-      pr-28 md:pr-52
-     text-base md:text-lg
-      text-gray-900
-      placeholder:text-base md:placeholder:text-lg placeholder:text-gray-400
-      border border-white/30
-      shadow-2xl
-      focus:outline-none
-      focus:ring-2
-      focus:ring-[#A61E22]
-      transition-all
-      duration-300
-    "
-    placeholder={placeholder}
-    value={filters.searchCity}
-    onChange={(e) => {
-      const value = e.target.value;
-      setFilters({ ...filters, searchCity: value });
+  ref={inputRef}
+  className="
+    w-full
+    h-12 md:h-16
+    bg-white/95
+    backdrop-blur-md
+    rounded-2xl
+    pl-12 md:pl-14
+    pr-28 md:pr-52
+    text-base md:text-lg
+    text-gray-900
+    placeholder:text-base md:placeholder:text-lg
+    placeholder:text-gray-400
+    border border-white/30
+    shadow-2xl
+    focus:outline-none
+    focus:ring-2
+    focus:ring-[#A61E22]
+    transition-all
+    duration-300
+  "
+  placeholder={placeholder}
+  value={filters.searchCity}
+  onChange={(e) => {
+    const value = e.target.value;
+    setFilters({ ...filters, searchCity: value });
 
-      if (value.length > 2 && autocompleteService.current) {
-        autocompleteService.current.getPlacePredictions(
-          {
-            input: value,
-            componentRestrictions: { country: "us" },
-          },
-          (predictions, status) => {
-            console.log("Status:", status);
-  console.log("Predictions:", predictions?.length, predictions);
-            if (
-              status === window.google.maps.places.PlacesServiceStatus.OK &&
-              predictions
-            ) {
-              setSuggestions(predictions);
-              setShowDropdown(true);
-            } else {
-              setSuggestions([]);
-              setShowDropdown(false);
-            }
+    if (value.length > 2 && autocompleteService.current) {
+      autocompleteService.current.getPlacePredictions(
+        {
+          input: value,
+          componentRestrictions: { country: "us" },
+        },
+        (predictions, status) => {
+          if (
+            status === window.google.maps.places.PlacesServiceStatus.OK &&
+            predictions
+          ) {
+            setSuggestions(predictions);
+            setShowDropdown(true);
+          } else {
+            setSuggestions([]);
+            setShowDropdown(false);
           }
-        );
-      } else {
-        setSuggestions([]);
-        setShowDropdown(false);
-      }
-    }}
-    onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
-    onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
-  />
-
+        }
+      );
+    } else {
+      setSuggestions([]);
+      setShowDropdown(false);
+    }
+  }}
+  onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSearch();
+    }
+  }}
+  onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
+  onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
+/>
 
       {/* Suggestions Dropdown */}
 {showDropdown && suggestions.length > 0 && (
@@ -406,6 +451,7 @@ const parseWithGoogle = (searchText) => {
       z-50
       max-h-80
       overflow-y-auto
+      overscroll-contain
     "
   >
     {suggestions.map((s) => {
@@ -441,36 +487,7 @@ const parseWithGoogle = (searchText) => {
     transition-colors
     duration-200
   "
-  onMouseDown={() => {
-
-    if (!placesService.current) return;
-
-    placesService.current.getDetails(
-      { placeId: s.place_id },
-      (place) => {
-
-        if (!place) return;
-
-        const parsed = extractAddressComponents(place);
-
-        setFilters(prev => ({
-          ...prev,
-          searchCity: s.description,
-          city: parsed.city,
-          state: parsed.state,
-          country: parsed.country,
-          street: parsed.street,
-          streetNumber: parsed.streetNumber,
-          postalCode: parsed.postalCode
-        }));
-
-        setSuggestions([]);
-        setShowDropdown(false);
-
-      }
-    );
-
-  }}
+  onMouseDown={() => handleSuggestionSelect(s)}
 >
 
   {/* Icon */}
