@@ -84,7 +84,7 @@ if (!unique) {
     <div className="pt-8 sm:px-4 md:px-6 px-2 lg:px-24">
       {/* Carousel Section */}
       <div className="mb-6 md:mb-8">
-        <PropertyGallery image={property?.Media} />
+        <PropertyGallery image={unique.Media} />
       </div>
 
       {/* Main Content Grid */}
