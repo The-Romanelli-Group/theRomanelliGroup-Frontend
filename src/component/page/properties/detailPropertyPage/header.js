@@ -5,6 +5,7 @@ import { usePropertySearch } from '../api/getCheckProperty';
 import { useNavigate } from 'react-router-dom';
 import DetailFilter from './detailFilter';
 import LoadingScreen from '../../../../loading/loadingScreen';
+import FilterIcon from "../../../../assets/images/illustrations/Filter.svg";
 
 const allowedPropertyTypes = [
   "Residential",
