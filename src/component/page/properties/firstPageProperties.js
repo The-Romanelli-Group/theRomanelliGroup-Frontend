@@ -539,89 +539,95 @@ const filterCount =
 {showDropdown && suggestions.length > 0 && (
   <div
     className="
-      absolute
-      top-full
-      left-0
-      right-0
-      mt-2
-      bg-white
-      rounded-3xl
-      border
-      border-gray-200
-      shadow-2xl
-      z-50
-      max-h-80
-      overflow-y-auto
-      overscroll-contain
-    "
+absolute
+top-full
+left-0
+right-0
+mt-2
+bg-white
+rounded-2xl
+border
+border-gray-200
+shadow-xl
+z-50
+max-h-80
+overflow-y-auto
+"
   >
     {suggestions.map((s) => {
 
-      const getLocationType = (types) => {
-        if (types?.includes("locality")) return "City";
-        if (types?.includes("administrative_area_level_2")) return "County";
-        if (types?.includes("administrative_area_level_1")) return "State";
-        if (types?.includes("neighborhood")) return "Neighborhood";
-        if (types?.includes("sublocality")) return "Area";
-        if (types?.includes("postal_code")) return "ZIP Code";
-        if (types?.includes("route")) return "Street";
-        return "Location";
-      };
+const getLocationType = (types) => {
+  if (!types) return "Location";
+
+  if (types.includes("street_address")) return "Address";
+  if (types.includes("premise")) return "Address";
+  if (types.includes("subpremise")) return "Address";
+  if (types.includes("route")) return "Street";
+  if (types.includes("postal_code")) return "ZIP Code";
+  if (types.includes("neighborhood")) return "Neighborhood";
+  if (types.includes("sublocality")) return "Area";
+  if (types.includes("locality")) return "City";
+  if (types.includes("administrative_area_level_2")) return "County";
+  if (types.includes("administrative_area_level_1")) return "State";
+  if (types.includes("country")) return "Country";
+
+  // Google-specific types
+  if (types.includes("establishment")) return "Place";
+  if (types.includes("point_of_interest")) return "Place";
+  if (types.includes("airport")) return "Airport";
+  if (types.includes("park")) return "Park";
+  if (types.includes("school")) return "School";
+
+  return "Location";
+};
 
       return (
 
-      <button
+     <button
   key={s.place_id}
   type="button"
+  onMouseDown={() => handleSuggestionSelect(s)}
   className="
-    w-full
     flex
     items-center
-    gap-2.5
+    w-full
     px-4
-    py-2
+    py-3
     text-left
+    hover:bg-gray-50
+    transition-colors
+    duration-150
     border-b
     border-gray-100
     last:border-0
-    hover:bg-gray-50
-    transition-colors
-    duration-200
   "
-  onMouseDown={() => handleSuggestionSelect(s)}
 >
-
-  {/* Icon */}
-  <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
-
-    <img
-      src={LocationIcon}
-      alt="Location"
-      className="w-3.5 h-3.5"
-    />
-
+  {/* Map Icon */}
+  <div className="flex-shrink-0 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+    <svg
+      className="w-4 h-4 text-gray-600"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+    >
+      <path
+        fillRule="evenodd"
+        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+        clipRule="evenodd"
+      />
+    </svg>
   </div>
 
-  {/* Text */}
+  {/* Location Details */}
   <div className="flex-1 min-w-0">
-
-    <div className="text-[14px] font-medium text-gray-900 leading-tight truncate">
+    <div className="text-sm font-medium text-gray-900 truncate">
       {s.description}
     </div>
 
-    <div className="mt-px">
-
-      <span className="inline-flex items-center rounded-full bg-gray-100 px-1.5 py-0 text-[10px] font-medium text-gray-600 leading-none">
-        {getLocationType(s.types || [])}
-      </span>
-
+    <div className="text-xs text-gray-500">
+      {getLocationType(s.types || [])}
     </div>
-
   </div>
-
-
-        </button>
-
+</button>
       );
 
     })}
