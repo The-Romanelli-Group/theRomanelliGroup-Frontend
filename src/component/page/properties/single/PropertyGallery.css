@@ -1,0 +1,24 @@
+.yarl__root {
+  --yarl__color_backdrop: rgba(8, 8, 8, 0.95);
+}
+
+.yarl__container {
+  backdrop-filter: blur(10px);
+}
+
+.yarl__toolbar {
+  display: none;
+}
+
+.yarl__navigation_prev,
+.yarl__navigation_next {
+  display: none;
+}
+
+.yarl__slide img {
+  border-radius: 18px;
+}
+
+.yarl__slide {
+  transition: transform .35s ease;
+}

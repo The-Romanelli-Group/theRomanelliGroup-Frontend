@@ -7,134 +7,211 @@ import {
   Share2,
 } from "lucide-react";
 
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
+import { useSwipeable } from "react-swipeable";
 
+import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 
-const PropertyGallery = ({ image = [] }) => {
-  const [selected, setSelected] = useState(0);
+import "yet-another-react-lightbox/styles.css";
+
+const [selected, setSelected] = useState(0);
 const [isFullscreen, setIsFullscreen] = useState(false);
 
 const slides = image.map((img) => ({
   src: img.MediaURL,
 }));
 
-  if (!image.length) {
-    return (
-      <div className="w-full h-[520px] rounded-3xl bg-gray-200 animate-pulse" />
-    );
-  }
+const handlers = useSwipeable({
+  onSwipedLeft: () =>
+    setSelected((prev) => (prev + 1) % image.length),
+
+  onSwipedRight: () =>
+    setSelected((prev) => (prev - 1 + image.length) % image.length),
+
+  preventScrollOnSwipe: true,
+  trackTouch: true,
+  trackMouse: false,
+});
 
   return (
     <div className="mb-12">
       {/* Hero Image */}
-      <div className="relative overflow-hidden rounded-3xl bg-gray-100">
+     <div
+  {...handlers}
+  className="relative overflow-hidden rounded-3xl bg-gray-100 touch-pan-y select-none"
+>
 
-       <img
-  src={image[selected]?.MediaURL}
-  alt=""
-  loading="eager"
-  onClick={() => setIsFullscreen(true)}
-  className="
-    w-full
-    h-[300px]
-    md:h-[450px]
-    xl:h-[560px]
-    object-cover
-    transition-all
-    duration-500
-    cursor-pointer
-    select-none
-  "
-/>
-        {/* Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+  <img
+    src={image[selected]?.MediaURL}
+    alt=""
+    loading="eager"
+    draggable={false}
+    onClick={() => setIsFullscreen(true)}
+    className="
+      w-full
+      h-[300px]
+      md:h-[450px]
+      xl:h-[560px]
+      object-cover
+      transition-all
+      duration-300
+      cursor-pointer
+    "
+  />
 
-        {/* Desktop Left */}
-        <button
-          onClick={() =>
-            setSelected((selected - 1 + image.length) % image.length)
-          }
-          className="
-            hidden
-            md:flex
-            absolute
-            left-5
-            top-1/2
-            -translate-y-1/2
-            w-11
-            h-11
-            rounded-full
-            bg-white/90
-            backdrop-blur
-            shadow-xl
-            items-center
-            justify-center
-            hover:scale-105
-            transition
-          "
-        >
-          <ChevronLeft size={22} />
-        </button>
+  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
 
-        {/* Desktop Right */}
-        <button
-          onClick={() =>
-            setSelected((selected + 1) % image.length)
-          }
-          className="
-            hidden
-            md:flex
-            absolute
-            right-5
-            top-1/2
-            -translate-y-1/2
-            w-11
-            h-11
-            rounded-full
-            bg-white/90
-            backdrop-blur
-            shadow-xl
-            items-center
-            justify-center
-            hover:scale-105
-            transition
-          "
-        >
-          <ChevronRight size={22} />
-        </button>
+  {/* Desktop Previous */}
 
-        {/* Bottom Controls */}
-        <div className="absolute bottom-5 right-5 flex items-center gap-2">
+  <button
+    onClick={() =>
+      setSelected((selected - 1 + image.length) % image.length)
+    }
+    className="
+      hidden
+      md:flex
+      absolute
+      left-5
+      top-1/2
+      -translate-y-1/2
+      w-12
+      h-12
+      rounded-full
+      bg-white/90
+      backdrop-blur-lg
+      shadow-xl
+      items-center
+      justify-center
+      transition-all
+      duration-200
+      hover:bg-[#A61E22]
+      hover:text-white
+      hover:scale-105
+    "
+  >
+    <ChevronLeft size={22} />
+  </button>
 
-          <button
-            className="w-10 h-10 rounded-full bg-white/90 backdrop-blur shadow-lg flex items-center justify-center"
-          >
-            <Heart size={18} />
-          </button>
+  {/* Desktop Next */}
 
-          <button
-            className="w-10 h-10 rounded-full bg-white/90 backdrop-blur shadow-lg flex items-center justify-center"
-          >
-            <Share2 size={18} />
-          </button>
+  <button
+    onClick={() =>
+      setSelected((selected + 1) % image.length)
+    }
+    className="
+      hidden
+      md:flex
+      absolute
+      right-5
+      top-1/2
+      -translate-y-1/2
+      w-12
+      h-12
+      rounded-full
+      bg-white/90
+      backdrop-blur-lg
+      shadow-xl
+      items-center
+      justify-center
+      transition-all
+      duration-200
+      hover:bg-[#A61E22]
+      hover:text-white
+      hover:scale-105
+    "
+  >
+    <ChevronRight size={22} />
+  </button>
 
-          <button
-            onClick={() => setIsFullscreen(true)}
-            className="w-10 h-10 rounded-full bg-white/90 backdrop-blur shadow-lg flex items-center justify-center"
-          >
-            <Maximize2 size={18} />
-          </button>
+  {/* Desktop Controls */}
 
-          <div className="px-3 py-2 rounded-full bg-black/60 text-white text-sm">
-            {selected + 1} / {image.length}
-          </div>
+  <div className="absolute bottom-5 right-5 hidden md:flex items-center gap-2">
 
-        </div>
+    <button
+      className="
+        w-11
+        h-11
+        rounded-full
+        bg-white/90
+        backdrop-blur
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        transition-all
+        hover:bg-[#A61E22]
+        hover:text-white
+      "
+    >
+      <Heart size={18} />
+    </button>
 
-      </div>
+    <button
+      className="
+        w-11
+        h-11
+        rounded-full
+        bg-white/90
+        backdrop-blur
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        transition-all
+        hover:bg-[#A61E22]
+        hover:text-white
+      "
+    >
+      <Share2 size={18} />
+    </button>
 
+    <button
+      onClick={() => setIsFullscreen(true)}
+      className="
+        w-11
+        h-11
+        rounded-full
+        bg-white/90
+        backdrop-blur
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        transition-all
+        hover:bg-[#A61E22]
+        hover:text-white
+      "
+    >
+      <Maximize2 size={18} />
+    </button>
+
+    <div className="px-3 py-2 rounded-full bg-black/70 text-white text-sm font-medium">
+      {selected + 1} / {image.length}
+    </div>
+
+  </div>
+
+  {/* Mobile Counter */}
+
+  <div
+    className="
+      md:hidden
+      absolute
+      bottom-4
+      right-4
+      px-3
+      py-1.5
+      rounded-full
+      bg-black/60
+      text-white
+      text-xs
+      font-medium
+    "
+  >
+    {selected + 1} / {image.length}
+  </div>
+
+</div>
       {/* Mobile Dots */}
       <div className="flex md:hidden justify-center gap-2 mt-4">
         {image.map((_, index) => (
@@ -192,14 +269,115 @@ const slides = image.map((img) => ({
   index={selected}
   slides={slides}
   plugins={[Zoom]}
-  controller={{
-    closeOnBackdropClick: true,
+  on={{
+    view: ({ index }) => setSelected(index),
   }}
   carousel={{
     finite: false,
+    preload: 2,
+    padding: "32px",
+    spacing: "6%",
   }}
-  on={{
-    view: ({ index }) => setSelected(index),
+  controller={{
+    closeOnBackdropClick: true,
+  }}
+  zoom={{
+    maxZoomPixelRatio: 3,
+    zoomInMultiplier: 2,
+    doubleTapDelay: 250,
+    doubleClickDelay: 250,
+    keyboardMoveDistance: 60,
+    wheelZoomDistanceFactor: 120,
+  }}
+  render={{
+    buttonPrev: ({ previous, disabled }) => (
+      <button
+        onClick={previous}
+        disabled={disabled}
+        className="
+          hidden
+          md:flex
+          absolute
+          left-6
+          top-1/2
+          -translate-y-1/2
+          w-14
+          h-14
+          rounded-full
+          bg-white/90
+          backdrop-blur-xl
+          shadow-2xl
+          items-center
+          justify-center
+          text-gray-800
+          hover:bg-[#A61E22]
+          hover:text-white
+          transition-all
+          duration-200
+          disabled:opacity-30
+        "
+      >
+        <ChevronLeft size={26} />
+      </button>
+    ),
+
+    buttonNext: ({ next, disabled }) => (
+      <button
+        onClick={next}
+        disabled={disabled}
+        className="
+          hidden
+          md:flex
+          absolute
+          right-6
+          top-1/2
+          -translate-y-1/2
+          w-14
+          h-14
+          rounded-full
+          bg-white/90
+          backdrop-blur-xl
+          shadow-2xl
+          items-center
+          justify-center
+          text-gray-800
+          hover:bg-[#A61E22]
+          hover:text-white
+          transition-all
+          duration-200
+          disabled:opacity-30
+        "
+      >
+        <ChevronRight size={26} />
+      </button>
+    ),
+
+    buttonClose: ({ close }) => (
+      <button
+        onClick={close}
+        className="
+          absolute
+          top-6
+          right-6
+          w-12
+          h-12
+          rounded-full
+          bg-white/90
+          backdrop-blur-xl
+          shadow-xl
+          flex
+          items-center
+          justify-center
+          text-2xl
+          text-gray-800
+          hover:bg-[#A61E22]
+          hover:text-white
+          transition-all
+        "
+      >
+        ×
+      </button>
+    ),
   }}
 />
     </div>
