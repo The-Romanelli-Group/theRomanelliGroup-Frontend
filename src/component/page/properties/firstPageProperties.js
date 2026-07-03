@@ -215,7 +215,19 @@ const parseWithGoogle = (searchText) => {
     <div>
       {loading && <LoadingScreen progress={progress} />}
 
-      <div className="relative z-10 container px-4 sm:px-5 py-10 md:py-24 mx-auto font-dmsans">
+      <div className="
+              relative
+              z-10
+              container
+              px-4
+              sm:px-5
+              pt-4
+              pb-10
+              md:py-24
+              mx-auto
+              font-Montserrat
+              ">
+                
         {/* Heading */}
        <h1 className=" text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center max-w-4xl mx-auto leading-tight">
   Find Your
@@ -460,7 +472,7 @@ const parseWithGoogle = (searchText) => {
 >
 
   {/* Icon */}
-  <div className="flex-shrink-0 w-7 h-7 flex items-center justify-center">
+  <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
 
     <img
       src={LocationIcon}
