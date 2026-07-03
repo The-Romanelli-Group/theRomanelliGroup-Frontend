@@ -4,6 +4,7 @@ import { ChevronDown, Filter } from 'lucide-react';
 import { usePropertySearch } from '../api/getCheckProperty';
 import { useNavigate } from 'react-router-dom';
 import DetailFilter from './detailFilter';
+import LoadingScreen from '../../../../loading/loadingScreen';
 
 const allowedPropertyTypes = [
   "Residential",
@@ -19,7 +20,9 @@ const Header = ({ filter, onResults }) => {
   const navigate = useNavigate()
   const priceDropdownRef = useRef(null);
   const autocompleteService = useRef(null);
-    const [filterOpen, setFilterOpen] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0)
+  const [filterOpen, setFilterOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -282,23 +285,12 @@ const parseWithGoogle = (searchText) => {
       navigate(`/details/properties`, { state: { data, filters: f } });
     }
   };
- return (
-  <div className="mb-8">
-   
-    <div
-      className="
-        bg-white
-        rounded-3xl
-        border
-        border-gray-100
-        shadow-lg
-        px-5
-        py-5
-      "
-    >
-      <div className="flex flex-col gap-5">
+  return (
+    <div className="bg-white border-b border-gray-200">
+      {loading && <LoadingScreen progress={progress} />}
+      <div className="flex items-center py-4">
         <div className="flex-1 flex space-x-2 w-full">
-          <div className="relative flex-1 max-w-2xl">
+          <div className="relative w-full max-w-xl">
             <div className="flex">
               <input
                 type="text"
@@ -442,23 +434,23 @@ const parseWithGoogle = (searchText) => {
               <button
                 onClick={directSearch}
                className="
-                      absolute
-                      right-2
-                      top-2
-                      bottom-2
-                      px-7
-                      rounded-xl
-                      bg-[#A61E22]
-                      hover:bg-[#8d181b]
-                      text-white
-                      font-semibold
-                      shadow-lg
-                      transition-all
-                      duration-200
-                      hover:scale-[1.02]
-                      disabled:opacity-60
-                      disabled:cursor-not-allowed
-                    "
+                    absolute
+                    right-2
+                    top-2
+                    bottom-2
+                    px-7
+                    rounded-xl
+                    bg-[#A61E22]
+                    hover:bg-[#8d181b]
+                    text-white
+                    font-semibold
+                    shadow-lg
+                    transition-all
+                    duration-200
+                    hover:scale-[1.02]
+                    disabled:opacity-60
+                    disabled:cursor-not-allowed
+                  "
                 disabled={loading}
               >
                 {loading ? 'Searching...' : 'Search'}
@@ -649,7 +641,6 @@ const parseWithGoogle = (searchText) => {
             {loading ? 'Searching...' : 'Save search'}
           </button>
         </div>
-      </div>
       </div>
 
       {filterOpen && <DetailFilter close={() => { setFilterOpen(false) }} onSave={handleFilterSave} filterVal={localFilters} />}
