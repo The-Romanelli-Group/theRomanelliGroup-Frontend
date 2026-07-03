@@ -459,111 +459,7 @@ const parseWithGoogle = (searchText) => {
             </div>
           </div>
 
-          <div className="flex items-center ml-4 space-x-2">
-            <div className="relative hidden xl:flex">
-  <button
-    onClick={() => toggleDropdown('sale')}
-    className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
-  >
-    <span className="text-sm">For {localFilters?.selectedOption==='Buy'? 'Sale':'Rent'}</span>
-    <ChevronDown size={16} />
-  </button>
-
-  {dropdownOpen === 'sale' && (
-    <div className="absolute top-full left-0 bg-white border text-gray-900 border-gray-300 shadow-lg z-10 w-40">
-
-      <div className="py-1">
-
-    <label className="flex items-center gap-2 px-2 py-2 text-sm hover:bg-gray-100 cursor-pointer">
-  <input
-    type="radio"
-    name="buyRent"
-    value="Buy"
-    className="h-4 w-4"
-    checked={localFilters?.selectedOption === "Buy"}
-    onChange={() => handleBuyRentChange("Buy")}
-  />
-  <span>For Sale</span>
-</label>
-
-<label className="flex items-center gap-2 px-2 py-2 text-sm hover:bg-gray-100 cursor-pointer">
-  <input
-    type="radio"
-    name="buyRent"
-    value="Rent"
-    className="h-4 w-4"
-    checked={localFilters?.selectedOption === "Rent"}
-    onChange={() => handleBuyRentChange("Rent")}
-  />
-  <span>For Rent</span>
-</label>
-
-
-      </div>
-    </div>
-  )}
-</div>
-
-
-            <div className="relative hidden xl:flex" ref={priceDropdownRef}>
-              <button
-                onClick={() => toggleDropdown('price')}
-                className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
-              >
-                <span className="text-sm">Price</span>
-                <ChevronDown size={16} />
-              </button>
-              {dropdownOpen === 'price' && (
-                <div className="absolute w-[300px] mx-2 my-2 px-2 bg-white border text-gray-900 border-gray-300 shadow-lg z-10">
-                  <DoubleRangeSlider
-                    min={localFilters.min}
-                    max={localFilters.max}
-                    onChange={handlePriceChange}
-                    maxRange={5000001}
-                  />
-                  <button 
-                    onClick={handlePriceApply}
-                    className='bg-red-600 text-white rounded-3xl px-2 py-2 w-full mb-2'
-                  >
-                    Apply
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <div className="relative hidden xl:flex">
-              <button
-                onClick={() => toggleDropdown('type')}
-                className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
-              >
-                <span className="text-sm">
-                  {localFilters.property || "Property type"}
-                </span>
-                <ChevronDown size={16} />
-              </button>
-              {dropdownOpen === 'type' && (
-                <div className="absolute top-full left-0 bg-white border border-gray-300 shadow-lg z-10 w-44">
-                  <div className="py-1 text-gray-900">
-                    {allowedPropertyTypes.map((item, index) => (
-                     <label
-      key={index}
-      className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
-    >
-      <input
-        type="radio"
-        name="propertyType"
-        value={item}
-        className="h-4 w-4"
-        checked={localFilters?.property === item}
-        onChange={() => handlePropertyTypeChange(item)}
-      />
-      <span>{item}</span></label>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
+          <div className="flex items-center ml-4 gap-2">
             {(() => {
   const filterCount =
     Number(!!localFilters.bedrooms) +
@@ -643,6 +539,316 @@ const parseWithGoogle = (searchText) => {
 </button>
   );
 })()}
+            <div className="relative hidden xl:flex">
+ <button
+  onClick={() => toggleDropdown("sale")}
+  className="
+    h-12
+    px-5
+    rounded-2xl
+    border
+    border-gray-200
+    bg-white
+    text-gray-900
+    font-medium
+    text-sm
+    flex
+    items-center
+    gap-2
+    shadow-sm
+    hover:bg-gray-50
+    hover:shadow-md
+    transition-all
+    duration-200
+  "
+>
+  <span>
+    For {localFilters?.selectedOption === "Buy" ? "Sale" : "Rent"}
+  </span>
+
+  <ChevronDown
+    size={16}
+    className={`transition-transform duration-200 ${
+      dropdownOpen === "sale" ? "rotate-180" : ""
+    }`}
+  />
+</button>
+
+{dropdownOpen === "sale" && (
+  <div
+    className="
+      absolute
+      top-full
+      left-0
+      mt-2
+      w-52
+      bg-white
+      rounded-2xl
+      border
+      border-gray-100
+      shadow-xl
+      overflow-hidden
+      z-20
+    "
+  >
+    <div className="py-2">
+
+      <label
+        className="
+          flex
+          items-center
+          gap-3
+          px-5
+          py-3
+          cursor-pointer
+          hover:bg-gray-50
+          transition-colors
+        "
+      >
+        <input
+          type="radio"
+          name="buyRent"
+          value="Buy"
+          checked={localFilters?.selectedOption === "Buy"}
+          onChange={() => handleBuyRentChange("Buy")}
+          className="
+            h-4
+            w-4
+            accent-[#A61E22]
+          "
+        />
+
+        <div>
+          <div className="text-sm font-medium text-gray-900">
+            For Sale
+          </div>
+
+          <div className="text-xs text-gray-500">
+            Purchase a property
+          </div>
+        </div>
+      </label>
+
+      <label
+        className="
+          flex
+          items-center
+          gap-3
+          px-5
+          py-3
+          cursor-pointer
+          hover:bg-gray-50
+          transition-colors
+        "
+      >
+        <input
+          type="radio"
+          name="buyRent"
+          value="Rent"
+          checked={localFilters?.selectedOption === "Rent"}
+          onChange={() => handleBuyRentChange("Rent")}
+          className="
+            h-4
+            w-4
+            accent-[#A61E22]
+          "
+        />
+
+        <div>
+          <div className="text-sm font-medium text-gray-900">
+            For Rent
+          </div>
+
+          <div className="text-xs text-gray-500">
+            Lease a property
+          </div>
+        </div>
+      </label>
+
+     </div>
+    </div>
+  )}
+</div>
+
+
+         <div className="relative hidden xl:flex" ref={priceDropdownRef}>
+
+  <button
+    onClick={() => toggleDropdown("price")}
+    className="
+      h-12
+      px-5
+      rounded-2xl
+      border
+      border-gray-200
+      bg-white
+      text-gray-900
+      font-medium
+      text-sm
+      flex
+      items-center
+      gap-2
+      shadow-sm
+      hover:bg-gray-50
+      hover:shadow-md
+      transition-all
+      duration-200
+    "
+  >
+    <span>Price</span>
+
+    <ChevronDown
+      size={16}
+      className={`transition-transform duration-200 ${
+        dropdownOpen === "price" ? "rotate-180" : ""
+      }`}
+    />
+  </button>
+
+  {dropdownOpen === "price" && (
+    <div
+      className="
+        absolute
+        top-full
+        left-0
+        mt-2
+        w-[330px]
+        bg-white
+        rounded-2xl
+        border
+        border-gray-100
+        shadow-xl
+        z-20
+        overflow-hidden
+      "
+    >
+      <div className="p-5">
+
+        <DoubleRangeSlider
+          min={localFilters.min}
+          max={localFilters.max}
+          onChange={handlePriceChange}
+          maxRange={5000001}
+        />
+
+        <button
+          onClick={handlePriceApply}
+          className="
+            mt-5
+            w-full
+            h-11
+            rounded-xl
+            bg-[#A61E22]
+            hover:bg-[#8d181b]
+            text-white
+            font-semibold
+            transition-all
+            duration-200
+          "
+        >
+          Apply
+        </button>
+
+      </div>
+    </div>
+  )}
+
+</div>
+           <div className="relative hidden xl:flex">
+
+  <button
+    onClick={() => toggleDropdown("type")}
+    className="
+      h-12
+      px-5
+      rounded-2xl
+      border
+      border-gray-200
+      bg-white
+      text-gray-900
+      font-medium
+      text-sm
+      flex
+      items-center
+      gap-2
+      shadow-sm
+      hover:bg-gray-50
+      hover:shadow-md
+      transition-all
+      duration-200
+    "
+  >
+    <span className="max-w-[130px] truncate">
+      {localFilters.property || "Property Type"}
+    </span>
+
+    <ChevronDown
+      size={16}
+      className={`transition-transform duration-200 ${
+        dropdownOpen === "type" ? "rotate-180" : ""
+      }`}
+    />
+  </button>
+
+  {dropdownOpen === "type" && (
+    <div
+      className="
+        absolute
+        top-full
+        left-0
+        mt-2
+        w-64
+        bg-white
+        rounded-2xl
+        border
+        border-gray-100
+        shadow-xl
+        overflow-hidden
+        z-20
+      "
+    >
+      <div className="py-2">
+
+        {allowedPropertyTypes.map((item, index) => (
+          <label
+            key={index}
+            className="
+              flex
+              items-center
+              gap-3
+              px-5
+              py-3
+              cursor-pointer
+              hover:bg-gray-50
+              transition-colors
+            "
+          >
+            <input
+              type="radio"
+              name="propertyType"
+              value={item}
+              checked={localFilters.property === item}
+              onChange={() => handlePropertyTypeChange(item)}
+              className="
+                h-4
+                w-4
+                accent-[#A61E22]
+              "
+            />
+
+            <span className="text-sm text-gray-900">
+              {item}
+            </span>
+
+          </label>
+        ))}
+
+      </div>
+    </div>
+  )}
+
+</div>
+            
           </div>
         </div>
 
