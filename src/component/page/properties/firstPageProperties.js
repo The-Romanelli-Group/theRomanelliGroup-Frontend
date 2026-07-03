@@ -365,6 +365,8 @@ const parseWithGoogle = (searchText) => {
             componentRestrictions: { country: "us" },
           },
           (predictions, status) => {
+            console.log("Status:", status);
+  console.log("Predictions:", predictions?.length, predictions);
             if (
               status === window.google.maps.places.PlacesServiceStatus.OK &&
               predictions
