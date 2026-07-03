@@ -146,7 +146,7 @@ const DetailPage = () => {
 
           <button
             onClick={() => navigate("/")}
-            className="mt-8 px-6 py-3 rounded-xl bg-[#A61E22] text-white font-semibold hover:bg-[#8d181b] transition-colors"
+            className="mt-8 px-5 py-2.5 rounded-xl bg-[#A61E22] text-white font-semibold hover:bg-[#8d181b] transition-colors"
           >
             Start a New Search
           </button>
@@ -294,7 +294,7 @@ const DetailPage = () => {
     <div className="flex flex-col lg:flex-row">
 
       {/* Image */}
-      <div className="relative lg:w-[320px] xl:w-[360px] h-64 lg:h-auto overflow-hidden">
+      <div className="relative lg:w-[290px] xl:w-[320px] h-64 lg:h-auto overflow-hidden">
 
         <img
           src={item.image}
@@ -318,7 +318,7 @@ const DetailPage = () => {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col justify-between flex-1 p-6">
+      <div className="flex flex-col justify-between flex-1 p-5">
 
         <div>
 
@@ -326,7 +326,7 @@ const DetailPage = () => {
             ${item.amount.toLocaleString()}
           </p>
 
-          <h2 className="mt-3 text-2xl font-bold text-gray-900 group-hover:text-[#A61E22] transition-colors line-clamp-2">
+          <h2 className="mt-2 text-2xl font-bold text-gray-900 group-hover:text-[#A61E22] transition-colors line-clamp-2">
             {item.heading}
           </h2>
 
@@ -339,16 +339,16 @@ const DetailPage = () => {
             {item.location}
           </p>
 
-          <p className="mt-5 text-gray-600 leading-7 line-clamp-2">
+          <p className="mt-4 text-gray-600 leading-6 line-clamp-2">
             {item.description}
           </p>
 
         </div>
 
         {/* Property Stats */}
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="mt-5 flex flex-wrap gap-3">
 
-          <div className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2">
+          <div className="flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1.5">
 
             <img
               src={bed}
@@ -393,7 +393,7 @@ const DetailPage = () => {
         </div>
 
         {/* Footer */}
-        <div className="mt-8 flex items-center justify-end">
+        <div className="mt-6 flex items-center justify-end">
 
           <button
             className="
