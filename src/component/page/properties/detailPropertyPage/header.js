@@ -290,11 +290,29 @@ const parseWithGoogle = (searchText) => {
       {loading && <LoadingScreen progress={progress} />}
       <div className="flex items-center py-4">
         <div className="flex-1 flex space-x-2 w-full">
-          <div className="relative w-full max-w-xl">
+          <div className="relative flex-1 max-w-2xl">
             <div className="flex">
               <input
                 type="text"
-                className="flex-1 relative bg-white border border-gray-300 p-3 pl-4 text-black focus:outline-none focus:border-red-500"
+                className="
+                      flex-1
+                      h-14
+                      rounded-2xl
+                      border
+                      border-gray-200
+                      bg-white
+                      px-5
+                      pr-36
+                      text-gray-900
+                      placeholder:text-gray-400
+                      shadow-sm
+                      transition-all
+                      duration-200
+                      focus:outline-none
+                      focus:ring-4
+                      focus:ring-[#A61E22]/10
+                      focus:border-[#A61E22]
+                    "
                 value={localFilters.searchCity}
                 onChange={(e) => {
                   const value = e.target.value;
@@ -415,7 +433,24 @@ const parseWithGoogle = (searchText) => {
               
               <button
                 onClick={directSearch}
-                className="bg-red-600 absolute right-1 top-1 bottom-1 hover:bg-red-700 text-white px-6 py-3 font-medium flex items-center"
+               className="
+                      absolute
+                      right-2
+                      top-2
+                      bottom-2
+                      px-7
+                      rounded-xl
+                      bg-[#A61E22]
+                      hover:bg-[#8d181b]
+                      text-white
+                      font-semibold
+                      shadow-lg
+                      transition-all
+                      duration-200
+                      hover:scale-[1.02]
+                      disabled:opacity-60
+                      disabled:cursor-not-allowed
+                    "
                 disabled={loading}
               >
                 {loading ? 'Searching...' : 'Search'}
