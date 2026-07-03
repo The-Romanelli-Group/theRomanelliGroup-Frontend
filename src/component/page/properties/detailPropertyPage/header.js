@@ -304,7 +304,7 @@ const parseWithGoogle = (searchText) => {
                       border-gray-200
                       bg-white
                       px-5
-                      pr-36
+                      pr-16
                       text-gray-900
                       placeholder:text-gray-400
                       shadow-sm
@@ -439,7 +439,7 @@ const parseWithGoogle = (searchText) => {
   aria-label="Search"
   className="
     absolute
-    right-2
+    right-3
     top-2
     bottom-2
     w-10
