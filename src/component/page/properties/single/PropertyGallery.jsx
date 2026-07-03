@@ -491,5 +491,5 @@ const PropertyGallery = ({ image = [] }) => {
     </div>
 
   );
-
+};
 export default PropertyGallery;
