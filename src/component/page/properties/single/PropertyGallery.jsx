@@ -74,7 +74,7 @@ const PropertyGallery = ({ image = [] }) => {
             items-center
             justify-center
             hover:scale-105
-            transition
+            transition 
           "
         >
           <ChevronRight size={22} />
