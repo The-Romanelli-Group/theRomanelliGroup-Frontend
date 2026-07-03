@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DoubleRangeSlider from "./priceRange";
 import { typeFilter1, typeFilter2, typeFilter3, typeFilter4, typeFilter5, typeFilter6, typeFilter7, typeFilter8 } from "../../../assets/allImg";
 
@@ -88,17 +88,47 @@ const FilterPage = ({ close, onSave, filterVal }) => {
         }
     };
 
-    return (
-     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 md:p-6">
+    useEffect(() => {
+  const handleEsc = (e) => {
+    if (e.key === "Escape") {
+      close();
+    }
+  };
 
-  <div className="w-full max-w-2xl bg-white rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.25)] max-h-[90vh] overflow-y-auto">
+  window.addEventListener("keydown", handleEsc);
+
+  return () => window.removeEventListener("keydown", handleEsc);
+}, [close]);
+
+const filterCount =
+  Number(!!selectedBedroom) +
+  Number(!!selectedBathroom) +
+  Number(!!selectedProperty) +
+  Number(priceRange.min > 0 || priceRange.max < 5000001) +
+  Number(areaRange.sqftMin > 0 || areaRange.sqftMax < 15001);
+
+  
+    return (
+     <div
+  className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
+  onClick={close}
+>
+  <div
+  onClick={(e) => e.stopPropagation()}
+  className="w-full max-w-2xl bg-white rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.25)] max-h-[90vh] overflow-y-auto"
+>
 
     {/* Header */}
     <div className="sticky top-0 z-10 flex items-center justify-between bg-[#A61E22] px-6 py-5 rounded-t-3xl shadow-md">
 
-      <h2 className="text-2xl md:text-3xl font-bold text-white">
-        Filters
-      </h2>
+     <h2 className="text-2xl md:text-3xl font-bold text-white">
+  Filters
+  {filterCount > 0 && (
+    <span className="ml-2 text-lg font-medium text-white/80">
+      ({filterCount})
+    </span>
+  )}
+</h2>
 
       <button
         type="button"
