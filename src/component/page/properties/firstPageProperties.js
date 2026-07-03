@@ -142,7 +142,10 @@ const parseWithGoogle = (searchText) => {
     setFilters(finalFilters);
     setFilterOpen(false);
 
-    if (!loc.city) return;
+   if (!filters.searchCity) {
+  setFilterOpen(false);
+  return;
+}
 
     setLoading(true);
     const data = await checkProperty(finalFilters);
@@ -153,10 +156,6 @@ const parseWithGoogle = (searchText) => {
     }
   };
 
-  // --------------------------------------
-  // PROGRESS BAR ANIMATION
-  // --------------------------------------
-  
 
   const handleSearch = async () => {
 
@@ -203,18 +202,18 @@ const parseWithGoogle = (searchText) => {
 
 };
 
-const handleSuggestionSelect = async (suggestion) => {
+const handleSuggestionSelect = (suggestion) => {
   if (!placesService.current) return;
 
   placesService.current.getDetails(
     { placeId: suggestion.place_id },
-    async (place) => {
+    (place) => {
       if (!place) return;
 
       const parsed = extractAddressComponents(place);
 
-      const finalFilters = {
-        ...filters,
+      setFilters((prev) => ({
+        ...prev,
         searchCity: suggestion.description,
         city: parsed.city,
         state: parsed.state,
@@ -222,27 +221,13 @@ const handleSuggestionSelect = async (suggestion) => {
         street: parsed.street,
         streetNumber: parsed.streetNumber,
         postalCode: parsed.postalCode,
-        listingType: filters.selectedOption,
-      };
+      }));
 
-      setFilters(finalFilters);
       setSuggestions([]);
       setShowDropdown(false);
 
-      setLoading(true);
-
-      const data = await checkProperty(finalFilters);
-
-      setLoading(false);
-
-      if (data) {
-        navigate("/details/properties", {
-          state: {
-            data,
-            filters: finalFilters,
-          },
-        });
-      }
+      // Optional: keep focus in the input
+      inputRef.current?.focus();
     }
   );
 };
@@ -253,6 +238,8 @@ const filterCount =
   Number(!!filters.property) +
   Number(filters.min > 0 || filters.max < 5000001) +
   Number(filters.sqftMin > 0 || filters.sqftMax < 15001);
+
+
   return (
     <div>
      {loading && (
