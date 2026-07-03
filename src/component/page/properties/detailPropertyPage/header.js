@@ -291,8 +291,8 @@ const parseWithGoogle = (searchText) => {
     <div className="bg-white border-b border-gray-200">
       {loading && <LoadingScreen progress={progress} />}
       <div className="flex items-center py-4">
-        <div className="flex-1 flex space-x-2 w-full">
-          <div className="relative w-full max-w-xl">
+        <div className="flex flex-1 items-center gap-2 min-w-0">
+          <div className="relative flex-1 min-w-0 xl:max-w-xl">
             <div className="flex">
               <input
                 type="text"
@@ -359,7 +359,7 @@ const parseWithGoogle = (searchText) => {
                   setTimeout(() => setShowDropdown(false), 100);
                 }}
                 onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
-                placeholder="Enter location..."
+                placeholder="Enter city, ZIP code or neighborhood..."
               />
               
               {showDropdown && suggestions.length > 0 && (
@@ -500,7 +500,7 @@ const parseWithGoogle = (searchText) => {
             </div>
           </div>
 
-          <div className="flex items-center ml-4 gap-2">
+          <div className="flex items-center gap-2 flex-shrink-0 lg:ml-4">
             {(() => {
   const filterCount =
     Number(!!localFilters.bedrooms) +
