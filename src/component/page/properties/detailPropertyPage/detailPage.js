@@ -180,7 +180,7 @@ const DetailPage = () => {
 
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8">
+      <div className="flex flex-col lg:flex-row gap-8 items-start">
 
         {/* Property List */}
         <div className="w-full lg:w-2/3 order-1">
@@ -535,36 +535,36 @@ const DetailPage = () => {
 )}
 </div>
                  {/* Map Section */}
-        <div className="w-full lg:w-1/3 order-2">
+       <div className="w-full lg:w-1/3 order-2">
 
-          <div className="sticky top-24">
+  <div className="sticky top-24 self-start">
 
-            <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+    <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
 
-              {/* Header */}
-              <div className="px-6 py-5 border-b border-gray-100">
+      {/* Header */}
+      <div className="px-6 py-5 border-b border-gray-100">
 
-                <h2 className="text-xl font-bold text-gray-900">
-                  Property Map
-                </h2>
+        <h2 className="text-xl font-bold text-gray-900">
+          Property Map
+        </h2>
 
-                <p className="mt-1 text-sm text-gray-500">
-                  Explore nearby homes and their locations.
-                </p>
+        <p className="mt-1 text-sm text-gray-500">
+          Explore nearby homes and their locations.
+        </p>
 
-              </div>
-                </div>
+      </div>
 
-              {/* Map */}
-              <div className="h-[700px]">
-                <Map alldata={currentProperties} />
-              </div>
+      {/* Map */}
+      <div className="h-[calc(100vh-180px)] min-h-[650px] max-h-[850px]">
+        <Map alldata={currentProperties} />
+      </div>
 
-            </div>
+    </div>
 
-          </div>
+  </div>
 
-        
+</div>
+
 
       </div>
 
