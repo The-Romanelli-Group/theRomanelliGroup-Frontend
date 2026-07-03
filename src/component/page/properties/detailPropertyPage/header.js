@@ -528,13 +528,72 @@ const parseWithGoogle = (searchText) => {
               )}
             </div>
 
-            <button
-              onClick={() => { setFilterOpen(true) }}
-              className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
-            >
-              <span className="text-sm">Filter</span>
-              <Filter size={16} />
-            </button>
+            {(() => {
+  const filterCount =
+    Number(!!localFilters.bedrooms) +
+    Number(!!localFilters.bathrooms) +
+    Number(!!localFilters.property) +
+    Number(localFilters.min > 0 || localFilters.max < 5000001) +
+    Number(localFilters.sqftMin > 0 || localFilters.sqftMax < 15001);
+
+  return (
+    <button
+      type="button"
+      onClick={() => setFilterOpen(true)}
+      aria-label="Open filters"
+      className="
+        relative
+        w-12
+        h-12
+        rounded-2xl
+        border
+        border-gray-200
+        bg-white
+        hover:bg-gray-50
+        hover:shadow-md
+        transition-all
+        duration-200
+        flex
+        items-center
+        justify-center
+      "
+    >
+      <Filter
+        size={20}
+        className={`transition-all duration-200 ${
+          filterCount > 0
+            ? "text-[#A61E22]"
+            : "text-gray-600"
+        }`}
+      />
+
+      {filterCount > 0 && (
+        <span
+          className="
+            absolute
+            -top-1
+            -right-1
+            min-w-[18px]
+            h-[18px]
+            px-1
+            rounded-full
+            bg-[#A61E22]
+            text-white
+            text-[10px]
+            font-bold
+            flex
+            items-center
+            justify-center
+            ring-2
+            ring-white
+          "
+        >
+          {filterCount}
+        </span>
+      )}
+    </button>
+  );
+})()}
           </div>
         </div>
 
