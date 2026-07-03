@@ -13,6 +13,7 @@ import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 
 import "yet-another-react-lightbox/styles.css";
+import "./PropertyGallery.css";
 
 const [selected, setSelected] = useState(0);
 const [isFullscreen, setIsFullscreen] = useState(false);
