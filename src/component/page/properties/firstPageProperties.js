@@ -398,23 +398,80 @@ const filterCount =
 {/* Search Input */}
 <div className="relative w-full">
 
-  {/* Search Icon */}
-  <div className="absolute left-4 md:left-5 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-5 h-5 md:w-6 md:h-6 text-gray-400"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M21 21l-5.2-5.2m2.2-5.3a7 7 0 11-14 0 7 7 0 0114 0z"
-      />
-    </svg>
+  {/* Filter Button */}
+<button
+  type="button"
+  onClick={() => setFilterOpen(true)}
+  aria-label="Open filters"
+  className="
+    absolute
+    left-2
+    md:left-3
+    top-1/2
+    -translate-y-1/2
+    z-20
+    w-10
+    h-10
+    rounded-full
+    flex
+    items-center
+    justify-center
+    hover:bg-black/5
+    transition-all
+    duration-200
+  "
+>
+
+  <div className="relative">
+
+    <img
+      src={FilterIcon}
+      alt="Filters"
+      className={`
+        w-5
+        h-5
+        md:w-6
+        md:h-6
+        transition-all
+        duration-200
+        ${
+          filterCount > 0
+            ? "opacity-100 scale-105"
+            : "opacity-70"
+        }
+      `}
+    />
+
+    {filterCount > 0 && (
+      <span
+        className="
+          absolute
+          -top-2
+          -right-2
+          min-w-[18px]
+          h-[18px]
+          px-1
+          rounded-full
+          bg-[#A61E22]
+          text-white
+          text-[10px]
+          font-bold
+          leading-none
+          flex
+          items-center
+          justify-center
+          shadow-md
+          ring-2
+          ring-white
+        "
+      >
+        {filterCount}
+      </span>
+    )}
+
   </div>
+
+</button>
 
   <input
   ref={inputRef}
@@ -424,8 +481,8 @@ const filterCount =
     bg-white/95
     backdrop-blur-md
     rounded-2xl
-    pl-12 md:pl-14
-    pr-28 md:pr-52
+    pl-14 md:pl-16
+   pr-16 md:pr-20
     text-base md:text-lg
     text-gray-900
     placeholder:text-base md:placeholder:text-lg
@@ -575,26 +632,45 @@ const filterCount =
 
             <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
 
-  {/* Filter Button */}
-  <button
-    onClick={() => setFilterOpen(true)}
-    className="w-9 h-9 md:w-11 md:h-11 rounded-lg md:rounded-xl flex items-center justify-center hover:bg-gray-50 transition-all duration-300"
-    aria-label="Open filters"
-  >
-    <img
-      src={FilterIcon}
-      alt="Filters"
-      className="w-4 h-4 md:w-5 md:h-5"
-    />
-  </button>
-
+  
   {/* Search Button */}
-  <button
-    className="h-9 md:h-12 bg-[#A61E22] hover:bg-[#8d181b] text-white px-4 md:px-8 rounded-lg md:rounded-xl text-sm md:text-base font-semibold shadow-lg transition-all duration-300 hover:scale-[1.02]"
-    onClick={handleSearch}
+<button
+  onClick={handleSearch}
+  className="
+    h-9
+    md:h-12
+    px-4
+    md:px-5
+    bg-[#A61E22]
+    hover:bg-[#8d181b]
+    text-white
+    rounded-lg
+    md:rounded-xl
+    shadow-lg
+    transition-all
+    duration-300
+    hover:scale-[1.02]
+    flex
+    items-center
+    justify-center
+  "
+  aria-label="Search"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-5 h-5 md:w-6 md:h-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
   >
-    Search
-  </button>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M21 21l-5.2-5.2m2.2-5.3a7 7 0 11-14 0 7 7 0 0114 0z"
+    />
+  </svg>
+</button>
 
             </div>
       </div>
