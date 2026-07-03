@@ -221,7 +221,7 @@ const parseWithGoogle = (searchText) => {
               container
               px-4
               sm:px-5
-              pt-4
+              pt-1
               pb-10
               md:py-24
               mx-auto
@@ -430,7 +430,7 @@ const parseWithGoogle = (searchText) => {
     items-center
     gap-2.5
     px-4
-    py-1.5
+    py-1
     text-left
     border-b
     border-gray-100
