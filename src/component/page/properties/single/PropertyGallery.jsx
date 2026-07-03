@@ -75,7 +75,12 @@ const PropertyGallery = ({ image = [] }) => {
         alt=""
         loading="eager"
         draggable={false}
-        onClick={() => setIsFullscreen(true)}
+        onClick={() => {
+  console.log("OPEN");
+  setIsFullscreen(true);
+}}
+        
+
         className={`
           w-full
           h-[300px]
@@ -244,6 +249,7 @@ const PropertyGallery = ({ image = [] }) => {
 
         <button
           onClick={() => setIsFullscreen(true)}
+          
           className="
             w-11
             h-11
@@ -358,9 +364,9 @@ const PropertyGallery = ({ image = [] }) => {
         index={selected}
         slides={slides}
         plugins={[Zoom]}
-        on={{
-          view: ({ index }) => setSelected(index),
-        }}
+       on={{
+  view: ({ index }) => setSelected(index),
+}}
         carousel={{
           finite: false,
           preload: 3,
