@@ -573,60 +573,73 @@ const parseWithGoogle = (searchText) => {
 
   return (
     <button
-      type="button"
-      onClick={() => setFilterOpen(true)}
-      aria-label="Open filters"
-      className="
-        relative
-        w-12
-        h-12
-        rounded-2xl
-        border
-        border-gray-200
-        bg-white
-        hover:bg-gray-50
-        hover:shadow-md
+  type="button"
+  onClick={() => setFilterOpen(true)}
+  aria-label="Open filters"
+  className="
+    relative
+    w-12
+    h-12
+    rounded-2xl
+    border
+    border-gray-200
+    bg-white
+    hover:bg-gray-50
+    hover:shadow-md
+    transition-all
+    duration-200
+    flex
+    items-center
+    justify-center
+  "
+>
+  <div className="relative">
+
+    <img
+      src={FilterIcon}
+      alt="Filters"
+      className={`
+        w-5
+        h-5
         transition-all
         duration-200
-        flex
-        items-center
-        justify-center
-      "
-    >
-      <Filter
-        size={20}
-        className={`transition-all duration-200 ${
+        ${
           filterCount > 0
-            ? "text-[#A61E22]"
-            : "text-gray-600"
-        }`}
-      />
+            ? "opacity-100 scale-105"
+            : "opacity-70"
+        }
+      `}
+    />
 
-      {filterCount > 0 && (
-        <span
-          className="
-            absolute
-            -top-1
-            -right-1
-            min-w-[18px]
-            h-[18px]
-            px-1
-            rounded-full
-            bg-[#A61E22]
-            text-white
-            text-[10px]
-            font-bold
-            flex
-            items-center
-            justify-center
-            ring-2
-            ring-white
-          "
-        >
-          {filterCount}
-        </span>
-      )}
-    </button>
+    {filterCount > 0 && (
+      <span
+        className="
+          absolute
+          -top-2
+          -right-2
+          min-w-[18px]
+          h-[18px]
+          px-1
+          rounded-full
+          bg-[#A61E22]
+          text-white
+          text-[10px]
+          font-bold
+          leading-none
+          flex
+          items-center
+          justify-center
+          shadow-md
+          ring-2
+          ring-white
+        "
+      >
+        {filterCount}
+      </span>
+    )}
+
+  </div>
+</button>
   );
 })()}
           </div>
