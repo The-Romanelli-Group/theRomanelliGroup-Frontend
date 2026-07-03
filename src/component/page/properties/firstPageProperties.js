@@ -246,6 +246,13 @@ const handleSuggestionSelect = async (suggestion) => {
     }
   );
 };
+
+const filterCount =
+  Number(!!filters.bedrooms) +
+  Number(!!filters.bathrooms) +
+  Number(!!filters.property) +
+  Number(filters.min > 0 || filters.max < 5000001) +
+  Number(filters.sqftMin > 0 || filters.sqftMax < 15001);
   return (
     <div>
      {loading && (
@@ -485,7 +492,15 @@ const handleSuggestionSelect = async (suggestion) => {
     transition-colors
     duration-200
   "
-  onMouseDown={() => handleSuggestionSelect(s)}
+  onMouseDown={() => {
+
+    setFilters(...)
+
+    setSuggestions([])
+
+    setShowDropdown(false)
+
+}}
 >
 
   {/* Icon */}
