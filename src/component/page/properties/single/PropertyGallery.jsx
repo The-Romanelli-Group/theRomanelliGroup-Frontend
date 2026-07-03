@@ -349,9 +349,10 @@ const PropertyGallery = ({ image = [] }) => {
           ))}
 
         </div>
+    
+        </div>
 
-
-      <Lightbox
+        <Lightbox
         open={isFullscreen}
         close={() => setIsFullscreen(false)}
         index={selected}
@@ -465,7 +466,7 @@ const PropertyGallery = ({ image = [] }) => {
         }}
       />
     </div>
-
   );
 };
+
 export default PropertyGallery;
