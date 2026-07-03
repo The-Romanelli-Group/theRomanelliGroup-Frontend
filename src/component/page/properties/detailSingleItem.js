@@ -1,6 +1,6 @@
 
 import { useLocation, useParams } from 'react-router-dom';
-import PropertyGallery from "./PropertyGallery";
+import Carousel from './single/carousel';
 import LeadForm from '../LeadForm/LeadForm'; 
 import RelatedItem from './single/relatedItem';
 import { aeroplane, bathroom, bed, bus, city, globe, hoa, hospital, hvac, medical, park, parkIcon, propType, size, square, train, year } from '../../../assets/allImg';
@@ -84,7 +84,7 @@ if (!unique) {
     <div className="pt-8 sm:px-4 md:px-6 px-2 lg:px-24">
       {/* Carousel Section */}
       <div className="mb-6 md:mb-8">
-        <PropertyGallery image={property?.Media} />
+        <Carousel image={unique.Media} />
       </div>
 
       {/* Main Content Grid */}
