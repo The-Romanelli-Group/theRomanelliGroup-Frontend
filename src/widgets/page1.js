@@ -58,7 +58,7 @@ const Page1 = ({ page }) => {
 
         <div className="mainVideo transition-opacity duration-500">
 
-           <section className="relative w-full min-h-[75vh] md:min-h-screen flex items-center justify-center text-white body-font">
+           <section className="relative w-full min-h-[78vh] md:min-h-screen flex items-center justify-center text-white body-font">
 
                 <div className="absolute inset-0 w-full h-full">
 
