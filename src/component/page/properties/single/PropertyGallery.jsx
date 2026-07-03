@@ -7,9 +7,18 @@ import {
   Share2,
 } from "lucide-react";
 
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+
 const PropertyGallery = ({ image = [] }) => {
   const [selected, setSelected] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+const [isFullscreen, setIsFullscreen] = useState(false);
+
+const slides = image.map((img) => ({
+  src: img.MediaURL,
+}));
 
   if (!image.length) {
     return (
@@ -22,22 +31,23 @@ const PropertyGallery = ({ image = [] }) => {
       {/* Hero Image */}
       <div className="relative overflow-hidden rounded-3xl bg-gray-100">
 
-        <img
-          src={image[selected]?.MediaURL}
-          alt=""
-          onClick={() => setIsFullscreen(true)}
-          className="
-            w-full
-            h-[300px]
-            md:h-[450px]
-            xl:h-[560px]
-            object-cover
-            transition-all
-            duration-500
-            cursor-pointer
-          "
-        />
-
+       <img
+  src={image[selected]?.MediaURL}
+  alt=""
+  loading="eager"
+  onClick={() => setIsFullscreen(true)}
+  className="
+    w-full
+    h-[300px]
+    md:h-[450px]
+    xl:h-[560px]
+    object-cover
+    transition-all
+    duration-500
+    cursor-pointer
+    select-none
+  "
+/>
         {/* Gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
 
@@ -159,8 +169,9 @@ const PropertyGallery = ({ image = [] }) => {
               }
             `}
           >
-            <img
-              src={img.MediaURL}
+                        <img
+                src={img.MediaURL}
+                loading="lazy"
               alt=""
               className="
                 w-24
@@ -175,23 +186,22 @@ const PropertyGallery = ({ image = [] }) => {
         ))}
       </div>
 
-      {/* Fullscreen coming next */}
-      {isFullscreen && (
-        <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
-          <button
-            onClick={() => setIsFullscreen(false)}
-            className="absolute top-6 right-6 text-white text-5xl"
-          >
-            ×
-          </button>
-
-          <img
-            src={image[selected]?.MediaURL}
-            alt=""
-            className="max-w-[95vw] max-h-[90vh] object-contain"
-          />
-        </div>
-      )}
+      <Lightbox
+  open={isFullscreen}
+  close={() => setIsFullscreen(false)}
+  index={selected}
+  slides={slides}
+  plugins={[Zoom]}
+  controller={{
+    closeOnBackdropClick: true,
+  }}
+  carousel={{
+    finite: false,
+  }}
+  on={{
+    view: ({ index }) => setSelected(index),
+  }}
+/>
     </div>
   );
 };
