@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import DetailFilter from './detailFilter';
 import LoadingScreen from '../../../../loading/loadingScreen';
 import FilterIcon from "../../../../assets/images/illustrations/Filter.svg";
+import FilterPage from "../filter";
 
 const allowedPropertyTypes = [
   "Residential",
@@ -852,18 +853,15 @@ const parseWithGoogle = (searchText) => {
           </div>
         </div>
 
-        <div className="ml-6 hidden xl:flex">
-          <button
-            className="bg-black hover:bg-gray-800 text-white px-6 py-3 text-sm font-medium"
-            onClick={filteredSearch}
-            disabled={loading}
-          >
-            {loading ? 'Searching...' : 'Save search'}
-          </button>
-        </div>
-      </div>
+         </div>
 
-      {filterOpen && <DetailFilter close={() => { setFilterOpen(false) }} onSave={handleFilterSave} filterVal={localFilters} />}
+    {filterOpen && (
+  <FilterPage
+    close={() => setFilterOpen(false)}
+    onSave={handleFilterSave}
+    filterVal={localFilters}
+  />
+)}
     </div>
   );
 };
