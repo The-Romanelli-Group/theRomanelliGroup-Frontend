@@ -31,7 +31,7 @@ const LoadingScreen = ({ location = "" }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-primary flex items-center justify-center px-6">
+    <div className="fixed inset-0 z-[9999] bg-[#A61E22] flex items-center justify-center px-6">
 
       <div className="text-center max-w-md w-full">
 
