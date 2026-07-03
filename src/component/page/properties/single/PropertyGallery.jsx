@@ -191,35 +191,7 @@ const PropertyGallery = ({ image = [] }) => {
           </span>
         </div>
 
-         {/* Mobile Bottom Bar */}
-
-      <div className="md:hidden flex items-center justify-between mt-4">
-
-        {/* Dots */}
-
-        <div className="flex items-center gap-2">
-
-          {image.map((_, index) => (
-
-            <button
-              key={index}
-              onClick={() => changeImage(index)}
-              className={`
-                rounded-full
-                transition-all
-                duration-300
-                ${
-                  selected === index
-                    ? "w-8 h-2 bg-[#A61E22]"
-                    : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
-                }
-              `}
-            />
-
-          ))}
-
-        </div>
-
+         
         {/* Favourite */}
 
         <button
@@ -296,31 +268,6 @@ const PropertyGallery = ({ image = [] }) => {
       </div>
 </div>
        
-
-        {/* View All */}
-
-        <button
-          onClick={() => setIsFullscreen(true)}
-          className="
-            px-4
-            py-2
-            rounded-full
-            bg-black/70
-            backdrop-blur-xl
-            text-white
-            text-xs
-            font-medium
-            shadow-lg
-            hover:bg-[#A61E22]
-            transition-all
-            duration-200
-          "
-        >
-          {selected + 1} / {image.length} • View All
-        </button>
-
-      </div>
-
       {/* Desktop Filmstrip */}
 
       <div
@@ -374,6 +321,35 @@ const PropertyGallery = ({ image = [] }) => {
         ))}
 
       </div>
+      {/* Mobile Bottom Bar */}
+
+      <div className="md:hidden flex items-center justify-between mt-4">
+
+        {/* Dots */}
+
+        <div className="flex items-center gap-2">
+
+          {image.map((_, index) => (
+
+            <button
+              key={index}
+              onClick={() => changeImage(index)}
+              className={`
+                rounded-full
+                transition-all
+                duration-300
+                ${
+                  selected === index
+                    ? "w-8 h-2 bg-[#A61E22]"
+                    : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
+                }
+              `}
+            />
+
+          ))}
+
+        </div>
+
 
       <Lightbox
         open={isFullscreen}
