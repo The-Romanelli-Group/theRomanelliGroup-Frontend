@@ -439,7 +439,10 @@ const parseWithGoogle = (searchText) => {
                       </div>
                     );
                   })}
-                    <button
+                    
+                </div>
+              )}
+              <button
   onClick={filteredSearch}
   disabled={loading}
   aria-label="Search"
@@ -499,9 +502,6 @@ const parseWithGoogle = (searchText) => {
     </svg>
   )}
 </button>
-                </div>
-              )}
-              
            
             </div>
           </div>
