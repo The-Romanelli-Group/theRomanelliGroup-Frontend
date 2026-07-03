@@ -260,8 +260,7 @@ const filterCount =
 <hr className="border-gray-200" />
 
 {/* Area Range */}
-<div>
-
+<div className="pb-8">
   <h3 className="text-xl font-semibold text-gray-900 mb-3">
     Area Range
   </h3>
@@ -273,7 +272,6 @@ const filterCount =
     onChange={handleAreaChange}
     maxRange={15001}
   />
-
 </div>
 
 <hr className="border-gray-200" />
