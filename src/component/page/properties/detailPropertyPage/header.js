@@ -365,30 +365,16 @@ const parseWithGoogle = (searchText) => {
               {showDropdown && suggestions.length > 0 && (
                 <div className="dropdown-container absolute top-full left-0 right-0 bg-white border border-gray-200 shadow-lg z-50 max-h-60 overflow-y-auto rounded-b-lg">
                   {suggestions.map((suggestion, index) => {
-                   const getLocationType = (types) => {
-  if (!types) return "Location";
-
-  if (types.includes("street_address")) return "Address";
-  if (types.includes("premise")) return "Address";
-  if (types.includes("subpremise")) return "Address";
-  if (types.includes("route")) return "Street";
-  if (types.includes("postal_code")) return "ZIP Code";
-  if (types.includes("neighborhood")) return "Neighborhood";
-  if (types.includes("sublocality")) return "Area";
-  if (types.includes("locality")) return "City";
-  if (types.includes("administrative_area_level_2")) return "County";
-  if (types.includes("administrative_area_level_1")) return "State";
-  if (types.includes("country")) return "Country";
-
-  // Google-specific types
-  if (types.includes("establishment")) return "Place";
-  if (types.includes("point_of_interest")) return "Place";
-  if (types.includes("airport")) return "Airport";
-  if (types.includes("park")) return "Park";
-  if (types.includes("school")) return "School";
-
-  return "Location";
-};
+                         const getLocationType = (types) => {
+                           if (types?.includes("locality")) return "City";
+                           if (types?.includes("administrative_area_level_2")) return "County";
+                           if (types?.includes("administrative_area_level_1")) return "State";
+                           if (types?.includes("neighborhood")) return "Neighborhood";
+                           if (types?.includes("sublocality")) return "Area";
+                           if (types?.includes("postal_code")) return "ZIP Code";
+                           if (types?.includes("route")) return "Street";
+                           return "Location";
+                         };
 
                     return (
                       <div

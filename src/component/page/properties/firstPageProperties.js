@@ -556,30 +556,16 @@ overflow-y-auto
   >
     {suggestions.map((s) => {
 
-const getLocationType = (types) => {
-  if (!types) return "Location";
-
-  if (types.includes("street_address")) return "Address";
-  if (types.includes("premise")) return "Address";
-  if (types.includes("subpremise")) return "Address";
-  if (types.includes("route")) return "Street";
-  if (types.includes("postal_code")) return "ZIP Code";
-  if (types.includes("neighborhood")) return "Neighborhood";
-  if (types.includes("sublocality")) return "Area";
-  if (types.includes("locality")) return "City";
-  if (types.includes("administrative_area_level_2")) return "County";
-  if (types.includes("administrative_area_level_1")) return "State";
-  if (types.includes("country")) return "Country";
-
-  // Google-specific types
-  if (types.includes("establishment")) return "Place";
-  if (types.includes("point_of_interest")) return "Place";
-  if (types.includes("airport")) return "Airport";
-  if (types.includes("park")) return "Park";
-  if (types.includes("school")) return "School";
-
-  return "Location";
-};
+      const getLocationType = (types) => {
+        if (types?.includes("locality")) return "City";
+        if (types?.includes("administrative_area_level_2")) return "County";
+        if (types?.includes("administrative_area_level_1")) return "State";
+        if (types?.includes("neighborhood")) return "Neighborhood";
+        if (types?.includes("sublocality")) return "Area";
+        if (types?.includes("postal_code")) return "ZIP Code";
+        if (types?.includes("route")) return "Street";
+        return "Location";
+      };
 
       return (
 
