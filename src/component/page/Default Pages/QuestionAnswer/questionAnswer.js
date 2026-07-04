@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
-const faqs = [
+
+const sellerfaqs = [
   {
     question: "How do I get started with selling my home?",
     answer: "Start by requesting a free home valuation. We’ll assess your property’s market value and discuss the best strategy to sell quickly and at the best price.",
@@ -23,7 +24,7 @@ const faqs = [
   },
 ];
 
-const faqs = [
+const buyerfaqs = [
   {
     question: "Where do I start if I want to buy a home?",
     answer: "Start by getting pre-approved for a mortgage. This helps you understand your budget and shows sellers you’re serious. If you’re unsure where to begin, we can connect you with trusted lenders.",
@@ -46,7 +47,7 @@ const faqs = [
   },
 ];
 
-const faqs = [
+const agentfaqs = [
   {
     question: "How do I join The Romanelli Group?",
     answer: "Visit our 'Join Our Team' page and submit your application. We’ll schedule a chat to discuss your goals and how we can support your success.",
