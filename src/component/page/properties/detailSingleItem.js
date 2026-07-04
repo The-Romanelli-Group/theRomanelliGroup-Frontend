@@ -89,6 +89,17 @@ if (!unique) {
     { date: 'Feb 1, 2025', event: 'Listed', price: unique.ListPrice }
   ];
 
+const lotAcres = unique?.LotSizeSquareFeet
+  ? (unique.LotSizeSquareFeet / 43560).toFixed(2)
+  : null;
+
+const pricePerSqFt =
+  unique?.ListPrice && unique?.BuildingAreaTotal
+    ? Math.round(
+        unique.ListPrice / unique.BuildingAreaTotal
+      )
+    : null;
+
   return (
     <div className="mainVideo">
     <div className="pt-8 sm:px-4 md:px-6 px-2 lg:px-24">
@@ -394,85 +405,53 @@ py-2
 
 </div>
 
-                  {/* Property Facts */}
+                  <div className="mt-8">
 
-<div className="mt-10">
-
-  <h2 className="text-2xl font-semibold text-gray-900 mb-5">
+  <h2 className="text-2xl font-bold text-gray-900 mb-5">
     Property Facts
   </h2>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+  <div className="rounded-2xl border border-gray-200 overflow-hidden">
 
-    <div className="rounded-2xl border border-gray-200 p-5">
-      <div className="flex items-center gap-3 mb-2">
-        <img src={propType} className="w-5 h-5" alt="" />
-        <span className="text-sm text-gray-500">Property Type</span>
-      </div>
+    {[
+      ["Property Type", unique.PropertyType],
+      ["Style", unique.ArchitecturalStyle?.join(", ")],
+      ["Living Area", `${unique.BuildingAreaTotal?.toLocaleString() || "--"} Sq Ft`],
+      ["Lot Size", lotAcres ? `${lotAcres} Acres` : "N/A"],
+      ["Price / Sq Ft", pricePerSqFt ? `$${pricePerSqFt}` : "N/A"],
+      ["Year Built", unique.YearBuilt],
+      ["Levels", unique.Levels?.join(", ")],
+      ["Heating", unique.Heating?.join(", ")],
+      ["Cooling", unique.Cooling?.join(", ")],
+      ["Basement", unique.Basement?.join(", ")],
+      ["Fireplace", unique.FireplaceYN ? "Yes" : "No"],
+      ["County", unique.CountyOrParish],
+      ["Township", unique.Township],
+    ].map(([label, value], index) => (
+      <div
+        key={label}
+        className={`
+          grid
+          grid-cols-2
+          px-5
+          py-4
+          ${
+            index !== 12
+              ? "border-b border-gray-200"
+              : ""
+          }
+        `}
+      >
+        <div className="text-gray-500 font-medium">
+          {label}
+        </div>
 
-      <div className="text-lg font-semibold text-gray-900">
-        {unique.PropertyType || "N/A"}
-      </div>
-    </div>
+        <div className="text-gray-900 font-semibold text-right">
+          {value || "N/A"}
+        </div>
 
-    <div className="rounded-2xl border border-gray-200 p-5">
-      <div className="flex items-center gap-3 mb-2">
-        <img src={size} className="w-5 h-5" alt="" />
-        <span className="text-sm text-gray-500">Area</span>
       </div>
-
-      <div className="text-lg font-semibold text-gray-900">
-        {unique.BuildingAreaTotal?.toLocaleString() || "--"} sqft
-      </div>
-    </div>
-
-    <div className="rounded-2xl border border-gray-200 p-5">
-      <div className="flex items-center gap-3 mb-2">
-        <img src={year} className="w-5 h-5" alt="" />
-        <span className="text-sm text-gray-500">Year Built</span>
-      </div>
-
-      <div className="text-lg font-semibold text-gray-900">
-        {unique.YearBuilt || "N/A"}
-      </div>
-    </div>
-
-    <div className="rounded-2xl border border-gray-200 p-5">
-      <div className="flex items-center gap-3 mb-2">
-        <img src={hoa} className="w-5 h-5" alt="" />
-        <span className="text-sm text-gray-500">HOA Fee</span>
-      </div>
-
-      <div className="text-lg font-semibold text-gray-900">
-        {unique.AssociationFee
-          ? `$${unique.AssociationFee}/mo`
-          : "No HOA"}
-      </div>
-    </div>
-
-    <div className="rounded-2xl border border-gray-200 p-5">
-      <div className="flex items-center gap-3 mb-2">
-        <img src={hvac} className="w-5 h-5" alt="" />
-        <span className="text-sm text-gray-500">Heating</span>
-      </div>
-
-      <div className="text-lg font-semibold text-gray-900">
-        {unique.Heating || "N/A"}
-      </div>
-    </div>
-
-    <div className="rounded-2xl border border-gray-200 p-5">
-      <div className="flex items-center gap-3 mb-2">
-        <img src={park} className="w-5 h-5" alt="" />
-        <span className="text-sm text-gray-500">Parking</span>
-      </div>
-
-      <div className="text-lg font-semibold text-gray-900">
-        {unique.GarageSpaces ||
-          unique.ParkingTotal ||
-          "N/A"}
-      </div>
-    </div>
+    ))}
 
   </div>
 
