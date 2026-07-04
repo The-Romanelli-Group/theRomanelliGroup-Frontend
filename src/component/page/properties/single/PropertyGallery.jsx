@@ -18,6 +18,7 @@ const PropertyGallery = ({ image = [] }) => {
   const [selected, setSelected] = useState(0);
   const [fade, setFade] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showCopied, setShowCopied] = useState(false);
 
   // Prevent timeout leaks
   const timeoutRef = useRef(null);
@@ -230,59 +231,56 @@ return (
 
       <div className="absolute bottom-5 right-5 hidden md:flex items-center gap-3">
 
-        {/* Favourite */}
+               {/* Share */}
 
-        <button
-          aria-label="Save property"
-          title="Save property"
-          className="
-            w-11
-            h-11
-            rounded-full
-            bg-white/90
-            backdrop-blur-xl
-            shadow-xl
-            flex
-            items-center
-            justify-center
-            text-gray-700
-            transition-all
-            duration-200
-            hover:bg-[#A61E22]
-            hover:text-white
-            hover:scale-110
-            active:scale-95
-          "
-        >
-          <Heart size={18} />
-        </button>
+       <button
+  aria-label="Share property"
+  title="Share property"
+  onClick={async () => {
+    const shareData = {
+      title: document.title,
+      text: "Check out this property from The Romanelli Group",
+      url: window.location.href,
+    };
 
-        {/* Share */}
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+            await navigator.clipboard.writeText(window.location.href);
 
-        <button
-          aria-label="Share property"
-          title="Share property"
-          className="
-            w-11
-            h-11
-            rounded-full
-            bg-white/90
-            backdrop-blur-xl
-            shadow-xl
-            flex
-            items-center
-            justify-center
-            text-gray-700
-            transition-all
-            duration-200
-            hover:bg-[#A61E22]
-            hover:text-white
-            hover:scale-110
-            active:scale-95
-          "
-        >
-          <Share2 size={18} />
-        </button>
+      setShowCopied(true);
+
+      setTimeout(() => {
+        setShowCopied(false);
+      }, 2000);
+      }
+    } catch (err) {
+      // User cancelled or share failed
+      console.log(err);
+    }
+  }}
+  className="
+    w-11
+    h-11
+    rounded-full
+    bg-white/90
+    backdrop-blur-xl
+    shadow-xl
+    flex
+    items-center
+    justify-center
+    text-gray-700
+    transition-all
+    duration-200
+    hover:bg-[#A61E22]
+    hover:text-white
+    hover:scale-110
+    active:scale-95
+  "
+>
+  <Share2 size={18} />
+</button>
 
         {/* Fullscreen */}
 
@@ -422,7 +420,28 @@ return (
      
       })}
     </div>
-
+            {showCopied && (
+            <div
+              className="
+                fixed
+                bottom-6
+                left-1/2
+                -translate-x-1/2
+                z-[9999]
+                px-5
+                py-3
+                rounded-full
+                bg-[#A61E22]
+                text-white
+                text-sm
+                font-medium
+                shadow-2xl
+                animate-[fadeIn_.25s_ease]
+              "
+            >
+              ✓ Link copied
+            </div>
+          )}
 
     <Lightbox
       open={isFullscreen}
@@ -448,7 +467,7 @@ return (
         doubleTapDelay: 250,
         keyboardMoveDistance: 60,
       }}
-    />
+        />
   </div>
 );
 
