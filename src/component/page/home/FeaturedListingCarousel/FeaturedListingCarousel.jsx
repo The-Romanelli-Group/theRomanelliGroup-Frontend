@@ -3,6 +3,7 @@ import apiServices from "../../../../Service/apiService";
 import FeaturedListingCard from "./FeaturedListingCard";
 import "./featuredListing.css"; 
 import { useNavigate } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const FeaturedListingCarousel = () => {
 
@@ -121,22 +122,80 @@ console.log("Properties:", response.value);
 </div>
 
                 <div className="relative">
-
-    {/* Left Arrow */}
+{/* Previous */}
 <button
-    onClick={prevSlide}
-    disabled={currentIndex === 0}
-    className="carousel-arrow carousel-arrow-left"
+  aria-label="Previous properties"
+  onClick={prevSlide}
+  disabled={currentIndex === 0}
+  className="
+    hidden
+    md:flex
+    absolute
+    left-[-28px]
+    lg:left-[-60px]
+    top-1/2
+    -translate-y-1/2
+    z-20
+    w-14
+    h-14
+    rounded-full
+    bg-white/90
+    backdrop-blur-xl
+    border
+    border-white/60
+    shadow-2xl
+    items-center
+    justify-center
+    text-gray-800
+    transition-all
+    duration-200
+    hover:bg-[#A61E22]
+    hover:text-white
+    hover:scale-105
+    active:scale-95
+    disabled:opacity-40
+    disabled:cursor-not-allowed
+  "
 >
-    ←
+  <ChevronLeft size={24} />
 </button>
-{/* Right Arrow */}
+
+{/* Next */}
 <button
-    onClick={nextSlide}
-    disabled={currentIndex >= properties.length - visibleCards}
-    className="carousel-arrow carousel-arrow-right"
+  aria-label="Next properties"
+  onClick={nextSlide}
+  disabled={currentIndex >= properties.length - visibleCards}
+  className="
+    hidden
+    md:flex
+    absolute
+    right-[-28px]
+    lg:right-[-60px]
+    top-1/2
+    -translate-y-1/2
+    z-20
+    w-14
+    h-14
+    rounded-full
+    bg-white/90
+    backdrop-blur-xl
+    border
+    border-white/60
+    shadow-2xl
+    items-center
+    justify-center
+    text-gray-800
+    transition-all
+    duration-200
+    hover:bg-[#A61E22]
+    hover:text-white
+    hover:scale-105
+    active:scale-95
+    disabled:opacity-40
+    disabled:cursor-not-allowed
+  "
 >
-    →
+  <ChevronRight size={24} />
 </button>
 {/* Carousel */}
 <div className="featured-carousel no-scrollbar">
