@@ -398,9 +398,9 @@ if (submitted) {
 }
 
 return (
-<div className="w-full">
+<div>
 
-    <div className="relative w-full bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-6 lg:p-8">
+    <div className="relative max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] pt-8 pb-6 px-6 sticky top-24">
 {onClose && (
     <button
         onClick={onClose}
