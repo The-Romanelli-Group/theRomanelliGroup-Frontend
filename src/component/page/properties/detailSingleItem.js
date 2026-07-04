@@ -551,7 +551,7 @@ py-2
         </div> {/* main grid */}
       
           <Footer/>
-          </div> {/* main wrapper after return */}
+          </div> 
 
     
   )
