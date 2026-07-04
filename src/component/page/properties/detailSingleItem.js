@@ -202,10 +202,7 @@ Taxes and insurance not included.
 
   </div>
 
- <div className="mt-8">
-
-
-              {                
+ <div className="mt-8">               
                {/* About this Home */}
 
 <div className="mt-10">
@@ -487,9 +484,7 @@ Taxes and insurance not included.
               </div>
               
                 </div>
-          </div>
-        </div>
-        
+          
         {/* Right Column - Contact Form */}
         <div className="lg:col-span-1 ml-0 order-last">
           <div className="sticky top-4">
