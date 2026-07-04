@@ -139,7 +139,7 @@ if (remarks.includes("public water"))
 const uniqueHighlights = [...new Set(highlights)];
 
   return (
-    <div className="mainVideo">
+    
     <div className="pt-8 sm:px-4 md:px-6 px-2 lg:px-24">
       {/* Carousel Section */}
       <div className="mb-6 md:mb-8">
@@ -207,9 +207,7 @@ const uniqueHighlights = [...new Set(highlights)];
             ${unique.PostalCode || ""}`}
         </p>
 
-        {/* Stats */}
-
-        {/* Quick Stats */}
+                {/* Quick Stats */}
 
 <div
   className="
@@ -320,7 +318,7 @@ py-2
                         </div>
   </div>
 
-</div>
+</div> {/* quick stats closing */}
 
         {/* Payment */}
 
@@ -356,8 +354,8 @@ py-2
 
         </div>
 
-      </div>
- <div className="mt-8">               
+      </div> {/* closes header pb-6 border-b*/}
+              
   <div className="mt-8">
 
   <h2 className="text-2xl font-bold text-gray-900 mb-5">
@@ -384,9 +382,9 @@ py-2
       </div>
     ))}
 
-  </div>
+  </div> 
 
-</div>
+</div> {/* closes mt-8 (second)*/}
                {/* Property Description */}
 
 <div className="mt-8">
@@ -468,9 +466,9 @@ py-2
         </button>
       )}
 
-  </div>
+  </div>  
 
-</div>
+</div>   {/* closes mt-8 392 */}
 
                   <div className="mt-8">
 
@@ -522,7 +520,7 @@ py-2
 
   </div>
 
-</div>
+</div> {/* closes mt-8 475 */}
                 
               
                 
@@ -530,11 +528,12 @@ py-2
                 <div className="mt-6 md:mt-8">
                   <RelatedItem listings={listings} allData={allData} id={id} />
                 </div>
-              </div>
               
-                </div>
+              </div> 
+              
+                </div> {/* left colum ends here */}
           
-                  {/* Right Column - Contact Form */}
+                  {/* Right Column - lead Form */}
 
             <aside className="hidden lg:block lg:col-span-1">
 
@@ -549,13 +548,13 @@ py-2
 
             </aside>
          
-        </div>
+        </div> {/* main grid */}
       
- </div>
-    </div>
           <Footer/>
-    </div>
+          </div> {/* main wrapper after return */}
+
+    
   )
 }
 
-export default DetailSingleItem;
+export default DetailSingleItem; 
