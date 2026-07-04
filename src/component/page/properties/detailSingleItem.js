@@ -18,8 +18,7 @@ const DetailSingleItem = () => {
   let id = routeId;
 let listings = [];
 let allData = [];
-console.log("routeId:", routeId);
-console.log("id:", id);
+
 if (location.state) {
     ({ id, listings, allData } = location.state);
 } else {
@@ -39,27 +38,31 @@ const [unique, setUnique] = useState(foundProperty);
 
 useEffect(() => {
   if (!unique && id) {
-    console.log("Fallback fetching property:", id);
-    console.log("Property Data:", unique);
-
+   
     fetch(
   `${process.env.REACT_APP_FEATURE_LISTINGS}/property-listings/property?ListingKey=${id}`
 )
       .then(res => res.json())
       .then(data => {
-        console.log("API RESPONSE:", data);
+      
 
         const item = data?.value?.[0];
 
         if (item) {
           setUnique(item);
         } else {
-          console.log("No property from API");
-        }
+          console.error("Property not found");}
       })
       .catch(err => console.error(err));
-  }
+      }
 }, [id]);
+useEffect(() => {
+  if (unique) {
+    console.log("========== MLS LISTING ==========");
+    console.log(unique);
+    console.log(JSON.stringify(unique, null, 2));
+  }
+}, [unique]);
 
 if (!unique) {
   return <p>Loading property...</p>;
@@ -197,9 +200,7 @@ if (!unique) {
       Beds
     </span>
   </div>
-</div>
 
-  {/* Baths */}
 
   {/* Baths */}
 
@@ -264,6 +265,7 @@ if (!unique) {
     </span>
   </div>
 </div>
+
         {/* Payment */}
 
         <div className="
