@@ -66,7 +66,66 @@ useEffect(() => {
 
 
 if (!unique) {
-  return <p>Loading property...</p>;
+  return (
+    <div className="pt-8 px-2 sm:px-4 md:px-6 lg:px-24 animate-pulse">
+
+      {/* Gallery */}
+      <div className="w-full h-[220px] md:h-[520px] rounded-3xl bg-gray-200 mb-8"></div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        {/* Left */}
+        <div className="lg:col-span-2">
+
+          <div className="h-6 w-40 bg-gray-200 rounded-full mb-5"></div>
+
+          <div className="h-14 w-64 bg-gray-200 rounded mb-4"></div>
+
+          <div className="h-5 w-full max-w-lg bg-gray-200 rounded mb-8"></div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-3 mb-8">
+            <div className="h-20 rounded-xl bg-gray-200"></div>
+            <div className="h-20 rounded-xl bg-gray-200"></div>
+            <div className="h-20 rounded-xl bg-gray-200"></div>
+          </div>
+
+          {/* Payment */}
+          <div className="h-36 rounded-2xl bg-gray-200 mb-8"></div>
+
+          {/* Highlights */}
+          <div className="flex flex-wrap gap-3 mb-8">
+            {[1,2,3,4].map(i => (
+              <div
+                key={i}
+                className="h-10 w-32 rounded-full bg-gray-200"
+              />
+            ))}
+          </div>
+
+          {/* Description */}
+          <div className="space-y-3">
+            {[1,2,3,4,5].map(i => (
+              <div
+                key={i}
+                className="h-4 rounded bg-gray-200"
+              />
+            ))}
+          </div>
+
+        </div>
+
+        {/* Right Sidebar */}
+        <div className="hidden lg:block">
+
+          <div className="sticky top-6 rounded-3xl bg-gray-200 h-[620px]"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+  );
 }
 
   const propertyDetails = [
