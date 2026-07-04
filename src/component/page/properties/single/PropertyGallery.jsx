@@ -51,6 +51,21 @@ const PropertyGallery = ({ image = [] }) => {
   );
 
   // ----------------------------------------
+const MAX_DOTS = 7;
+
+const dotStart = Math.max(
+  0,
+  Math.min(
+    selected - Math.floor(MAX_DOTS / 2),
+    Math.max(0, image.length - MAX_DOTS)
+  )
+);
+
+const visibleDots = image.slice(
+  dotStart,
+  dotStart + MAX_DOTS
+);
+ // ----------------------------------------
 
   useEffect(() => {
     return () => {
@@ -329,7 +344,11 @@ return (
     flex
     justify-center">
       <div className="flex items-center gap-2">
-        {image.map((_, index) => (
+        {visibleDots.map((_, i) => {
+
+        const index = dotStart + i;
+
+        return (
           <button
             key={index}
             aria-label={`Go to image ${index + 1}`}
@@ -345,7 +364,8 @@ return (
               }
             `}
           />
-        ))}
+        );
+          })}
       </div>
     </div>
           </div>
