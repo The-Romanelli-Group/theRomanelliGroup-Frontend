@@ -1,4 +1,9 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 import axios from "axios";
 import useEmblaCarousel from "embla-carousel-react";
 import { motion } from "framer-motion";
@@ -6,12 +11,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Families = () => {
   const [families, setFamilies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     loop: true,
-    skipSnaps: false,
     dragFree: false,
+    containScroll: "trimSnaps",
+    duration: 22,
   });
 
   useEffect(() => {
@@ -21,7 +28,7 @@ const Families = () => {
           `${process.env.REACT_APP_FEATURE_LISTINGS}/served-families?populate=Image`
         );
 
-        const mapped = data.data.map((family) => ({
+        const mapped = (data?.data ?? []).map((family) => ({
           image:
             family.Image?.formats?.small?.url ||
             family.Image?.formats?.thumbnail?.url ||
@@ -36,6 +43,8 @@ const Families = () => {
         setFamilies(mapped);
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -50,7 +59,104 @@ const Families = () => {
     emblaApi?.scrollNext();
   }, [emblaApi]);
 
-  return (
+  const familyCards = useMemo(
+    () =>
+      families.map((family, index) => (
+        <div
+          key={index}
+          className="
+            min-w-[90%]
+            sm:min-w-[65%]
+            lg:min-w-[31%]
+            px-4
+          "
+        >
+          <article
+            className="
+              group
+              h-[520px]
+              overflow-hidden
+              rounded-[24px]
+              border
+              border-gray-200
+              bg-white
+              shadow-sm
+              hover:shadow-xl
+              transition-all
+              duration-300
+              flex
+              flex-col
+            "
+          >
+            {/* Image */}
+            <div className="relative h-56 overflow-hidden">
+              <img
+                src={family.image}
+                alt={family.name}
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding="async"
+                className="
+                  w-full
+                  h-full
+                  object-cover
+                  transition-transform
+                  duration-500
+                  group-hover:scale-[1.03]
+                "
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            </div>
+
+            {/* Content */}
+            <div className="flex flex-col flex-1 p-6">
+              <div className="text-4xl text-[#A61E22] leading-none font-playfair">
+                “
+              </div>
+
+              <p
+                className="
+                  mt-3
+                  flex-1
+                  italic
+                  text-gray-600
+                  leading-7
+                  line-clamp-4
+                "
+              >
+                {family.quote}
+              </p>
+
+              <div className="mt-5">
+                <div className="h-px bg-gray-200 mb-4" />
+
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {family.name}
+                </h3>
+
+                <p className="mt-1 text-sm text-gray-500">
+                  Happy Client
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      )),
+    [families]
+  );
+
+  if (loading) {
+    return (
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-5 lg:px-8">
+          <div className="h-[520px] rounded-[24px] bg-gray-100 animate-pulse" />
+        </div>
+      </section>
+    );
+  }
+
+   return (
 <section className="py-24 bg-white overflow-hidden">
 
 <div className="max-w-7xl mx-auto px-5 lg:px-8">
@@ -81,7 +187,7 @@ const Families = () => {
 
               </h2>
 
-                  <p className="mt-6 text-lg leading-8 text-gray-600">
+                  <p className="mt-6 text-lg leading-7 text-gray-600">
 
                   Real experiences from buyers and sellers who trusted
                   The Romanelli Group with one of life's biggest decisions.
@@ -92,188 +198,158 @@ const Families = () => {
 
                     <div className="relative mt-14">
 
-                    <button
-                    onClick={scrollPrev}
-                    className="
-                    absolute
-                    left-0
-                    lg:left-2
-                    top-1/2
-                     -translate-y-1/2
-                    z-20
-                    w-12
-                    h-12
-                    rounded-full
-                    bg-white
-                    shadow-xl
-                    border
-                    border-gray-200
-                    flex
-                    items-center
-                    justify-center
-                    transition-all
-                    duration-300
-                    hover:bg-[#A61E22]
-                    hover:text-white
-                    "
-                    >
+  {/* Left Arrow */}
+  <button
+    onClick={scrollPrev}
+    className="
+      absolute
+      left-[-20px]
+      lg:left-[-60px]
+      top-[42%]
+      -translate-y-1/2
+      z-20
+      w-14
+      h-14
+      rounded-full
+      bg-white/95
+      backdrop-blur
+      border
+      border-gray-200
+      shadow-lg
+      hover:bg-[#A61E22]
+      hover:text-white
+      hover:shadow-xl
+      transition-all
+      duration-300
+    "
+  >
+    <ChevronLeft size={22} />
+  </button>
 
-                    <ChevronLeft size={22}/>
+  {/* Right Arrow */}
+  <button
+    onClick={scrollNext}
+    className="
+      absolute
+      right-[-20px]
+      lg:right-[-60px]
+      top-[42%]
+      -translate-y-1/2
+      z-20
+      w-14
+      h-14
+      rounded-full
+      bg-white/95
+      backdrop-blur
+      border
+      border-gray-200
+      shadow-lg
+      hover:bg-[#A61E22]
+      hover:text-white
+      hover:shadow-xl
+      transition-all
+      duration-300
+    "
+  >
+    <ChevronRight size={22} />
+  </button>
 
-                    </button>
+  <div
+    ref={emblaRef}
+    className="overflow-hidden"
+  >
+    <div className="flex">
+      {families.map((family, index) => (
+        <div
+          key={index}
+          className="
+            min-w-[90%]
+            sm:min-w-[65%]
+            lg:min-w-[31%]
+            px-4
+          "
+        >
+          <article
+            className="
+              group
+              h-[520px]
+              overflow-hidden
+              rounded-[24px]
+              border
+              border-gray-200
+              bg-white
+              shadow-sm
+              hover:shadow-xl
+              transition-all
+              duration-300
+              flex
+              flex-col
+            "
+          >
+            {/* Image */}
+            <div className="relative h-56 overflow-hidden">
+              <img
+                src={family.image}
+                alt={family.name}
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding="async"
+                className="
+                  w-full
+                  h-full
+                  object-cover
+                  transition-transform
+                  duration-500
+                  group-hover:scale-[1.03]
+                "
+              />
 
-                    <button
-                    onClick={scrollNext}
-                    className="
-                    absolute
-                    right-0
-                    lg:right-2
-                    top-1/2
-                                       -translate-y-1/2
-                    z-20
-                    w-12
-                    h-12
-                    rounded-full
-                    bg-white
-                    shadow-xl
-                    border
-                    border-gray-200
-                    flex
-                    items-center
-                    justify-center
-                    transition-all
-                    duration-300
-                    hover:bg-[#A61E22]
-                    hover:text-white
-                    "
-                    >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            </div>
 
-                    <ChevronRight size={22}/>
+            {/* Content */}
+            <div className="flex flex-col flex-1 p-6">
 
-                    </button>
+              <div className="text-4xl text-[#A61E22] leading-none font-playfair">
+                “
+              </div>
 
-                        <div
-                        className="overflow-hidden"
-                        ref={emblaRef}
-                        >
+              <p
+                className="
+                  mt-3
+                  flex-1
+                  italic
+                  text-gray-600
+                  leading-7
+                  line-clamp-4
+                "
+              >
+                {family.quote}
+              </p>
 
-                        <div className="flex">
-                        {families.map((family, index) => (
+              <div className="mt-5">
 
-                          <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 25 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: .45,
-                            delay: index * .05,
-                          }}
-                          className="
-                          min-w-[90%]
-                          sm:min-w-[65%]
-                          lg:min-w-[33.333%]
-                          px-3
-                          "
-                          >
+                <div className="h-px bg-gray-200 mb-4" />
 
-                          <article
-                          className="
-                          group
-                          overflow-hidden
-                          rounded-[28px]
-                          border
-                          border-gray-200
-                          bg-white
-                          shadow-sm
-                          hover:shadow-2xl
-                          transition-all
-                          duration-500
-                          h-full
-                          flex
-                          flex-col
-                          "
-                          >
+                <h3 className="font-semibold text-lg text-gray-900">
+                  {family.name}
+                </h3>
 
-{/* Image */}
+                <p className="mt-1 text-sm text-gray-500">
+                  Happy Client
+                </p>
 
-                              <div className="relative overflow-hidden aspect-[4/5]">
+              </div>
 
-                              <img
-                              src={family.image}
-                              alt={family.name}
-                              loading="lazy"
-                              decoding="async"
-                              className="
-                              w-full
-                              h-full
-                              object-cover
-                              transition-transform
-                              duration-700
-                              group-hover:scale-105
-                              "
-                              />
-
-                                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/>
-
-                                      </div>
-
-{/* Content */}
-
-<div className="flex flex-col flex-1 p-7">
-
-<div className="text-[#A61E22] text-5xl leading-none font-playfair">
-“
+            </div>
+          </article>
+        </div>
+      ))}
+    </div>
+  </div>
 </div>
 
-<p
-className="
-mt-2
-text-gray-600
-leading-8
-italic
-line-clamp-5
-flex-1
-"
->
-
-{family.quote}
-
-</p>
-
-<div className="mt-8">
-
-<div className="h-px w-full bg-gray-200 mb-5"/>
-
-<h3 className="font-semibold text-gray-900 text-lg">
-
-{family.name}
-
-</h3>
-
-<p className="mt-1 text-sm text-gray-500">
-
-Happy Client
-
-</p>
-
-</div>
-
-</div>
-
-</article>
-
-</motion.div>
-
-))}
-
-</div>
-
-</div>
-</div>
-
-
-                          <div className="mt-16 flex justify-center">
+                          <div className="mt-8 flex justify-center">
 
                           <motion.button
                           whileHover={{ scale: 1.03 }}
