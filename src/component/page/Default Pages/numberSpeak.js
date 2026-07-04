@@ -13,7 +13,7 @@ const stats = [
     featured: true,
   },
   {
-    value: 550+,
+    value: 550,
     suffix: "+",
     title: "Deals Closed",
     description:
