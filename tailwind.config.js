@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+
   theme: {
     extend: {
       keyframes: {
@@ -11,13 +12,16 @@ module.exports = {
           "100%": { transform: "translateX(-100%)" },
         },
       },
+
       animation: {
         spinslow: "spin 10s linear infinite",
         "loop-scroll": "scrolling 90s ease-in-out infinite",
       },
+
       colors: {
-        backgroundColor: '#140E0E', // Name the color anything you want
+        backgroundColor: "#140E0E",
       },
+
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
         playfair: ["Montserrat", "serif"],
@@ -26,5 +30,9 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
-}
+
+  plugins: [
+    require("@tailwindcss/typography"),
+  
+  ],
+};

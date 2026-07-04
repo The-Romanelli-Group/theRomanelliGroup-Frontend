@@ -11,6 +11,7 @@ import React, { useState, useEffect } from 'react'
 const DetailSingleItem = () => {
   const location = useLocation();
   const { id: routeId } = useParams();
+  const [showFullDescription, setShowFullDescription] = useState(false);
   
   
   // Get data from location.state or sessionStorage
@@ -39,6 +40,7 @@ const [unique, setUnique] = useState(foundProperty);
 useEffect(() => {
   if (!unique && id) {
     console.log("Fallback fetching property:", id);
+    console.log("Property Data:", unique);
 
     fetch(
   `${process.env.REACT_APP_FEATURE_LISTINGS}/property-listings/property?ListingKey=${id}`
@@ -94,29 +96,249 @@ if (!unique) {
         <div className="lg:col-span-2 space-y-6 md:space-y-8">
           
           {/* Property Overview */}
-          <div className="bg-white rounded-lg">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-3 md:mb-4 text-left">Property Overview</h1>
-            <hr className='pb-2'/>
-            
-            <div className='flex flex-col md:flex-row justify-between gap-4'>
-              {/* Price and Basic Info */}
-              <div className="mb-4 md:mb-6 text-left w-full md:w-3/4">
-                <div className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-2">
-                  ${unique.ListPrice?.toLocaleString() || 'N/A'}
-                </div>
-                <div className="text-base sm:text-lg text-gray-900 mb-2">
-                  {unique.UnparsedAddress || `${unique.StreetNumber} ${unique.StreetName} ${unique.City} ${unique.StateOrProvince} ${unique.PostalCode}`}
-                </div>
-                <div className="text-sm text-gray-900 mb-4">
-                  Estimation payment provided by {unique.ListOfficeName || 'Keller Williams Realty Inc.'} is ${Math.round((unique.ListPrice || 0) * 0.005)}/mo
-                </div>
-                <hr className="my-4"/>
-                
-                <div className="mb-4 md:mb-6">
-                  <p className="text-gray-700 leading-relaxed text-sm md:text-base">
-                    {unique.PublicRemarks || 'No description available.'}
-                  </p>
-                </div>
+
+<div className="bg-white rounded-2xl">
+
+  {/* Listing Header */}
+
+  <div className="pb-8 border-b border-gray-200">
+
+    {/* Status + Type */}
+
+    <div className="flex flex-wrap items-center gap-3 mb-5">
+
+      <span className="px-4 py-2 rounded-full bg-[#A61E22] text-white text-xs font-semibold uppercase tracking-wide">
+        {unique.StandardStatus || "For Sale"}
+      </span>
+
+      <span className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 text-xs font-semibold">
+        {unique.PropertySubType || unique.PropertyType || "Residential"}
+      </span>
+
+      {unique.YearBuilt && (
+        <span className="text-sm text-gray-500">
+          Built {unique.YearBuilt}
+        </span>
+      )}
+
+    </div>
+
+    {/* Price */}
+
+    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+
+      ${unique.ListPrice?.toLocaleString() || "N/A"}
+
+    </h1>
+
+    {/* Address */}
+
+    <p className="mt-3 text-lg md:text-xl text-gray-600 leading-relaxed">
+
+      {unique.UnparsedAddress ||
+        `${unique.StreetNumber || ""} ${unique.StreetName || ""}
+        ${unique.City || ""}, ${unique.StateOrProvince || ""}
+        ${unique.PostalCode || ""}`}
+
+    </p>
+
+    {/* Quick Stats */}
+
+    <div className="flex flex-wrap gap-6 mt-7">
+
+      <div className="flex items-center gap-2">
+        <img src={bed} className="w-5 h-5" alt="" />
+        <span className="font-semibold text-gray-900">
+          {unique.BedroomsTotal || 0}
+        </span>
+        <span className="text-gray-600">
+          Beds
+        </span>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <img src={bathroom} className="w-5 h-5" alt="" />
+        <span className="font-semibold text-gray-900">
+          {unique.BathroomsTotalInteger || 0}
+        </span>
+        <span className="text-gray-600">
+          Baths
+        </span>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <img src={square} className="w-5 h-5" alt="" />
+        <span className="font-semibold text-gray-900">
+          {unique.BuildingAreaTotal?.toLocaleString() || "--"}
+        </span>
+        <span className="text-gray-600">
+          Sq Ft
+        </span>
+      </div>
+
+    </div>
+
+    {/* Estimated Payment */}
+
+    <div className="mt-8 rounded-2xl border border-gray-200 bg-gray-50 p-5">
+
+      <p className="text-sm uppercase tracking-wide text-gray-500">
+        Estimated Monthly Payment
+      </p>
+
+      <div className="mt-2 text-3xl font-bold text-gray-900">
+        ${Math.round((unique.ListPrice || 0) * 0.005).toLocaleString()}
+        <span className="text-lg font-medium text-gray-500">
+          /mo
+        </span>
+      </div>
+
+      <p className="mt-2 text-sm text-gray-500">
+       Estimated using current average mortgage rates.
+Taxes and insurance not included.
+      </p>
+
+    </div>
+
+  </div>
+
+ <div className="mt-8">
+
+
+              {                
+               {/* About this Home */}
+
+<div className="mt-10">
+
+  <h2 className="text-2xl font-semibold text-gray-900 mb-5">
+    Property Overview
+  </h2>
+
+  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+
+    <p
+      className={`
+        text-gray-700
+        leading-8
+        text-[15px]
+        whitespace-pre-line
+        transition-all
+        duration-300
+        ${
+          showFullDescription
+            ? ""
+            : "line-clamp-5"
+        }
+      `}
+    >
+      {unique.PublicRemarks || "No description available."}
+    </p>
+
+    {unique.PublicRemarks &&
+      unique.PublicRemarks.length > 350 && (
+        <button
+          onClick={() =>
+            setShowFullDescription(!showFullDescription)
+          }
+          className="
+            mt-5
+            font-semibold
+            text-[#A61E22]
+            hover:underline
+          "
+        >
+          {showFullDescription
+            ? "Show Less"
+            : "Read More"}
+        </button>
+      )}
+
+  </div>
+
+</div>
+                  {/* Property Facts */}
+
+<div className="mt-10">
+
+  <h2 className="text-2xl font-semibold text-gray-900 mb-5">
+    Property Facts
+  </h2>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+    <div className="rounded-2xl border border-gray-200 p-5">
+      <div className="flex items-center gap-3 mb-2">
+        <img src={propType} className="w-5 h-5" alt="" />
+        <span className="text-sm text-gray-500">Property Type</span>
+      </div>
+
+      <div className="text-lg font-semibold text-gray-900">
+        {unique.PropertyType || "N/A"}
+      </div>
+    </div>
+
+    <div className="rounded-2xl border border-gray-200 p-5">
+      <div className="flex items-center gap-3 mb-2">
+        <img src={size} className="w-5 h-5" alt="" />
+        <span className="text-sm text-gray-500">Square Footage</span>
+      </div>
+
+      <div className="text-lg font-semibold text-gray-900">
+        {unique.BuildingAreaTotal?.toLocaleString() || "--"} sqft
+      </div>
+    </div>
+
+    <div className="rounded-2xl border border-gray-200 p-5">
+      <div className="flex items-center gap-3 mb-2">
+        <img src={year} className="w-5 h-5" alt="" />
+        <span className="text-sm text-gray-500">Year Built</span>
+      </div>
+
+      <div className="text-lg font-semibold text-gray-900">
+        {unique.YearBuilt || "N/A"}
+      </div>
+    </div>
+
+    <div className="rounded-2xl border border-gray-200 p-5">
+      <div className="flex items-center gap-3 mb-2">
+        <img src={hoa} className="w-5 h-5" alt="" />
+        <span className="text-sm text-gray-500">HOA Fee</span>
+      </div>
+
+      <div className="text-lg font-semibold text-gray-900">
+        {unique.AssociationFee
+          ? `$${unique.AssociationFee}/mo`
+          : "No HOA"}
+      </div>
+    </div>
+
+    <div className="rounded-2xl border border-gray-200 p-5">
+      <div className="flex items-center gap-3 mb-2">
+        <img src={hvac} className="w-5 h-5" alt="" />
+        <span className="text-sm text-gray-500">Heating</span>
+      </div>
+
+      <div className="text-lg font-semibold text-gray-900">
+        {unique.Heating || "N/A"}
+      </div>
+    </div>
+
+    <div className="rounded-2xl border border-gray-200 p-5">
+      <div className="flex items-center gap-3 mb-2">
+        <img src={park} className="w-5 h-5" alt="" />
+        <span className="text-sm text-gray-500">Parking</span>
+      </div>
+
+      <div className="text-lg font-semibold text-gray-900">
+        {unique.GarageSpaces ||
+          unique.ParkingTotal ||
+          "N/A"}
+      </div>
+    </div>
+
+  </div>
+
+</div>
                 
                 {/* Property Details */}
                 {/* <div className="py-4 md:py-6">
@@ -264,36 +486,7 @@ if (!unique) {
                 </div>
               </div>
               
-              {/* Property Stats - Right Sidebar (hidden on mobile, visible on tablet and desktop) */}
-              <div className='hidden md:block w-full md:w-1/4'>
-                <div className="gap-4 text-sm text-gray-600 sticky top-4">
-                  <div className="flex items-center gap-1 mb-2">
-                    <img className='w-4 h-4' src={bed} alt='bed'/>
-                    <span>{unique.BedroomsTotal || 0} Bed</span>
-                  </div>
-                  <hr className='py-2 mt-1'/>
-                  <div className="flex items-center gap-1 mb-2">
-                    <img className='w-4 h-4' src={bathroom} alt='bathroom'/>
-                    <span>{unique.BathroomsTotalInteger || 0} Bathroom</span>
-                  </div>
-                  <hr className='py-2 mt-1'/>
-                  <div className="flex items-center gap-1 mb-2">
-                    <img className='w-4 h-4' src={square} alt='square'/>
-                    <span>{unique.BuildingAreaTotal || 0} sqft</span>
-                  </div>
-                  <hr className='py-2 mt-1'/>
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 pb-3">
-                    <span className="px-4 py-2 bg-green-600 text-white text-xs rounded-full">
-                      {unique?.StandardStatus}
-                    </span>
-                    <span className="px-4 py-2 bg-black text-white text-xs rounded-full">
-                      For {unique?.PropertyType}
-                    </span>
-                  </div>
                 </div>
-              </div>
-            </div>
           </div>
         </div>
         
@@ -306,8 +499,7 @@ if (!unique) {
       </div>
       
       {/* Mobile Property Stats - Fixed at bottom on mobile */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg p-3 z-10">
-        <div className="flex justify-between items-center">
+             <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
               <img className='w-4 h-4' src={bed} alt='bed'/>
