@@ -89,185 +89,215 @@ if (!unique) {
         <PropertyGallery image={unique.Media} />
       </div>
 
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-        
-        {/* Left Column - Property Overview & Details */}
-        <div className="lg:col-span-2 space-y-6 md:space-y-8">
-          
-          {/* Property Overview */}
+     {/* Main Content Grid */}
 
-<div className="bg-white rounded-2xl">
+<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-  {/* Listing Header */}
+  {/* Left Column */}
 
-  <div className="pb-6 border-b border-gray-200">
+  <div className="lg:col-span-2">
 
-    {/* Status */}
+    <div className="bg-white rounded-2xl text-left">
 
-    <div className="flex flex-wrap items-center gap-3 mb-4">
+      {/* Header */}
 
-      <span className="px-4 py-2 rounded-full bg-[#A61E22] text-white text-xs font-semibold uppercase tracking-wide">
-        {unique.StandardStatus || "For Sale"}
-      </span>
+      <div className="pb-6 border-b border-gray-200">
 
-      <span className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 text-xs font-semibold">
-        {unique.PropertySubType || unique.PropertyType || "Residential"}
-      </span>
+        {/* Status */}
 
-      {unique.YearBuilt && (
-        <span className="text-sm text-gray-500">
-          Built {unique.YearBuilt}
-        </span>
+        <div className="flex flex-wrap items-center gap-3 mb-4">
+
+          <span className="px-4 py-2 rounded-full bg-[#A61E22] text-white text-xs font-semibold uppercase tracking-wide">
+            {unique.StandardStatus || "For Sale"}
+          </span>
+
+          <span className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 text-xs font-semibold">
+            {unique.PropertySubType || unique.PropertyType || "Residential"}
+          </span>
+
+          {unique.YearBuilt && (
+            <span className="text-sm text-gray-500">
+              Built {unique.YearBuilt}
+            </span>
+          )}
+
+        </div>
+
+        {/* Price */}
+
+        <h1 className="
+          text-4xl
+          md:text-5xl
+          font-bold
+          text-gray-900
+          leading-none
+        ">
+          ${unique.ListPrice?.toLocaleString() || "N/A"}
+        </h1>
+
+        {/* Address */}
+
+        <p className="
+          mt-3
+          max-w-3xl
+          text-lg
+          text-gray-600
+          leading-relaxed
+        ">
+          {unique.UnparsedAddress ||
+            `${unique.StreetNumber || ""} ${unique.StreetName || ""}
+            ${unique.City || ""}, ${unique.StateOrProvince || ""}
+            ${unique.PostalCode || ""}`}
+        </p>
+
+        {/* Stats */}
+
+        <div className="
+          mt-6
+          flex
+          flex-wrap
+          gap-3
+        ">
+
+          <div className="
+            flex
+            items-center
+            gap-2
+            px-4
+            py-3
+            rounded-xl
+            border
+            border-gray-200
+            bg-gray-50
+          ">
+            <img src={bed} className="w-5 h-5" alt="" />
+            <span className="font-semibold text-gray-900">
+              {unique.BedroomsTotal || 0}
+            </span>
+            <span className="text-gray-600">Beds</span>
+          </div>
+
+          <div className="
+            flex
+            items-center
+            gap-2
+            px-4
+            py-3
+            rounded-xl
+            border
+            border-gray-200
+            bg-gray-50
+          ">
+            <img src={bathroom} className="w-5 h-5" alt="" />
+            <span className="font-semibold text-gray-900">
+              {unique.BathroomsTotalInteger || 0}
+            </span>
+            <span className="text-gray-600">Baths</span>
+          </div>
+
+          <div className="
+            flex
+            items-center
+            gap-2
+            px-4
+            py-3
+            rounded-xl
+            border
+            border-gray-200
+            bg-gray-50
+          ">
+            <img src={square} className="w-5 h-5" alt="" />
+            <span className="font-semibold text-gray-900">
+              {unique.BuildingAreaTotal?.toLocaleString() || "--"}
+            </span>
+            <span className="text-gray-600">Sq Ft</span>
+          </div>
+
+        </div>
+
+        {/* Payment */}
+
+        <div className="
+          mt-6
+          max-w-xl
+          rounded-2xl
+          border
+          border-gray-200
+          bg-gray-50
+          p-5
+        ">
+
+          <p className="text-xs uppercase tracking-widest text-gray-500">
+            Estimated Monthly Payment
+          </p>
+
+          <div className="mt-2 flex items-end gap-1">
+
+            <span className="text-4xl font-bold text-gray-900">
+              ${Math.round((unique.ListPrice || 0) * 0.005).toLocaleString()}
+            </span>
+
+            <span className="mb-1 text-lg text-gray-500">
+              /mo
+            </span>
+
+          </div>
+
+          <p className="mt-2 text-sm text-gray-500 leading-relaxed">
+            Estimated using current average mortgage rates. Taxes and insurance not included.
+          </p>
+
+        </div>
+
+      </div>
+ <div className="mt-8">               
+               {/* Property Description */}
+
+<div className="mt-8">
+
+  <div className="flex items-center justify-between mb-4">
+
+    <h2 className="text-2xl font-bold text-gray-900">
+      Property Description
+    </h2>
+
+    {unique.PublicRemarks &&
+      unique.PublicRemarks.length > 350 && (
+        <button
+          onClick={() =>
+            setShowFullDescription(!showFullDescription)
+          }
+          className="
+            hidden
+            sm:block
+            text-sm
+            font-semibold
+            text-[#A61E22]
+            hover:underline
+          "
+        >
+          {showFullDescription
+            ? "Show Less"
+            : "Read More"}
+        </button>
       )}
-
-    </div>
-
-    {/* Price */}
-
-    <h1 className="
-      text-4xl
-      md:text-5xl
-      font-bold
-      tracking-tight
-      text-gray-900
-    ">
-      ${unique.ListPrice?.toLocaleString() || "N/A"}
-    </h1>
-
-    {/* Address */}
-
-    <p className="
-      mt-2
-      text-lg
-      md:text-xl
-      text-gray-600
-      leading-relaxed
-      max-w-3xl
-    ">
-      {unique.UnparsedAddress ||
-        `${unique.StreetNumber || ""} ${unique.StreetName || ""}
-        ${unique.City || ""}, ${unique.StateOrProvince || ""}
-        ${unique.PostalCode || ""}`}
-    </p>
-
-    {/* Quick Stats */}
-
-    <div className="
-      mt-6
-      inline-flex
-      flex-wrap
-      gap-3
-    ">
-
-      <div className="
-        flex
-        items-center
-        gap-2
-        px-4
-        py-3
-        rounded-xl
-        bg-gray-50
-        border
-        border-gray-200
-      ">
-        <img src={bed} className="w-5 h-5" alt="" />
-        <span className="font-semibold text-gray-900">
-          {unique.BedroomsTotal || 0}
-        </span>
-        <span className="text-gray-600">
-          Beds
-        </span>
-      </div>
-
-      <div className="
-        flex
-        items-center
-        gap-2
-        px-4
-        py-3
-        rounded-xl
-        bg-gray-50
-        border
-        border-gray-200
-      ">
-        <img src={bathroom} className="w-5 h-5" alt="" />
-        <span className="font-semibold text-gray-900">
-          {unique.BathroomsTotalInteger || 0}
-        </span>
-        <span className="text-gray-600">
-          Baths
-        </span>
-      </div>
-
-      <div className="
-        flex
-        items-center
-        gap-2
-        px-4
-        py-3
-        rounded-xl
-        bg-gray-50
-        border
-        border-gray-200
-      ">
-        <img src={square} className="w-5 h-5" alt="" />
-        <span className="font-semibold text-gray-900">
-          {unique.BuildingAreaTotal?.toLocaleString() || "--"}
-        </span>
-        <span className="text-gray-600">
-          Sq Ft
-        </span>
-      </div>
-
-    </div>
-
-    {/* Estimated Payment */}
-
-    <div className="
-      mt-6
-      rounded-2xl
-      border
-      border-gray-200
-      bg-gray-50
-      p-5
-    ">
-
-      <p className="text-xs uppercase tracking-widest text-gray-500">
-        Estimated Monthly Payment
-      </p>
-
-      <div className="mt-2 text-3xl font-bold text-gray-900">
-        ${Math.round((unique.ListPrice || 0) * 0.005).toLocaleString()}
-        <span className="text-lg font-medium text-gray-500">
-          /mo
-        </span>
-      </div>
-
-      <p className="mt-2 text-sm text-gray-500">
-        Estimated using current average mortgage rates. Taxes and insurance not included.
-      </p>
-
-    </div>
 
   </div>
 
- <div className="mt-8">               
-               {/* About this Home */}
-
-<div className="mt-10">
-
-  <h2 className="text-2xl font-semibold text-gray-900 mb-5">
-    Property Overview
-  </h2>
-
-  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+  <div className="
+    rounded-2xl
+    border
+    border-gray-200
+    bg-white
+    p-6
+    shadow-sm
+  ">
 
     <p
       className={`
         text-gray-700
+        text-[16px]
         leading-8
-        text-[15px]
         whitespace-pre-line
         transition-all
         duration-300
@@ -288,7 +318,9 @@ if (!unique) {
             setShowFullDescription(!showFullDescription)
           }
           className="
+            sm:hidden
             mt-5
+            text-sm
             font-semibold
             text-[#A61E22]
             hover:underline
@@ -302,7 +334,7 @@ if (!unique) {
 
   </div>
 
-</div>   {/* closes mt-10 */}
+</div>
 
                   {/* Property Facts */}
 
