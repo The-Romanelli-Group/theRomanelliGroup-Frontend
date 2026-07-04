@@ -169,31 +169,35 @@ if (!unique) {
 
   {/* Beds */}
 
- <div
-  className="
-    flex
-    flex-col
-    items-center
-    justify-center
-    py-2
-    rounded-xl
-    border
-    border-gray-200
-    bg-gray-50
-  "
->
-  <img
-    src={bed}
-    className="w-4 h-4 mb-2"
-    alt=""
-  />
+  <div
+    className="
+      flex
+      flex-col
+      sm:flex-row
+      items-center
+      justify-center
+      gap-1
+      sm:gap-2
 
-  <div className="flex items-center gap-1">
-    <span className="text-lg font-bold text-gray-900">
+      px-2
+      py-3
+
+      sm:px-4
+      sm:py-3
+
+      rounded-xl
+      border
+      border-gray-200
+      bg-gray-50
+    "
+  >
+    <img src={bed} className="w-4 h-4 sm:w-5 sm:h-5" alt="" />
+
+    <span className="text-sm sm:text-base font-semibold text-gray-900">
       {unique.BedroomsTotal || 0}
     </span>
 
-    <span className="text-xs text-gray-600">
+    <span className="text-[11px] sm:text-sm text-gray-600">
       Beds
     </span>
   </div>
