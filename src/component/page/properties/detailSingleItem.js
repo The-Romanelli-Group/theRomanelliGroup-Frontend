@@ -628,7 +628,7 @@ py-2
                 
                 {/* Explore Similar Properties */}
                 <div className="mt-6 md:mt-8">
-                  <RelatedItem listings={listings} allData={allData} id={id} />
+                  <RelatedItem listingKey={id} />
                 </div>
               
               </div> 
