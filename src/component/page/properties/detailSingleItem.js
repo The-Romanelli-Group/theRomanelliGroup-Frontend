@@ -100,6 +100,44 @@ const pricePerSqFt =
       )
     : null;
 
+    const highlights = [];
+
+if (lotAcres) highlights.push(`${lotAcres} Acres`);
+
+if (unique.ArchitecturalStyle?.length)
+  highlights.push(...unique.ArchitecturalStyle);
+
+const remarks = unique.PublicRemarks?.toLowerCase() || "";
+
+if (remarks.includes("granite"))
+  highlights.push("Granite Countertops");
+
+if (remarks.includes("updated kitchen"))
+  highlights.push("Updated Kitchen");
+
+if (remarks.includes("luxury vinyl"))
+  highlights.push("Luxury Vinyl Flooring");
+
+if (remarks.includes("new roof"))
+  highlights.push("New Roof");
+
+if (remarks.includes("barn"))
+  highlights.push("Horse Barn");
+
+if (remarks.includes("arena"))
+  highlights.push("Outdoor Riding Arena");
+
+if (remarks.includes("fenced"))
+  highlights.push("Fenced Pastures");
+
+if (remarks.includes("natural gas"))
+  highlights.push("Natural Gas");
+
+if (remarks.includes("public water"))
+  highlights.push("Public Water");
+
+const uniqueHighlights = [...new Set(highlights)];
+
   return (
     <div className="mainVideo">
     <div className="pt-8 sm:px-4 md:px-6 px-2 lg:px-24">
@@ -320,6 +358,35 @@ py-2
 
       </div>
  <div className="mt-8">               
+  <div className="mt-8">
+
+  <h2 className="text-2xl font-bold text-gray-900 mb-5">
+    Property Highlights
+  </h2>
+
+  <div className="flex flex-wrap gap-3">
+
+    {uniqueHighlights.map((item) => (
+      <div
+        key={item}
+        className="
+          px-4
+          py-2
+          rounded-full
+          bg-[#A61E22]/10
+          text-[#A61E22]
+          font-medium
+          border
+          border-[#A61E22]/20
+        "
+      >
+        ✓ {item}
+      </div>
+    ))}
+
+  </div>
+
+</div>
                {/* Property Description */}
 
 <div className="mt-8">
