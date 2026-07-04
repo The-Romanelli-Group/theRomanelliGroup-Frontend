@@ -198,7 +198,6 @@ if (!unique) {
     </span>
   </div>
 
-
   {/* Baths */}
 
   <div
