@@ -75,12 +75,7 @@ const PropertyGallery = ({ image = [] }) => {
         alt=""
         loading="eager"
         draggable={false}
-        onClick={() => {
-  console.log("OPEN");
-  setIsFullscreen(true);
-}}
-        
-
+        onClick={() => setIsFullscreen(true)}
         className={`
           w-full
           h-[300px]
@@ -249,7 +244,6 @@ const PropertyGallery = ({ image = [] }) => {
 
         <button
           onClick={() => setIsFullscreen(true)}
-          
           className="
             w-11
             h-11
@@ -356,6 +350,7 @@ const PropertyGallery = ({ image = [] }) => {
 
         </div>
     
+
         </div>
 
         <Lightbox
@@ -364,9 +359,9 @@ const PropertyGallery = ({ image = [] }) => {
         index={selected}
         slides={slides}
         plugins={[Zoom]}
-       on={{
-  view: ({ index }) => setSelected(index),
-}}
+        on={{
+          view: ({ index }) => setSelected(index),
+        }}
         carousel={{
           finite: false,
           preload: 3,
@@ -382,7 +377,7 @@ const PropertyGallery = ({ image = [] }) => {
           doubleTapDelay: 250,
           keyboardMoveDistance: 60,
         }}
-        render={{
+        {/* render={{
           buttonPrev: ({ previous, disabled }) => (
             <button
               onClick={previous}
@@ -469,7 +464,8 @@ const PropertyGallery = ({ image = [] }) => {
               ×
             </button>
           ),
-        }}
+          *
+        }}*/}
       />
     </div>
   );
