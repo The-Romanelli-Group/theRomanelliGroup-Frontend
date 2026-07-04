@@ -852,7 +852,7 @@ return (
 >
 
             <button className="w-full h-14 rounded-2xl border-2 border-gray-900 bg-white text-gray-900 font-semibold text-lg hover:bg-gray-900 hover:text-white transition-all duration-300">
-                📞 Call an Agent
+                📞 Call Agent
             </button>
 
         </a>

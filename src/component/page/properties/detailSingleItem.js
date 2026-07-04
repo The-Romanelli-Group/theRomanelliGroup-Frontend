@@ -387,6 +387,60 @@ py-2
   </div> 
 
 </div> {/* closes mt-8 (second)*/}
+{variant === "property" && property && (
+  <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+
+    <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">
+      Listed By
+    </p>
+
+    <div className="flex items-center justify-between flex-wrap gap-4">
+
+      <div className="flex items-center gap-4">
+
+        <div className="w-14 h-14 rounded-full bg-[#A61E22] text-white flex items-center justify-center text-lg font-bold">
+          {property.ListAgentFirstName?.charAt(0)}
+          {property.ListAgentLastName?.charAt(0)}
+        </div>
+
+        <div>
+
+          <h3 className="text-lg font-semibold text-gray-900">
+            {property.ListAgentFirstName} {property.ListAgentLastName}
+          </h3>
+
+          <p className="text-gray-500">
+            {property.ListOfficeName}
+          </p>
+
+        </div>
+
+      </div>
+
+      {property.ListAgentPreferredPhone && (
+        <a
+          href={`tel:${property.ListAgentPreferredPhone}`}
+          className="
+            rounded-full
+            border
+            border-[#A61E22]
+            px-5
+            py-2
+            font-medium
+            text-[#A61E22]
+            hover:bg-[#A61E22]
+            hover:text-white
+            transition
+          "
+        >
+          📞 {property.ListAgentPreferredPhone}
+        </a>
+      )}
+
+    </div>
+
+  </div>
+)}
                {/* Property Description */}
 
 <div className="mt-8">
