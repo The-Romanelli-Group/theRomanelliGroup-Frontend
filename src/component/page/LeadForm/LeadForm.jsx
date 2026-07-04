@@ -89,6 +89,10 @@ const LeadForm = ({
 
     const config = FORM_CONFIG[variant];
     const isSell = variant === "sell";
+    const propertyTitle =
+  property?.StreetNumber && property?.StreetName
+    ? `${property.StreetNumber} ${property.StreetName}`
+    : property?.UnparsedAddress?.split(",")[0] || "This Property";
 
     const [step, setStep] = useState(1);
 
@@ -413,10 +417,7 @@ return (
         {/* Header */}
 <div className="text-center mt-4 mb-8">
   
-    const propertyTitle =
-  property?.StreetNumber && property?.StreetName
-    ? `${property.StreetNumber} ${property.StreetName}`
-    : property?.UnparsedAddress?.split(",")[0] || "This Property";
+    
 
    <h2 className="text-4xl md:text-5xl font-bold leading-tight">
 

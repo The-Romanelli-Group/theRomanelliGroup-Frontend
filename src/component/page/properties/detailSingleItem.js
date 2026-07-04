@@ -12,6 +12,7 @@ const DetailSingleItem = () => {
   const location = useLocation();
   const { id: routeId } = useParams();
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const [showPropertyLeadModal, setShowPropertyLeadModal] = useState(false);
   
   
   // Get data from location.state or sessionStorage
@@ -549,7 +550,41 @@ py-2
             </aside>
          
         </div> {/* main grid */}
-      
+      {/* Mobile Contact Bar */}
+
+<div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-[0_-8px_30px_rgba(0,0,0,.08)] px-4 py-3">
+
+  <div className="flex items-center justify-between">
+
+    <div>
+      <div className="text-lg font-bold text-gray-900">
+        ${unique.ListPrice?.toLocaleString()}
+      </div>
+
+      <div className="text-xs text-gray-500">
+        {unique.BedroomsTotal} Bed • {unique.BathroomsTotalInteger} Bath
+      </div>
+    </div>
+
+    <button
+      onClick={() => setShowPropertyLeadModal(true)}
+      className="
+        rounded-full
+        bg-[#A61E22]
+        px-6
+        py-3
+        text-sm
+        font-semibold
+        text-white
+      "
+    >
+      Contact Agent
+    </button>
+
+  </div>
+
+</div>
+
           <Footer/>
           </div> 
 

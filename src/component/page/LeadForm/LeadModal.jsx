@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 import LeadForm from "./LeadForm";
 
-const LeadModal = ({ open, onClose }) => {
+const LeadModal = ({
+    open,
+    onClose,
+    variant = "contact",
+    property = null,
+}) => {
 
     useEffect(() => {
 
@@ -34,14 +39,11 @@ const LeadModal = ({ open, onClose }) => {
 
             <div className="relative w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto no-scrollbar">
 
-                {/* Close Button */}
-
-            
-
-               <LeadForm
-    variant="contact"
-    onClose={onClose}
-/>
+                <LeadForm
+                    variant={variant}
+                    property={property}
+                    onClose={onClose}
+                />
 
             </div>
 
@@ -51,4 +53,4 @@ const LeadModal = ({ open, onClose }) => {
 
 };
 
-export default LeadModal; 
+export default LeadModal;
