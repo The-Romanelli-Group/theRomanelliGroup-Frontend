@@ -200,59 +200,75 @@ const Families = () => {
 
   {/* Left Arrow */}
   <button
-    onClick={scrollPrev}
-    className="
-      absolute
-      left-[-20px]
-      lg:left-[-60px]
-      top-[42%]
-      -translate-y-1/2
-      z-20
-      w-14
-      h-14
-      rounded-full
-      bg-white/95
-      backdrop-blur
-      border
-      border-gray-200
-      shadow-lg
-      hover:bg-[#A61E22]
-      hover:text-white
-      hover:shadow-xl
-      transition-all
-      duration-300
-    "
-  >
-    <ChevronLeft size={22} />
-  </button>
+  aria-label="Previous testimonial"
+  onClick={scrollPrev}
+  disabled={!emblaApi}
+  className="
+    hidden
+    md:flex
+    absolute
+    left-[-28px]
+    lg:left-[-60px]
+    top-[42%]
+    -translate-y-1/2
+    z-20
+    w-14
+    h-14
+    rounded-full
+    bg-white/90
+    backdrop-blur-xl
+    shadow-2xl
+    items-center
+    justify-center
+    text-gray-800
+    transition-all
+    duration-200
+    hover:bg-[#A61E22]
+    hover:text-white
+    hover:scale-105
+    active:scale-95
+    disabled:opacity-40
+    disabled:cursor-not-allowed
+  "
+>
+  <ChevronLeft size={24} />
+</button>
 
   {/* Right Arrow */}
   <button
-    onClick={scrollNext}
-    className="
-      absolute
-      right-[-20px]
-      lg:right-[-60px]
-      top-[42%]
-      -translate-y-1/2
-      z-20
-      w-14
-      h-14
-      rounded-full
-      bg-white/95
-      backdrop-blur
-      border
-      border-gray-200
-      shadow-lg
-      hover:bg-[#A61E22]
-      hover:text-white
-      hover:shadow-xl
-      transition-all
-      duration-300
-    "
-  >
-    <ChevronRight size={22} />
-  </button>
+  aria-label="Next testimonial"
+  onClick={scrollNext}
+  disabled={!emblaApi}
+  className="
+    hidden
+    md:flex
+    absolute
+    right-[-28px]
+    lg:right-[-60px]
+    top-[42%]
+    -translate-y-1/2
+    z-20
+    w-14
+    h-14
+    rounded-full
+    bg-white/90
+    backdrop-blur-xl
+    shadow-2xl
+    items-center
+    justify-center
+    text-gray-800
+    transition-all
+    duration-200
+    hover:bg-[#A61E22]
+    hover:text-white
+    hover:scale-105
+    active:scale-95
+    disabled:opacity-40
+    disabled:cursor-not-allowed
+  "
+>
+  <ChevronRight size={24} />
+</button>
 
   <div
     ref={emblaRef}
