@@ -86,56 +86,82 @@ one of life's biggest decisions.
 
 </motion.div>
 
-<div className="flex justify-end gap-3 mt-12 mb-8">
 
-<button
-onClick={scrollPrev}
-className="
-w-12
-h-12
-rounded-full
-border
-border-gray-200
-flex
-items-center
-justify-center
-hover:bg-[#A61E22]
-hover:text-white
-transition-all
-"
->
 
-<ChevronLeft size={20} />
+<<div className="relative">
 
-</button>
+  {/* Previous */}
 
-<button
-onClick={scrollNext}
-className="
-w-12
-h-12
-rounded-full
-border
-border-gray-200
-flex
-items-center
-justify-center
-hover:bg-[#A61E22]
-hover:text-white
-transition-all
-"
->
+  <button
+    onClick={scrollPrev}
+    aria-label="Previous testimonial"
+    className="
+      absolute
+      left-4
+      lg:left-6
+      top-1/2
+      -translate-y-1/2
+      z-20
+      w-14
+      h-14
+      rounded-full
+      bg-white/95
+      backdrop-blur
+      shadow-xl
+      border
+      border-gray-200
+      flex
+      items-center
+      justify-center
+      transition-all
+      duration-300
+      hover:bg-[#A61E22]
+      hover:border-[#A61E22]
+      hover:text-white
+      hover:scale-110
+    "
+  >
+    <ChevronLeft size={22} strokeWidth={2.2} />
+  </button>
 
-<ChevronRight size={20} />
+  {/* Next */}
 
-</button>
+  <button
+    onClick={scrollNext}
+    aria-label="Next testimonial"
+    className="
+      absolute
+      right-4
+      lg:right-6
+      top-1/2
+      -translate-y-1/2
+      z-20
+      w-14
+      h-14
+      rounded-full
+      bg-white/95
+      backdrop-blur
+      shadow-xl
+      border
+      border-gray-200
+      flex
+      items-center
+      justify-center
+      transition-all
+      duration-300
+      hover:bg-[#A61E22]
+      hover:border-[#A61E22]
+      hover:text-white
+      hover:scale-110
+    "
+  >
+    <ChevronRight size={22} strokeWidth={2.2} />
+  </button>
 
-</div>
-
-<div
-className="overflow-hidden"
-ref={emblaRef}
->
+  <div
+    className="overflow-hidden"
+    ref={emblaRef}
+  >
 
 <div className="flex">
   {families.map((family, index) => (
@@ -287,6 +313,7 @@ ref={emblaRef}
 
 </div>
 
+</div>
 </div>
 
 </section>
