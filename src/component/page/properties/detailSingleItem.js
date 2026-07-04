@@ -534,12 +534,20 @@ py-2
               
                 </div>
           
-        {/* Right Column - Contact Form */}
-        <div className="lg:col-span-1 ml-0 order-last">
-          <div className="sticky top-4">
-          <LeadForm variant="property" property={unique}/>
-          </div>
-        </div>
+                  {/* Right Column - Contact Form */}
+
+            <aside className="hidden lg:block lg:col-span-1">
+
+              <div className="sticky top-6">
+
+                <LeadForm
+                  variant="property"
+                  property={unique}
+                />
+
+              </div>
+
+            </aside>
          
         </div>
       
