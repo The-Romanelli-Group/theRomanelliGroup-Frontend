@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -20,27 +20,53 @@ const PropertyGallery = ({ image = [] }) => {
   const [fade, setFade] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const slides = image.map((img) => ({
-    src: img.MediaURL,
-  }));
+  // Prevent timeout leaks
+  const timeoutRef = useRef(null);
+
+  // Only rebuild slides when images change
+  const slides = useMemo(
+    () =>
+      image.map((img) => ({
+        src: img.MediaURL,
+      })),
+    [image]
+  );
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const changeImage = (newIndex) => {
-    if (newIndex === selected) return;
+    if (!image.length) return;
+
+    // Wrap safely
+    const wrappedIndex =
+      (newIndex + image.length) % image.length;
+
+    if (wrappedIndex === selected) return;
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
 
     setFade(false);
 
-    setTimeout(() => {
-      setSelected(newIndex);
+    timeoutRef.current = setTimeout(() => {
+      setSelected(wrappedIndex);
       setFade(true);
-    }, 170);
+    }, 120); // slightly snappier than 170ms
   };
 
   const handlers = useSwipeable({
     onSwipedLeft: () =>
-      changeImage((selected + 1) % image.length),
+      changeImage(selected + 1),
 
     onSwipedRight: () =>
-      changeImage((selected - 1 + image.length) % image.length),
+      changeImage(selected - 1),
 
     preventScrollOnSwipe: true,
     trackTouch: true,
@@ -48,12 +74,12 @@ const PropertyGallery = ({ image = [] }) => {
   });
 
   if (!image.length) {
-    return (
-      <div className="w-full h-[520px] rounded-3xl bg-gray-200 animate-pulse" />
-    );
-  }
-
   return (
+    <div className="w-full h-[520px] rounded-3xl bg-gray-200 animate-pulse" />
+  );
+}
+
+return (
   <div className="mb-12">
 
     {/* Hero Image */}
@@ -72,8 +98,10 @@ const PropertyGallery = ({ image = [] }) => {
 
       <img
         src={image[selected]?.MediaURL}
-        alt=""
+        alt={`Property image ${selected + 1}`}
         loading="eager"
+        fetchPriority="high"
+        decoding="async"
         draggable={false}
         onClick={() => setIsFullscreen(true)}
         className={`
@@ -92,14 +120,23 @@ const PropertyGallery = ({ image = [] }) => {
 
       {/* Gradient */}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent pointer-events-none" />
+      <div
+        className="
+          absolute
+          inset-0
+          bg-gradient-to-t
+          from-black/45
+          via-black/10
+          to-transparent
+          pointer-events-none
+        "
+      />
 
-      {/* Desktop Previous */}
+      {/* Previous */}
 
       <button
-        onClick={() =>
-          changeImage((selected - 1 + image.length) % image.length)
-        }
+        aria-label="Previous image"
+        onClick={() => changeImage(selected - 1)}
         className="
           hidden
           md:flex
@@ -107,30 +144,31 @@ const PropertyGallery = ({ image = [] }) => {
           left-5
           top-1/2
           -translate-y-1/2
-          w-12
-          h-12
+          w-14
+          h-14
           rounded-full
           bg-white/90
-          backdrop-blur-lg
-          shadow-xl
+          backdrop-blur-xl
+          shadow-2xl
           items-center
           justify-center
+          text-gray-800
           transition-all
           duration-200
           hover:bg-[#A61E22]
           hover:text-white
-          hover:scale-105
+          hover:scale-110
+          active:scale-95
         "
       >
-        <ChevronLeft size={22} />
+        <ChevronLeft size={24} />
       </button>
 
-      {/* Desktop Next */}
+      {/* Next */}
 
       <button
-        onClick={() =>
-          changeImage((selected + 1) % image.length)
-        }
+        aria-label="Next image"
+        onClick={() => changeImage(selected + 1)}
         className="
           hidden
           md:flex
@@ -138,63 +176,35 @@ const PropertyGallery = ({ image = [] }) => {
           right-5
           top-1/2
           -translate-y-1/2
-          w-12
-          h-12
+          w-14
+          h-14
           rounded-full
           bg-white/90
-          backdrop-blur-lg
-          shadow-xl
+          backdrop-blur-xl
+          shadow-2xl
           items-center
           justify-center
+          text-gray-800
           transition-all
           duration-200
           hover:bg-[#A61E22]
           hover:text-white
-          hover:scale-105
+          hover:scale-110
+          active:scale-95
         "
       >
-        <ChevronRight size={22} />
+        <ChevronRight size={24} />
       </button>
-       
-      {/* Bottom Right Controls */}
+
+      {/* Desktop Controls */}
 
       <div className="absolute bottom-5 right-5 hidden md:flex items-center gap-3">
 
-        {/* Counter */}
-
-        <div
-          className="
-            flex
-            items-center
-            gap-2
-            px-4
-            h-11
-            rounded-full
-            bg-black/65
-            backdrop-blur-xl
-            text-white
-            shadow-xl
-          "
-        >
-          <span className="text-sm font-semibold">
-            {selected + 1}
-          </span>
-
-          <span className="text-white/60">/</span>
-
-          <span className="text-sm">
-            {image.length}
-          </span>
-
-          <span className="text-xs text-white/70 ml-1">
-            Photos
-          </span>
-        </div>
-
-         
         {/* Favourite */}
 
         <button
+          aria-label="Save property"
+          title="Save property"
           className="
             w-11
             h-11
@@ -210,7 +220,8 @@ const PropertyGallery = ({ image = [] }) => {
             duration-200
             hover:bg-[#A61E22]
             hover:text-white
-            hover:scale-105
+            hover:scale-110
+            active:scale-95
           "
         >
           <Heart size={18} />
@@ -219,6 +230,8 @@ const PropertyGallery = ({ image = [] }) => {
         {/* Share */}
 
         <button
+          aria-label="Share property"
+          title="Share property"
           className="
             w-11
             h-11
@@ -234,7 +247,8 @@ const PropertyGallery = ({ image = [] }) => {
             duration-200
             hover:bg-[#A61E22]
             hover:text-white
-            hover:scale-105
+            hover:scale-110
+            active:scale-95
           "
         >
           <Share2 size={18} />
@@ -243,6 +257,8 @@ const PropertyGallery = ({ image = [] }) => {
         {/* Fullscreen */}
 
         <button
+          aria-label="View fullscreen gallery"
+          title="Fullscreen"
           onClick={() => setIsFullscreen(true)}
           className="
             w-11
@@ -259,128 +275,141 @@ const PropertyGallery = ({ image = [] }) => {
             duration-200
             hover:bg-[#A61E22]
             hover:text-white
-            hover:scale-105
+            hover:scale-110
+            active:scale-95
           "
         >
           <Maximize2 size={18} />
         </button>
 
+        {/* Counter */}
+
+        <div
+          className="
+            flex
+            items-center
+            px-4
+            h-11
+            rounded-full
+            bg-black/65
+            backdrop-blur-xl
+            text-white
+            shadow-xl
+            text-sm
+            font-medium
+          "
+        >
+          {selected + 1} <span className="mx-1 text-white/60">of</span> {image.length}
+        </div>
+
       </div>
-</div>
-       
-      {/* Desktop Filmstrip */}
+             
+          </div>
 
-      <div
-        className="
-          hidden
-          md:flex
-          gap-3
-          mt-5
-          overflow-x-auto
-          pb-2
-          scrollbar-hide
-        "
-      >
+    {/* Desktop Filmstrip */}
 
-        {image.map((img, index) => (
+    <div
+      className="
+        hidden
+        md:flex
+        gap-3
+        mt-5
+        overflow-x-auto
+        pb-2
+        scrollbar-hide
+      "
+    >
+      {image.map((img, index) => (
+        <button
+          key={img.MediaURL || index}
+          onClick={() => changeImage(index)}
+          aria-label={`View image ${index + 1}`}
+          className={`
+            flex-shrink-0
+            rounded-2xl
+            overflow-hidden
+            border-2
+            transition-all
+            duration-300
+            ${
+              selected === index
+                ? "border-[#A61E22] shadow-xl scale-105"
+                : "border-transparent opacity-80 hover:opacity-100 hover:scale-[1.03]"
+            }
+          `}
+        >
+          <img
+            src={img.MediaURL}
+            alt={`Thumbnail ${index + 1}`}
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+            className="
+              w-28
+              h-20
+              object-cover
+              transition-transform
+              duration-300
+              hover:scale-105
+            "
+          />
+        </button>
+      ))}
+    </div>
 
+    {/* Mobile Dots */}
+
+    <div className="md:hidden flex justify-center mt-5">
+      <div className="flex items-center gap-2">
+        {image.map((_, index) => (
           <button
             key={index}
+            aria-label={`Go to image ${index + 1}`}
             onClick={() => changeImage(index)}
             className={`
-              flex-shrink-0
-              rounded-2xl
-              overflow-hidden
+              rounded-full
               transition-all
               duration-300
-              border-2
               ${
                 selected === index
-                  ? "border-[#A61E22] shadow-xl scale-105"
-                  : "border-transparent opacity-80 hover:opacity-100 hover:scale-[1.03]"
+                  ? "w-8 h-2 bg-[#A61E22]"
+                  : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
               }
             `}
-          >
-
-            <img
-              src={img.MediaURL}
-              loading="lazy"
-              alt=""
-              className="
-                w-28
-                h-20
-                object-cover
-                transition-transform
-                duration-300
-                hover:scale-105
-              "
-            />
-
-          </button>
-
+          />
         ))}
-
       </div>
-      {/* Mobile Bottom Bar */}
-
-      <div className="md:hidden flex items-center justify-between mt-4">
-
-        {/* Dots */}
-
-        <div className="flex items-center gap-2">
-
-          {image.map((_, index) => (
-
-            <button
-              key={index}
-              onClick={() => changeImage(index)}
-              className={`
-                rounded-full
-                transition-all
-                duration-300
-                ${
-                  selected === index
-                    ? "w-8 h-2 bg-[#A61E22]"
-                    : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
-                }
-              `}
-            />
-
-          ))}
-
-        </div>
-    
-
-        </div>
-
-        <Lightbox
-        open={isFullscreen}
-        close={() => setIsFullscreen(false)}
-        index={selected}
-        slides={slides}
-        plugins={[Zoom]}
-        on={{
-          view: ({ index }) => setSelected(index),
-        }}
-        carousel={{
-          finite: false,
-          preload: 3,
-          padding: "40px",
-          spacing: "8%",
-        }}
-        controller={{
-          closeOnBackdropClick: true,
-        }}
-        zoom={{
-          maxZoomPixelRatio: 3,
-          zoomInMultiplier: 2,
-          doubleTapDelay: 250,
-          keyboardMoveDistance: 60,
-        }}
-      
-      />
     </div>
-  );
+
+    <Lightbox
+      open={isFullscreen}
+      close={() => setIsFullscreen(false)}
+      index={selected}
+      slides={slides}
+      plugins={[Zoom]}
+      on={{
+        view: ({ index }) => setSelected(index),
+      }}
+      carousel={{
+        finite: false,
+        preload: 3,
+        padding: "40px",
+        spacing: "8%",
+      }}
+      controller={{
+        closeOnBackdropClick: true,
+      }}
+      zoom={{
+        maxZoomPixelRatio: 3,
+        zoomInMultiplier: 2,
+        doubleTapDelay: 250,
+        keyboardMoveDistance: 60,
+      }}
+    />
+  </div>
+);
+
+  
 };
 
 export default PropertyGallery;
