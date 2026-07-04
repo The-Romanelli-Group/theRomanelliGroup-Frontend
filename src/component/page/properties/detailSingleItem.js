@@ -56,13 +56,7 @@ useEffect(() => {
       .catch(err => console.error(err));
       }
 }, [id]);
-useEffect(() => {
-  if (unique) {
-    console.log("========== MLS LISTING ==========");
-    console.log(unique);
-    console.log(JSON.stringify(unique, null, 2));
-  }
-}, [unique]);
+
 
 if (!unique) {
   return <p>Loading property...</p>;
