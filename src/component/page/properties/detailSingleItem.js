@@ -7,6 +7,7 @@ import { aeroplane, bathroom, bed, bus, city, globe, hoa, hospital, hvac, medica
 import Footer from '../Default Pages/footer';
 import PropertyMap from './single/propertymap';
 import React, { useState, useEffect } from 'react'
+import LeadModal from "../LeadForm/LeadModal";
 
 const DetailSingleItem = () => {
   const location = useLocation();
@@ -584,7 +585,12 @@ py-2
   </div>
 
 </div>
-
+<LeadModal
+  open={showPropertyLeadModal}
+  onClose={() => setShowPropertyLeadModal(false)}
+  variant="property"
+  property={unique}
+/>
           <Footer/>
           </div> 
 
