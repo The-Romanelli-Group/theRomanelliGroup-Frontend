@@ -412,26 +412,41 @@ return (
 )}
         {/* Header */}
 <div className="text-center mt-4 mb-8">
+  
+    const propertyTitle =
+  property?.StreetNumber && property?.StreetName
+    ? `${property.StreetNumber} ${property.StreetName}`
+    : property?.UnparsedAddress?.split(",")[0] || "This Property";
 
-    <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+   <h2 className="text-4xl md:text-5xl font-bold leading-tight">
 
-    <span className="text-gray-900">
+  {variant === "property" ? (
+    <>
+      <span className="text-gray-900">
+        Interested in
+      </span>
 
+      <br />
+
+      <span className="font-playfair italic font-normal text-red-700">
+        {propertyTitle}?
+      </span>
+    </>
+  ) : (
+    <>
+      <span className="text-gray-900">
         {isSell && step === 2
-            ? "Tell Us About"
-            : config.title}
+          ? "Tell Us About"
+          : config.title}
+      </span>{" "}
 
-    </span>
-
-    {" "}
-
-    <span className="font-playfair italic font-normal text-red-700 whitespace-nowrap">
-
+      <span className="font-playfair italic font-normal text-red-700 whitespace-nowrap">
         {isSell && step === 2
-            ? "Your Home"
-            : config.titleAccent}
-
-    </span>
+          ? "Your Home"
+          : config.titleAccent}
+      </span>
+    </>
+  )}
 
 </h2>
 
