@@ -10,17 +10,18 @@ const Families = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     loop: true,
+    skipSnaps: false,
     dragFree: false,
   });
 
   useEffect(() => {
     const fetchFamilies = async () => {
       try {
-        const response = await axios.get(
+        const { data } = await axios.get(
           `${process.env.REACT_APP_FEATURE_LISTINGS}/served-families?populate=Image`
         );
 
-        const mapped = response.data.data.map((family) => ({
+        const mapped = data.data.map((family) => ({
           image:
             family.Image?.formats?.small?.url ||
             family.Image?.formats?.thumbnail?.url ||
@@ -42,28 +43,12 @@ const Families = () => {
   }, []);
 
   const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
+    emblaApi?.scrollPrev();
   }, [emblaApi]);
 
   const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
+    emblaApi?.scrollNext();
   }, [emblaApi]);
-const [selectedIndex, setSelectedIndex] = useState(0);
-
-useEffect(() => {
-  if (!emblaApi) return;
-
-  const onSelect = () => {
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  };
-
-  emblaApi.on("select", onSelect);
-  onSelect();
-
-  return () => {
-    emblaApi.off("select", onSelect);
-  };
-}, [emblaApi]);
 
   return (
 <section className="py-24 bg-white overflow-hidden">
@@ -71,15 +56,17 @@ useEffect(() => {
 <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
 <motion.div
-initial={{ opacity: 0, y: 40 }}
-whileInView={{ opacity: 1, y: 0 }}
-viewport={{ once: true }}
-transition={{ duration: .7 }}
-className="text-center max-w-3xl mx-auto"
+initial={{opacity:0,y:30}}
+whileInView={{opacity:1,y:0}}
+viewport={{once:true}}
+transition={{duration:.6}}
+className="max-w-3xl mx-auto text-center"
 >
 
-<p className="uppercase tracking-[0.35em] text-[#A61E22] font-semibold text-sm">
+<p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+
 CLIENT STORIES
+
 </p>
 
 <h2 className="mt-4 text-4xl md:text-6xl font-bold text-gray-900">
@@ -87,12 +74,14 @@ CLIENT STORIES
 Stories From Our{" "}
 
 <span className="font-playfair italic font-normal text-[#A61E22]">
+
 Clients
+
 </span>
 
 </h2>
 
-<p className="mt-6 text-lg text-gray-600 leading-8">
+<p className="mt-6 text-lg leading-8 text-gray-600">
 
 Real experiences from buyers and sellers who trusted
 The Romanelli Group with one of life's biggest decisions.
@@ -101,23 +90,22 @@ The Romanelli Group with one of life's biggest decisions.
 
 </motion.div>
 
-<div className="relative mt-12">
+<div className="relative mt-14">
 
 <button
 onClick={scrollPrev}
 className="
 absolute
-left-3
-lg:left-6
+left-0
+lg:left-2
 top-1/2
 -z-10
 -translate-y-1/2
 z-20
-w-14
-h-14
+w-12
+h-12
 rounded-full
-bg-white/95
-backdrop-blur
+bg-white
 shadow-xl
 border
 border-gray-200
@@ -127,13 +115,11 @@ justify-center
 transition-all
 duration-300
 hover:bg-[#A61E22]
-hover:border-[#A61E22]
 hover:text-white
-hover:scale-110
 "
 >
 
-<ChevronLeft size={22} />
+<ChevronLeft size={22}/>
 
 </button>
 
@@ -141,16 +127,16 @@ hover:scale-110
 onClick={scrollNext}
 className="
 absolute
-right-3
-lg:right-6
+right-0
+lg:right-2
 top-1/2
+-z-10
 -translate-y-1/2
 z-20
-w-14
-h-14
+w-12
+h-12
 rounded-full
-bg-white/95
-backdrop-blur
+bg-white
 shadow-xl
 border
 border-gray-200
@@ -160,13 +146,11 @@ justify-center
 transition-all
 duration-300
 hover:bg-[#A61E22]
-hover:border-[#A61E22]
 hover:text-white
-hover:scale-110
 "
 >
 
-<ChevronRight size={22} />
+<ChevronRight size={22}/>
 
 </button>
 
@@ -175,54 +159,45 @@ className="overflow-hidden"
 ref={emblaRef}
 >
 
-<div className="flex">
+<div className="flex"></div>
+{families.map((family, index) => (
 
-{families.map((family,index)=>{
-
-const isActive=index===selectedIndex;
-
-return(
 <motion.div
-initial={{ opacity: 0, y: 30 }}
+key={index}
+initial={{ opacity: 0, y: 25 }}
 whileInView={{ opacity: 1, y: 0 }}
 viewport={{ once: true }}
 transition={{
   duration: .45,
   delay: index * .05,
 }}
-className={`
-transition-all
-duration-500
-ease-out
-px-3
-min-w-[92%]
-sm:min-w-[70%]
+className="
+min-w-[90%]
+sm:min-w-[65%]
 lg:min-w-[33.333%]
-${
-  isActive
-    ? "scale-[1.05] -translate-y-5 z-20"
-    : "scale-95 opacity-75"
-}
-`}
+px-3
+"
 >
 
 <article
-className={`
+className="
 group
-relative
 overflow-hidden
-rounded-[30px]
+rounded-[28px]
+border
+border-gray-200
 bg-white
+shadow-sm
+hover:shadow-2xl
 transition-all
 duration-500
-border
-${
-  isActive
-    ? "border-[#A61E22] shadow-[0_35px_80px_rgba(166,30,34,.18)]"
-    : "border-gray-200 shadow-sm"
-}
-`}
+h-full
+flex
+flex-col
+"
 >
+
+{/* Image */}
 
 <div className="relative overflow-hidden aspect-[4/5]">
 
@@ -231,160 +206,58 @@ src={family.image}
 alt={family.name}
 loading="lazy"
 decoding="async"
-className={`
+className="
 w-full
 h-full
 object-cover
-transition-all
+transition-transform
 duration-700
-${
-  isActive
-    ? "scale-110"
-    : "group-hover:scale-105"
-}
-`}
+group-hover:scale-105
+"
 />
 
-<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"/>
-
-{/* Featured Badge */}
-
-{isActive && (
-
-<div
-className="
-absolute
-top-5
-right-5
-rounded-full
-bg-[#A61E22]
-text-white
-text-xs
-font-semibold
-px-4
-py-2
-shadow-lg
-"
->
-
-Verified Client
+<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/>
 
 </div>
 
-)}
+{/* Content */}
 
-{/* Quote Bubble */}
+<div className="flex flex-col flex-1 p-7">
 
-<div
-className={`
-absolute
--bottom-7
-left-8
-transition-all
-duration-500
-${
-  isActive
-    ? "scale-100"
-    : "scale-90"
-}
-`}
->
-
-<div
-className="
-w-16
-h-16
-rounded-full
-bg-[#A61E22]
-text-white
-flex
-items-center
-justify-center
-text-4xl
-shadow-xl
-"
->
-
+<div className="text-[#A61E22] text-5xl leading-none font-playfair">
 “
-
 </div>
-
-</div>
-
-</div>
-
-<div className="pt-12 pb-8 px-8">
 
 <p
-className={`
-italic
+className="
+mt-2
+text-gray-600
 leading-8
-transition-all
-duration-500
-${
-  isActive
-    ? "text-gray-700 text-[17px]"
-    : "text-gray-500"
-}
-`}
+italic
+line-clamp-5
+flex-1
+"
 >
 
 {family.quote}
 
 </p>
 
-<div className="mt-10 flex items-center justify-between">
+<div className="mt-8">
 
-<div>
+<div className="h-px w-full bg-gray-200 mb-5"/>
 
-<h3
-className={`
-font-semibold
-transition-all
-duration-300
-${
-  isActive
-    ? "text-xl text-gray-900"
-    : "text-lg text-gray-800"
-}
-`}
->
+<h3 className="font-semibold text-gray-900 text-lg">
 
 {family.name}
 
 </h3>
 
-<div className="mt-3 h-1 w-14 rounded-full bg-[#A61E22]"/>
+<p className="mt-1 text-sm text-gray-500">
 
-</div>
+Happy Client
 
-<motion.div
-whileHover={{
-rotate:180
-}}
-transition={{
-duration:.5
-}}
-className={`
-w-11
-h-11
-rounded-full
-flex
-items-center
-justify-center
-transition-all
-duration-300
-${
-  isActive
-    ? "bg-[#A61E22] text-white"
-    : "bg-[#A61E22]/10 text-[#A61E22]"
-}
-`}
->
-
-★
-
-</motion.div>
+</p>
 
 </div>
 
@@ -394,9 +267,7 @@ ${
 
 </motion.div>
 
-)
-
-})}
+))}
 
 </div>
 
@@ -404,25 +275,21 @@ ${
 
 </div>
 
-<div className="flex justify-center mt-16">
+<div className="mt-16 flex justify-center">
 
 <motion.button
-whileHover={{
-scale:1.04
-}}
-whileTap={{
-scale:.98
-}}
-onClick={()=>window.location.href="/contact-us"}
+whileHover={{ scale: 1.03 }}
+whileTap={{ scale: .98 }}
+onClick={() => (window.location.href = "/contact-us")}
 className="
 rounded-full
 bg-[#A61E22]
 px-10
 py-4
-font-semibold
 text-white
-shadow-xl
-hover:shadow-2xl
+font-semibold
+shadow-lg
+hover:shadow-xl
 transition-all
 "
 >
@@ -430,8 +297,6 @@ transition-all
 Become Our Next Success Story
 
 </motion.button>
-
-</div>
 
 </div>
 
