@@ -381,44 +381,46 @@ return (
         scrollbar-hide
       "
     >
-      {visibleImages.map((img, i) => {
-            const index = start + i;
-        <button
-          key={img.MediaURL || index}
-          onClick={() => changeImage(index)}
-          aria-label={`View image ${index + 1}`}
-          className={`
-            flex-shrink-0
-            rounded-2xl
-            overflow-hidden
-            border-2
-            transition-all
-            duration-300
-            ${
-              selected === index
-                ? "border-[#A61E22] shadow-xl scale-105"
-                : "border-transparent opacity-80 hover:opacity-100 hover:scale-[1.03]"
-            }
-          `}
-        >
-          <img
-            src={img.MediaURL}
-            alt={`Thumbnail ${index + 1}`}
-            loading="lazy"
-            decoding="async"
-            draggable={false}
-            className="
-              w-28
-              h-20
-              object-cover
-              transition-transform
-              duration-300
-              hover:scale-105
-            "
-          />
-        </button>
-     
-      })}
+     {visibleImages.map((img, i) => {
+  const index = start + i;
+
+  return (
+    <button
+      key={img.MediaURL || index}
+      onClick={() => changeImage(index)}
+      aria-label={`View image ${index + 1}`}
+      className={`
+        flex-shrink-0
+        rounded-2xl
+        overflow-hidden
+        border-2
+        transition-all
+        duration-300
+        ${
+          selected === index
+            ? "border-[#A61E22] shadow-xl scale-105"
+            : "border-transparent opacity-80 hover:opacity-100 hover:scale-[1.03]"
+        }
+      `}
+    >
+      <img
+        src={img.MediaURL}
+        alt={`Thumbnail ${index + 1}`}
+        loading="lazy"
+        decoding="async"
+        draggable={false}
+        className="
+          w-28
+          h-20
+          object-cover
+          transition-transform
+          duration-300
+          hover:scale-105
+        "
+      />
+    </button>
+  );
+})}
     </div>
             {showCopied && (
             <div
