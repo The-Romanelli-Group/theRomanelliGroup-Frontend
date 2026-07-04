@@ -14,7 +14,6 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 
 import "yet-another-react-lightbox/styles.css";
 import "./PropertyGallery.css";
-
 const PropertyGallery = ({ image = [] }) => {
   const [selected, setSelected] = useState(0);
   const [fade, setFade] = useState(true);
@@ -32,6 +31,27 @@ const PropertyGallery = ({ image = [] }) => {
     [image]
   );
 
+  // -------- Thumbnail Optimization --------
+
+  const VISIBLE_THUMBS = 9;
+
+  const start = Math.max(
+    0,
+    Math.min(
+      selected - Math.floor(VISIBLE_THUMBS / 2),
+      Math.max(0, image.length - VISIBLE_THUMBS)
+    )
+  );
+
+  const end = Math.min(start + VISIBLE_THUMBS, image.length);
+
+  const visibleImages = useMemo(
+    () => image.slice(start, end),
+    [image, start, end]
+  );
+
+  // ----------------------------------------
+
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
@@ -43,7 +63,6 @@ const PropertyGallery = ({ image = [] }) => {
   const changeImage = (newIndex) => {
     if (!image.length) return;
 
-    // Wrap safely
     const wrappedIndex =
       (newIndex + image.length) % image.length;
 
@@ -58,16 +77,12 @@ const PropertyGallery = ({ image = [] }) => {
     timeoutRef.current = setTimeout(() => {
       setSelected(wrappedIndex);
       setFade(true);
-    }, 120); // slightly snappier than 170ms
+    }, 120);
   };
 
   const handlers = useSwipeable({
-    onSwipedLeft: () =>
-      changeImage(selected + 1),
-
-    onSwipedRight: () =>
-      changeImage(selected - 1),
-
+    onSwipedLeft: () => changeImage(selected + 1),
+    onSwipedRight: () => changeImage(selected - 1),
     preventScrollOnSwipe: true,
     trackTouch: true,
     trackMouse: false,
@@ -304,6 +319,35 @@ return (
 
       </div>
              
+    {/* Mobile Dots */}
+
+    <div className=" md:hidden
+    absolute
+    bottom-5
+    left-0
+    right-0
+    flex
+    justify-center">
+      <div className="flex items-center gap-2">
+        {image.map((_, index) => (
+          <button
+            key={index}
+            aria-label={`Go to image ${index + 1}`}
+            onClick={() => changeImage(index)}
+            className={`
+              rounded-full
+              transition-all
+              duration-300
+              ${
+                selected === index
+                  ? "w-8 h-2 bg-[#A61E22]"
+                  : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
+              }
+            `}
+          />
+        ))}
+      </div>
+    </div>
           </div>
 
     {/* Desktop Filmstrip */}
@@ -319,7 +363,8 @@ return (
         scrollbar-hide
       "
     >
-      {image.map((img, index) => (
+      {visibleImages.map((img, i) => {
+            const index = start + i;
         <button
           key={img.MediaURL || index}
           onClick={() => changeImage(index)}
@@ -354,32 +399,10 @@ return (
             "
           />
         </button>
-      ))}
+     );
+      })}
     </div>
 
-    {/* Mobile Dots */}
-
-    <div className="md:hidden flex justify-center mt-5">
-      <div className="flex items-center gap-2">
-        {image.map((_, index) => (
-          <button
-            key={index}
-            aria-label={`Go to image ${index + 1}`}
-            onClick={() => changeImage(index)}
-            className={`
-              rounded-full
-              transition-all
-              duration-300
-              ${
-                selected === index
-                  ? "w-8 h-2 bg-[#A61E22]"
-                  : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
-              }
-            `}
-          />
-        ))}
-      </div>
-    </div>
 
     <Lightbox
       open={isFullscreen}
