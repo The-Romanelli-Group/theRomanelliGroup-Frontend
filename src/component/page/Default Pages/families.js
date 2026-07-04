@@ -55,170 +55,168 @@ const Families = () => {
 
 <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
-<motion.div
-initial={{opacity:0,y:30}}
-whileInView={{opacity:1,y:0}}
-viewport={{once:true}}
-transition={{duration:.6}}
-className="max-w-3xl mx-auto text-center"
->
+              <motion.div
+            initial={{opacity:0,y:30}}
+            whileInView={{opacity:1,y:0}}
+            viewport={{once:true}}
+            transition={{duration:.6}}
+            className="max-w-3xl mx-auto text-center"
+            >
 
-<p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+        <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
 
-CLIENT STORIES
+              CLIENT STORIES
 
-</p>
+              </p>
 
-<h2 className="mt-4 text-4xl md:text-6xl font-bold text-gray-900">
+              <h2 className="mt-4 text-4xl md:text-6xl font-bold text-gray-900">
 
-Stories From Our{" "}
+              Stories From Our{" "}
 
-<span className="font-playfair italic font-normal text-[#A61E22]">
+              <span className="font-playfair italic font-normal text-[#A61E22]">
 
-Clients
+              Clients
 
-</span>
+              </span>
 
-</h2>
+              </h2>
 
-<p className="mt-6 text-lg leading-8 text-gray-600">
+                  <p className="mt-6 text-lg leading-8 text-gray-600">
 
-Real experiences from buyers and sellers who trusted
-The Romanelli Group with one of life's biggest decisions.
+                  Real experiences from buyers and sellers who trusted
+                  The Romanelli Group with one of life's biggest decisions.
 
-</p>
+                  </p>
 
-</motion.div>
+                </motion.div>
 
-<div className="relative mt-14">
+                    <div className="relative mt-14">
 
-<button
-onClick={scrollPrev}
-className="
-absolute
-left-0
-lg:left-2
-top-1/2
--z-10
--translate-y-1/2
-z-20
-w-12
-h-12
-rounded-full
-bg-white
-shadow-xl
-border
-border-gray-200
-flex
-items-center
-justify-center
-transition-all
-duration-300
-hover:bg-[#A61E22]
-hover:text-white
-"
->
+                    <button
+                    onClick={scrollPrev}
+                    className="
+                    absolute
+                    left-0
+                    lg:left-2
+                    top-1/2
+                     -translate-y-1/2
+                    z-20
+                    w-12
+                    h-12
+                    rounded-full
+                    bg-white
+                    shadow-xl
+                    border
+                    border-gray-200
+                    flex
+                    items-center
+                    justify-center
+                    transition-all
+                    duration-300
+                    hover:bg-[#A61E22]
+                    hover:text-white
+                    "
+                    >
 
-<ChevronLeft size={22}/>
+                    <ChevronLeft size={22}/>
 
-</button>
+                    </button>
 
-<button
-onClick={scrollNext}
-className="
-absolute
-right-0
-lg:right-2
-top-1/2
--z-10
--translate-y-1/2
-z-20
-w-12
-h-12
-rounded-full
-bg-white
-shadow-xl
-border
-border-gray-200
-flex
-items-center
-justify-center
-transition-all
-duration-300
-hover:bg-[#A61E22]
-hover:text-white
-"
->
+                    <button
+                    onClick={scrollNext}
+                    className="
+                    absolute
+                    right-0
+                    lg:right-2
+                    top-1/2
+                                       -translate-y-1/2
+                    z-20
+                    w-12
+                    h-12
+                    rounded-full
+                    bg-white
+                    shadow-xl
+                    border
+                    border-gray-200
+                    flex
+                    items-center
+                    justify-center
+                    transition-all
+                    duration-300
+                    hover:bg-[#A61E22]
+                    hover:text-white
+                    "
+                    >
 
-<ChevronRight size={22}/>
+                    <ChevronRight size={22}/>
 
-</button>
+                    </button>
 
-<div
-className="overflow-hidden"
-ref={emblaRef}
->
+                        <div
+                        className="overflow-hidden"
+                        ref={emblaRef}
+                        >
 
-<div className="flex">
-{families.map((family, index) => (
+                        <div className="flex">
+                        {families.map((family, index) => (
 
-<motion.div
-key={index}
-initial={{ opacity: 0, y: 25 }}
-whileInView={{ opacity: 1, y: 0 }}
-viewport={{ once: true }}
-transition={{
-  duration: .45,
-  delay: index * .05,
-}}
-className="
-min-w-[90%]
-sm:min-w-[65%]
-lg:min-w-[33.333%]
-px-3
-"
->
+                          <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 25 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: .45,
+                            delay: index * .05,
+                          }}
+                          className="
+                          min-w-[90%]
+                          sm:min-w-[65%]
+                          lg:min-w-[33.333%]
+                          px-3
+                          "
+                          >
 
-<article
-className="
-group
-overflow-hidden
-rounded-[28px]
-border
-border-gray-200
-bg-white
-shadow-sm
-hover:shadow-2xl
-transition-all
-duration-500
-h-full
-flex
-flex-col
-"
->
+                          <article
+                          className="
+                          group
+                          overflow-hidden
+                          rounded-[28px]
+                          border
+                          border-gray-200
+                          bg-white
+                          shadow-sm
+                          hover:shadow-2xl
+                          transition-all
+                          duration-500
+                          h-full
+                          flex
+                          flex-col
+                          "
+                          >
 
 {/* Image */}
 
-<div className="relative overflow-hidden aspect-[4/5]">
+                              <div className="relative overflow-hidden aspect-[4/5]">
 
-<img
-src={family.image}
-alt={family.name}
-loading="lazy"
-decoding="async"
-className="
-w-full
-h-full
-object-cover
-transition-transform
-duration-700
-group-hover:scale-105
-"
-/>
+                              <img
+                              src={family.image}
+                              alt={family.name}
+                              loading="lazy"
+                              decoding="async"
+                              className="
+                              w-full
+                              h-full
+                              object-cover
+                              transition-transform
+                              duration-700
+                              group-hover:scale-105
+                              "
+                              />
 
-<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/>
+                                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/>
 
-</div>
+                                      </div>
 
 {/* Content */}
 
@@ -272,32 +270,33 @@ Happy Client
 </div>
 
 </div>
+</div>
 
 
-<div className="mt-16 flex justify-center">
+                          <div className="mt-16 flex justify-center">
 
-<motion.button
-whileHover={{ scale: 1.03 }}
-whileTap={{ scale: .98 }}
-onClick={() => (window.location.href = "/contact-us")}
-className="
-rounded-full
-bg-[#A61E22]
-px-10
-py-4
-text-white
-font-semibold
-shadow-lg
-hover:shadow-xl
-transition-all
-"
->
+                          <motion.button
+                          whileHover={{ scale: 1.03 }}
+                          whileTap={{ scale: .98 }}
+                          onClick={() => (window.location.href = "/contact-us")}
+                          className="
+                          rounded-full
+                          bg-[#A61E22]
+                          px-10
+                          py-4
+                          text-white
+                          font-semibold
+                          shadow-lg
+                          hover:shadow-xl
+                          transition-all
+                          "
+                          >
 
-Become Our Next Success Story
+                          Become Our Next Success Story
 
- </motion.button>
+                          </motion.button>
 
-</div>   {/* CTA */}
+                          </div>   {/* CTA */}
 
 </div>   {/* max-w-7xl */}
 
