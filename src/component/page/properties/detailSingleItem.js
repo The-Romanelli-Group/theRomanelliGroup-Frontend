@@ -18,7 +18,8 @@ const DetailSingleItem = () => {
   let id = routeId;
 let listings = [];
 let allData = [];
-
+console.log("routeId:", routeId);
+console.log("id:", id);
 if (location.state) {
     ({ id, listings, allData } = location.state);
 } else {
@@ -38,25 +39,27 @@ const [unique, setUnique] = useState(foundProperty);
 
 useEffect(() => {
   if (!unique && id) {
-   
+    console.log("Fallback fetching property:", id);
+    console.log("Property Data:", unique);
+
     fetch(
   `${process.env.REACT_APP_FEATURE_LISTINGS}/property-listings/property?ListingKey=${id}`
 )
       .then(res => res.json())
       .then(data => {
-      
+        console.log("API RESPONSE:", data);
 
         const item = data?.value?.[0];
 
         if (item) {
           setUnique(item);
         } else {
-          console.error("Property not found");}
+          console.log("No property from API");
+        }
       })
       .catch(err => console.error(err));
-      }
+  }
 }, [id]);
-
 
 if (!unique) {
   return <p>Loading property...</p>;
@@ -198,66 +201,74 @@ if (!unique) {
 
   {/* Baths */}
 
-<div
-  className="
-    flex
-    flex-col
-    items-center
-    justify-center
-    py-2
-    rounded-xl
-    border
-    border-gray-200
-    bg-gray-50
-  "
->
-  <img
-    src={bathroom}
-    className="w-4 h-4 mb-2 sm:w-5 sm:h-5"
-    alt=""
-  />
+  <div
+    className="
+      flex
+      flex-col
+      sm:flex-row
+      items-center
+      justify-center
+      gap-1
+      sm:gap-2
 
-  <div className="flex items-center gap-1">
-    <span className="text-lg sm:text-base font-bold text-gray-900">
+      px-2
+      py-3
+
+      sm:px-4
+      sm:py-3
+
+      rounded-xl
+      border
+      border-gray-200
+      bg-gray-50
+    "
+  >
+    <img src={bathroom} className="w-4 h-4 sm:w-5 sm:h-5" alt="" />
+
+    <span className="text-sm sm:text-base font-semibold text-gray-900">
       {unique.BathroomsTotalInteger || 0}
     </span>
 
-    <span className="text-xs sm:text-sm text-gray-600">
+    <span className="text-[11px] sm:text-sm text-gray-600">
       Baths
     </span>
   </div>
-</div>
 
-{/* Square Feet */}
+  {/* Square Feet */}
 
-<div
-  className="
-    flex
-    flex-col
-    items-center
-    justify-center
-    py-2
-    rounded-xl
-    border
-    border-gray-200
-    bg-gray-50
-  "
->
-  <img
-    src={square}
-    className="w-4 h-4 mb-2 sm:w-5 sm:h-5"
-    alt=""
-  />
+  <div
+    className="
+      flex
+      flex-col
+      sm:flex-row
+      items-center
+      justify-center
+      gap-1
+      sm:gap-2
 
-  <div className="flex items-center gap-1">
-    <span className="text-lg sm:text-base font-bold text-gray-900">
+      px-2
+      py-3
+
+      sm:px-4
+      sm:py-3
+
+      rounded-xl
+      border
+      border-gray-200
+      bg-gray-50
+    "
+  >
+    <img src={square} className="w-4 h-4 sm:w-5 sm:h-5" alt="" />
+
+    <span className="text-sm sm:text-base font-semibold text-gray-900">
       {unique.BuildingAreaTotal?.toLocaleString() || "--"}
     </span>
 
-    <span className="text-xs sm:text-sm text-gray-600">
+    <span className="text-[11px] sm:text-sm text-gray-600">
       Sq Ft
     </span>
   </div>
+
 </div>
 
         {/* Payment */}
