@@ -159,7 +159,7 @@ className="overflow-hidden"
 ref={emblaRef}
 >
 
-<div className="flex"></div>
+<div className="flex">
 {families.map((family, index) => (
 
 <motion.div
@@ -273,7 +273,6 @@ Happy Client
 
 </div>
 
-</div>
 
 <div className="mt-16 flex justify-center">
 
@@ -296,9 +295,11 @@ transition-all
 
 Become Our Next Success Story
 
-</motion.button>
+ </motion.button>
 
-</div>
+</div>   {/* CTA */}
+
+</div>   {/* max-w-7xl */}
 
 </section>
 
