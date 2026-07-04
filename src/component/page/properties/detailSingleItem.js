@@ -152,68 +152,127 @@ if (!unique) {
 
         {/* Stats */}
 
-        <div className="
-          mt-6
-          flex
-          flex-wrap
-          gap-3
-        ">
+        {/* Quick Stats */}
 
-          <div className="
-            flex
-            items-center
-            gap-2
-            px-4
-            py-3
-            rounded-xl
-            border
-            border-gray-200
-            bg-gray-50
-          ">
-            <img src={bed} className="w-5 h-5" alt="" />
-            <span className="font-semibold text-gray-900">
-              {unique.BedroomsTotal || 0}
-            </span>
-            <span className="text-gray-600">Beds</span>
-          </div>
+<div
+  className="
+    mt-5
+    grid
+    grid-cols-3
+    gap-2
 
-          <div className="
-            flex
-            items-center
-            gap-2
-            px-4
-            py-3
-            rounded-xl
-            border
-            border-gray-200
-            bg-gray-50
-          ">
-            <img src={bathroom} className="w-5 h-5" alt="" />
-            <span className="font-semibold text-gray-900">
-              {unique.BathroomsTotalInteger || 0}
-            </span>
-            <span className="text-gray-600">Baths</span>
-          </div>
+    sm:flex
+    sm:flex-wrap
+    sm:gap-3
+  "
+>
 
-          <div className="
-            flex
-            items-center
-            gap-2
-            px-4
-            py-3
-            rounded-xl
-            border
-            border-gray-200
-            bg-gray-50
-          ">
-            <img src={square} className="w-5 h-5" alt="" />
-            <span className="font-semibold text-gray-900">
-              {unique.BuildingAreaTotal?.toLocaleString() || "--"}
-            </span>
-            <span className="text-gray-600">Sq Ft</span>
-          </div>
+  {/* Beds */}
 
-        </div>
+  <div
+    className="
+      flex
+      flex-col
+      sm:flex-row
+      items-center
+      justify-center
+      gap-1
+      sm:gap-2
+
+      px-2
+      py-3
+
+      sm:px-4
+      sm:py-3
+
+      rounded-xl
+      border
+      border-gray-200
+      bg-gray-50
+    "
+  >
+    <img src={bed} className="w-4 h-4 sm:w-5 sm:h-5" alt="" />
+
+    <span className="text-sm sm:text-base font-semibold text-gray-900">
+      {unique.BedroomsTotal || 0}
+    </span>
+
+    <span className="text-[11px] sm:text-sm text-gray-600">
+      Beds
+    </span>
+  </div>
+
+  {/* Baths */}
+
+  <div
+    className="
+      flex
+      flex-col
+      sm:flex-row
+      items-center
+      justify-center
+      gap-1
+      sm:gap-2
+
+      px-2
+      py-3
+
+      sm:px-4
+      sm:py-3
+
+      rounded-xl
+      border
+      border-gray-200
+      bg-gray-50
+    "
+  >
+    <img src={bathroom} className="w-4 h-4 sm:w-5 sm:h-5" alt="" />
+
+    <span className="text-sm sm:text-base font-semibold text-gray-900">
+      {unique.BathroomsTotalInteger || 0}
+    </span>
+
+    <span className="text-[11px] sm:text-sm text-gray-600">
+      Baths
+    </span>
+  </div>
+
+  {/* Square Feet */}
+
+  <div
+    className="
+      flex
+      flex-col
+      sm:flex-row
+      items-center
+      justify-center
+      gap-1
+      sm:gap-2
+
+      px-2
+      py-3
+
+      sm:px-4
+      sm:py-3
+
+      rounded-xl
+      border
+      border-gray-200
+      bg-gray-50
+    "
+  >
+    <img src={square} className="w-4 h-4 sm:w-5 sm:h-5" alt="" />
+
+    <span className="text-sm sm:text-base font-semibold text-gray-900">
+      {unique.BuildingAreaTotal?.toLocaleString() || "--"}
+    </span>
+
+    <span className="text-[11px] sm:text-sm text-gray-600">
+      Sq Ft
+    </span>
+  </div>
+
+</div>
 
         {/* Payment */}
 
