@@ -61,6 +61,14 @@ useEffect(() => {
   }
 }, [id]);
 
+useEffect(() => {
+  if (unique) {
+    console.log("========== MLS LISTING ==========");
+    console.log(unique);
+    console.log(JSON.stringify(unique, null, 2));
+  }
+}, [unique]);
+
 if (!unique) {
   return <p>Loading property...</p>;
 }
@@ -173,17 +181,12 @@ if (!unique) {
     className="
       flex
       flex-col
-      sm:flex-row
-      items-center
+            items-center
       justify-center
-      gap-1
-      sm:gap-2
+      gap-0.5
 
       px-2
-      py-3
-
-      sm:px-4
-      sm:py-3
+py-2
 
       rounded-xl
       border
@@ -191,15 +194,17 @@ if (!unique) {
       bg-gray-50
     "
   >
-    <img src={bed} className="w-4 h-4 sm:w-5 sm:h-5" alt="" />
+    <img src={bed} className="w-4 h-4 mb-1" alt="" />
 
-    <span className="text-sm sm:text-base font-semibold text-gray-900">
-      {unique.BedroomsTotal || 0}
-    </span>
+            <div className="flex items-center gap-1">
+          <span className="text-base font-bold text-gray-900">
+            {unique.BedroomsTotal || 0}
+          </span>
 
-    <span className="text-[11px] sm:text-sm text-gray-600">
-      Beds
-    </span>
+          <span className="text-xs text-gray-600">
+            Beds
+          </span>
+        </div>
   </div>
 
   {/* Baths */}
@@ -208,17 +213,12 @@ if (!unique) {
     className="
       flex
       flex-col
-      sm:flex-row
-      items-center
+        items-center
       justify-center
-      gap-1
-      sm:gap-2
+      gap-0.5
 
       px-2
-      py-3
-
-      sm:px-4
-      sm:py-3
+py-2
 
       rounded-xl
       border
@@ -226,15 +226,17 @@ if (!unique) {
       bg-gray-50
     "
   >
-    <img src={bathroom} className="w-4 h-4 sm:w-5 sm:h-5" alt="" />
+    <img src={bathroom} className="w-4 h-4 mb-1" alt="" />
 
-    <span className="text-sm sm:text-base font-semibold text-gray-900">
-      {unique.BathroomsTotalInteger || 0}
-    </span>
+                          <div className="flex items-center gap-1">
+                          <span className="text-base font-bold text-gray-900">
+                            {unique.BathroomsTotalInteger || 0}
+                          </span>
 
-    <span className="text-[11px] sm:text-sm text-gray-600">
-      Baths
-    </span>
+                          <span className="text-xs text-gray-600">
+                            Baths
+                          </span>
+                        </div>
   </div>
 
   {/* Square Feet */}
@@ -243,17 +245,12 @@ if (!unique) {
     className="
       flex
       flex-col
-      sm:flex-row
-      items-center
+            items-center
       justify-center
-      gap-1
-      sm:gap-2
+      gap-0.5
 
       px-2
-      py-3
-
-      sm:px-4
-      sm:py-3
+py-2
 
       rounded-xl
       border
@@ -261,15 +258,17 @@ if (!unique) {
       bg-gray-50
     "
   >
-    <img src={square} className="w-4 h-4 sm:w-5 sm:h-5" alt="" />
+    <img src={square} className="w-4 h-4 mb-1" alt="" />
 
-    <span className="text-sm sm:text-base font-semibold text-gray-900">
+    <div className="flex items-center gap-1">
+                          <span className="text-base font-bold text-gray-900">
       {unique.BuildingAreaTotal?.toLocaleString() || "--"}
     </span>
 
-    <span className="text-[11px] sm:text-sm text-gray-600">
-      Sq Ft
-    </span>
+   <span className="text-xs text-gray-600">
+                            Sqft
+                          </span>
+                        </div>
   </div>
 
 </div>
