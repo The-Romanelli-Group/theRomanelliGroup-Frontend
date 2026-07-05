@@ -20,7 +20,7 @@ const GoogleReviews = () => {
   }, []);
 
   return (
-  <section className="py-24 bg-white overflow-hidden">
+  <section className="py-12 bg-white overflow-hidden">
 
     <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
@@ -48,7 +48,7 @@ const GoogleReviews = () => {
           The Romanelli Group.
         </p>
 
-        <div className="mt-8 flex items-center justify-center gap-3">
+        <div className="mt-6 flex items-center justify-center gap-3">
 
           <div className="flex text-yellow-400 text-2xl">
             ★★★★★
@@ -65,7 +65,7 @@ const GoogleReviews = () => {
         </div>
 
       </motion.div>
-<div className="mt-10 max-w-md mx-auto">
+<div className="mt-6 max-w-md mx-auto">
     {reviews.length > 0 && (
         <GoogleReviewCard review={reviews[0]} />
     )}
