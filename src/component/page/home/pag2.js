@@ -150,27 +150,11 @@ const Pag2 = () => {
 
       <div className="max-w-3xl mx-auto mt-10">
 
-        <div
-          className="
-            relative
-            rounded-[28px]
-            bg-black/15
-            backdrop-blur-md
-            border
-            border-white/10
-            shadow-[0_25px_60px_rgba(0,0,0,.28)]
-            px-4
-            py-5
-            md:px-6
-            md:py-6
-          "
-        >
-          <div id="homebot_homeowner"></div>
-        </div>
+        <div id="homebot_homeowner"></div>
 
         {/* Trust Pills */}
 
-        <div className="mt-4 flex flex-wrap justify-center gap-3">
+        <div className="mt-5 flex flex-wrap justify-center gap-3">
 
           <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-5 py-2 text-sm text-white">
             ✓ Instant Home Estimate
