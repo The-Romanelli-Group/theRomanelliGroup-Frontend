@@ -10,6 +10,7 @@ const ClientSuccess = () => {
         try {
             const response = await axios.get("https://secure-pleasure-8cb8bfce78.strapiapp.com/api/client-successes?populate=*")
             const data = response.data.data
+            console.log(data);
             const mappedData = data.reduce((acc, item) => {
                 acc[item.Item_no] = {
                     url: item.Image?.formats?.medium?.url
