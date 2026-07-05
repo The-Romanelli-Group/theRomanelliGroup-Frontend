@@ -212,7 +212,151 @@ const Succeed = () => {
     </div>
 
   </div>
+  {/* sell */}
+<div
+  onClick={() => (window.location.href = "/sell")}
+  className="
+    group
+    cursor-pointer
+    rounded-[28px]
+    border
+    border-gray-200
+    bg-white
+    p-7
+    shadow-sm
+    hover:shadow-xl
+    hover:-translate-y-1
+    transition-all
+    duration-300
+  "
+>
 
+  <div className="flex items-start gap-5">
+
+    <div
+      className="
+        w-16
+        h-16
+        rounded-2xl
+        bg-[#A61E22]
+        flex
+        items-center
+        justify-center
+        shrink-0
+      "
+    >
+
+      <img
+        src={icon2_url}
+        alt=""
+        className="w-8 h-8"
+      />
+
+    </div>
+
+    <div className="flex-1">
+
+      <h3 className="text-2xl font-bold text-gray-900">
+        Sell Your Home Faster
+      </h3>
+
+      <p className="mt-3 text-gray-600 leading-7">
+        Maximize your home's value with expert pricing, powerful marketing
+        and a proven strategy that attracts qualified buyers.
+      </p>
+
+      <div
+        className="
+          mt-6
+          flex
+          items-center
+          font-semibold
+          text-[#A61E22]
+          group-hover:translate-x-1
+          transition-transform
+        "
+      >
+        Get Your Home Value →
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+{/* career */}
+<div
+  onClick={() => (window.location.href = "/contact-us")}
+  className="
+    group
+    cursor-pointer
+    rounded-[28px]
+    border
+    border-gray-200
+    bg-white
+    p-7
+    shadow-sm
+    hover:shadow-xl
+    hover:-translate-y-1
+    transition-all
+    duration-300
+  "
+>
+
+  <div className="flex items-start gap-5">
+
+    <div
+      className="
+        w-16
+        h-16
+        rounded-2xl
+        bg-[#A61E22]
+        flex
+        items-center
+        justify-center
+        shrink-0
+      "
+    >
+
+      <img
+        src={icon3_url}
+        alt=""
+        className="w-8 h-8"
+      />
+
+    </div>
+
+    <div className="flex-1">
+
+      <h3 className="text-2xl font-bold text-gray-900">
+        Grow Your Career
+      </h3>
+
+      <p className="mt-3 text-gray-600 leading-7">
+        Join one of Central Ohio's top-performing real estate teams and
+        build your business with proven systems, mentorship and support.
+      </p>
+
+      <div
+        className="
+          mt-6
+          flex
+          items-center
+          font-semibold
+          text-[#A61E22]
+          group-hover:translate-x-1
+          transition-transform
+        "
+      >
+        Join Our Team →
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 </motion.div>
 
     </div>
