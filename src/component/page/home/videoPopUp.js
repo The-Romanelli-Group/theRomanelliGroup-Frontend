@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const VideoPopUp = ({ video_pop_url, close }) => {
@@ -26,33 +27,46 @@ const VideoPopUp = ({ video_pop_url, close }) => {
   const handleCTA = () => {
     navigate("/contact-us");
   };
+useEffect(() => {
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      handleClose();
+    }
+  };
 
+  window.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, []);
   return (
   <div
-    id="video-popup"
-    tabIndex={-1}
-    className="
-      fixed
-      inset-0
-      z-[100]
+  id="video-popup"  onClick={handleClose}
+  tabIndex={-1}
+  className="
+    fixed
+    inset-0
+    z-[100]
 
-      flex
-      items-center
-      justify-center
+    flex
+    items-center
+    justify-center
 
-      md:items-end
-      md:justify-end
+    md:items-end
+    md:justify-end
 
-      md:bottom-4
-      md:right-4
+    md:bottom-4
+    md:right-4
 
-      bg-black/40
-      md:bg-transparent
-      backdrop-blur-[2px]
-      md:backdrop-blur-0
-    "
-  >
-    <div
+    bg-black/40
+    md:bg-transparent
+
+    backdrop-blur-[2px]
+    md:backdrop-blur-0
+  "
+>
+    <div onClick={(e) => e.stopPropagation()}
       className="
         relative
 
