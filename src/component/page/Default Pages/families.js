@@ -321,6 +321,26 @@ const Families = () => {
               />
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+              <div
+  className="
+    absolute
+    top-4
+    left-4
+    bg-[#A61E22]
+    text-white
+    text-[10px]
+    md:text-xs
+    font-semibold
+    uppercase
+    tracking-wide
+    px-3
+    py-2
+    rounded-full
+    shadow-md
+  "
+>
+  Happy Client
+</div>
             </div>
 
             {/* Content */}
@@ -351,10 +371,7 @@ const Families = () => {
                   {family.name}
                 </h3>
 
-                <p className="mt-1 text-sm text-gray-500">
-                  Happy Client
-                </p>
-
+              
               </div>
 
             </div>
