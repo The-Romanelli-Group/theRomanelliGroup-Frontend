@@ -103,7 +103,7 @@ md:h-[410px]
 object-cover
 "
         >
-          <source src={video_pop_url} type="video/mp4" />
+          <source src={video_pop_url} type="video/webm" />
         </video>
 
         {/* Close */}

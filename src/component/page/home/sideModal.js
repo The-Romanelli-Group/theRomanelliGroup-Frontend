@@ -69,7 +69,7 @@ return (
           preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src={pop_video} type="video/mp4" />
+          <source src={pop_video} type="video/webm" />
         </video>
 
         {/* Expand Button */}
