@@ -118,24 +118,92 @@ const Pag2 = () => {
         }, 500);
     };
     return (
-        <div>
-            <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto overflow-visible">
-                <div className="flex flex-col text-center w-full md:mb-6">
-                    <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-white mx-auto max-w-5xl px-4">
-                        Know What Your <span className='italic font-playfair'>Home</span> Is Really Worth. 
-                    </h1>
-                    <p className="mx-auto leading-relaxed font-medium md:font-semibold text-base sm:text-xl max-w-4xl ">
-                        Enter your address to get an instant home value report for selling, renting, or putting it on Airbnb.
-                    </p>
-                </div>
+        <section className="relative py-12 md:py-20 overflow-visible">
 
-                {/* Input & Button Section */}
-                <div id="homebot_homeowner" className='mb-10 md:mb-0'></div>
+  <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
+                {/* Heading */}
 
-               <SideModal />
-            </div>
-          
-        </div>
+<div className="max-w-4xl mx-auto text-center">
+
+  <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+    HOME VALUE ESTIMATOR
+  </p>
+
+  <h1 className="mt-3 text-[34px] md:text-6xl leading-tight font-bold text-white">
+    Know What Your{" "}
+    <span className="font-playfair italic font-normal text-[#A61E22]">
+      Home
+    </span>{" "}
+    Is Really Worth
+  </h1>
+
+  <p className="mt-5 text-[15px] md:text-xl leading-7 text-gray-200 max-w-3xl mx-auto">
+    Receive an instant home value estimate, comparable sales, neighborhood insights,
+    and market trends in seconds. No obligation, completely free.
+  </p>
+
+</div>
+
+                {/* Home Value Widget */}
+
+<div className="max-w-4xl mx-auto mt-10">
+
+  <div
+    className="
+      relative
+
+      rounded-[30px]
+
+      bg-white
+
+      border
+      border-white/20
+
+      shadow-[0_30px_80px_rgba(0,0,0,.18)]
+
+      p-4
+      md:p-6
+
+      overflow-hidden
+    "
+  >
+
+    {/* Soft Glow */}
+
+    <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 pointer-events-none" />
+
+    {/* Widget */}
+
+    <div className="relative z-10">
+      <div id="homebot_homeowner"></div>
+    </div>
+
+  </div>
+
+  {/* Trust Pills */}
+
+  <div className="mt-6 flex flex-wrap justify-center gap-3">
+
+    <div className="rounded-full bg-white/10 backdrop-blur-md border border-white/10 px-5 py-2 text-sm text-white">
+      ✓ Instant Home Estimate
+    </div>
+
+    <div className="rounded-full bg-white/10 backdrop-blur-md border border-white/10 px-5 py-2 text-sm text-white">
+      ✓ No Obligation
+    </div>
+
+    <div className="rounded-full bg-white/10 backdrop-blur-md border border-white/10 px-5 py-2 text-sm text-white">
+      ✓ 100% Free Report
+    </div>
+
+  </div>
+
+</div>
+
+<SideModal />
+           </div>
+
+</section>
     )
 }
 
