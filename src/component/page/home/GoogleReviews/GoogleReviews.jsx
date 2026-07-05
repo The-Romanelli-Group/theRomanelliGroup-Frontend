@@ -65,7 +65,7 @@ const GoogleReviews = () => {
         </div>
 
       </motion.div>
-<div className="mt-16 max-w-md mx-auto">
+<div className="mt-10 max-w-md mx-auto">
     {reviews.length > 0 && (
         <GoogleReviewCard review={reviews[0]} />
     )}

@@ -37,7 +37,7 @@ const GoogleReviewCard = ({ review }) => {
 
         {/* Quote */}
 
-        <div className="mt-6 text-5xl leading-none text-[#A61E22] font-playfair">
+        <div className=" text-4xl leading-none text-[#A61E22] font-playfair">
           “
         </div>
 
@@ -52,7 +52,7 @@ const GoogleReviewCard = ({ review }) => {
         <button
           onClick={() => window.open(review.url, "_blank")}
           className="
-            mt-5
+            mt-3
             text-left
             font-semibold
             text-[#A61E22]
@@ -64,7 +64,7 @@ const GoogleReviewCard = ({ review }) => {
 
         {/* Divider */}
 
-        <div className="border-t border-gray-200 mt-6 pt-5 flex items-center gap-4">
+        <div className="border-t border-gray-200 mt-3 pt-5 flex items-center gap-4">
 
           <img
             src={review.image}
