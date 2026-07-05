@@ -6,7 +6,7 @@ import Families from "../Default Pages/families";
 import QuestionAnswer from "../Default Pages/QuestionAnswer/questionAnswer";
 import Talk from "../Default Pages/talk";
 import Footer from "../Default Pages/footer";
-import ClientSay from "../Default Pages/Client Review/clientSay";
+import GoogleReviews from "./GoogleReviews/GoogleReviews";
 import Succeed from "../Default Pages/succeed";
 import ClientSuccess from "../Default Pages/clientSuccess";
 
@@ -42,7 +42,7 @@ const MainPage = () => {
       </motion.div>
 
       <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
-        <ClientSay />
+        <GoogleReviews />
       </motion.div>
 
       <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
