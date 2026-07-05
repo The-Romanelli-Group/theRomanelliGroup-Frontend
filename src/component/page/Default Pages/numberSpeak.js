@@ -62,7 +62,7 @@ const card = {
 
 const NumberSpeak = () => {
   return (
-    <section className="relative overflow-hidden bg-[#130d0d] py-24">
+    <section className="relative overflow-hidden bg-[#130d0d] py-8 md:py-12">
 
       {/* Background Glow */}
 
@@ -81,7 +81,7 @@ const NumberSpeak = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="max-w-3xl"
+          className="max-w-3xl mx-auto text-center"
         >
 
           <p className="uppercase tracking-[0.35em] text-[#A61E22] font-semibold text-sm">
@@ -90,7 +90,7 @@ const NumberSpeak = () => {
 
           </p>
 
-          <h2 className="mt-4 text-white text-4xl md:text-6xl font-bold leading-tight">
+          <h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
 
             The Numbers{" "}
 
@@ -106,7 +106,7 @@ const NumberSpeak = () => {
 
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-gray-400 max-w-2xl">
+          <p className="mt-4 text-[15px] md:text-lg leading-7 md:leading-8 text-gray-400 max-w-2xl mx-auto">
 
             Every number tells a story of trust, successful transactions and
             relationships we've built throughout the Ohio Valley.
@@ -122,7 +122,7 @@ const NumberSpeak = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-7 mt-16"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-7 mt-8 md:mt-12"
         >
 
           {stats.map((stat, index) => (
@@ -163,7 +163,7 @@ const NumberSpeak = () => {
 
               <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="relative p-8 lg:p-10">
+              <div className="relative p-6 md:p-8 lg:p-10">
 
                 {/* Number */}<div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
 
@@ -172,9 +172,9 @@ const NumberSpeak = () => {
     <motion.h3
       whileHover={{ scale: 1.04 }}
       className="
-        text-6xl
-        md:text-7xl
-        lg:text-8xl
+       text-5xl
+md:text-7xl
+lg:text-8xl
         font-black
         tracking-tight
         text-white
@@ -192,13 +192,13 @@ const NumberSpeak = () => {
       {stat.suffix}
     </motion.h3>
 
-    <div className="mt-6 h-1 w-16 rounded-full bg-[#A61E22]" />
+    <div className="mt-5 h-1 w-16 rounded-full bg-[#A61E22]" />
 
-    <h4 className="mt-6 text-2xl font-semibold text-white">
+   <h4 className="mt-5 text-xl md:text-2xl font-semibold text-white">
       {stat.title}
     </h4>
 
-    <p className="mt-4 max-w-2xl text-base leading-8 text-gray-400">
+    <p className="mt-3 text-[15px] md:text-base leading-7 md:leading-8 text-gray-400">
       {stat.description}
     </p>
 
