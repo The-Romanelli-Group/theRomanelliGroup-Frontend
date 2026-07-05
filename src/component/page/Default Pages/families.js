@@ -11,6 +11,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Families = () => {
   const [families, setFamilies] = useState([]);
+  const [expanded, setExpanded] = useState({});
   const [loading, setLoading] = useState(true);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -115,19 +116,31 @@ const Families = () => {
                 “
               </div>
 
-              <p
-                className="
-                  mt-3
-                  flex-1
-                  italic
-                  text-gray-600
-                  leading-7
-                  line-clamp-4
-                "
-              >
-                {family.quote}
-              </p>
-
+                          <p
+              className={`
+                mt-3
+                flex-1
+                italic
+                text-gray-600
+                leading-7
+                ${expanded[index] ? "" : "line-clamp-4"}
+              `}
+            >
+              {family.quote}
+            </p>
+{family.quote?.length > 180 && (
+  <button
+    onClick={() =>
+      setExpanded((prev) => ({
+        ...prev,
+        [index]: !prev[index],
+      }))
+    }
+    className="mt-2 text-sm font-semibold text-[#A61E22] hover:underline"
+  >
+    {expanded[index] ? "Show Less" : "Read More"}
+  </button>
+)}
               <div className="mt-5">
                 <div className="h-px bg-gray-200 mb-4" />
 
