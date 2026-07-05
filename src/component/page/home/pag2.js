@@ -117,7 +117,7 @@ const Pag2 = () => {
             }
         }, 500);
     };
-    returnreturn (
+    return (
   <section className="relative py-12 md:py-20 overflow-visible">
 
     <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
