@@ -7,7 +7,7 @@ const VideoPopUp = ({ video_pop_url, close }) => {
   const navigate = useNavigate();
 
   // Start muted so autoplay works across browsers
- const [isMuted, setIsMuted] = useState(false);
+const [isMuted, setIsMuted] = useState(true);
 
   const toggleMute = () => {
     if (!videoRef.current) return;
@@ -77,7 +77,17 @@ return (
           preload="metadata"
           disablePictureInPicture
           controlsList="nodownload"
-          className="w-[90vw] max-w-[380px] max-h-[80vh] md:w-[230px] md:h-[410px] object-cover"
+          className="
+w-[88vw]
+max-w-[360px]
+
+h-[74vh]
+
+md:w-[230px]
+md:h-[410px]
+
+object-cover
+"
         >
           <source src={video_pop_url} type="video/mp4" />
         </video>
