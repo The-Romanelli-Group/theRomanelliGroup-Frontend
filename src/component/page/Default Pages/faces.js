@@ -86,7 +86,7 @@ return (
     className="
       relative
       z-10
-      -mt-20
+      -mt-14
       w-full
       rounded-[28px]
       bg-white
@@ -176,8 +176,8 @@ return (
     className="
       absolute
       top-14
-      w-80
-      h-80
+      w-72
+      h-72
       rounded-full
       bg-[#A61E22]/10
       blur-3xl
@@ -207,7 +207,7 @@ return (
     className="
       relative
       z-10
-      -mt-20
+      -mt-14
       w-full
       rounded-[28px]
       bg-white
