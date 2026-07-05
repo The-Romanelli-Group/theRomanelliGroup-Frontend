@@ -278,6 +278,9 @@ const handleSuggestionSelect = (suggestion) => {
 
       // Optional: keep focus in the input
       inputRef.current?.focus();
+      setTimeout(() => {
+  handleSearch();
+}, 0);
     }
   );
 };
@@ -526,11 +529,17 @@ const filterCount =
     }
   }}
   onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
+  if (e.key === "Enter") {
+    e.preventDefault();
+
+    // If suggestions are visible, automatically use the first one
+    if (showDropdown && suggestions.length > 0) {
+      handleSuggestionSelect(suggestions[0]);
+    } else {
       handleSearch();
     }
-  }}
+  }
+}}
   onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
   onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
 />
