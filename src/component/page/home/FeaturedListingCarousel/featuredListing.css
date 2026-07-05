@@ -67,8 +67,8 @@
   }
 
   .featured-card {
-    flex: 0 0 84vw;
-    max-width: 340px;
+    flex: 0 0 80vw;
+    max-width: 330px;
     scroll-snap-align: start;
   }
 
