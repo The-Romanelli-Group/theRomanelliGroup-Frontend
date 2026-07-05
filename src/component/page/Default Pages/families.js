@@ -112,7 +112,7 @@ const Families = () => {
 
             {/* Content */}
             <div className="flex flex-col flex-1 p-6">
-             <div className="text-3xl md:text-4xl text-[#A61E22] leading-none font-playfair">
+              <div className="text-4xl text-[#A61E22] leading-none font-playfair">
                 “
               </div>
 
@@ -170,7 +170,7 @@ const Families = () => {
   }
 
    return (
-<section className="py-8 md:py-12 bg-white overflow-hidden">
+<section className="py-12 bg-white overflow-hidden">
 
 <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
@@ -188,7 +188,7 @@ const Families = () => {
 
               </p>
 
-              <<h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-gray-900">
+              <h2 className="mt-4 text-4xl md:text-6xl font-bold text-gray-900">
 
               Stories From Our{" "}
 
@@ -200,7 +200,7 @@ const Families = () => {
 
               </h2>
 
-                 <p className="mt-4 text-[15px] md:text-lg leading-7 text-gray-600">
+                  <p className="mt-6 text-lg leading-7 text-gray-600">
 
                   Real experiences from buyers and sellers who trusted
                   The Romanelli Group with one of life's biggest decisions.
@@ -209,7 +209,7 @@ const Families = () => {
 
                 </motion.div>
 
-                   <div className="relative mt-8 md:mt-12">
+                    <div className="relative mt-14">
 
   {/* Left Arrow */}
   <button
@@ -357,18 +357,17 @@ const Families = () => {
             </div>
 
             {/* Content */}
-           <div className="flex flex-col flex-1 p-5 md:p-6">
-            <div className="text-3xl md:text-4xl text-[#A61E22] leading-none font-playfair">
+            <div className="flex flex-col flex-1 p-6">
+
+              <div className="text-4xl text-[#A61E22] leading-none font-playfair">
                 “
               </div>
 
               <p
                 className="
-                  mt-2
+                  mt-3
                   flex-1
                   italic
-                  text-[15px]
-                  md:text-base
                   text-gray-600
                   leading-7
                   line-clamp-4
@@ -381,7 +380,7 @@ const Families = () => {
 
                 <div className="h-px bg-gray-200 mb-4" />
 
-              <h3 className="font-semibold text-base md:text-lg text-gray-900">
+                <h3 className="font-semibold text-lg text-gray-900">
                   {family.name}
                 </h3>
 
@@ -396,7 +395,7 @@ const Families = () => {
   </div>
 </div>
 
-                          <div className="mt-6 md:mt-8 flex justify-center">
+                          <div className="mt-8 flex justify-center">
 
                           <motion.button
                           whileHover={{ scale: 1.03 }}
@@ -405,9 +404,8 @@ const Families = () => {
                           className="
                           rounded-full
                           bg-[#A61E22]
-                          px-8 md:px-10
-py-3 md:py-4
-text-sm md:text-base
+                          px-10
+                          py-4
                           text-white
                           font-semibold
                           shadow-lg
