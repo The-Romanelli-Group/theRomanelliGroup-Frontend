@@ -1,43 +1,49 @@
 import { useEffect, useState } from 'react'
+import { Home, Clock3, MapPin } from "lucide-react";
 
 import axios from 'axios'
 import { motion } from "framer-motion";
 
 const ClientSuccess = () => {
-    const [allData, setAllData] = useState([])
-    const [allItemsReduce, setAllItemsReduce] = useState([])
-    const fetchData = async () => {
-        try {
-            const response = await axios.get("https://secure-pleasure-8cb8bfce78.strapiapp.com/api/client-successes?populate=*")
-            const data = response.data.data
-            console.log(data);
-            const mappedData = data.reduce((acc, item) => {
-                acc[item.Item_no] = {
-                    url: item.Image?.formats?.medium?.url
-                        ? item.Image.formats.medium.url
-                        : item.Image?.url
-                            ? item.Image.url
-                            : "",
-                    location: item.Location,
-                    bidding: item.Bidding,
-                    auction: item.Auction,
-                    size: item.Size,
-                };
-                return acc;
-            }, {});
-            setAllData(mappedData)
-        } catch (error) {
-            console.log(error)
-        }
+  const [allData, setAllData] = useState([]);
+  const [allItemsReduce, setAllItemsReduce] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://secure-pleasure-8cb8bfce78.strapiapp.com/api/client-successes?populate=*"
+      );
+
+      const data = response.data.data;
+
+      const mappedData = data.reduce((acc, item) => {
+        acc[item.Item_no] = {
+          url:
+            item.Image?.formats?.medium?.url ??
+            item.Image?.url ??
+            "",
+
+              badge: item.Badge,
+
+                location: item.Location,
+
+                soldFor: item.SoldFor,
+
+                soldIn: item.SoldIn,
+        };
+
+        return acc;
+      }, {});
+
+      setAllData(mappedData);
+    } catch (error) {
+      console.error("Error loading Client Success data:", error);
     }
-    useEffect(() => {
-        fetchData()
-        // const items = allData.reduce((acc, item) => {
-        //     acc[item.itemNo] = item;
-        //     return acc;
-        // }, {});
-        // setAllItemsReduce(items)
-    }, [])
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
     return (
 <section className="py-8 md:py-12 bg-[#171010] overflow-hidden">
 
@@ -55,10 +61,9 @@ const ClientSuccess = () => {
 
       <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
 
-        CLIENT SUCCESS
+CLIENT SUCCESS
 
-      </p>
-
+</p>
       <h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
 
         Celebrating Our{" "}
@@ -154,7 +159,7 @@ const ClientSuccess = () => {
     shadow-lg
   "
 >
-  Client Success
+  {item.badge || "Client Success"}
 </div>
 
 {/* Location */}
@@ -172,8 +177,7 @@ const ClientSuccess = () => {
   "
 >
   <h3 className="text-2xl font-bold">
-    {item.location}
-  </h3>
+    {item.location}  </h3>
 </div>
 {/* Hover Panel */}
 
@@ -199,45 +203,48 @@ const ClientSuccess = () => {
   "
 >
 
-  <div className="space-y-4">
+ <div className="space-y-4">
 
-    <div className="flex items-center justify-between">
+  <div className="flex items-center gap-3">
 
-      <span className="text-gray-500">
-        🔥 Bidding
-      </span>
+    <MapPin
+      size={18}
+      className="text-[#A61E22] shrink-0"
+    />
 
-      <span className="font-semibold text-gray-900">
-        {item.bidding}
-      </span>
-
-    </div>
-
-    <div className="flex items-center justify-between">
-
-      <span className="text-gray-500">
-        🏆 Auction
-      </span>
-
-      <span className="font-semibold text-gray-900">
-        {item.auction}
-      </span>
-
-    </div>
-
-    <div className="flex items-center justify-between">
-
-      <span className="text-gray-500">
-        📐 Size
-      </span>
-
-      <span className="font-semibold text-gray-900">
-        {item.size}
-      </span>
-
-    </div>
+    <span className="font-semibold text-gray-900">
+      {item.location}
+    </span>
 
   </div>
+
+  <div className="flex items-center gap-3">
+
+    <Home
+      size={18}
+      className="text-[#A61E22] shrink-0"
+    />
+
+    <span className="text-gray-700">
+      {item.soldFor}
+    </span>
+
+  </div>
+
+  <div className="flex items-center gap-3">
+
+    <Clock3
+      size={18}
+      className="text-[#A61E22] shrink-0"
+    />
+
+    <span className="text-gray-700">
+      {item.soldIn}
+    </span>
+
+  </div>
+
+</div>
 
 </div>
 
