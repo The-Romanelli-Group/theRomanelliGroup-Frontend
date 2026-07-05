@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import GoogleLogo from "../../../../assets/images/illustrations/GoogleLogo.svg";
 
 import { getGoogleReviews } from "../../../../Service/reviewService";
 import GoogleReviewCard from "./GoogleReviewCard";
@@ -62,22 +63,31 @@ const GoogleReviews = () => {
           The Romanelli Group.
         </p>
 
-       <div className="mt-5 flex items-center justify-center gap-2 md:gap-3 flex-wrap">
+     <div className="mt-5 flex flex-col items-center">
 
-          <div className="flex text-yellow-400 text-lg md:text-2xl">
-            ★★★★★
-          </div>
+  <div className="flex items-center gap-3">
 
-          <span className="text-base md:text-lg font-semibold text-gray-900">
-            5.0
-          </span>
+    <img
+      src={GoogleLogo}
+      alt="Google"
+      className="w-8 h-8 md:w-10 md:h-10"
+    />
 
-          <span className="text-sm md:text-base text-gray-500">
-            ({reviews.length} Google Reviews)
-          </span>
+    <div className="flex text-yellow-400 text-lg md:text-2xl">
+      ★★★★★
+    </div>
 
-        </div>
+    <span className="text-lg md:text-xl font-bold text-gray-900">
+      5.0
+    </span>
 
+  </div>
+
+  <p className="mt-2 text-sm md:text-base text-gray-500">
+    Based on {reviews.length} Google Reviews
+  </p>
+
+</div>
       </motion.div>
 <div className="relative mt-8 md:mt-12">
 
