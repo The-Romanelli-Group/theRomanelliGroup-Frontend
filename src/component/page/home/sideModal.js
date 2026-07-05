@@ -111,7 +111,7 @@ const SideModal = () => {
             top-1/3
             right-0
 
-            translate-x-[72%]
+           translate-x-[48%]
             -translate-y-1/2
 
             whitespace-nowrap
