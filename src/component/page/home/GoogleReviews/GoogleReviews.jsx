@@ -9,6 +9,10 @@ import GoogleReviewCard from "./GoogleReviewCard";
 
 const GoogleReviews = () => {
   const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+  console.log("Reviews:", reviews);
+  console.log("Count:", reviews.length);
+}, [reviews]);
   const displayReviews = reviews
   .filter(
     (review) =>
