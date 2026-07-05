@@ -161,7 +161,7 @@ const Families = () => {
 
   if (loading) {
     return (
-      <section className="py-24 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
           <div className="h-[520px] rounded-[24px] bg-gray-100 animate-pulse" />
         </div>
