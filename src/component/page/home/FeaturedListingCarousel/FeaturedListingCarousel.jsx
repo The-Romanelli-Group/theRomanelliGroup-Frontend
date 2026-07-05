@@ -61,7 +61,7 @@ console.log("Properties:", response.value);
       <div className="max-w-7xl mx-auto px-6">
 
        <h2 className="text-5xl font-semibold mb-10">
-    Curated for You
+    Hot in the Market
 </h2>
 
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -116,7 +116,7 @@ console.log("Properties:", response.value);
               <div className="text-center mb-14">
 
     <h2 className="text-5xl font-semibold">
-        Curated for You
+       Hot in the Market
     </h2>
 
 </div>
@@ -202,7 +202,7 @@ console.log("Properties:", response.value);
 
     <div
     ref={carouselRef}
-    className="featured-carousel-track flex gap-4 md:gap-6 transition-transform duration-500 ease-in-out"
+    className="featured-carousel-track flex gap-5 md:gap-6 transition-transform duration-500 ease-in-out"
        style={
     window.innerWidth >= 768
         ? {

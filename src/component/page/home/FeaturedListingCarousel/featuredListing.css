@@ -59,17 +59,19 @@
     padding-right: 0;
   }
 
-  .featured-carousel-track {
+ .featured-carousel-track {
     width: max-content;
+    padding-right: 16px;
     transform: none !important;
     scroll-snap-stop: always;
   }
 
   .featured-card {
-    width: 84vw !important;
+    width: 88%;
+    max-width: 360px;
     flex-shrink: 0;
     scroll-snap-align: start;
-  }
+}
 
 }
 
