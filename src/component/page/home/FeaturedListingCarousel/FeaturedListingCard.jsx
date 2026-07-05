@@ -18,8 +18,8 @@ const FeaturedListingCard = ({ property }) => {
     ? `$${Number(property.ListPrice).toLocaleString()}`
     : "Price Upon Request";
 
-  const address =
-    property.UnparsedAddress ||
+ const address =
+    property.UnparsedAddress || "Address unavailable";
     `${property.StreetNumber || ""} ${property.StreetName || ""}, ${
       property.City || ""
     }, ${property.StateOrProvince || ""}`;
