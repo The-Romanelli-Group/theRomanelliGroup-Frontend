@@ -87,21 +87,21 @@ const faqs =
     : agentFaqs;
 
  return (
-  <section className="bg-[#171010] py-16 md:py-20">
+  <section className="bg-[#171010] py-8 md:py-12">
     <div className="max-w-6xl mx-auto px-5">
 
       {/* Heading */}
 
       <div className="max-w-3xl mx-auto text-center">
 
-        <h2 className="text-4xl md:text-5xl font-bold text-white">
+       <h2 className="text-[30px] md:text-5xl leading-tight font-bold text-white">
           Frequently{" "}
           <span className="font-playfair italic font-normal text-[#A61E22]">
             Asked Questions
           </span>
         </h2>
 
-        <p className="mt-5 text-lg text-gray-300 leading-8">
+       <p className="mt-4 text-[15px] md:text-lg text-gray-300 leading-7 md:leading-8">
           Find answers to the questions we hear most often about buying,
           selling and working with The Romanelli Group.
         </p>
@@ -110,7 +110,7 @@ const faqs =
 
       {/* Tabs */}
 
-      <div className="flex flex-wrap justify-center gap-4 mt-12">
+     <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-8 md:mt-12">
 
         {[
           { key: "buyer", label: "For Buyers" },
@@ -125,8 +125,8 @@ const faqs =
             }}
             className={`
               rounded-full
-              px-7
-              py-3
+              px-6 md:px-7 
+              py-2.5 md:py-3
               text-sm
               md:text-base
               font-semibold
@@ -148,7 +148,7 @@ const faqs =
 
       {/* FAQ */}
 
-      <div className="mt-12 max-w-4xl mx-auto">
+      <div className="mt-8 md:mt-12 max-w-4xl mx-auto">
 
         {faqs.map((faq, index) => (
           <div
@@ -174,20 +174,19 @@ const faqs =
                 flex
                 items-center
                 justify-between
-                px-6
-                py-5
+                px-5 md:px-6
+py-4 md:py-5
                 text-left
               "
             >
 
-              <h3 className="text-lg md:text-xl font-semibold text-white pr-6">
+              <h3 className="text-base md:text-xl font-semibold text-white pr-4 md:pr-6 leading-6">
                 {faq.question}
               </h3>
 
               <div
                 className={`
-                  w-9
-                  h-9
+                  w-8 h-8 md:w-9 md:h-9
                   rounded-full
                   border
                   border-white/20
@@ -230,7 +229,7 @@ const faqs =
               `}
             >
               <div className="overflow-hidden">
-                <p className="px-6 pb-6 text-gray-300 leading-8">
+               <p className="px-5 md:px-6 pb-5 md:pb-6 text-[15px] md:text-base text-gray-300 leading-7 md:leading-8">
                   {faq.answer}
                 </p>
               </div>
