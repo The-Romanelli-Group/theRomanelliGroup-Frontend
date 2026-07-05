@@ -1,92 +1,287 @@
-import React from 'react';
-import { faces_url1, faces_url2 } from '../../../assets/allImg';
+import Cristina from "../../../assets/images/illustrations/Cristina.png";
+import Antonio from "../../../assets/images/illustrations/Antonio.png";
 
-const Faces = () => {
+import { motion } from "framer-motion";
 
-  return (
-    <>
-      {/* Heading */}
-      <div className="bg-backgroundColor ">
-        <div className="flex flex-col items-center text-center py-10 -mb-1">
-          <h1 className="sm:text-5xl text-2xl   mb-2 font-semibold text-white">
-            Meet the <span className="italic font-playfair">Faces</span> behind The
-          </h1>
-          <h1 className="sm:text-5xl text-2xl font-semibold text-white">Romanelli Group</h1>
-        </div>
+return (
+<section className="py-8 md:py-12 bg-white overflow-hidden">
+
+  <div className="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: .6 }}
+      className="max-w-3xl mx-auto text-center"
+    >
+
+      <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+        MEET THE TEAM
+      </p>
+
+      <h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-gray-900">
+        Meet the{" "}
+        <span className="font-playfair italic font-normal text-[#A61E22]">
+          Faces
+        </span>{" "}
+        Behind The Romanelli Group
+      </h2>
+
+      <p className="mt-4 text-[15px] md:text-lg leading-7 text-gray-600">
+        Experienced professionals helping buyers and sellers across Central Ohio
+        with local expertise, proven results and a commitment to exceptional service.
+      </p>
+
+    </motion.div>
+
+    <div className="grid lg:grid-cols-2 gap-16 mt-10 md:mt-14">
+
+      {/* Cristina */}
+
+      <motion.div
+        initial={{ opacity: 0, x: -120, scale: .96 }}
+        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: .75 }}
+      >
+        
+<div className="relative flex flex-col items-center">
+
+  {/* Soft Glow */}
+
+  <div
+    className="
+      absolute
+      top-14
+      w-72
+      h-72
+      rounded-full
+      bg-[#A61E22]/10
+      blur-3xl
+    "
+  />
+
+  {/* Cutout */}
+
+  <motion.img
+    whileHover={{ y: -8, scale: 1.03 }}
+    transition={{ duration: 0.25 }}
+    src={Cristina}
+    alt="Cristina Romanelli"
+    className="
+      relative
+      z-20
+      h-[420px]
+      md:h-[520px]
+      object-contain
+      drop-shadow-2xl
+    "
+  />
+
+  {/* Info Card */}
+
+  <div
+    className="
+      relative
+      z-10
+      -mt-14
+      w-full
+      rounded-[28px]
+      bg-white
+      border
+      border-gray-200
+      shadow-xl
+      p-7
+      pt-16
+      text-center
+    "
+  >
+
+    <div
+      className="
+        inline-flex
+        rounded-full
+        bg-[#A61E22]
+        text-white
+        text-xs
+        font-semibold
+        uppercase
+        tracking-wide
+        px-4
+        py-2
+      "
+    >
+      CEO & Partner
+    </div>
+
+    <h3 className="mt-5 text-3xl font-bold text-gray-900">
+      Cristina Romanelli
+    </h3>
+
+    <p className="mt-5 text-gray-600 leading-7">
+      Partner of The Romanelli Group at Keller Williams Greater Columbus,
+      helping Central Ohio families buy and sell with confidence through
+      local expertise, integrity and exceptional service.
+    </p>
+
+    <div className="mt-8 grid grid-cols-2 gap-3">
+
+      <div className="rounded-2xl bg-gray-50 p-4">
+
+        <p className="text-2xl font-bold text-[#A61E22]">
+          600+
+        </p>
+
+        <p className="text-sm text-gray-600">
+          Homes Sold
+        </p>
+
       </div>
 
-      {/* Section with Split Background */}
-      <section className="relative">
-        <div className="absolute inset-0 bg-white md:bg-backgroundColor h-1/3"></div> {/* 1/4 background color */}
-        <div className="absolute inset-0 bg-white h-2/3 top-1/3"></div> {/* 3/4 white background */}
+      <div className="rounded-2xl bg-gray-50 p-4">
 
-        <div className="container px-5 lg:px-24  py-12 mx-auto relative z-1">
-          <div className="flex flex-wrap -mx-4 -mb-10 text-center justify-center">
+        <p className="text-2xl font-bold text-[#A61E22]">
+          Top 1%
+        </p>
 
-            {/* First Profile */}
-            <div className="sm:w-1/2 mb-10 px-4 flex flex-col items-center">
-              <div className="relative w-80">
-                <div className="relative">
-                  <img
-                    alt="content"
-                    className="object-cover object-center h-auto w-full"
-                    src={faces_url2}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/4 to-transparent"></div>
-                  <div className="absolute bottom-2 left-0 w-full text-white text-left px-2 pl-4">
-                    <h3 className="text-2xl font-semibold">CRISTINA ROMANELLI</h3>
-                    <p className="text-lg">CEO & PARTNER</p>
-                  </div>
-                </div>
-              </div>
+        <p className="text-sm text-gray-600">
+          Central Ohio
+        </p>
 
+      </div>
 
-              <p className="leading-relaxed text-base text-black mt-4 max-w-xl ">
-                I’m a Partner of The Romanelli Group at Keller Williams Greater Columbus, proudly serving families throughout Central Ohio. 
-              </p>
-               <p className="leading-relaxed text-base text-black max-w-xl ">
-                With over 10 years of experience and more than 600 homes sold, I’ve built a reputation for delivering exceptional results with integrity, care, and expertise.
-              </p>
-               <p className="leading-relaxed text-base text-black max-w-xl ">
-                As a lifelong advocate for my clients, I specialize in helping families buy and sell homes that fit their next chapter. My leadership and success have earned me recognition among the Top 1% of Realtors in Central Ohio, as well as the Columbus Realtors $25 Million Dollar Award.
-              </p>
-               <p className="leading-relaxed text-base text-black max-w-xl ">
-                As a past president of the Women’s Council of Realtors Columbus, I’m passionate about elevating others in the industry and giving back to my community. I live in Westerville, Ohio, and love spending time with my husband, Chris, and our daughter, Marcella, exploring everything Central Ohio has to offer.
-              </p>
-            </div>
+    </div>
 
+  </div>
 
-            {/* Second Profile */}
-            <div className="sm:w-1/2 mb-10 px-4 flex flex-col items-center">
-              <div className="relative w-80">
-                <img
-                  alt="content"
-                  className="object-cover object-center h-auto w-full"
-                  src={faces_url1}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/4 to-transparent"></div>
-                <div className="absolute bottom-2 left-0 w-full text-white text-left px-2 pl-4">
-                  <h3 className="text-2xl font-semibold">ANTONIO ROMANELLI</h3>
-                  <p className="text-lg">CFO & PARTNER</p>
-                </div>
-              </div>
-              <p className="leading-relaxed text-base text-black mt-4 max-w-xl">
-                I’m a Partner of The Romanelli Group at Keller Williams Greater Columbus, proudly serving families across Central Ohio alongside my sister (not my wife!). With over five years of experience in residential real estate and more than two years in commercial real estate, I bring a strong understanding of how to achieve exceptional results for clients.
-              </p>
-              <p className="leading-relaxed text-base text-black max-w-xl">
-                Helping families through their next stage of life is what I enjoy most—whether that’s a first home, a family home, or a low-maintenance option. We work to remove as much stress as possible from the buying and selling process, which has led to over 600 closed transactions and recognition in the top 1% in Central Ohio.
-              </p>
-              <p className="leading-relaxed text-base text-black max-w-xl">
-               I grew up in North Columbus, where I now live with my wife Gabrielle and our son Francesco. When I’m not showing homes, you’ll often find us at a local coffee shop enjoying a cappuccino.
-              </p>
-            </div>
+</div>
 
-          </div>
-        </div>
-      </section>
+      </motion.div>
 
-    </>
-  );
-};
+      {/* Antonio */}
 
-export default Faces;
+      <motion.div
+        initial={{ opacity: 0, x: 120, scale: .96 }}
+        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: .75, delay: .15 }}
+      >
+<div className="relative flex flex-col items-center">
+
+  {/* Soft Glow */}
+
+  <div
+    className="
+      absolute
+      top-14
+      w-72
+      h-72
+      rounded-full
+      bg-[#A61E22]/10
+      blur-3xl
+    "
+  />
+
+  {/* Cutout */}
+
+  <motion.img
+    whileHover={{ y: -8, scale: 1.03 }}
+    transition={{ duration: 0.25 }}
+    src={Antonio}
+    alt="Antonio Romanelli"
+    className="
+      relative
+      z-20
+      h-[420px]
+      md:h-[520px]
+      object-contain
+      drop-shadow-2xl
+    "
+  />
+
+  {/* Info Card */}
+
+  <div
+    className="
+      relative
+      z-10
+      -mt-14
+      w-full
+      rounded-[28px]
+      bg-white
+      border
+      border-gray-200
+      shadow-xl
+      p-7
+      pt-16
+      text-center
+    "
+  >
+
+    <div
+      className="
+        inline-flex
+        rounded-full
+        bg-[#A61E22]
+        text-white
+        text-xs
+        font-semibold
+        uppercase
+        tracking-wide
+        px-4
+        py-2
+      "
+    >
+      CFO & Partner
+    </div>
+
+    <h3 className="mt-5 text-3xl font-bold text-gray-900">
+      Antonio Romanelli
+    </h3>
+
+    <p className="mt-5 text-gray-600 leading-7">
+      Partner of The Romanelli Group specializing in residential and commercial
+      real estate throughout Central Ohio, helping families navigate every move
+      with confidence and expert guidance.
+    </p>
+
+    <div className="mt-8 grid grid-cols-2 gap-3">
+
+      <div className="rounded-2xl bg-gray-50 p-4">
+
+        <p className="text-2xl font-bold text-[#A61E22]">
+          600+
+        </p>
+
+        <p className="text-sm text-gray-600">
+          Transactions
+        </p>
+
+      </div>
+
+      <div className="rounded-2xl bg-gray-50 p-4">
+
+        <p className="text-2xl font-bold text-[#A61E22]">
+          5+
+        </p>
+
+        <p className="text-sm text-gray-600">
+          Years Experience
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+      </motion.div>
+
+    </div>
+
+  </div>
+
+</section>
+);
