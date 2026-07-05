@@ -107,45 +107,54 @@ const SideModal = () => {
   />
 </button>
 
-        {/* Sticker */}
+           {/* Let's Connect Sticker */}
 
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            handleVideoPopUp();
-          }}
-          className="
-                absolute
+<button
+  type="button"
+  onClick={(e) => {
+    e.stopPropagation();
+    handleVideoPopUp();
+  }}
+  className="
+    absolute
 
-                top-1/2
-                right-[-78px]
+    right-2
+    top-1/4
 
-                -translate-y-1/2
+    -translate-x-3/4
+    -translate-y-1/2
 
-                bg-[#A61E22]
+    bg-[#A61E22]
 
-                text-white
+    text-white
 
-                font-semibold
+    text-[8px]
+    md:text-[10px]
 
-                text-[11px]
-                md:text-xs
+    font-medium
 
-                px-4
-                py-2.5
+    px-2
+    py-1
 
-                rounded-l-xl
-                rounded-tr-xl
-                rounded-br-xl
+    md:px-3
+    md:py-2
 
-                shadow-xl
+    border
+    border-black/20
 
-                whitespace-nowrap
-                "
-        >
-          Let's Connect
-        </button>
+    rounded-l-lg
+    rounded-tr-lg
+
+    shadow-xl
+
+    whitespace-nowrap
+
+    transition-all
+    duration-300
+  "
+>
+  Let's Connect
+</button>
       </div>
 
       {videoPopUp && (
