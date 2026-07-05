@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import GoogleLogo from "../../../../assets/images/illustrations/Googlelogo.svg";
+import GoogleLogo from "../../../../assets/images/illustrations/GoogleLogo.svg";
 
 import { getGoogleReviews } from "../../../../Service/reviewService";
 import GoogleReviewCard from "./GoogleReviewCard";
