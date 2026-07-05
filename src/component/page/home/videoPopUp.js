@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { X } from "lucide-react";
+import { X, Volume2, VolumeX } from "lucide-react";
 
 const VideoPopUp = ({ video_pop_url, close }) => {
   const videoRef = useRef(null);
@@ -128,7 +128,7 @@ useEffect(() => {
           className="
             w-[90vw]
             max-w-[380px]
-            h-[82vh]
+            max-h-[74vh]
 
             md:w-[230px]
             md:h-[410px]
@@ -141,69 +141,49 @@ useEffect(() => {
 
         {/* Mute */}
 
-        <button
-          onClick={toggleMute}
-          aria-label={isMuted ? "Unmute video" : "Mute video"}
-          className="
-            absolute
-            top-4
-            left-4
+       <button
+  onClick={toggleMute}
+  aria-label={isMuted ? "Unmute video" : "Mute video"}
+  className="
+    absolute
+    top-4
+    left-4
+    z-20
 
-            z-20
+    flex
+    items-center
+    justify-center
 
-            flex
-            items-center
-            justify-center
+    w-9
+    h-9
 
-            w-8
-            h-8
+    rounded-full
 
-            rounded-full
+    bg-black/35
+    backdrop-blur-md
 
-            bg-black/35
-            backdrop-blur-md
+    border
+    border-white/20
 
-            border
-            border-white/20
+    text-white
 
-            text-white
-
-            shadow-lg
-            "
-        >
-          {isMuted ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="black"
-              className="w-5 h-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9.75 9.75L14.25 14.25M9.75 14.25L14.25 9.75M3 9v6a1 1 0 001 1h4l5 5V3L8 8H4a1 1 0 00-1 1z"
-              />
-            </svg>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="black"
-              className="w-5 h-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M11.25 3.75L6 9H3v6h3l5.25 5.25V3.75zM17.25 8.25A6 6 0 0121 12a6 6 0 01-3.75 3.75M15 5.25a9 9 0 010 13.5"
-              />
-            </svg>
-          )}
-        </button>
-
+    shadow-lg
+  "
+>
+  {isMuted ? (
+    <VolumeX
+      size={18}
+      strokeWidth={2.2}
+      className="text-white"
+    />
+  ) : (
+    <Volume2
+      size={18}
+      strokeWidth={2.2}
+      className="text-white"
+    />
+  )}
+</button>
         {/* CTA */}
 
         <div className="absolute left-4 right-4 bottom-4">

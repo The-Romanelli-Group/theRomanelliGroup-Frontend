@@ -67,42 +67,45 @@ const SideModal = () => {
 
         {/* Expand Button */}
 
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            handleVideoPopUp();
-          }}
-          className="
-            hidden md:flex
+       <button
+  type="button"
+  onClick={(e) => {
+    e.stopPropagation();
+    handleVideoPopUp();
+  }}
+  className="
+    hidden md:flex
 
-            absolute
-            bottom-4
-            right-4
+    absolute
+    bottom-4
+    right-4
+    z-20
 
-            z-20
+    items-center
+    justify-center
 
-            items-center
-            justify-center
+    w-9
+    h-9
 
-            w-8
-            h-8
+    rounded-full
 
-            rounded-full
+    bg-black/35
+    backdrop-blur-md
 
-            bg-black/35
-            backdrop-blur-md
+    border
+    border-white/20
 
-            border
-            border-white/20
+    text-white
 
-            text-white
-
-            shadow-lg
-            "
-        >
-          <Expand size={16} className="text-gray-900" />
-        </button>
+    shadow-lg
+  "
+>
+  <Expand
+    size={18}
+    strokeWidth={2.2}
+    className="text-white"
+  />
+</button>
 
         {/* Sticker */}
 
