@@ -46,10 +46,19 @@ const FeaturedListingCard = ({ property }) => {
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
 
-        <div className="absolute top-4 left-4 bg-green-600 text-white text-[10px] md:text-xs font-semibold uppercase tracking-wide px-3 py-2 rounded-full shadow-md">
-          {property.StandardStatus || "Active"}
-        </div>
-      </div>
+       <div className="absolute top-4 left-4 flex flex-col gap-2">
+
+  {property.badge && (
+    <div className="bg-[#A61E22] text-white text-[10px] md:text-xs font-semibold px-3 py-2 rounded-full shadow-md">
+      ⭐ {property.badge}
+    </div>
+  )}
+
+  <div className="bg-green-600 text-white text-[10px] md:text-xs font-semibold uppercase tracking-wide px-3 py-2 rounded-full shadow-md">
+    {property.StandardStatus || "Active"}
+  </div>
+
+</div>      </div>
 
       {/* Content */}
       <div className="p-5 md:p-6 text-left">
