@@ -20,9 +20,7 @@ const FeaturedListingCard = ({ property }) => {
 
  const address =
     property.UnparsedAddress || "Address unavailable";
-    `${property.StreetNumber || ""} ${property.StreetName || ""}, ${
-      property.City || ""
-    }, ${property.StateOrProvince || ""}`;
+    
 
   const handleViewProperty = () => {
   window.open(
