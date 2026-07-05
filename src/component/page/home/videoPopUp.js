@@ -1,4 +1,3 @@
-import React, { useRef, useState } from "react";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +6,7 @@ const VideoPopUp = ({ video_pop_url, close }) => {
   const navigate = useNavigate();
 
   // Start muted so autoplay works across browsers
-  const [isMuted, setIsMuted] = useState(true);
+ const [isMuted, setIsMuted] = useState(false);
 
   const toggleMute = () => {
     if (!videoRef.current) return;
@@ -105,12 +104,7 @@ useEffect(() => {
           bg-white/95
 
           shadow-lg
-
-          hover:bg-[#A61E22]
-          hover:text-white
-
-          transition
-        "
+          "
       >
         ✕
       </button>
