@@ -83,8 +83,8 @@ return (
             hidden md:flex
 
             absolute
-            bottom-3
-            right-3
+            bottom-2
+            right-2
 
             z-20
 
