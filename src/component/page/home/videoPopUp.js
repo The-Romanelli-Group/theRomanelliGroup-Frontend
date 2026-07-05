@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { X } from "lucide-react";
 
 const VideoPopUp = ({ video_pop_url, close }) => {
   const videoRef = useRef(null);
@@ -101,12 +102,14 @@ useEffect(() => {
 
           rounded-full
 
-          bg-white/95
-
-          shadow-lg
+          bg-black/35
+          backdrop-blur-md
+          border border-white/20
+          text-white
+          shadow-lg      
           "
       >
-        ✕
+        <X size={18} strokeWidth={2.5} />
       </button>
 
       {/* Video */}
@@ -155,12 +158,12 @@ useEffect(() => {
 
             rounded-full
 
-            bg-white/90
-            backdrop-blur
-
+            bg-black/35
+            backdrop-blur-md
+            border border-white/20
+            text-white
             shadow-lg
-
-            hover:scale-105
+          hover:scale-105
             transition
           "
         >

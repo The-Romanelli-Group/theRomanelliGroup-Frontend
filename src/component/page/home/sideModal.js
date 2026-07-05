@@ -74,25 +74,32 @@ const SideModal = () => {
             handleVideoPopUp();
           }}
           className="
-            absolute
-            bottom-3
-            right-3
-            z-10
+                hidden
+                md:flex
 
-            flex
-            items-center
-            justify-center
+                absolute
+                bottom-3
+                right-3
+                z-10
 
-            w-8
-            h-8
+                items-center
+                justify-center
 
-            rounded-full
+                w-8
+                h-8
 
-            bg-white/95
-            backdrop-blur-md
+                rounded-full
 
-            shadow-lg
-          "
+                bg-black/35
+                backdrop-blur-md
+
+                border
+                border-white/20
+
+                text-white
+
+                shadow-lg
+                "
         >
           <Expand size={16} className="text-gray-900" />
         </button>
