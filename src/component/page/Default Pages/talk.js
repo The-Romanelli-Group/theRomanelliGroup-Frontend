@@ -39,15 +39,12 @@ const Talk = () => {
           LET'S GET STARTED
         </p>
 
-        <h2 className="mt-4 text-[32px] md:text-6xl leading-tight font-bold">
-
-          Ready To Make Your{" "}
-
-          <span className="font-playfair italic font-normal">
-            Next Move?
-          </span>
-
-        </h2>
+      <h2 className="mt-4 text-[32px] md:text-6xl leading-tight font-bold text-white">
+  Ready To Make Your{" "}
+  <span className="font-playfair italic font-normal">
+    Next Move?
+  </span>
+</h2>
 
         <p className="mt-5 max-w-2xl mx-auto text-[15px] md:text-lg leading-7 text-white/90">
 
