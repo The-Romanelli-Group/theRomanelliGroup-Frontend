@@ -364,8 +364,7 @@ const Families = () => {
               </div>
 
               <p
-               <p
-  className="
+                className="
     mt-2
     flex-1
     italic
