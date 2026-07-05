@@ -81,54 +81,61 @@ const ClientSuccess = () => {
 
     {/* Gallery */}
 
-    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mt-8 md:mt-12">
+    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-7 mt-8 md:mt-12">
 
   {Object.entries(allData).map(([id, item], index) => (
 
     <motion.article
-      key={id}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: .5,
-        delay: index * .08
-      }}
-      className="
-        group
-        overflow-hidden
-        rounded-[28px]
-        bg-white
-        shadow-xl
-        hover:shadow-2xl
-        hover:-translate-y-2
-        transition-all
-        duration-300
-      "
-    >
+  key={id}
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{
+    duration: .55,
+    delay: index * .08
+  }}
+  className="
+    group
+    relative
+    overflow-hidden
+    rounded-[28px]
+    shadow-xl
+    h-[420px]
+  "
+>
+{/* Image */}
 
-      {/* Image */}
+<img
+  src={item.url}
+  alt={item.location}
+  className="
+    absolute
+    inset-0
+    w-full
+    h-full
+    object-cover
+    transition-transform
+    duration-700
+    group-hover:scale-105
+  "
+/>
 
-      <div className="relative overflow-hidden">
+{/* Dark Gradient */}
 
-        <img
-          src={item.url}
-          alt={item.location}
-          className="
-            w-full
-            h-[360px]
-            object-cover
-            transition-transform
-            duration-700
-            group-hover:scale-105
-          "
-        />
+<div
+  className="
+    absolute
+    inset-0
+    bg-gradient-to-t
+    from-black/80
+    via-black/20
+    to-transparent
+  "
+/>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+{/* Badge */}
 
-        {/* Badge */}
-
-        <div
+<div
   className="
     absolute
     top-5
@@ -146,64 +153,31 @@ const ClientSuccess = () => {
     shadow-lg
   "
 >
-  🏡 Just Sold
+  Client Success
 </div>
 
-      </div>
+{/* Location */}
 
-      {/* Content */}
+<div
+  className="
+    absolute
+    bottom-6
+    left-6
+    right-6
+    text-white
+    transition-all
+    duration-500
+    md:group-hover:-translate-y-28
+  "
+>
+  <h3 className="text-2xl font-bold">
+    {item.location}
+  </h3>
+</div>
 
-      <div className="p-6">
+</motion.article>
 
-        <h3 className="text-xl font-bold text-gray-900">
-
-          {item.location}
-
-        </h3>
-
-        <div className="mt-5 space-y-3">
-
-          <div className="flex justify-between">
-
-            <span className="text-gray-500">
-              Bidding
-            </span>
-
-            <span className="font-semibold text-gray-900">
-              {item.bidding}
-            </span>
-
-          </div>
-
-          <div className="flex justify-between">
-
-            <span className="text-gray-500">
-              Auction
-            </span>
-
-            <span className="font-semibold text-gray-900">
-              {item.auction}
-            </span>
-
-          </div>
-
-          <div className="flex justify-between">
-
-            <span className="text-gray-500">
-              Size
-            </span>
-
-            <span className="font-semibold text-gray-900">
-              {item.size}
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </motion.article>
+   
 
   ))}
 
