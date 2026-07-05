@@ -117,94 +117,83 @@ const Pag2 = () => {
             }
         }, 500);
     };
-    return (
-        <section className="relative py-12 md:py-20 overflow-visible">
+    returnreturn (
+  <section className="relative py-12 md:py-20 overflow-visible">
 
-  <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
-                {/* Heading */}
+    <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
 
-<div className="max-w-4xl mx-auto text-center">
+      {/* Heading */}
 
-  <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
-    HOME VALUE ESTIMATOR
-  </p>
+      <div className="max-w-4xl mx-auto text-center">
 
-  <h1 className="mt-3 text-[34px] md:text-6xl leading-tight font-bold text-white">
-    Know What Your{" "}
-    <span className="font-playfair italic font-normal text-[#A61E22]">
-      Home
-    </span>{" "}
-    Is Really Worth
-  </h1>
+        <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+          HOME VALUE ESTIMATOR
+        </p>
 
-  <p className="mt-5 text-[15px] md:text-xl leading-7 text-gray-200 max-w-3xl mx-auto">
-    Receive an instant home value estimate, comparable sales, neighborhood insights,
-    and market trends in seconds. No obligation, completely free.
-  </p>
+        <h1 className="mt-3 text-[34px] md:text-6xl leading-tight font-bold text-white">
+          Know What Your{" "}
+          <span className="font-playfair italic font-normal text-[#A61E22]">
+            Home
+          </span>{" "}
+          Is Really Worth
+        </h1>
 
-</div>
+        <p className="mt-5 text-[15px] md:text-xl leading-7 text-gray-200 max-w-3xl mx-auto">
+          Receive an instant home value estimate, comparable sales,
+          neighborhood insights, and market trends in seconds.
+          No obligation. Completely free.
+        </p>
 
-                {/* Home Value Widget */}
+      </div>
 
-<div className="max-w-4xl mx-auto mt-10">
+      {/* Homebot Widget */}
 
-  <div
-    className="
-      relative
+      <div className="max-w-3xl mx-auto mt-10">
 
-      rounded-[30px]
+        <div
+          className="
+            relative
+            rounded-[28px]
+            bg-black/15
+            backdrop-blur-md
+            border
+            border-white/10
+            shadow-[0_25px_60px_rgba(0,0,0,.28)]
+            px-4
+            py-5
+            md:px-6
+            md:py-6
+          "
+        >
+          <div id="homebot_homeowner"></div>
+        </div>
 
-      bg-white
+        {/* Trust Pills */}
 
-      border
-      border-white/20
+        <div className="mt-4 flex flex-wrap justify-center gap-3">
 
-      shadow-[0_30px_80px_rgba(0,0,0,.18)]
+          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-5 py-2 text-sm text-white">
+            ✓ Instant Home Estimate
+          </div>
 
-      p-4
-      md:p-6
+          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-5 py-2 text-sm text-white">
+            ✓ No Obligation
+          </div>
 
-      overflow-hidden
-    "
-  >
+          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-5 py-2 text-sm text-white">
+            ✓ 100% Free Report
+          </div>
 
-    {/* Soft Glow */}
+        </div>
 
-    <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 pointer-events-none" />
+      </div>
 
-    {/* Widget */}
+      <SideModal />
 
-    <div className="relative z-10">
-      <div id="homebot_homeowner"></div>
     </div>
 
-  </div>
-
-  {/* Trust Pills */}
-
-  <div className="mt-6 flex flex-wrap justify-center gap-3">
-
-    <div className="rounded-full bg-white/10 backdrop-blur-md border border-white/10 px-5 py-2 text-sm text-white">
-      ✓ Instant Home Estimate
-    </div>
-
-    <div className="rounded-full bg-white/10 backdrop-blur-md border border-white/10 px-5 py-2 text-sm text-white">
-      ✓ No Obligation
-    </div>
-
-    <div className="rounded-full bg-white/10 backdrop-blur-md border border-white/10 px-5 py-2 text-sm text-white">
-      ✓ 100% Free Report
-    </div>
-
-  </div>
-
-</div>
-
-<SideModal />
-           </div>
-
-</section>
-    )
+  </section>
+);
 }
 
 export default Pag2
