@@ -146,20 +146,40 @@ CLIENT SUCCESS
     absolute
     top-5
     left-5
+    inline-flex
+    items-center
+    gap-2
+
     rounded-full
-    bg-white/95
-    backdrop-blur-md
-    px-4
-    py-2
-    text-xs
-    font-semibold
-    uppercase
-    tracking-wide
-    text-[#A61E22]
-    shadow-lg
+
+    bg-white/90
+    backdrop-blur-xl
+
+    border
+    border-white/40
+
+    px-5
+    py-2.5
+
+    shadow-xl
   "
 >
-  {item.badge || "Client Success"}
+
+  <div className="w-2 h-2 rounded-full bg-[#A61E22]" />
+
+  <span
+    className="
+      text-[11px]
+      md:text-xs
+      font-bold
+      uppercase
+      tracking-[0.18em]
+      text-[#171010]
+    "
+  >
+    {item.badge || "Client Success"}
+  </span>
+
 </div>
 
 {/* Location */}
