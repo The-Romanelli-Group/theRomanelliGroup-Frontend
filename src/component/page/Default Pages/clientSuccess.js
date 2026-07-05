@@ -167,12 +167,77 @@ const ClientSuccess = () => {
     text-white
     transition-all
     duration-500
-    md:group-hover:-translate-y-28
+    md:group-hover:-translate-y-36
   "
 >
   <h3 className="text-2xl font-bold">
     {item.location}
   </h3>
+</div>
+{/* Hover Panel */}
+
+<div
+  className="
+    absolute
+    left-0
+    right-0
+    bottom-0
+
+    bg-white/95
+    backdrop-blur-xl
+
+    px-6
+    py-5
+
+    transition-all
+    duration-500
+
+    translate-y-0
+    md:translate-y-full
+    md:group-hover:translate-y-0
+  "
+>
+
+  <div className="space-y-4">
+
+    <div className="flex items-center justify-between">
+
+      <span className="text-gray-500">
+        🔥 Bidding
+      </span>
+
+      <span className="font-semibold text-gray-900">
+        {item.bidding}
+      </span>
+
+    </div>
+
+    <div className="flex items-center justify-between">
+
+      <span className="text-gray-500">
+        🏆 Auction
+      </span>
+
+      <span className="font-semibold text-gray-900">
+        {item.auction}
+      </span>
+
+    </div>
+
+    <div className="flex items-center justify-between">
+
+      <span className="text-gray-500">
+        📐 Size
+      </span>
+
+      <span className="font-semibold text-gray-900">
+        {item.size}
+      </span>
+
+    </div>
+
+  </div>
+
 </div>
 
 </motion.article>
