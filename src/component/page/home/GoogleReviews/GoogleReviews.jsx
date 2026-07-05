@@ -148,31 +148,6 @@ const GoogleReviews = () => {
     <ChevronRight size={24} />
   </button>
 
- <div className="mt-5 flex flex-col items-center">
-
-  <div className="flex items-center gap-3">
-
-    <img
-      src={GoogleLogo}
-      alt="Google"
-      className="w-8 h-8 md:w-10 md:h-10"
-    />
-
-    <div className="flex text-yellow-400 text-lg md:text-2xl">
-      ★★★★★
-    </div>
-
-    <span className="text-lg md:text-xl font-bold text-gray-900">
-      5.0
-    </span>
-
-  </div>
-
-  <p className="mt-2 text-sm md:text-base text-gray-500">
-    Based on {reviews.length} Google Reviews
-  </p>
-
-</div>
     <div className="flex">
 
      {displayReviews.map((review) => (
