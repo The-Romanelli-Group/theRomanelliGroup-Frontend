@@ -6,8 +6,8 @@ const VideoPopUp = ({ video_pop_url, close }) => {
   const videoRef = useRef(null);
   const navigate = useNavigate();
 
-  // Start muted so autoplay works across browsers
-const [isMuted, setIsMuted] = useState(true);
+  // Start muted so autoplay is allowed
+  const [isMuted, setIsMuted] = useState(true);
 
   const toggleMute = () => {
     if (!videoRef.current) return;
@@ -27,25 +27,39 @@ const [isMuted, setIsMuted] = useState(true);
   const handleCTA = () => {
     navigate("/contact-us");
   };
-useEffect(() => {
-  const handleKeyDown = (event) => {
-    if (event.key === "Escape") {
-      handleClose();
+
+  // Unmute and play once the popup opens
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+      setIsMuted(false);
+
+      videoRef.current.play().catch((err) => {
+        console.log("Autoplay with sound blocked:", err);
+      });
     }
-  };
+  }, []);
 
-  window.addEventListener("keydown", handleKeyDown);
+  // Close on Escape
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        handleClose();
+      }
+    };
 
-  return () => {
-    window.removeEventListener("keydown", handleKeyDown);
-  };
-}, []);
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 return (
   <div
     id="video-popup"
     onClick={handleClose}
     tabIndex={-1}
-    className="fixed inset-0 z-[100] flex items-center justify-center md:items-end md:justify-end md:bottom-4 md:right-4 bg-black/40 md:bg-transparent backdrop-blur-[2px] md:backdrop-blur-0"
+    className="fixed inset-0 z-[100] flex items-center justify-center pt-8 md:pt-0 md:items-end md:justify-end md:bottom-4 md:right-4 bg-black/40 md:bg-transparent backdrop-blur-[2px] md:backdrop-blur-0"
   >
     <div
       onClick={(e) => e.stopPropagation()}
@@ -81,7 +95,7 @@ return (
 w-[88vw]
 max-w-[360px]
 
-h-[74vh]
+h-[72vh]
 
 md:w-[230px]
 md:h-[410px]
