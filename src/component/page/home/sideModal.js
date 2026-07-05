@@ -5,6 +5,7 @@ import VideoPopUp from "./videoPopUp";
 import { pop_video } from "../../../assets/allImg";
 
 const SideModal = () => {
+    console.log("Floating video:", pop_video);
   const [videoPopUp, setVideoPopUp] = useState(false);
 
   const handleVideoPopUp = () => {
