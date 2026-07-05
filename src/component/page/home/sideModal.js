@@ -16,8 +16,8 @@ return (
     <div
       className="
         fixed
-        bottom-2
-        md:bottom-5
+       bottom-16
+            md:bottom-8
 
         right-2
         sm:right-4
