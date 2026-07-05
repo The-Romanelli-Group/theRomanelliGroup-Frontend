@@ -152,7 +152,11 @@ const GoogleReviews = () => {
     <ChevronRight size={24} />
   </button>
 
-    <div className="flex">
+   <div
+  ref={emblaRef}
+  className="overflow-hidden"
+>
+  <div className="flex">
 
      {displayReviews.map((review) => (
 
@@ -170,6 +174,7 @@ const GoogleReviews = () => {
 
       ))}
 
+    </div>
     </div>
   </div>
 
