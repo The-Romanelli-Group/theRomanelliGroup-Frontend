@@ -1,43 +1,165 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
+const CONSENT_VERSION = "v1";
 
 const CookieConsent = () => {
-  const [showBanner, setShowBanner] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookieConsent');
-    if (!consent) {
-      setShowBanner(true);
+    const consent = localStorage.getItem("cookieConsent");
+
+    if (consent !== CONSENT_VERSION) {
+      setVisible(true);
     }
   }, []);
 
-  const handleAccept = () => {
-    localStorage.setItem('cookieConsent', 'true');
-    setShowBanner(false);
+  const closeBanner = () => {
+    localStorage.setItem("cookieConsent", CONSENT_VERSION);
+    setVisible(false);
   };
 
-  if (!showBanner) return null;
-
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="text-sm">
-          This website uses cookies to enhance your browsing experience. By continuing to use our site or clicking "Accept," you agree to our{' '}
-          <Link target='_blank' to="/cookie-policy" className="underline hover:text-gray-300">Cookie Policy</Link>,{' '}
-          <Link target='_blank' to="/terms-of-use" className="underline hover:text-gray-300">Terms of Use</Link>,{' '}
-          <Link target='_blank' to="/privacy-policy" className="underline hover:text-gray-300">Privacy Policy</Link>,{' '}
-          <Link target='_blank' to="/dmca-notice" className="underline hover:text-gray-300">DMCA Notice</Link>,{' '}
-          <Link target='_blank' to="/fair-housing" className="underline hover:text-gray-300">Fair Housing Statement</Link>, and{' '}
-          <Link target='_blank' to="/accessibility-policy" className="underline hover:text-gray-300">Accessibility Policy</Link>.
-        </div>
-        <button
-          onClick={handleAccept}
-          className="bg-red-600 hover:bg-red-700 px-6 py-2 rounded text-sm font-medium whitespace-nowrap"
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 80 }}
+          transition={{ duration: 0.35 }}
+          className="fixed inset-x-0 bottom-5 z-[9999] px-5"
         >
-          Accept
-        </button>
-      </div>
-    </div>
+          <div
+            className="
+              max-w-6xl
+              mx-auto
+              rounded-[28px]
+              border
+              border-gray-200
+              bg-white/95
+              backdrop-blur-xl
+              shadow-2xl
+              p-6
+            "
+          >
+            <div className="flex flex-col lg:flex-row gap-6 lg:items-center lg:justify-between">
+
+              {/* Text */}
+
+              <div className="text-sm leading-6 text-gray-600">
+
+                <p className="font-semibold text-gray-900 mb-2">
+                  We value your privacy.
+                </p>
+
+                This website uses cookies to improve your browsing experience.
+                By continuing to use our website or clicking{" "}
+                <strong>Accept All</strong>, you agree to our{" "}
+
+                <Link
+                  target="_blank"
+                  to="/cookie-policy"
+                  className="text-[#A61E22] hover:underline"
+                >
+                  Cookie Policy
+                </Link>
+                ,{" "}
+
+                <Link
+                  target="_blank"
+                  to="/terms-of-use"
+                  className="text-[#A61E22] hover:underline"
+                >
+                  Terms of Use
+                </Link>
+                ,{" "}
+
+                <Link
+                  target="_blank"
+                  to="/privacy-policy"
+                  className="text-[#A61E22] hover:underline"
+                >
+                  Privacy Policy
+                </Link>
+                ,{" "}
+
+                <Link
+                  target="_blank"
+                  to="/dmca-notice"
+                  className="text-[#A61E22] hover:underline"
+                >
+                  DMCA Notice
+                </Link>
+                ,{" "}
+
+                <Link
+                  target="_blank"
+                  to="/fair-housing"
+                  className="text-[#A61E22] hover:underline"
+                >
+                  Fair Housing Statement
+                </Link>
+                {" "}and{" "}
+
+                <Link
+                  target="_blank"
+                  to="/accessibility-policy"
+                  className="text-[#A61E22] hover:underline"
+                >
+                  Accessibility Policy
+                </Link>
+                .
+
+              </div>
+
+              {/* Buttons */}
+
+              <div className="flex gap-3 shrink-0">
+
+                <button
+                  onClick={closeBanner}
+                  className="
+                    rounded-full
+                    border
+                    border-gray-300
+                    px-6
+                    py-3
+                    font-medium
+                    text-gray-700
+                    hover:bg-gray-100
+                    transition-all
+                  "
+                >
+                  Only Necessary
+                </button>
+
+                <button
+                  onClick={closeBanner}
+                  className="
+                    rounded-full
+                    bg-[#A61E22]
+                    px-6
+                    py-3
+                    font-semibold
+                    text-white
+                    shadow-lg
+                    hover:shadow-xl
+                    hover:scale-105
+                    active:scale-95
+                    transition-all
+                  "
+                >
+                  Accept All
+                </button>
+
+              </div>
+
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
