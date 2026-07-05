@@ -124,7 +124,7 @@ useEffect(() => {
           className="
             w-[90vw]
             max-w-[380px]
-            max-h-[74vh]
+            max-h-[80vh]
 
             md:w-[230px]
             md:h-[410px]
