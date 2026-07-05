@@ -2,6 +2,7 @@ import Cristina from "../../../assets/images/illustrations/Cristina.png";
 import Antonio from "../../../assets/images/illustrations/Antonio.png";
 
 import { motion } from "framer-motion";
+const Faces = () => {
 
 return (
 <section className="py-8 md:py-12 bg-white overflow-hidden">
@@ -285,3 +286,7 @@ return (
 
 </section>
 );
+
+};
+
+export default Faces;
