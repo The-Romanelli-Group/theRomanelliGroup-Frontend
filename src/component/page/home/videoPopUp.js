@@ -89,19 +89,15 @@ useEffect(() => {
         aria-label="Close video"
         className="
           absolute
-          top-3
-          right-3
+          top-3.5
+          left-3.5
           z-20
-
           flex
           items-center
           justify-center
-
-          w-8
-          h-8
-
+          w-9
+          h-9
           rounded-full
-
           bg-black/35
           backdrop-blur-md
           border border-white/20
@@ -109,7 +105,7 @@ useEffect(() => {
           shadow-lg      
           "
       >
-        <X size={18} strokeWidth={2.5} />
+        <X size={20} strokeWidth={2.4} />
       </button>
 
       {/* Video */}
@@ -146,27 +142,20 @@ useEffect(() => {
   aria-label={isMuted ? "Unmute video" : "Mute video"}
   className="
     absolute
-    top-4
-    left-4
+    top-3.5
+    right-3.5
     z-20
-
     flex
     items-center
     justify-center
-
     w-9
     h-9
-
     rounded-full
-
     bg-black/35
     backdrop-blur-md
-
     border
     border-white/20
-
     text-white
-
     shadow-lg
   "
 >
