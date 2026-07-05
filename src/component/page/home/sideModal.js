@@ -163,7 +163,7 @@ return (
           duration-300
         "
       >
-        Let's Connect
+        Listen Up
       </button>
     </div>
 
