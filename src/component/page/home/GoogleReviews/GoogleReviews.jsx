@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getGoogleReviews } from "../../../../Service/reviewService";
 import { motion } from "framer-motion";
+import GoogleReviewCard from "./GoogleReviewCard";
 
 const GoogleReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -64,7 +65,11 @@ const GoogleReviews = () => {
         </div>
 
       </motion.div>
-
+<div className="mt-16 max-w-md mx-auto">
+    {reviews.length > 0 && (
+        <GoogleReviewCard review={reviews[0]} />
+    )}
+</div>
     </div>
 
   </section>
