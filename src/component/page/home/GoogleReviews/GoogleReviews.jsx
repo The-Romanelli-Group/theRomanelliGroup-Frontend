@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import GoogleLogo from "../../../../assets/images/illustrations/GoogleLogo.svg";
+import GoogleLogo from "../../../../assets/images/illustrations/Googlelogo.svg";
 
 import { getGoogleReviews } from "../../../../Service/reviewService";
 import GoogleReviewCard from "./GoogleReviewCard";
@@ -63,7 +63,7 @@ const GoogleReviews = () => {
           The Romanelli Group.
         </p>
 
-     <div className="mt-5 flex flex-col items-center">
+      <div className="mt-5 flex flex-col items-center">
 
   <div className="flex items-center gap-3">
 
@@ -88,6 +88,7 @@ const GoogleReviews = () => {
   </p>
 
 </div>
+
       </motion.div>
 <div className="relative mt-8 md:mt-12">
 
@@ -147,77 +148,31 @@ const GoogleReviews = () => {
     <ChevronRight size={24} />
   </button>
 
- <div ref={emblaRef} className="overflow-hidden">
+ <div className="mt-5 flex flex-col items-center">
 
-  {reviews.length === 0 ? (
+  <div className="flex items-center gap-3">
 
-    <div className="flex">
+    <img
+      src={GoogleLogo}
+      alt="Google"
+      className="w-8 h-8 md:w-10 md:h-10"
+    />
 
-      {[1, 2, 3].map((i) => (
-
-        <div
-          key={i}
-          className="
-            min-w-[88%]
-            sm:min-w-[65%]
-            lg:min-w-[31%]
-            px-4
-          "
-        >
-
-          <div className="rounded-[24px] border border-gray-200 bg-white p-6 animate-pulse">
-
-            <div className="h-5 w-24 rounded bg-gray-200 mb-6" />
-
-            <div className="space-y-3">
-              <div className="h-4 rounded bg-gray-200" />
-              <div className="h-4 rounded bg-gray-200 w-11/12" />
-              <div className="h-4 rounded bg-gray-200 w-4/5" />
-              <div className="h-4 rounded bg-gray-200 w-3/5" />
-            </div>
-
-            <div className="mt-8 flex items-center">
-              <div className="h-12 w-12 rounded-full bg-gray-200" />
-              <div className="ml-3 flex-1">
-                <div className="h-4 w-32 rounded bg-gray-200 mb-2" />
-                <div className="h-3 w-24 rounded bg-gray-200" />
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      ))}
-
+    <div className="flex text-yellow-400 text-lg md:text-2xl">
+      ★★★★★
     </div>
 
-  ) : (
+    <span className="text-lg md:text-xl font-bold text-gray-900">
+      5.0
+    </span>
 
-    <div className="flex">
+  </div>
 
-      {displayReviews.map((review) => (
-
-        <div
-          key={review.id}
-          className="
-            min-w-[88%]
-            sm:min-w-[65%]
-            lg:min-w-[31%]
-            px-4
-          "
-        >
-          <GoogleReviewCard review={review} />
-        </div>
-
-      ))}
-
-    </div>
-
-  )}
+  <p className="mt-2 text-sm md:text-base text-gray-500">
+    Based on {reviews.length} Google Reviews
+  </p>
 
 </div>
-
     <div className="flex">
 
      {displayReviews.map((review) => (
@@ -240,7 +195,7 @@ const GoogleReviews = () => {
   </div>
 
 </div>
-    </div>
+    
 
   </section>
 );
