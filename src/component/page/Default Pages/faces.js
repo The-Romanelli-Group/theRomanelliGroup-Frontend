@@ -36,7 +36,7 @@ return (
 
     </motion.div>
 
-    <div className="grid lg:grid-cols-2 gap-16 mt-10 md:mt-14">
+    <div className="grid lg:grid-cols-2 gap-16 mt-6 md:mt-10">
 
       {/* Cristina */}
 
@@ -86,7 +86,7 @@ return (
     className="
       relative
       z-10
-      -mt-14
+      -mt-20
       w-full
       rounded-[28px]
       bg-white
@@ -176,8 +176,8 @@ return (
     className="
       absolute
       top-14
-      w-72
-      h-72
+      w-80
+      h-80
       rounded-full
       bg-[#A61E22]/10
       blur-3xl
@@ -207,7 +207,7 @@ return (
     className="
       relative
       z-10
-      -mt-14
+      -mt-20
       w-full
       rounded-[28px]
       bg-white
