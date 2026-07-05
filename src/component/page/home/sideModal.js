@@ -74,32 +74,32 @@ const SideModal = () => {
             handleVideoPopUp();
           }}
           className="
-                hidden
-                md:flex
+            hidden md:flex
 
-                absolute
-                bottom-3
-                right-3
-                z-10
+            absolute
+            bottom-4
+            right-4
 
-                items-center
-                justify-center
+            z-20
 
-                w-8
-                h-8
+            items-center
+            justify-center
 
-                rounded-full
+            w-8
+            h-8
 
-                bg-black/35
-                backdrop-blur-md
+            rounded-full
 
-                border
-                border-white/20
+            bg-black/35
+            backdrop-blur-md
 
-                text-white
+            border
+            border-white/20
 
-                shadow-lg
-                "
+            text-white
+
+            shadow-lg
+            "
         >
           <Expand size={16} className="text-gray-900" />
         </button>
@@ -113,39 +113,33 @@ const SideModal = () => {
             handleVideoPopUp();
           }}
           className="
-            absolute
+                absolute
 
-            top-1/3
-            right-0
+                top-1/2
+                right-[-78px]
 
-           translate-x-[48%]
-            -translate-y-1/2
+                -translate-y-1/2
 
-            whitespace-nowrap
+                bg-[#A61E22]
 
-            rounded-l-xl
-            rounded-tr-xl
-            rounded-br-xl
+                text-white
 
-            border
-            border-black/10
+                font-semibold
 
-            bg-[#A61E22]
+                text-[11px]
+                md:text-xs
 
-            px-3
-            py-2
+                px-4
+                py-2.5
 
-            text-[10px]
-            md:text-xs
+                rounded-l-xl
+                rounded-tr-xl
+                rounded-br-xl
 
-            font-semibold
-            text-white
+                shadow-xl
 
-            shadow-xl
-
-            transition-all
-            duration-300
-          "
+                whitespace-nowrap
+                "
         >
           Let's Connect
         </button>

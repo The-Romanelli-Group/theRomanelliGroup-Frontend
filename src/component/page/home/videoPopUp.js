@@ -146,26 +146,30 @@ useEffect(() => {
           aria-label={isMuted ? "Unmute video" : "Mute video"}
           className="
             absolute
-            top-3
-            left-3
+            top-4
+            left-4
+
+            z-20
 
             flex
             items-center
             justify-center
 
-            w-9
-            h-9
+            w-8
+            h-8
 
             rounded-full
 
             bg-black/35
             backdrop-blur-md
-            border border-white/20
+
+            border
+            border-white/20
+
             text-white
+
             shadow-lg
-          hover:scale-105
-            transition
-          "
+            "
         >
           {isMuted ? (
             <svg
