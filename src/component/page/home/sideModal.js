@@ -10,21 +10,27 @@ const SideModal = () => {
   const handleVideoPopUp = () => {
     setVideoPopUp(true);
   };
+return (
+  <>
+    <div
+      className="
+        fixed
+        bottom-2
+        md:bottom-5
 
-  return (
-    <>
+        right-2
+        sm:right-4
+        md:right-8
+
+        z-50
+      "
+    >
+      {/* Phone */}
+
       <div
         onClick={handleVideoPopUp}
         className="
-          fixed
-          bottom-2
-          md:bottom-5
-
-          right-2
-          sm:right-4
-          md:right-8
-
-          z-50
+          relative
 
           cursor-pointer
 
@@ -67,104 +73,107 @@ const SideModal = () => {
 
         {/* Expand Button */}
 
-       <button
-  type="button"
-  onClick={(e) => {
-    e.stopPropagation();
-    handleVideoPopUp();
-  }}
-  className="
-    hidden md:flex
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleVideoPopUp();
+          }}
+          className="
+            hidden md:flex
 
-    absolute
-    bottom-4
-    right-4
-    z-20
+            absolute
+            bottom-3
+            right-3
 
-    items-center
-    justify-center
+            z-20
 
-    w-9
-    h-9
+            items-center
+            justify-center
 
-    rounded-full
+            w-9
+            h-9
 
-    bg-black/35
-    backdrop-blur-md
+            rounded-full
 
-    border
-    border-white/20
+            bg-black/35
+            backdrop-blur-md
 
-    text-white
+            border
+            border-white/20
 
-    shadow-lg
-  "
->
-  <Expand
-    size={18}
-    strokeWidth={2.2}
-    className="text-white"
-  />
-</button>
+            text-white
 
-           {/* Let's Connect Sticker */}
-
-<button
-  type="button"
-  onClick={(e) => {
-    e.stopPropagation();
-    handleVideoPopUp();
-  }}
-  className="
-    absolute
-
-    right-2
-    top-1/4
-
-    -translate-x-3/4
-    -translate-y-1/2
-
-    bg-[#A61E22]
-
-    text-white
-
-    text-[8px]
-    md:text-[10px]
-
-    font-medium
-
-    px-2
-    py-1
-
-    md:px-3
-    md:py-2
-
-    border
-    border-black/20
-
-    rounded-l-lg
-    rounded-tr-lg
-
-    shadow-xl
-
-    whitespace-nowrap
-
-    transition-all
-    duration-300
-  "
->
-  Let's Connect
-</button>
+            shadow-lg
+          "
+        >
+          <Expand
+            size={18}
+            strokeWidth={2.2}
+            className="text-white"
+          />
+        </button>
       </div>
 
-      {videoPopUp && (
-        <VideoPopUp
-          video_pop_url={pop_video}
-          close={() => setVideoPopUp(false)}
-        />
-      )}
-    </>
-  );
+      {/* Let's Connect Sticker */}
+
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleVideoPopUp();
+        }}
+        className="
+          absolute
+
+          top-1/4
+          right-[70px]
+
+          md:right-[95px]
+
+          -translate-y-1/2
+
+          bg-[#A61E22]
+
+          text-white
+
+          text-[8px]
+          md:text-[10px]
+
+          font-medium
+
+          px-2
+          py-1
+
+          md:px-3
+          md:py-2
+
+          rounded-l-lg
+          rounded-tr-lg
+
+          border
+          border-black/20
+
+          shadow-xl
+
+          whitespace-nowrap
+
+          transition-all
+          duration-300
+        "
+      >
+        Let's Connect
+      </button>
+    </div>
+
+    {videoPopUp && (
+      <VideoPopUp
+        video_pop_url={pop_video}
+        close={() => setVideoPopUp(false)}
+      />
+    )}
+  </>
+);
 };
 
 export default SideModal;
