@@ -33,7 +33,7 @@ const Succeed = () => {
 
       </h2>
 
-      <p className="mt-4 text-[15px] md:text-lg leading-7 text-gray-600">
+      <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-600">
 
         Whether you're buying, selling, or growing your real estate career,
         we're here to guide you every step of the way with proven strategies
@@ -183,7 +183,7 @@ const Succeed = () => {
 
         </h3>
 
-        <p className="mt-3 text-gray-600 leading-7">
+        <p className="mt-3 text-gray-600 leading-6 md:leading-7">
 
           Find the perfect home with expert local guidance,
           strategic negotiation and support from your first
@@ -260,7 +260,7 @@ const Succeed = () => {
         Sell Your Home Faster
       </h3>
 
-      <p className="mt-3 text-gray-600 leading-7">
+      <p className="mt-3 text-gray-600 leading-6 md:leading-7">
         Maximize your home's value with expert pricing, powerful marketing
         and a proven strategy that attracts qualified buyers.
       </p>
@@ -333,7 +333,7 @@ const Succeed = () => {
         Grow Your Career
       </h3>
 
-      <p className="mt-3 text-gray-600 leading-7">
+      <p className="mt-3 text-gray-600  leading-6 md:leading-7">
         Join one of Central Ohio's top-performing real estate teams and
         build your business with proven systems, mentorship and support.
       </p>
