@@ -230,7 +230,7 @@ const Pag2 = () => {
   }, 500);
 };
    return (
-  <section className="relative py-12 md:py-20 overflow-visible">
+<section className="relative py-12 md:py-20 overflow-x-hidden overflow-y-visible">
 
     <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
 
@@ -242,7 +242,20 @@ const Pag2 = () => {
           HOME VALUE ESTIMATOR
         </p>
 
-        <h1 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
+        <h1 className="
+                    mt-3
+                    px-3
+                    sm:px-6
+                    md:px-0
+                    text-[36px]
+                    sm:text-[42px]
+                    md:text-6xl
+                    leading-[1.12]
+                    md:leading-tight
+                    font-bold
+                    text-white
+                    "
+                    >
           Know What Your{" "}
           <span className="font-playfair italic font-normal text-[#A61E22]">
             Home
@@ -250,7 +263,17 @@ const Pag2 = () => {
           Is Really Worth
         </h1>
 
-        <p className="mt-4 text-[15px] md:text-lg leading-7 text-gray-200">
+        className="
+                    mt-3
+                    px-4
+                    sm:px-8
+                    md:px-0
+                    text-[15px]
+                    md:text-lg
+                    leading-6
+                    md:leading-7
+                    text-gray-200
+"
           Receive an instant home value estimate, comparable sales,
           neighborhood insights, and market trends in seconds.
           No obligation. Completely free.
@@ -260,7 +283,7 @@ const Pag2 = () => {
 
       {/* Homebot Widget */}
 
-      <div className="max-w-3xl mx-auto mt-8 md:mt-10">
+      <div className="max-w-3xl mx-auto mt-6 md:mt-8">
 
         <div id="homebot_homeowner"></div>
 
