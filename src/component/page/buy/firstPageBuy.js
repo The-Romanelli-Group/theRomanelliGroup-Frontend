@@ -116,24 +116,31 @@ const FirstPageBuy = () => {
 
   <div className="flex flex-col items-center md:hidden">
 
-    <button
-      onClick={() => window.open("/properties", "_self")}
-      className="
-        inline-flex
-        items-center
-        justify-center
-        rounded-full
-        bg-white
-        px-8
-        py-4
-        text-base
-        font-semibold
-        text-gray-900
-        shadow-2xl
-      "
-    >
-      Browse Properties →
-    </button>
+   <button
+  onClick={() => window.open("/properties", "_self")}
+  className="
+    h-12
+    md:h-14
+    px-6
+    md:px-8
+    bg-[#A61E22]
+    hover:bg-[#8D181B]
+    text-white
+    rounded-xl
+    shadow-lg
+    transition-all
+    duration-300
+    hover:scale-[1.02]
+    flex
+    items-center
+    justify-center
+    font-semibold
+    text-base
+    md:text-lg
+  "
+>
+  Browse Properties →
+</button>
 
     <div className="mt-5 flex items-center gap-3">
 
