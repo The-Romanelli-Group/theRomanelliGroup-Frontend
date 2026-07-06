@@ -106,7 +106,7 @@ const NumberSpeak = () => {
 
           </h2>
 
-          <p className="mt-4 text-[15px] md:text-lg leading-7 md:leading-8 text-gray-400 max-w-2xl mx-auto">
+          <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-400 max-w-2xl mx-auto">
 
             Every number tells a story of trust, successful transactions and
             relationships we've built throughout the Ohio Valley.
@@ -198,7 +198,7 @@ lg:text-8xl
       {stat.title}
     </h4>
 
-    <p className="mt-3 text-[15px] md:text-base leading-7 md:leading-8 text-gray-400">
+    <p className="mt-3 text-[15px] md:text-base leading-6 md:leading-7 text-gray-400">
       {stat.description}
     </p>
 

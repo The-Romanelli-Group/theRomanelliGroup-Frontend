@@ -247,12 +247,11 @@ const Pag2 = () => {
                     px-3
                     sm:px-6
                     md:px-0
-                    text-[36px]
-                    sm:text-[42px]
+                    text-[30px]
+                    sm:text-[36px]
                     md:text-6xl
-                    leading-[1.12]
-                    md:leading-tight
-                    font-bold
+                    leading-tight
+                                       font-bold
                     text-white
                     "
                     >
@@ -283,7 +282,7 @@ const Pag2 = () => {
 
       {/* Homebot Widget */}
 
-      <div className="max-w-3xl mx-auto mt-6 md:mt-8">
+      <div className="max-w-3xl mx-auto mt-1 md:mt-1">
 
         <div id="homebot_homeowner"></div>
 
