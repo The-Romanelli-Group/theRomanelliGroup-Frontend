@@ -169,7 +169,7 @@ const FirstPageBuy = () => {
 </div>
 
 </div>
-        </div>
+     
 
         <SideModal />
 
