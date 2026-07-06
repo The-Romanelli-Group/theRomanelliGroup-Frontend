@@ -72,7 +72,7 @@ return (
     alt="Cristina Romanelli"
     className="
       relative
-      z-20
+      z-10
       h-[420px]
       md:h-[520px]
       object-contain
@@ -85,7 +85,7 @@ return (
   <div
     className="
       relative
-      z-10
+      z-30
       -mt-14
       w-full
       rounded-[28px]
@@ -193,7 +193,7 @@ return (
     alt="Antonio Romanelli"
     className="
       relative
-      z-20
+      z-10
       h-[420px]
       md:h-[520px]
       object-contain
@@ -206,7 +206,7 @@ return (
   <div
     className="
       relative
-      z-10
+      z-30
       -mt-14
       w-full
       rounded-[28px]
