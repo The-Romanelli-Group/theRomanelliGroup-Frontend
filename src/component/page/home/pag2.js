@@ -100,29 +100,35 @@ const Pag2 = () => {
 
     width:100%;
 
-    height:58px !important;
+    height:64px !important;
 
-    padding:0 155px 0 22px !important;
+    padding:0 138px 0 22px !important;
 
-    font-size:17px !important;
+    font-size:18px !important;
     font-weight:500;
 
     color:#111827;
 
     background:#fff;
 
-    border:1px solid #E5E7EB !important;
+    border:1px solid rgba(255,255,255,.25) !important;
 
-    border-radius:16px !important;
+    border-radius:18px !important;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.10);
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.12);
 
     transition:all .25s ease;
 }
 
 .__hblgw--input-input-light-mode-theme::placeholder{
+
     color:#9CA3AF;
+
+    font-size:18px;
+
     font-weight:400;
+
 }
 
 .__hblgw--input-input-light-mode-theme:focus{
@@ -132,8 +138,9 @@ const Pag2 = () => {
     border-color:#A61E22 !important;
 
     box-shadow:
-        0 0 0 4px rgba(166,30,34,.12),
-        0 12px 35px rgba(0,0,0,.16);
+        0 0 0 3px rgba(166,30,34,.18),
+        0 18px 40px rgba(0,0,0,.16);
+
 }
 
 /* Button */
@@ -142,11 +149,12 @@ const Pag2 = () => {
 
     position:absolute !important;
 
-    top:4px !important;
-    right:4px !important;
-    bottom:4px !important;
+    top:6px !important;
+    right:6px !important;
 
-    width:135px !important;
+    width:112px !important;
+
+    height:52px !important;
 
     margin:0 !important;
 
@@ -158,23 +166,25 @@ const Pag2 = () => {
 
     color:#fff !important;
 
-    font-size:14px !important;
-    font-weight:700;
+    font-size:15px !important;
+    font-weight:600;
 
-    letter-spacing:.04em;
+    letter-spacing:.02em;
 
     cursor:pointer;
+
+    box-shadow:
+        0 8px 20px rgba(166,30,34,.28);
 
     transition:all .25s ease;
 }
 
 .__hblgw--button-container-light-mode-theme:hover{
 
-    background:#8C171B !important;
+    background:#8D181B !important;
 
     transform:translateY(-1px);
 
-    box-shadow:0 8px 24px rgba(166,30,34,.30);
 }
 
 .__hblgw--button-container-light-mode-theme:active{
@@ -182,22 +192,56 @@ const Pag2 = () => {
     transform:translateY(0);
 
 }
+
+/* Mobile */
+
+@media (max-width:640px){
+
+.__hblgw--input-input-light-mode-theme{
+
+    height:54px !important;
+
+    padding:0 108px 0 18px !important;
+
+    font-size:16px !important;
+
+    border-radius:16px !important;
+
+}
+
+.__hblgw--button-container-light-mode-theme{
+
+    top:4px !important;
+    right:4px !important;
+
+    width:96px !important;
+
+    height:46px !important;
+
+    border-radius:12px !important;
+
+    font-size:13px !important;
+}
 `;
 
       homebotShadow.appendChild(style);
     }, 100);
   }, 500);
 };
-    return (
-  <section className="relative py-10 md:py-20 overflow-visible">
+   return (
+  <section className="py-12 md:py-20 overflow-visible">
 
-    <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
+    <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
       {/* Heading */}
 
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-3xl mx-auto text-center">
 
-        <h1 className="text-[34px] md:text-6xl font-bold leading-[1.05] md:leading-tight text-white">
+        <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+          HOME VALUE ESTIMATOR
+        </p>
+
+        <h1 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
           Know What Your{" "}
           <span className="font-playfair italic font-normal text-[#A61E22]">
             Home
@@ -205,7 +249,7 @@ const Pag2 = () => {
           Is Really Worth
         </h1>
 
-        <p className="mt-2 md:mt-4 text-[15px] md:text-xl leading-[1.45] md:leading-8 text-gray-200 max-w-3xl mx-auto">
+        <p className="mt-4 text-[15px] md:text-lg leading-7 text-gray-200">
           Receive an instant home value estimate, comparable sales,
           neighborhood insights, and market trends in seconds.
           No obligation. Completely free.
@@ -215,23 +259,74 @@ const Pag2 = () => {
 
       {/* Homebot Widget */}
 
-      <div className="max-w-3xl mx-auto mt-6 md:mt-8">
+      <div className="max-w-3xl mx-auto mt-8 md:mt-10">
 
         <div id="homebot_homeowner"></div>
 
         {/* Trust Pills */}
 
-        <div className="mt-3 md:mt-5 flex justify-center gap-2 md:gap-3">
+        <div className="mt-4 flex justify-center gap-2 md:gap-3 overflow-x-auto scrollbar-hide px-1">
 
-          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-3 md:px-5 py-1.5 md:py-2 text-[11px] md:text-sm text-white whitespace-nowrap">
+          <div
+            className="
+              flex-shrink-0
+              rounded-full
+              border
+              border-white/10
+              bg-white/10
+              backdrop-blur-md
+              px-3
+              md:px-5
+              py-1.5
+              md:py-2
+              text-[11px]
+              md:text-sm
+              text-white
+              whitespace-nowrap
+            "
+          >
             ✓ Instant Estimate
           </div>
 
-          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-3 md:px-5 py-1.5 md:py-2 text-[11px] md:text-sm text-white whitespace-nowrap">
+          <div
+            className="
+              flex-shrink-0
+              rounded-full
+              border
+              border-white/10
+              bg-white/10
+              backdrop-blur-md
+              px-3
+              md:px-5
+              py-1.5
+              md:py-2
+              text-[11px]
+              md:text-sm
+              text-white
+              whitespace-nowrap
+            "
+          >
             ✓ No Obligation
           </div>
 
-          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-3 md:px-5 py-1.5 md:py-2 text-[11px] md:text-sm text-white whitespace-nowrap">
+          <div
+            className="
+              flex-shrink-0
+              rounded-full
+              border
+              border-white/10
+              bg-white/10
+              backdrop-blur-md
+              px-3
+              md:px-5
+              py-1.5
+              md:py-2
+              text-[11px]
+              md:text-sm
+              text-white
+              whitespace-nowrap
+            "
+          >
             ✓ Free Report
           </div>
 
