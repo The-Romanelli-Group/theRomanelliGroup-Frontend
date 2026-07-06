@@ -262,8 +262,8 @@ const Pag2 = () => {
           </span>{" "}
           Is Really Worth
         </h1>
-
-        className="
+                <p
+                className="
                     mt-3
                     px-4
                     sm:px-8
@@ -273,12 +273,12 @@ const Pag2 = () => {
                     leading-6
                     md:leading-7
                     text-gray-200
-"
-          Receive an instant home value estimate, comparable sales,
-          neighborhood insights, and market trends in seconds.
-          No obligation. Completely free.
-        </p>
-
+                "
+                >
+                Receive an instant home value estimate, comparable sales,
+                neighborhood insights, and market trends in seconds.
+                No obligation. Completely free.
+                </p>
       </div>
 
       {/* Homebot Widget */}
