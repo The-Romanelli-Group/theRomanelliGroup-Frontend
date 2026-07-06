@@ -52,15 +52,7 @@ const Pag2 = () => {
 
     clearInterval(interval);
 
-    window.Homebot(
-      "#homebot_homeowner",
-      "df5f3d04dde9ce0dccc0f12c06ac8d7cfd911b11ea7f4bfd",
-      {
-        size: "compact",
-        theme: "light-mode-theme",
-      }
-    );
-
+   
     setTimeout(() => {
       const homebotShadow =
         document.querySelector("#homebot_homeowner")?.shadowRoot;
