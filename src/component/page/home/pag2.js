@@ -288,7 +288,22 @@ const Pag2 = () => {
 
         {/* Trust Pills */}
 
-        <div className="mt-2 flex justify-center gap-2 md:gap-3 overflow-x-auto scrollbar-hide px-1">
+        <div className="
+  flex-shrink-0
+  rounded-full
+  border
+  border-white/10
+  bg-white/10
+  backdrop-blur-md
+  px-3
+  md:px-5
+  py-1.5
+  md:py-2
+  text-[11px]
+  md:text-sm
+  text-white
+  whitespace-nowrap
+">
 
           <div
             className="
