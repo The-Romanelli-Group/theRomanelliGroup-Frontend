@@ -251,7 +251,7 @@ const Pag2 = () => {
                     sm:text-[36px]
                     md:text-6xl
                     leading-tight
-                                       font-bold
+                    font-bold
                     text-white
                     "
                     >
@@ -288,7 +288,7 @@ const Pag2 = () => {
 
         {/* Trust Pills */}
 
-        <div className="mt-4 flex justify-center gap-2 md:gap-3 overflow-x-auto scrollbar-hide px-1">
+        <div className="mt-2 flex justify-center gap-2 md:gap-3 overflow-x-auto scrollbar-hide px-1">
 
           <div
             className="
