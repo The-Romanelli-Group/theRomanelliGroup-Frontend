@@ -53,56 +53,74 @@ const FirstPageBuy = () => {
 
           {/* CTA */}
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-5">
+<div className="relative mt-10 flex justify-center">
 
-            <button
-              onClick={() => window.open("/properties", "_self")}
-              className="
-                inline-flex
-                items-center
-                justify-center
-                rounded-full
-                bg-white
-                px-8
-                py-4
-                text-base
-                md:text-lg
-                font-semibold
-                text-gray-900
-                shadow-2xl
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:bg-gray-100
-              "
-            >
-              Browse Properties →
-            </button>
+  {/* Main CTA */}
 
-            <div className="flex items-center gap-3">
+  <button
+    onClick={() => window.open("/properties", "_self")}
+    className="
+      inline-flex
+      items-center
+      justify-center
+      rounded-full
+      bg-white
+      px-10
+      py-4
+      text-base
+      md:text-lg
+      font-semibold
+      text-gray-900
+      shadow-2xl
+      transition-all
+      duration-300
+      hover:-translate-y-1
+      hover:bg-gray-100
+    "
+  >
+    Browse Properties →
+  </button>
 
-              <img
-                src={mainPageBuy_img_url}
-                alt="Happy Homeowners"
-                className="w-16 md:w-20 h-auto object-contain"
-              />
+  {/* Social Proof */}
 
-              <div className="text-left">
+  <div
+    className="
+      absolute
 
-                <p className="text-3xl md:text-4xl font-bold text-white leading-none">
-                  185+
-                </p>
+      left-1/2
+      top-6
 
-                <p className="text-white/90 text-sm md:text-base">
-                  Homes Sold
-                </p>
+      ml-36
 
-              </div>
+      hidden
+      md:flex
 
-            </div>
+      items-center
+      gap-4
+    "
+  >
 
-          </div>
+    <img
+      src={require("../../../assets/images/illustrations/Teamsnapshot.png")}
+      alt="Families Helped"
+      className="w-20 h-auto object-contain"
+    />
 
+    <div>
+
+      <p className="text-3xl font-bold text-white leading-none">
+        570+
+      </p>
+
+      <p className="text-white/90 text-base">
+        Happy Families
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
         </div>
 
         <SideModal />
