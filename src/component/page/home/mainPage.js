@@ -1,69 +1,37 @@
 import React from "react";
-import { motion } from "framer-motion";
+
 import NumberSpeak from "../Default Pages/numberSpeak";
 import Faces from "../Default Pages/faces";
 import Families from "../Default Pages/families";
-import QuestionAnswer from "../Default Pages/QuestionAnswer/questionAnswer";
-import Talk from "../Default Pages/talk";
-import Footer from "../Default Pages/footer";
 import GoogleReviews from "./GoogleReviews/GoogleReviews";
 import Succeed from "../Default Pages/succeed";
 import ClientSuccess from "../Default Pages/clientSuccess";
-
-// Animation Variants (Slide-up & Fade-in)
-const fadeInUp = {
-  hidden: { opacity: 0, y: 60 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.2, ease: "easeOut" },
-  },
-};
+import QuestionAnswer from "../Default Pages/QuestionAnswer/questionAnswer";
+import Talk from "../Default Pages/talk";
+import Footer from "../Default Pages/footer";
 
 const MainPage = () => {
   return (
     <div className="font-dmsans">
-      {/* Each section fades in as it comes into view */}
-      <motion.div
-        variants={fadeInUp}
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
-        className="opacity-0 -my-1"
-      >
-        <NumberSpeak />
-      </motion.div>
 
-      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
-        <Faces />
-      </motion.div>
+      <NumberSpeak />
 
-      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
-        <Families />
-      </motion.div>
+      <Faces />
 
-      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
-        <GoogleReviews />
-      </motion.div>
+      <Families />
 
-      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
-        <Succeed />
-      </motion.div>
+      <GoogleReviews />
 
-      {/* <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0"> */}
-        <ClientSuccess />
-      {/* </motion.div> */}
+      <Succeed />
 
-      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0 -my-1">
-        <QuestionAnswer onSet={"agent"}/>
-      </motion.div>
+      <ClientSuccess />
 
-      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0 -my-1">
-        <Talk />
-      </motion.div>
+      <QuestionAnswer onSet="agent" />
 
-      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
-        <Footer />
-      </motion.div>
+      <Talk />
+
+      <Footer />
+
     </div>
   );
 };
