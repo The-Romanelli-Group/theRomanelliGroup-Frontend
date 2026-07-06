@@ -9,10 +9,9 @@ const FirstPageBuy = () => {
 
         <div className="max-w-3xl mx-auto text-center">
 
-          <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+          {/*  <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
             BUY A HOME
-         {/*} </p> */}
-
+          </p>  */}
           <h1
             className="
               mt-3
@@ -52,51 +51,58 @@ const FirstPageBuy = () => {
             with expert guidance every step of the way.
           </p>
 
-          <button
-            onClick={() => window.open("/properties", "_self")}
-            className="
-              mt-8
-              inline-flex
-              items-center
-              justify-center
-              rounded-xl
-              bg-white
-              px-8
-              py-3.5
-              text-base
-              font-semibold
-              text-gray-900
-              shadow-xl
-              transition-all
-              duration-300
-              hover:-translate-y-0.5
-              hover:bg-gray-100
-            "
-          >
-            Browse Properties →
-          </button>
+          {/* CTA */}
 
-        </div>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-5">
 
-        {/* Floating Image */}
+            <button
+              onClick={() => window.open("/properties", "_self")}
+              className="
+                inline-flex
+                items-center
+                justify-center
+                rounded-full
+                bg-white
+                px-8
+                py-4
+                text-base
+                md:text-lg
+                font-semibold
+                text-gray-900
+                shadow-2xl
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:bg-gray-100
+              "
+            >
+              Browse Properties →
+            </button>
 
-        <div
-          className="
-            absolute
-            hidden
-            lg:block
-            right-8
-            bottom-0
-            xl:right-16
-            w-[280px]
-            pointer-events-none
-          "
-        >
-          <img
-            src={mainPageBuy_img_url}
-            alt="Browse Properties"
-            className="w-full h-auto object-contain"
-          />
+            <div className="flex items-center gap-3">
+
+              <img
+                src={mainPageBuy_img_url}
+                alt="Happy Homeowners"
+                className="w-16 md:w-20 h-auto object-contain"
+              />
+
+              <div className="text-left">
+
+                <p className="text-3xl md:text-4xl font-bold text-white leading-none">
+                  185+
+                </p>
+
+                <p className="text-white/90 text-sm md:text-base">
+                  Homes Sold
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
 
         <SideModal />
