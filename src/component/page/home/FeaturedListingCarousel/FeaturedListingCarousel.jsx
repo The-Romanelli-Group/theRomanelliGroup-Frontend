@@ -116,7 +116,7 @@ console.log("Properties:", response.value);
               <div className="text-center mb-14">
 
     <h2 className="text-5xl font-semibold">
-       Hot in the Market
+       Hot on the Market
     </h2>
 
 </div>
