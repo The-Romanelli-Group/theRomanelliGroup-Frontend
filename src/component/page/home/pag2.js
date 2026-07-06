@@ -288,82 +288,67 @@ const Pag2 = () => {
 
         {/* Trust Pills */}
 
-        <div className="
-  flex-shrink-0
-  rounded-full
-  border
-  border-white/10
-  bg-white/10
-  backdrop-blur-md
-  px-3
-  md:px-5
-  py-1.5
-  md:py-2
-  text-[11px]
-  md:text-sm
-  text-white
-  whitespace-nowrap
-">
+        <div className="mt-2 flex justify-center items-center gap-1 px-2">
 
           <div
             className="
-              flex-shrink-0
-              rounded-full
-              border
-              border-white/10
-              bg-white/10
-              backdrop-blur-md
-              px-3
-              md:px-5
-              py-1.5
-              md:py-2
-              text-[11px]
-              md:text-sm
-              text-white
-              whitespace-nowrap
-            "
+                flex-shrink-0
+                rounded-full
+                border
+                border-white/10
+                bg-white/10
+                backdrop-blur-md
+                px-2
+                md:px-5
+                py-1
+                md:py-2
+                text-[10px]
+                md:text-sm
+                text-white
+                whitespace-nowrap
+                "
           >
             ✓ Instant Estimate
           </div>
 
           <div
             className="
-              flex-shrink-0
-              rounded-full
-              border
-              border-white/10
-              bg-white/10
-              backdrop-blur-md
-              px-3
-              md:px-5
-              py-1.5
-              md:py-2
-              text-[11px]
-              md:text-sm
-              text-white
-              whitespace-nowrap
-            "
+                flex-shrink-0
+                rounded-full
+                border
+                border-white/10
+                bg-white/10
+                backdrop-blur-md
+                px-2
+                md:px-5
+                py-1
+                md:py-2
+                text-[10px]
+                md:text-sm
+                text-white
+                whitespace-nowrap
+                "
           >
             ✓ No Obligation
           </div>
 
           <div
             className="
-              flex-shrink-0
-              rounded-full
-              border
-              border-white/10
-              bg-white/10
-              backdrop-blur-md
-              px-3
-              md:px-5
-              py-1.5
-              md:py-2
-              text-[11px]
-              md:text-sm
-              text-white
-              whitespace-nowrap
-            "
+                flex-shrink-0
+                rounded-full
+                border
+                border-white/10
+                bg-white/10
+                backdrop-blur-md
+                px-2
+                md:px-5
+                py-1
+                md:py-2
+                text-[10px]
+                md:text-sm
+                text-white
+                whitespace-nowrap
+                "
           >
             ✓ Free Report
           </div>
