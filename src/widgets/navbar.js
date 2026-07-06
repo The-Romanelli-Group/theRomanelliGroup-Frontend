@@ -41,9 +41,7 @@ useEffect(() => {
     <>
       {/* Navbar Animation */}
       <motion.nav
-  initial={{ opacity: 0, y: -70 }} // Start higher for a more noticeable effect
-  animate={{ opacity: 1, y: 0 }} // Smooth slide-down
-  transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }} // Smooth and natural
+  initial={false}
 className="fixed top-0 left-0 w-full z-50 bg-backgroundColor/90 backdrop-blur-lg border-b border-white/10 shadow-lg font-inter transition-all duration-300"
 >
 
@@ -110,24 +108,57 @@ className="fixed top-0 left-0 w-full z-50 bg-backgroundColor/90 backdrop-blur-lg
     </div>
 ))}
             <button
-    onClick={() => setShowLeadModal(true)}
-    className="text-black bg-white hover:bg-gray-300 font-medium text-sm px-4 py-2 rounded-md"
+  onClick={() => setShowLeadModal(true)}
+  className="
+    inline-flex
+    items-center
+    justify-center
+    h-11
+    px-6
+    rounded-full
+    bg-white
+    text-gray-900
+    text-sm
+    font-semibold
+    shadow-lg
+    transition-all
+    duration-300
+    hover:bg-gray-100
+    hover:-translate-y-0.5
+    hover:shadow-xl
+  "
 >
-   Let's Talk →
+  Let's Talk
 </button>
           </div>
 
           {/* Mobile CTA + Hamburger Menu */}
           <div className="flex items-center md:hidden space-x-2">
             {/* Talk to our Team! - Left of Hamburger */}
-            <button
-    onClick={() => {
-        setShowLeadModal(true);
-        setIsMenuOpen(false);
-    }}
-    className="text-black bg-white hover:bg-gray-300 font-medium rounded-md text-sm px-4 py-2"
+           <button
+  onClick={() => {
+    setShowLeadModal(true);
+    setIsMenuOpen(false);
+  }}
+  className="
+    inline-flex
+    items-center
+    justify-center
+    h-10
+    px-5
+    rounded-full
+    bg-white
+    text-gray-900
+    text-sm
+    font-semibold
+    shadow-md
+    transition-all
+    duration-300
+    hover:bg-gray-100
+    active:scale-[0.98]
+  "
 >
-   Let's Talk →
+  Let's Talk
 </button>
             {/* Mobile Menu Button */}
             <button
