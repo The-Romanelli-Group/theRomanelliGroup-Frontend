@@ -43,7 +43,7 @@ const GoogleReviewCard = ({ review }) => {
 
         {/* Review */}
 
-        <p className="mt-4 text-gray-600 leading-7 line-clamp-6 flex-1 italic">
+        <p className="mt-4 text-gray-600 leading-6 md:leading-7 line-clamp-6 flex-1 italic">
           {review.comment}
         </p>
 

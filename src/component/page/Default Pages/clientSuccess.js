@@ -76,7 +76,7 @@ CLIENT SUCCESS
 
       </h2>
 
-      <p className="mt-4 text-[15px] md:text-lg leading-7 text-gray-400">
+      <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-400">
 
         Every home sold represents another family reaching their next chapter.
         Here's a look at some of the clients we've been honored to help.

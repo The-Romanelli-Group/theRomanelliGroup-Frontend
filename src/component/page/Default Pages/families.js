@@ -200,7 +200,7 @@ const Families = () => {
 
               </h2>
 
-                  <p className="mt-4 text-[15px] md:text-lg leading-7 text-gray-600">
+                  <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-600">
 
                   Real experiences from buyers and sellers who trusted
                   The Romanelli Group with one of life's biggest decisions.
@@ -371,7 +371,7 @@ const Families = () => {
     text-[15px]
     md:text-base
     text-gray-600
-    leading-7
+    leading-6 md:leading-7
     line-clamp-4
   "
 >

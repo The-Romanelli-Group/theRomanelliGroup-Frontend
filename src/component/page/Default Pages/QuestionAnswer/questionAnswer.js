@@ -101,7 +101,7 @@ const faqs =
           </span>
         </h2>
 
-       <p className="mt-4 text-[15px] md:text-lg text-gray-300 leading-7 md:leading-8">
+       <p className="mt-4 text-[15px] md:text-lg text-gray-300 leading-6 md:leading-7">
           Find answers to the questions we hear most often about buying,
           selling and working with The Romanelli Group.
         </p>
@@ -229,7 +229,7 @@ py-4 md:py-5
               `}
             >
               <div className="overflow-hidden">
-               <p className="px-5 md:px-6 pb-5 md:pb-6 text-[15px] md:text-base text-gray-300 leading-7 md:leading-8">
+               <p className="px-5 md:px-6 pb-5 md:pb-6 text-[15px] md:text-base text-gray-300 leading-6 md:leading-7">
                   {faq.answer}
                 </p>
               </div>

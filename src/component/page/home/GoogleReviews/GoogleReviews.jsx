@@ -62,7 +62,7 @@ const GoogleReviews = () => {
           </span>
         </h2>
 
-       <p className="mt-4 text-[15px] md:text-lg leading-7 text-gray-600">
+       <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-600">
           Honest reviews from buyers and sellers who worked with
           The Romanelli Group.
         </p>

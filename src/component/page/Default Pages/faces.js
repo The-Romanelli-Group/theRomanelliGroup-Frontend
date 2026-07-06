@@ -29,7 +29,7 @@ return (
         Behind The Romanelli Group
       </h2>
 
-      <p className="mt-4 text-[15px] md:text-lg leading-7 text-gray-600">
+      <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-600">
         Experienced professionals helping buyers and sellers across Central Ohio
         with local expertise, proven results and a commitment to exceptional service.
       </p>
@@ -120,7 +120,7 @@ return (
       Cristina Romanelli
     </h3>
 
-    <p className="mt-5 text-gray-600 leading-7">
+    <p className="mt-5 text-gray-600 leading-6 md:leading-7">
       Partner of The Romanelli Group at Keller Williams Greater Columbus,
       helping Central Ohio families buy and sell with confidence through
       local expertise, integrity and exceptional service.
@@ -241,7 +241,7 @@ return (
       Antonio Romanelli
     </h3>
 
-    <p className="mt-5 text-gray-600 leading-7">
+    <p className="mt-5 text-gray-600 leading-6 md:leading-7">
       Partner of The Romanelli Group specializing in residential and commercial
       real estate throughout Central Ohio, helping families navigate every move
       with confidence and expert guidance.
