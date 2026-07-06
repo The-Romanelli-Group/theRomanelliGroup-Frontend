@@ -73,7 +73,7 @@ const FirstPageBuy = () => {
                 text-base
               "
             >
-              Browse Properties →
+              Browse Properties
             </button>
 
             {/* Desktop Social Proof */}
