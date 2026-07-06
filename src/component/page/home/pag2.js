@@ -37,86 +37,157 @@ const Pag2 = () => {
 
 
     const waitForHomebot = () => {
-        let attempts = 0;
-        const interval = setInterval(() => {
-            if (window.Homebot) {
-                clearInterval(interval);
-                window.Homebot("#homebot_homeowner", "df5f3d04dde9ce0dccc0f12c06ac8d7cfd911b11ea7f4bfd", {
-                    size: "compact",
-                    theme: "light-mode-theme",
-                });
+  let attempts = 0;
 
-                // Inject CSS inside Shadow DOM
-                setTimeout(() => {
-                    const homebotShadow = document.querySelector("#homebot_homeowner")?.shadowRoot;
-                    if (homebotShadow) {
-                        const style = document.createElement("style");
-                        style.textContent = `
-                            .__hblgw--button-container-light-mode-theme {
-                                position: absolute !important;
-                                z-index: 12 !important;
-                                right: 4px !important;
-                                top: 0px !important;
-                                bottom: 0px !important;
-                                cursor: pointer;
-                                color: rgb(255, 255, 255);
-                                background-color: rgb(0,0,0);
-                                border: none;
-                                height:36px;
-                                font-size: 0.75rem;
-                                font-weight: 700;
-                                text-transform: uppercase;
-                                margin-top: 3px;
-                                width: 84px;
-                                border-radius: 0px 0px 0px 0px;
-                                transition: 0.2s cubic-bezier(0.05, 0.69, 0.14, 1);
-                            }
-    
-                            .__hblgw--logo-message_small {
-                                display: none !important;
-                                height: 16px;
-                                line-height: 16px;
-                                white-space: nowrap;
-                                text-align: left;
-                                margin-top: 6px;
-                            }
-    
-                            .__hblgw--input-input-light-mode-theme {
-                                position: relative;
-                                z-index: 11;
-                                color: rgba(0, 0, 0, 0.7);
-                                font-size: 16px;
-                                width: 100%;
-                                min-width: 84px;
-                                padding: 5px;
-                                border: 1px solid transparent;
-                                border-radius: 0px;
-                                height: 42px !important;
-                            }
-                                .__hblgw--input-input-light-mode-theme {
-    position: relative;
-    z-index: 11;
-    color: rgba(0, 0, 0, 0.7);
-    font-size: 16px;
-    width: 100%;
-    min-width: 84px;
-    padding: 5px 5px 5px 20px;
-    border: 1px solid transparent;
-    border-radius: 0px;
-    height: 42px !important;
+  const interval = setInterval(() => {
+    if (!window.Homebot) {
+      attempts++;
+
+      if (attempts > 10) {
+        clearInterval(interval);
+      }
+
+      return;
+    }
+
+    clearInterval(interval);
+
+    window.Homebot(
+      "#homebot_homeowner",
+      "df5f3d04dde9ce0dccc0f12c06ac8d7cfd911b11ea7f4bfd",
+      {
+        size: "compact",
+        theme: "light-mode-theme",
+      }
+    );
+
+    setTimeout(() => {
+      const homebotShadow =
+        document.querySelector("#homebot_homeowner")?.shadowRoot;
+
+      if (!homebotShadow) return;
+
+      // Prevent duplicate styles
+      const existingStyle = homebotShadow.getElementById("homebot-style");
+      if (existingStyle) existingStyle.remove();
+
+      const style = document.createElement("style");
+      style.id = "homebot-style";
+
+      style.textContent = `
+      
+/* Hide branding */
+
+.__hblgw--logo-message_small{
+    display:none !important;
 }
-                        `;
-                        homebotShadow.appendChild(style);
-                    }
-                }, 100);
-            } else {
-                attempts++;
-                if (attempts > 10) {
-                    clearInterval(interval);
-                }
-            }
-        }, 500);
-    };
+
+/* Form */
+
+.__hblgw--input-container-light-mode-theme{
+    position:relative;
+    width:100%;
+    max-width:900px;
+    margin:0 auto;
+}
+
+/* Input */
+
+.__hblgw--input-input-light-mode-theme{
+
+    position:relative;
+    z-index:1;
+
+    width:100%;
+
+    height:58px !important;
+
+    padding:0 155px 0 22px !important;
+
+    font-size:17px !important;
+    font-weight:500;
+
+    color:#111827;
+
+    background:#fff;
+
+    border:1px solid #E5E7EB !important;
+
+    border-radius:16px !important;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.10);
+
+    transition:all .25s ease;
+}
+
+.__hblgw--input-input-light-mode-theme::placeholder{
+    color:#9CA3AF;
+    font-weight:400;
+}
+
+.__hblgw--input-input-light-mode-theme:focus{
+
+    outline:none;
+
+    border-color:#A61E22 !important;
+
+    box-shadow:
+        0 0 0 4px rgba(166,30,34,.12),
+        0 12px 35px rgba(0,0,0,.16);
+}
+
+/* Button */
+
+.__hblgw--button-container-light-mode-theme{
+
+    position:absolute !important;
+
+    top:4px !important;
+    right:4px !important;
+    bottom:4px !important;
+
+    width:135px !important;
+
+    margin:0 !important;
+
+    border:none !important;
+
+    border-radius:12px !important;
+
+    background:#A61E22 !important;
+
+    color:#fff !important;
+
+    font-size:14px !important;
+    font-weight:700;
+
+    letter-spacing:.04em;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+}
+
+.__hblgw--button-container-light-mode-theme:hover{
+
+    background:#8C171B !important;
+
+    transform:translateY(-1px);
+
+    box-shadow:0 8px 24px rgba(166,30,34,.30);
+}
+
+.__hblgw--button-container-light-mode-theme:active{
+
+    transform:translateY(0);
+
+}
+`;
+
+      homebotShadow.appendChild(style);
+    }, 100);
+  }, 500);
+};
     return (
   <section className="relative py-12 md:py-20 overflow-visible">
 
@@ -134,7 +205,7 @@ const Pag2 = () => {
           Is Really Worth
         </h1>
 
-        <p className="mt-5 text-[15px] md:text-xl leading-7 text-gray-200 max-w-3xl mx-auto">
+        <p className="mt-3 text-[15px] md:text-xl leading-6 text-gray-200 max-w-3xl mx-auto">
           Receive an instant home value estimate, comparable sales,
           neighborhood insights, and market trends in seconds.
           No obligation. Completely free.
