@@ -53,7 +53,7 @@ return (
 
           bg-black
 
-          shadow-[0_20px_45px_rgba(0,0,0,.30)]
+        
 
           transition-transform
           duration-300
