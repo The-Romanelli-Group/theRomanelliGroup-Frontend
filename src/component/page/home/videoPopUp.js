@@ -59,7 +59,7 @@ return (
     id="video-popup"
     onClick={handleClose}
     tabIndex={-1}
-    className="fixed inset-0 z-[100] flex items-center justify-center pt-8 md:pt-0 md:items-end md:justify-end md:bottom-4 md:right-4 bg-black/40 md:bg-transparent backdrop-blur-[2px] md:backdrop-blur-0"
+    className="fixed inset-0 z-[999] flex items-center justify-center pt-8 md:pt-0 md:items-end md:justify-end md:bottom-4 md:right-4 bg-black/40 md:bg-transparent backdrop-blur-[2px] md:backdrop-blur-0"
   >
     <div
       onClick={(e) => e.stopPropagation()}
