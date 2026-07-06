@@ -1,4 +1,4 @@
-import { mainPageBuy_img_url } from "../../../assets/allImg";
+import TeamSnapshot from "../../../assets/images/illustrations/Teamsnapshot.png";
 import SideModal from "../home/sideModal";
 
 const FirstPageBuy = () => {
