@@ -238,9 +238,7 @@ const Pag2 = () => {
 
       <div className="max-w-3xl mx-auto text-center">
 
-        <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
-          HOME VALUE ESTIMATOR
-        </p>
+        
 
         <h1 className="
                     mt-3
