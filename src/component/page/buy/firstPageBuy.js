@@ -4,14 +4,9 @@ import SideModal from "../home/sideModal";
 const FirstPageBuy = () => {
   return (
     <section className="relative py-12 md:py-20 overflow-hidden">
-
       <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
-
         <div className="max-w-3xl mx-auto text-center">
 
-          {/*  <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
-            BUY A HOME
-          </p>  */}
           <h1
             className="
               mt-3
@@ -53,128 +48,94 @@ const FirstPageBuy = () => {
 
           {/* CTA */}
 
-<div className="mt-10">
+          <div className="relative mt-10 flex justify-center">
 
-  {/* Desktop */}
+            <button
+              onClick={() => window.open("/properties", "_self")}
+              className="
+                h-12
+                md:h-12
+                px-6
+                md:px-7
+                bg-[#A61E22]
+                hover:bg-[#8D181B]
+                text-white
+                rounded-lg
+                md:rounded-xl
+                shadow-lg
+                transition-all
+                duration-300
+                hover:scale-[1.02]
+                flex
+                items-center
+                justify-center
+                font-semibold
+                text-base
+              "
+            >
+              Browse Properties →
+            </button>
 
-  <div className="relative hidden md:flex justify-center">
+            {/* Desktop Social Proof */}
 
-    <button
-      onClick={() => window.open("/properties", "_self")}
-      className="
-        inline-flex
-        items-center
-        justify-center
-        rounded-full
-        bg-white
-        px-10
-        py-4
-        text-lg
-        font-semibold
-        text-gray-900
-        shadow-2xl
-        transition-all
-        duration-300
-        hover:-translate-y-1
-        hover:bg-gray-100
-      "
-    >
-      Browse Properties →
-    </button>
+            <div
+              className="
+                hidden
+                md:flex
+                absolute
+                left-1/2
+                top-6
+                ml-40
+                items-center
+                gap-2
+              "
+            >
+              <img
+                src={TeamSnapshot}
+                alt="Happy Families"
+                className="w-28 h-auto object-contain"
+              />
 
-    <div
-      className="
-        absolute
-        left-1/2
-        top-6
-        ml-40
-        flex
-        items-center
-        gap-0
-      "
-    >
-      <img
-        src={TeamSnapshot}
-        alt="Happy Families"
-        className="w-24 h-auto object-contain"
-      />
+              <div className="text-left">
+                <p className="text-3xl font-bold text-white leading-none">
+                  570+
+                </p>
 
-      <div>
-        <p className="text-3xl font-bold text-white leading-none">
-          185+
-        </p>
+                <p className="text-base text-white/90">
+                  Happy Families
+                </p>
+              </div>
+            </div>
 
-        <p className="text-base text-white/90">
-          Happy Families
-        </p>
-      </div>
-    </div>
+          </div>
 
-  </div>
+          {/* Mobile Social Proof */}
 
-  {/* Mobile */}
+          <div className="md:hidden mt-5 flex items-center justify-center gap-3">
 
-  <div className="flex flex-col items-center md:hidden">
+            <img
+              src={TeamSnapshot}
+              alt="Happy Families"
+              className="w-24 h-auto object-contain"
+            />
 
-   <button
-  onClick={() => window.open("/properties", "_self")}
-  className="
-    h-12
-    md:h-14
-    px-6
-    md:px-8
-    bg-[#A61E22]
-    hover:bg-[#8D181B]
-    text-white
-    rounded-xl
-    shadow-lg
-    transition-all
-    duration-300
-    hover:scale-[1.02]
-    flex
-    items-center
-    justify-center
-    font-semibold
-    text-base
-    md:text-lg
-  "
->
-  Browse Properties →
-</button>
+            <div className="text-left">
+              <p className="text-2xl font-bold text-white leading-none">
+                570+
+              </p>
 
-    <div className="mt-5 flex items-center gap-3">
+              <p className="text-sm text-white/90">
+                Happy Families
+              </p>
+            </div>
 
-      <img
-        src={TeamSnapshot}
-        alt="Happy Families"
-        className="w-20 h-auto object-contain"
-      />
+          </div>
 
-      <div className="text-left">
-
-        <p className="text-2xl font-bold text-white leading-none">
-          570+
-        </p>
-
-        <p className="text-sm text-white/90">
-          Happy Families
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-</div>
-     
+        </div>
 
         <SideModal />
 
       </div>
-
     </section>
   );
 };
