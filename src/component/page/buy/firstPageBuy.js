@@ -11,7 +11,7 @@ const FirstPageBuy = () => {
 
           <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
             BUY A HOME
-          </p>
+         {/*} </p> */}
 
           <h1
             className="
