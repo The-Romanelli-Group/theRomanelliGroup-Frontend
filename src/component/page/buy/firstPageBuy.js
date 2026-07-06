@@ -1,32 +1,110 @@
-import { mainPageBuy_img_url } from '../../../assets/allImg';
-import SideModal from '../home/sideModal';
+import { mainPageBuy_img_url } from "../../../assets/allImg";
+import SideModal from "../home/sideModal";
 
 const FirstPageBuy = () => {
-    return (
-        <div className="relative w-full"> {/* Ensure full width */}
-            <div className="container px-4 sm:px-5 py-12 md:py-24 mx-auto">
-                <div className="flex flex-col text-center w-full mb-6">
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-white mx-auto max-w-4xl px-4">
-                        Find the <span className='italic'>{" "} Home</span>    That Fits Your Life
-                    </h1>
-                    <p className="mx-auto leading-relaxed font-medium md:font-bold text-base sm:text-lg max-w-2xl ">
-                        Whether you're looking for a cozy family home or a lucrative investment property, we're here to make it happen.
-                    </p>
-                </div>
+  return (
+    <section className="relative py-12 md:py-20 overflow-hidden">
 
-                {/* Input & Button Section */}
-                <button onClick={()=>{window.open("/properties","_self")}} className="flex mx-auto mt-8 text-black bg-white hover:bg-gray-300 border-0 py-2 px-8 focus:outline-none rounded text-lg">
-                    Browse Properties
-                </button>
+      <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
 
-                {/* Scrollable Image in Bottom-Right */}
-                <div className="absolute -bottom-2 right-4 sm:right-6 md:right-10 lg:right-24 xl:right-16 w-60 hidden md:block">
-                    <img src={mainPageBuy_img_url} alt="Floating Icon" className="w-full h-auto object-contain" />
-                </div>
-            </div>
-            <SideModal/>
+        <div className="max-w-3xl mx-auto text-center">
+
+          <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+            BUY A HOME
+          </p>
+
+          <h1
+            className="
+              mt-3
+              px-3
+              sm:px-6
+              md:px-0
+              text-[30px]
+              sm:text-[36px]
+              md:text-6xl
+              leading-tight
+              font-bold
+              text-white
+            "
+          >
+            Find the{" "}
+            <span className="font-playfair italic font-normal text-[#A61E22]">
+              Home
+            </span>{" "}
+            That Fits Your Life
+          </h1>
+
+          <p
+            className="
+              mt-3
+              px-4
+              sm:px-8
+              md:px-0
+              text-[15px]
+              md:text-lg
+              leading-6
+              md:leading-7
+              text-gray-200
+            "
+          >
+            Whether you're searching for your first home, your forever home,
+            or your next investment, we'll help you find the right property
+            with expert guidance every step of the way.
+          </p>
+
+          <button
+            onClick={() => window.open("/properties", "_self")}
+            className="
+              mt-8
+              inline-flex
+              items-center
+              justify-center
+              rounded-xl
+              bg-white
+              px-8
+              py-3.5
+              text-base
+              font-semibold
+              text-gray-900
+              shadow-xl
+              transition-all
+              duration-300
+              hover:-translate-y-0.5
+              hover:bg-gray-100
+            "
+          >
+            Browse Properties →
+          </button>
+
         </div>
-    );
+
+        {/* Floating Image */}
+
+        <div
+          className="
+            absolute
+            hidden
+            lg:block
+            right-8
+            bottom-0
+            xl:right-16
+            w-[280px]
+            pointer-events-none
+          "
+        >
+          <img
+            src={mainPageBuy_img_url}
+            alt="Browse Properties"
+            className="w-full h-auto object-contain"
+          />
+        </div>
+
+        <SideModal />
+
+      </div>
+
+    </section>
+  );
 };
 
 export default FirstPageBuy;
