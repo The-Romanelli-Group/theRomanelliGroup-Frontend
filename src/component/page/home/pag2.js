@@ -222,6 +222,7 @@ const Pag2 = () => {
 
     font-size:13px !important;
 }
+    }
 `;
 
       homebotShadow.appendChild(style);
@@ -229,9 +230,9 @@ const Pag2 = () => {
   }, 500);
 };
    return (
-  <section className="py-12 md:py-20 overflow-visible">
+  <section className="relative py-12 md:py-20 overflow-visible">
 
-    <div className="max-w-7xl mx-auto px-5 lg:px-8">
+    <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
 
       {/* Heading */}
 
