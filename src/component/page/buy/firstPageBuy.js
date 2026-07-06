@@ -84,41 +84,36 @@ const FirstPageBuy = () => {
   {/* Social Proof */}
 
   <div
-    className="
-      absolute
+  className="
+    absolute
+    left-1/2
+    top-5
 
-      left-1/2
-      top-6
+    ml-24
+    md:ml-36
 
-      ml-36
+    flex
+    items-center
+    gap-2
+    md:gap-4
+  "
+>
+  <img
+    src={TeamSnapshot}
+    alt="Happy Families"
+    className="w-14 md:w-20 h-auto object-contain"
+  />
 
-      hidden
-      md:flex
+  <div>
+    <p className="text-xl md:text-3xl font-bold text-white leading-none">
+      185+
+    </p>
 
-      items-center
-      gap-4
-    "
-  >
-
-    <img
-      src={require("../../../assets/images/illustrations/Teamsnapshot.png")}
-      alt="Families Helped"
-      className="w-20 h-auto object-contain"
-    />
-
-    <div>
-
-      <p className="text-3xl font-bold text-white leading-none">
-        570+
-      </p>
-
-      <p className="text-white/90 text-base">
-        Happy Families
-      </p>
-
-    </div>
-
+    <p className="text-xs md:text-base text-white/90">
+      Happy Families
+    </p>
   </div>
+</div>
 
 </div>
         </div>
