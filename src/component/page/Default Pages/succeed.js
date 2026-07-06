@@ -19,9 +19,9 @@ const Succeed = () => {
       className="max-w-3xl mx-auto text-center"
     >
 
-      <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+     {/*} <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
         HOW WE CAN HELP
-      </p>
+      </p>{*/}
 
       <h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-gray-900">
 

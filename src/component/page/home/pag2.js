@@ -189,7 +189,7 @@ const Pag2 = () => {
   }, 500);
 };
     return (
-  <section className="relative py-12 md:py-20 overflow-visible">
+  <section className="relative py-10 md:py-20 overflow-visible">
 
     <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
 
@@ -197,7 +197,7 @@ const Pag2 = () => {
 
       <div className="max-w-4xl mx-auto text-center">
 
-               <h1 className="mt-3 text-[34px] md:text-6xl leading-tight font-bold text-white">
+        <h1 className="text-[34px] md:text-6xl font-bold leading-[1.05] md:leading-tight text-white">
           Know What Your{" "}
           <span className="font-playfair italic font-normal text-[#A61E22]">
             Home
@@ -205,7 +205,7 @@ const Pag2 = () => {
           Is Really Worth
         </h1>
 
-        <p className="mt-3 text-[15px] md:text-xl leading-6 text-gray-200 max-w-3xl mx-auto">
+        <p className="mt-2 md:mt-4 text-[15px] md:text-xl leading-[1.45] md:leading-8 text-gray-200 max-w-3xl mx-auto">
           Receive an instant home value estimate, comparable sales,
           neighborhood insights, and market trends in seconds.
           No obligation. Completely free.
@@ -215,24 +215,24 @@ const Pag2 = () => {
 
       {/* Homebot Widget */}
 
-      <div className="max-w-3xl mx-auto mt-10">
+      <div className="max-w-3xl mx-auto mt-6 md:mt-8">
 
         <div id="homebot_homeowner"></div>
 
         {/* Trust Pills */}
 
-        <div className="mt-5 flex flex-wrap justify-center gap-3">
+        <div className="mt-3 md:mt-5 flex justify-center gap-2 md:gap-3">
 
-          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-5 py-2 text-sm text-white">
-            ✓ Instant Home Estimate
+          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-3 md:px-5 py-1.5 md:py-2 text-[11px] md:text-sm text-white whitespace-nowrap">
+            ✓ Instant Estimate
           </div>
 
-          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-5 py-2 text-sm text-white">
+          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-3 md:px-5 py-1.5 md:py-2 text-[11px] md:text-sm text-white whitespace-nowrap">
             ✓ No Obligation
           </div>
 
-          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-5 py-2 text-sm text-white">
-            ✓ 100% Free Report
+          <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-3 md:px-5 py-1.5 md:py-2 text-[11px] md:text-sm text-white whitespace-nowrap">
+            ✓ Free Report
           </div>
 
         </div>
