@@ -90,7 +90,7 @@ const FirstPageBuy = () => {
         ml-40
         flex
         items-center
-        gap-4
+        gap-0
       "
     >
       <img
@@ -153,7 +153,7 @@ const FirstPageBuy = () => {
       <div className="text-left">
 
         <p className="text-2xl font-bold text-white leading-none">
-          185+
+          570+
         </p>
 
         <p className="text-sm text-white/90">
