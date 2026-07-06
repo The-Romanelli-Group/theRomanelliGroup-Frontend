@@ -17,10 +17,10 @@ return (
       className="
         fixed
        bottom-10
-            md:bottom-8
+       md:bottom-8
 
-        right-2
-        sm:right-4
+        right-4
+        sm:right-5
         md:right-8
 
         z-[9999]
