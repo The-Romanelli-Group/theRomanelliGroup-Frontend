@@ -20,7 +20,7 @@ const Footer = () => {
         { src: facebook, href: "https://www.facebook.com/romanellihomes", alt: "Facebook" },
         { src: tiktok, href: "https://www.tiktok.com/@the.romanelli.gro", alt: "TikTok" },
     ];
-    return (
+  return (
   <>
     <header
       className={`text-gray-600 body-font ${
@@ -31,11 +31,11 @@ const Footer = () => {
           : "bg-backgroundColor"
       }`}
     >
-      <div className="container mx-auto flex flex-col md:flex-row items-center pt-6 px-5 lg:px-24">
+      <div className="relative container mx-auto flex flex-col lg:flex-row items-center pt-6 px-5 lg:px-24">
 
         {/* Social */}
 
-        <nav className="flex lg:w-2/5 items-center justify-center lg:justify-start mb-5 md:mb-0">
+        <nav className="flex lg:w-2/5 items-center justify-center lg:justify-start mb-5 lg:mb-0">
           {socialLinks.map((link, index) => (
             <a
               key={index}
@@ -55,7 +55,7 @@ const Footer = () => {
 
         {/* Logo */}
 
-        <div className="flex order-first lg:order-none lg:w-1/5 justify-center mb-5 md:mb-0">
+        <div className="flex order-first lg:order-none lg:w-1/5 justify-center mb-5 lg:mb-0">
           <img
             className={`w-24 h-auto ${
               location?.pathname === "/resources" ||
@@ -69,9 +69,26 @@ const Footer = () => {
           />
         </div>
 
+        {/* Empty spacer for desktop balance */}
+
+        <div className="hidden lg:block lg:w-2/5" />
+
         {/* Back To Top */}
 
-        <div className="lg:w-2/5 flex justify-center lg:justify-end mt-2 lg:mt-0">
+        <div
+          className="
+            mt-4
+            lg:mt-0
+            lg:absolute
+            lg:left-1/2
+            lg:-translate-x-1/2
+            lg:top-1/2
+            lg:-translate-y-1/2
+            z-10
+          "
+        >
+          {/* Desktop */}
+
           <button
             onClick={() =>
               window.scrollTo({
@@ -80,7 +97,7 @@ const Footer = () => {
               })
             }
             aria-label="Back to Top"
-            className={`group inline-flex items-center gap-3 rounded-full border px-3 py-3 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 ${
+            className={`hidden md:inline-flex group items-center gap-3 rounded-full border px-3 py-3 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 ${
               location?.pathname === "/resources" ||
               location?.pathname.startsWith("/properties/") ||
               location?.pathname.startsWith("/details/")
@@ -88,13 +105,39 @@ const Footer = () => {
                 : "bg-black/40 border-white/15 text-white hover:bg-black/60"
             }`}
           >
-            <span className="hidden md:block text-sm font-medium tracking-wide">
+            <span className="text-sm font-medium tracking-wide">
               Back to Top
             </span>
 
             <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#A61E22] text-white transition-transform duration-300 group-hover:-translate-y-0.5">
               <ArrowUp size={18} strokeWidth={2.5} />
             </div>
+          </button>
+
+          {/* Mobile */}
+
+          <button
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              })
+            }
+            aria-label="Back to Top"
+            className="
+              md:hidden
+              w-12
+              h-12
+              rounded-full
+              bg-[#A61E22]
+              text-white
+              shadow-xl
+              flex
+              items-center
+              justify-center
+            "
+          >
+            <ArrowUp size={20} strokeWidth={2.5} />
           </button>
         </div>
 

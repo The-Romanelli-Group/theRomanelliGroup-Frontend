@@ -16,11 +16,11 @@ return (
     <div
       className="
         fixed
-       bottom-4
+       bottom-10
        md:bottom-8
 
-        right-4
-        sm:right-5
+        right-2
+        sm:right-4
         md:right-8
 
         z-[9999]
