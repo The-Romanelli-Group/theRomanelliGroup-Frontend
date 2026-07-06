@@ -23,7 +23,7 @@ return (
         sm:right-4
         md:right-8
 
-        z-50
+        z-[9999]
       "
     >
       {/* Phone */}
