@@ -1,50 +1,115 @@
 export const seoMetadata = {
   "/": {
-    title: "The Romanelli Group - Premier Real Estate Services",
-    description: "Discover exceptional real estate opportunities with The Romanelli Group. Expert agents, premium properties, and personalized service.",
-    keywords: "real estate, homes for sale, property investment, Romanelli Group",
-    ogTitle: "The Romanelli Group - Premier Real Estate Services",
-    ogDescription: "Your trusted partner in real estate. Find your dream home today.",
-    ogImage: "/logoUrl.avif"
+    title: "The Romanelli Group | Central Ohio Realtors",
+
+    description:
+      "Helping buyers and sellers across Central Ohio achieve their real estate goals with trusted local expertise, personalized guidance, and exceptional service.",
+
+    keywords:
+      "Central Ohio Realtors, Columbus Ohio real estate, homes for sale Columbus, buy a home Ohio, sell a home Ohio, Keller Williams Greater Columbus, The Romanelli Group",
+
+    ogTitle:
+      "The Romanelli Group | Central Ohio Realtors",
+
+    ogDescription:
+      "Helping Central Ohio families buy and sell with confidence through local expertise, integrity, and exceptional service.",
+
+    ogImage:
+      "https://theromanelligroup.com/og-image.jpg",
   },
+
   "/buy": {
-    title: "Buy Properties - The Romanelli Group",
-    description: "Browse our extensive collection of properties for sale. Find your perfect home with expert guidance from The Romanelli Group.",
-    keywords: "buy property, homes for sale, real estate purchase, property search",
-    ogTitle: "Buy Properties - The Romanelli Group",
-    ogDescription: "Discover your dream property with our expert real estate services.",
-    ogImage: "/logoUrl.avif"
+    title: "Buy a Home in Central Ohio | The Romanelli Group",
+
+    description:
+      "Search homes for sale across Central Ohio with expert guidance from The Romanelli Group. From your first showing to closing day, we're here to help.",
+
+    keywords:
+      "buy home Columbus Ohio, homes for sale Central Ohio, Columbus Realtor, home buying, Ohio real estate",
+
+    ogTitle:
+      "Buy a Home in Central Ohio | The Romanelli Group",
+
+    ogDescription:
+      "Find your dream home with trusted local experts serving Central Ohio.",
+
+    ogImage:
+      "https://theromanelligroup.com/og-image.jpg",
   },
+
   "/sell": {
-    title: "Sell Your Property - The Romanelli Group",
-    description: "Get the best value for your property with The Romanelli Group's expert selling services and market knowledge.",
-    keywords: "sell property, real estate agent, property valuation, home selling",
-    ogTitle: "Sell Your Property - The Romanelli Group",
-    ogDescription: "Maximize your property's value with our professional selling services.",
-    ogImage: "/logoUrl.avif"
+    title: "Sell Your Home | The Romanelli Group",
+
+    description:
+      "Sell your Central Ohio home with confidence. The Romanelli Group combines local market expertise, strategic marketing, and proven negotiation to maximize your home's value.",
+
+    keywords:
+      "sell home Columbus Ohio, Central Ohio Realtor, home valuation, listing agent, Keller Williams",
+
+    ogTitle:
+      "Sell Your Home | The Romanelli Group",
+
+    ogDescription:
+      "Maximize your home's value with trusted Central Ohio real estate experts.",
+
+    ogImage:
+      "https://theromanelligroup.com/og-image.jpg",
   },
+
   "/contact-us": {
-    title: "Contact Us - The Romanelli Group",
-    description: "Get in touch with The Romanelli Group for all your real estate needs. Expert consultation and personalized service.",
-    keywords: "contact real estate agent, property consultation, real estate services",
-    ogTitle: "Contact The Romanelli Group",
-    ogDescription: "Ready to help with all your real estate needs. Contact us today.",
-    ogImage: "/logoUrl.avif"
+    title: "Contact The Romanelli Group",
+
+    description:
+      "Ready to buy or sell a home? Contact The Romanelli Group for trusted real estate guidance throughout Central Ohio.",
+
+    keywords:
+      "contact Realtor Columbus Ohio, Central Ohio real estate agent, Romanelli Group",
+
+    ogTitle:
+      "Contact The Romanelli Group",
+
+    ogDescription:
+      "We're here to help you buy, sell, or invest with confidence.",
+
+    ogImage:
+      "https://theromanelligroup.com/og-image.jpg",
   },
+
   "/properties": {
-    title: "Properties - The Romanelli Group",
-    description: "Explore our comprehensive property listings. Quality homes and investment opportunities with The Romanelli Group.",
-    keywords: "property listings, real estate portfolio, homes, investments",
-    ogTitle: "Properties - The Romanelli Group",
-    ogDescription: "Browse our exclusive property listings and find your next investment.",
-    ogImage: "/logoUrl.avif"
+    title: "Central Ohio Property Listings | The Romanelli Group",
+
+    description:
+      "Browse homes and real estate listings across Central Ohio. Discover your next home with The Romanelli Group.",
+
+    keywords:
+      "Central Ohio homes, Columbus listings, Ohio homes for sale, real estate listings",
+
+    ogTitle:
+      "Central Ohio Property Listings | The Romanelli Group",
+
+    ogDescription:
+      "Explore homes for sale throughout Central Ohio.",
+
+    ogImage:
+      "https://theromanelligroup.com/og-image.jpg",
   },
+
   "/resources": {
-    title: "Resources - The Romanelli Group",
-    description: "Access valuable real estate resources, market insights, and expert advice from The Romanelli Group.",
-    keywords: "real estate resources, market insights, property advice, real estate blog",
-    ogTitle: "Real Estate Resources - The Romanelli Group",
-    ogDescription: "Stay informed with our latest market insights and real estate advice.",
-    ogImage: "/logoUrl.avif"
-  }
+    title: "Real Estate Resources | The Romanelli Group",
+
+    description:
+      "Stay informed with buying guides, selling tips, market updates, and expert real estate advice from The Romanelli Group.",
+
+    keywords:
+      "Central Ohio real estate blog, home buying guide, home selling tips, Columbus housing market",
+
+    ogTitle:
+      "Real Estate Resources | The Romanelli Group",
+
+    ogDescription:
+      "Expert real estate insights, buying guides, and market updates for Central Ohio.",
+
+    ogImage:
+      "https://theromanelligroup.com/og-image.jpg",
+  },
 };
