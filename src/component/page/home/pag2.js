@@ -52,7 +52,15 @@ const Pag2 = () => {
 
     clearInterval(interval);
 
-   
+    window.Homebot(
+      "#homebot_homeowner",
+      "df5f3d04dde9ce0dccc0f12c06ac8d7cfd911b11ea7f4bfd",
+      {
+        size: "compact",
+        theme: "light-mode-theme",
+      }
+    );
+
     setTimeout(() => {
       const homebotShadow =
         document.querySelector("#homebot_homeowner")?.shadowRoot;
@@ -224,7 +232,7 @@ const Pag2 = () => {
    return (
 <section className="relative py-12 md:py-20 overflow-x-hidden overflow-y-visible">
 
-    <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
+    <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
       {/* Heading */}
 
