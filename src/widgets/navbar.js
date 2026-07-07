@@ -107,25 +107,27 @@ className="fixed top-0 left-0 w-full z-50 bg-backgroundColor/90 backdrop-blur-lg
 
     </div>
 ))}
-            <button
+          <button
   onClick={() => setShowLeadModal(true)}
   className="
-    inline-flex
-    items-center
-    justify-center
     h-11
     px-6
-    rounded-full
-    bg-white
-    text-gray-900
-    text-sm
-    font-semibold
+    bg-[#A61E22]
+    hover:bg-[#8D181B]
+    text-white
+    rounded-xl
     shadow-lg
     transition-all
     duration-300
-    hover:bg-gray-100
-    hover:-translate-y-0.5
+    hover:scale-[1.02]
     hover:shadow-xl
+    active:scale-[0.98]
+    inline-flex
+    items-center
+    justify-center
+    gap-2
+    font-semibold
+    text-sm
   "
 >
   Let's Talk
@@ -141,24 +143,25 @@ className="fixed top-0 left-0 w-full z-50 bg-backgroundColor/90 backdrop-blur-lg
     setIsMenuOpen(false);
   }}
   className="
-    inline-flex
-    items-center
-    justify-center
-    h-10
-    px-5
-    rounded-full
-    bg-white
-    text-gray-900
-    text-sm
-    font-semibold
-    shadow-md
-    transition-all
-    duration-300
-    hover:bg-gray-100
-    active:scale-[0.98]
-  "
+inline-flex
+items-center
+justify-center
+h-10
+px-5
+rounded-xl
+bg-[#A61E22]
+hover:bg-[#8D181B]
+text-white
+text-sm
+font-semibold
+shadow-lg
+transition-all
+duration-300
+hover:scale-[1.02]
+active:scale-[0.98]
+"
 >
-  Let's Talk
+ Talk to our Team!
 </button>
             {/* Mobile Menu Button */}
             <button
@@ -266,9 +269,23 @@ className="fixed top-0 left-0 w-full z-50 bg-backgroundColor/90 backdrop-blur-lg
                         setShowLeadModal(true);
                         setIsMenuOpen(false);
                     }}
-                    className="mt-8 w-full h-12 rounded-xl bg-white text-gray-900 font-semibold hover:bg-gray-100 transition-all duration-300 shadow-md"
+                    className="
+                        mt-8
+                        w-full
+                        h-12
+                        rounded-xl
+                        bg-[#A61E22]
+                        hover:bg-[#8D181B]
+                        text-white
+                        font-semibold
+                        shadow-lg
+                        transition-all
+                        duration-300
+                        hover:scale-[1.01]
+                        active:scale-[0.98]
+                        "
                 >
-                    Talk to an Agent →
+                 Book Free Consultation
                 </button>
 
             </div>
