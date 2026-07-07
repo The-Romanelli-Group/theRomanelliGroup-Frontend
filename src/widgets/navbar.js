@@ -130,7 +130,7 @@ className="fixed top-0 left-0 w-full z-50 bg-backgroundColor/90 backdrop-blur-lg
     text-sm
   "
 >
-  Let's Talk
+  Talk to our Team!
 </button>
           </div>
 
