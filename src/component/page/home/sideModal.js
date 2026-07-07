@@ -62,7 +62,7 @@ return (
       className="
         fixed
        bottom-8
-       md:bottom-8
+       md:bottom-4
 
         right-2
         sm:right-4
