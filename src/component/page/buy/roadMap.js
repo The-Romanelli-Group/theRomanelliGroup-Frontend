@@ -155,7 +155,7 @@ const RoadMap = () => {
   transition={{ duration: 0.45 }}
  className="
   absolute
-  left-1/2
+  left-[calc(50%-24px)]
   top-1/2
 
   -translate-x-1/2
