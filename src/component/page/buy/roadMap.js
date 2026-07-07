@@ -297,7 +297,7 @@ const RoadMap = () => {
         hover:scale-[1.02]
       "
     >
-      {step.button} →
+      {step.button}
     </button>
 
   </div>
