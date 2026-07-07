@@ -37,22 +37,33 @@ const Page1 = ({ page }) => {
             video_url = video_url1;
     }
 
-    useEffect(() => {
+   useEffect(() => {
+  const video = videoRef.current;
 
-        const video = videoRef.current;
+  if (!video) return;
 
-        if (!video) return;
+  video.muted = true;
+  video.playsInline = true;
 
-        video.muted = true;
+  if (!video.currentSrc.includes(video_url.split("/").pop())) {
+    video.src = video_url;
+    video.load();
+  }
 
-        // Only change the source if it's actually different
-        if (!video.currentSrc.includes(video_url.split("/").pop())) {
-            video.src = video_url;
-        }
+  const playVideo = () => {
+    video.play().catch(() => {});
+  };
 
-        video.play().catch(() => {});
+  playVideo();
 
-    }, [video_url]);
+  document.addEventListener("visibilitychange", playVideo);
+  window.addEventListener("focus", playVideo);
+
+  return () => {
+    document.removeEventListener("visibilitychange", playVideo);
+    window.removeEventListener("focus", playVideo);
+  };
+}, [video_url]);
 
     return (
 
@@ -68,9 +79,11 @@ const Page1 = ({ page }) => {
                         loop
                         muted
                         playsInline
-                        preload="metadata"
+                        preload="auto"
+                        disablePictureInPicture
                         className="w-full h-full object-cover"
-                    />
+                        />
+                  
 
                     <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
