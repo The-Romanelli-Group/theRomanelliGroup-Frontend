@@ -153,34 +153,37 @@ const RoadMap = () => {
   }}
   viewport={{ once: true }}
   transition={{ duration: 0.45 }}
-  className="
-    absolute
-    left-1/2
-    -translate-x-1/2
+ className="
+  absolute
+  left-1/2
+  top-1/2
 
-    hidden
-    md:flex
+  -translate-x-1/2
+  -translate-y-1/2
 
-    items-center
-    justify-center
+  hidden
+  md:flex
 
-    w-12
-    h-12
+  items-center
+  justify-center
 
-    rounded-full
+  w-12
+  h-12
 
-    bg-[#A61E22]
+  rounded-full
 
-    border-4
-    border-white
+  bg-[#A61E22]
 
-    shadow-xl
+  border-4
+  border-white
 
-    text-white
-    font-bold
+  shadow-xl
 
-    z-20
-  "
+  text-white
+  font-bold
+
+  z-20
+"
 >
   {index + 1}
 </motion.div>
