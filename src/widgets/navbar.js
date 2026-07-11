@@ -42,9 +42,9 @@ useEffect(() => {
       {/* Navbar Animation */}
       <motion.nav
   initial={false}
-className="fixed top-0 left-0 w-full z-50 bg-backgroundColor/90 backdrop-blur-lg border-b border-white/10 shadow-lg font-inter transition-all duration-300"
+className="fixed top-0 left-0 w-full z-[99999] bg-backgroundColor/90 backdrop-blur-lg border-b border-white/10 shadow-lg font-inter transition-all duration-300"
 >
-
+ 
         <div className="max-w-screen-xl mx-auto flex items-center justify-between p-4 md:px-6">
           {/* Left Nav Links */}
           <ul className="hidden md:flex space-x-6">
