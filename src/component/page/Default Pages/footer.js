@@ -35,17 +35,45 @@ const Footer = () => {
 
         {/* Social */}
 
-        <nav className="flex lg:w-2/5 items-center justify-center lg:justify-start mb-5 lg:mb-0">
+       <nav
+  className="
+    flex
+    lg:w-2/5
+    items-center
+    justify-center
+    lg:justify-start
+    gap-3
+    lg:gap-4
+    mb-5
+    lg:mb-0
+  "
+>
           {socialLinks.map((link, index) => (
             <a
               key={index}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="mr-3 rounded-full p-2 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1"
+           className="
+  flex
+  items-center
+  justify-center
+
+  w-10
+  h-10
+
+  rounded-full
+
+  transition-all
+  duration-300
+
+  hover:bg-[#A61E22]
+  hover:shadow-lg
+  hover:-translate-y-1
+"
             >
               <img
-                className="w-6 h-6"
+               className="w-5 h-5 object-contain"
                 src={link.src}
                 alt={link.alt}
               />
@@ -57,7 +85,7 @@ const Footer = () => {
 
         <div className="flex order-first lg:order-none lg:w-1/5 justify-center mb-5 lg:mb-0">
           <img
-            className={`w-24 h-auto ${
+           className={`w-28 lg:w-32 h-auto ${
               location?.pathname === "/resources" ||
               location?.pathname.startsWith("/properties/") ||
               location?.pathname.startsWith("/details/")
@@ -158,8 +186,8 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between py-5">
 
           <div className="mb-4 lg:mb-0">
-            <p
-              className={`text-sm lg:text-base ${
+           <p
+  className={`whitespace-nowrap text-sm lg:text-base ${
                 location?.pathname === "/resources" ||
                 location?.pathname.startsWith("/properties/") ||
                 location?.pathname.startsWith("/details/")
@@ -172,7 +200,7 @@ const Footer = () => {
           </div>
 
           <div
-            className={`flex flex-wrap items-center justify-center gap-2 text-xs lg:text-sm ${
+            className={`flex flex-wrap items-center justify-center gap-2 text-sm ${
               location?.pathname === "/resources" ||
               location?.pathname.startsWith("/properties/") ||
               location?.pathname.startsWith("/details/")
