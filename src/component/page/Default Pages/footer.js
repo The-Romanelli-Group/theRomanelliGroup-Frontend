@@ -83,7 +83,7 @@ const Footer = () => {
 
         {/* Logo */}
 
-        <div className="flex order-first lg:order-none lg:w-1/5 justify-center mb-5 lg:mb-0">
+        <div className="flex order-first lg:order-none lg:w-1/5 justify-center mb-5 lg:mb-0 lg:ml-10">
           <img
            className={`w-28 lg:w-32 h-auto ${
               location?.pathname === "/resources" ||
