@@ -21,11 +21,7 @@ const FirstPageSell = () => {
 
       <div className="max-w-xl">
 
-        <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
-          SELL YOUR HOME
-        </p>
-
-        <h1
+               <h1
           className="
             mt-3
             text-[30px]
@@ -57,24 +53,7 @@ const FirstPageSell = () => {
           smooth and stress-free.
         </p>
 
-        <div className="mt-8 space-y-4">
-
-          <div className="flex items-center gap-3 text-white">
-            <span className="text-[#A61E22] text-xl">✓</span>
-            <span>Accurate Home Valuation</span>
-          </div>
-
-          <div className="flex items-center gap-3 text-white">
-            <span className="text-[#A61E22] text-xl">✓</span>
-            <span>Professional Marketing & Photography</span>
-          </div>
-
-          <div className="flex items-center gap-3 text-white">
-            <span className="text-[#A61E22] text-xl">✓</span>
-            <span>Expert Negotiation From Listing to Closing</span>
-          </div>
-
-        </div>
+    
 
       </div>
 
@@ -82,18 +61,7 @@ const FirstPageSell = () => {
 
       <div>
 
-        <div className="text-center mb-6">
-
-          <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
-            FREE HOME VALUATION
-          </p>
-
-          <h2 className="mt-3 text-3xl font-bold text-white">
-            Discover What Your Home Is Worth
-          </h2>
-
-        </div>
-
+        
         <div className="rounded-[28px] overflow-hidden shadow-2xl">
 
           <LeadForm variant="sell" />
