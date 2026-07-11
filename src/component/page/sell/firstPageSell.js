@@ -4,49 +4,111 @@ import LeadForm from "../LeadForm/LeadForm";
 
 const FirstPageSell = () => {
     return (
-        <div className="relative w-full">
+       <section className="relative py-12 md:py-20 overflow-hidden">
 
-            <div className="container px-4 sm:px-5 py-12 md:py-24 mx-auto">
+  <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
-                <div className="flex flex-col text-center w-full mb-6">
+    <div
+      className="
+        grid
+        lg:grid-cols-[1fr_520px]
+        gap-14
+        items-center
+      "
+    >
 
-                    <section className="text-white body-font">
+      {/* Left */}
 
-                        <div className="container mt-[-50px] flex flex-col lg:flex-row gap-12 px-5 py-12 md:py-24 mx-auto items-center">
+      <div className="max-w-xl">
 
-                            {/* Left Section */}
+        <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+          SELL YOUR HOME
+        </p>
 
-                            <div className="w-full lg:w-1/2 lg:pr-12 lg:py-8 text-left">
+        <h1
+          className="
+            mt-3
+            text-[30px]
+            sm:text-[36px]
+            md:text-6xl
+            leading-tight
+            font-bold
+            text-white
+          "
+        >
+          Sell with{" "}
+          <span className="font-playfair italic font-normal text-[#A61E22]">
+            Confidence
+          </span>
+        </h1>
 
-                                <h1 className="text-4xl lg:text-5xl font-bold mb-4 text-white">
-                                    Sell Smart. Move Forward with Confidence
-                                </h1>
+        <p
+          className="
+            mt-6
+            text-[15px]
+            md:text-lg
+            leading-7
+            text-gray-200
+          "
+        >
+          Every home has a story—and every seller deserves a strategy.
+          From pricing your property to negotiating the strongest offer,
+          we help you maximize value while making the selling process
+          smooth and stress-free.
+        </p>
 
-                                <p className="text-xl leading-9 text-white/90 max-w-xl">
-                                    Get top dollar for your property with our proven marketing strategies, local expertise, and personalized guidance from start to finish.
-                                </p>
+        <div className="mt-8 space-y-4">
 
-                            </div>
+          <div className="flex items-center gap-3 text-white">
+            <span className="text-[#A61E22] text-xl">✓</span>
+            <span>Accurate Home Valuation</span>
+          </div>
 
-                            {/* Right Section */}
+          <div className="flex items-center gap-3 text-white">
+            <span className="text-[#A61E22] text-xl">✓</span>
+            <span>Professional Marketing & Photography</span>
+          </div>
 
-                            <div className="w-full lg:w-1/2 lg:pl-12">
-
-                                <LeadForm variant="sell" />
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-                </div>
-
-            </div>
-
-            <SideModal />
+          <div className="flex items-center gap-3 text-white">
+            <span className="text-[#A61E22] text-xl">✓</span>
+            <span>Expert Negotiation From Listing to Closing</span>
+          </div>
 
         </div>
+
+      </div>
+
+      {/* Right */}
+
+      <div>
+
+        <div className="text-center mb-6">
+
+          <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+            FREE HOME VALUATION
+          </p>
+
+          <h2 className="mt-3 text-3xl font-bold text-white">
+            Discover What Your Home Is Worth
+          </h2>
+
+        </div>
+
+        <div className="rounded-[28px] overflow-hidden shadow-2xl">
+
+          <LeadForm variant="sell" />
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <SideModal />
+
+</section>
     );
 };
 
