@@ -133,9 +133,9 @@ const Footer = () => {
                 : "bg-black/40 border-white/15 text-white hover:bg-black/60"
             }`}
           >
-            <span className="text-sm font-medium tracking-wide">
-              Back to Top
-            </span>
+            <span className="hidden xl:block text-sm font-medium tracking-wide">
+  Back to Top
+</span>
 
             <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#A61E22] text-white transition-transform duration-300 group-hover:-translate-y-0.5">
               <ArrowUp size={18} strokeWidth={2.5} />
