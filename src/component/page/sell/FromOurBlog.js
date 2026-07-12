@@ -51,7 +51,17 @@ const FromOurBlog = ({
 }, [category]);
 
   return (
-<section className="py-12 bg-backgroundColor overflow-hidden">
+<section
+  className="
+    relative
+    overflow-hidden
+    py-16 lg:py-20
+    bg-gradient-to-b
+    from-[#1A1414]
+    via-[#161111]
+    to-[#120E0E]
+  "
+>
 
   <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
@@ -157,11 +167,12 @@ const FromOurBlog = ({
         <div
           key={blog.id}
           className="
-            min-w-[88%]
-            sm:min-w-[60%]
-            lg:min-w-[31%]
-            px-4
-          "
+                min-w-[88%]
+                sm:min-w-[62%]
+                lg:min-w-[30%]
+                xl:min-w-[29%]
+                px-4
+"
         >
 
         <motion.article
@@ -170,21 +181,22 @@ const FromOurBlog = ({
   }}
   transition={{ duration: 0.25 }}
   className="
-    group
-    h-full
-    overflow-hidden
-    rounded-[28px]
-    bg-white
-    shadow-xl
-    border
-    border-gray-200
-  "
+  group
+  h-[610px]
+  overflow-hidden
+  rounded-[28px]
+  bg-white
+  border
+  border-gray-200
+  shadow-xl
+  flex
+  flex-col
+"
 >
 
   {/* Image */}
 
-  <div className="relative overflow-hidden">
-
+ <div className="relative h-[235px] overflow-hidden flex-shrink-0">
     <img
       src={blog.image?.url}
       alt={blog.title}
@@ -222,60 +234,64 @@ const FromOurBlog = ({
 
   {/* Content */}
 
-  <div className="flex h-[270px] flex-col p-7">
-
+ <div className="flex flex-1 flex-col p-7">
     <h3
-      className="
-        text-2xl
-        font-bold
-        leading-tight
-        text-gray-900
-      "
-    >
+  className="
+    text-[34px]
+    font-bold
+    leading-tight
+    text-gray-900
+    line-clamp-2
+    min-h-[84px]
+  "
+>
       {blog.title}
     </h3>
 
     <p
-      className="
-        mt-4
-        text-gray-600
-        leading-7
-        line-clamp-3
-      "
-    >
+  className="
+    mt-4
+    text-[17px]
+    text-gray-600
+    leading-8
+    line-clamp-3
+    min-h-[96px]
+  "
+>
       {blog.excerpt}
     </p>
 
-    <div className="mt-auto">
+   <div className="mt-auto pt-6 border-t border-gray-100">
 
       <div
-        className="
-          flex
-          items-center
-          gap-2
-          text-sm
-          text-gray-500
-        "
-      >
+  className="
+    flex
+    items-center
+    gap-2
+    text-[15px]
+    text-gray-500
+  "
+>
         <Clock3 size={16} />
 
         {blog.readTime} min read
 
       </div>
 
-      <button
-        className="
-          mt-6
-          inline-flex
-          items-center
-          gap-2
-          font-semibold
-          text-[#A61E22]
-          transition-all
-          duration-300
-          group-hover:gap-3
-        "
-      >
+     <button
+  className="
+    mt-6
+    inline-flex
+    items-center
+    gap-2
+    text-[17px]
+    font-semibold
+    text-[#A61E22]
+    transition-all
+    duration-300
+    group-hover:gap-3
+  "
+>
         Read Article
 
         <ArrowUpRight size={18} />
