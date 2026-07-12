@@ -60,9 +60,8 @@ const FromOurBlog = ({
     from-[#1A1414]
     via-[#161111]
     to-[#120E0E]
-  "
+"
 >
-
   <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
     <motion.div
@@ -72,251 +71,136 @@ const FromOurBlog = ({
       transition={{ duration: 0.6 }}
       className="max-w-3xl mx-auto text-center"
     >
-
       <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
         FROM OUR BLOG
       </p>
 
       <h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
-
         Real Estate{" "}
-
         <span className="font-playfair italic font-normal text-[#A61E22]">
           Insights
         </span>
-
       </h2>
 
       <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-300">
-
         {subtitle}
-
       </p>
-
     </motion.div>
 
-    <div className="relative mt-10">
+    <div className="relative mt-12">
 
-  {/* Left Arrow */}
+      {/* Left Arrow */}
 
-  <button
-    onClick={() => emblaApi?.scrollPrev()}
-    className="
-      hidden
-      md:flex
-      absolute
-      left-[-28px]
-      lg:left-[-60px]
-      top-1/2
-      -translate-y-1/2
-      z-20
-      w-14
-      h-14
-      rounded-full
-      bg-white
-      shadow-xl
-      items-center
-      justify-center
-      hover:bg-[#A61E22]
-      hover:text-white
-      transition-all
-      duration-300
-    "
-  >
-    <ChevronLeft size={24} />
-  </button>
-
-  {/* Right Arrow */}
-
-  <button
-    onClick={() => emblaApi?.scrollNext()}
-    className="
-      hidden
-      md:flex
-      absolute
-      right-[-28px]
-      lg:right-[-60px]
-      top-1/2
-      -translate-y-1/2
-      z-20
-      w-14
-      h-14
-      rounded-full
-      bg-white
-      shadow-xl
-      items-center
-      justify-center
-      hover:bg-[#A61E22]
-      hover:text-white
-      transition-all
-      duration-300
-    "
-  >
-    <ChevronRight size={24} />
-  </button>
-
-  <div
-    ref={emblaRef}
-    className="overflow-hidden"
-  >
-
-    <div className="flex">
-
-      {blogs.map((blog) => (
-
-        <div
-          key={blog.id}
-          className="
-                min-w-[88%]
-                sm:min-w-[62%]
-                lg:min-w-[30%]
-                xl:min-w-[29%]
-                px-4
-"
-        >
-
-        <motion.article
-  whileHover={{
-    y: -8,
-  }}
-  transition={{ duration: 0.25 }}
-  className="
-  group
-  h-[610px]
-  overflow-hidden
-  rounded-[28px]
-  bg-white
-  border
-  border-gray-200
-  shadow-xl
-  flex
-  flex-col
-"
->
-
-  {/* Image */}
-
- <div className="relative h-[235px] overflow-hidden flex-shrink-0">
-    <img
-      src={blog.image?.url}
-      alt={blog.title}
-      className="
-        h-[240px]
-        w-full
-        object-cover
-        transition-transform
-        duration-700
-        group-hover:scale-105
-      "
-    />
-
-    <div
-      className="
-        absolute
-        top-5
-        left-5
-        rounded-full
-        bg-white/95
-        px-4
-        py-2
-        text-[11px]
-        font-semibold
-        uppercase
-        tracking-wider
-        text-[#A61E22]
-        shadow-lg
-      "
-    >
-      {blog.category}
-    </div>
-
-  </div>
-
-  {/* Content */}
-
- <div className="flex flex-1 flex-col p-7">
-    <h3
-  className="
-    text-[34px]
-    font-bold
-    leading-tight
-    text-gray-900
-    line-clamp-2
-    min-h-[84px]
-  "
->
-      {blog.title}
-    </h3>
-
-    <p
-  className="
-    mt-4
-    text-[17px]
-    text-gray-600
-    leading-8
-    line-clamp-3
-    min-h-[96px]
-  "
->
-      {blog.excerpt}
-    </p>
-
-   <div className="mt-auto pt-6 border-t border-gray-100">
-
-      <div
-  className="
-    flex
-    items-center
-    gap-2
-    text-[15px]
-    text-gray-500
-  "
->
-        <Clock3 size={16} />
-
-        {blog.readTime} min read
-
-      </div>
-
-     <button
-  className="
-    mt-6
-    inline-flex
-    items-center
-    gap-2
-    text-[17px]
-    font-semibold
-    text-[#A61E22]
-    transition-all
-    duration-300
-    group-hover:gap-3
-  "
->
-        Read Article
-
-        <ArrowUpRight size={18} />
-
+      <button
+        onClick={() => emblaApi?.scrollPrev()}
+        className="hidden md:flex absolute left-[-30px] xl:left-[-55px] top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-white shadow-xl items-center justify-center hover:bg-[#A61E22] hover:text-white transition-all duration-300"
+      >
+        <ChevronLeft size={24} />
       </button>
 
-    </div>
+      {/* Right Arrow */}
 
-  </div>
+      <button
+        onClick={() => emblaApi?.scrollNext()}
+        className="hidden md:flex absolute right-[-30px] xl:right-[-55px] top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-white shadow-xl items-center justify-center hover:bg-[#A61E22] hover:text-white transition-all duration-300"
+      >
+        <ChevronRight size={24} />
+      </button>
 
-</motion.article>
+      <div ref={emblaRef} className="overflow-hidden">
+
+        <div className="flex">
+
+          {blogs.map((blog) => (
+
+            <div
+              key={blog.id}
+              className="
+                flex-[0_0_88%]
+                sm:flex-[0_0_62%]
+                lg:flex-[0_0_33.333%]
+                px-3
+              "
+            >
+
+              <motion.article
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.25 }}
+                className="
+                  group
+                  h-[590px]
+                  w-full
+                  overflow-hidden
+                  rounded-[28px]
+                  bg-white
+                  border
+                  border-gray-200
+                  shadow-xl
+                  flex
+                  flex-col
+                "
+              >
+
+                {/* Image */}
+
+                <div className="relative h-[220px] overflow-hidden flex-shrink-0">
+
+                  <img
+                    src={blog.image?.url}
+                    alt={blog.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+
+                  <div className="absolute top-5 left-5 rounded-full bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-[#A61E22] shadow-lg">
+                    {blog.category}
+                  </div>
+
+                </div>
+
+                {/* Content */}
+
+                <div className="flex flex-1 flex-col p-7">
+
+                  <h3 className="text-[28px] font-bold leading-tight text-gray-900 line-clamp-2 min-h-[72px]">
+                    {blog.title}
+                  </h3>
+
+                  <p className="mt-4 text-[17px] leading-8 text-gray-600 line-clamp-3 min-h-[84px]">
+                    {blog.excerpt}
+                  </p>
+
+                  <div className="mt-auto pt-6 border-t border-gray-100">
+
+                    <div className="flex items-center gap-2 text-[15px] text-gray-500">
+                      <Clock3 size={16} />
+                      {blog.readTime} min read
+                    </div>
+
+                    <button className="mt-6 inline-flex items-center gap-2 text-[17px] font-semibold text-[#A61E22] transition-all duration-300 group-hover:gap-3">
+                      Read Article
+                      <ArrowUpRight size={18} />
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </motion.article>
+
+            </div>
+
+          ))}
 
         </div>
 
-      ))}
+      </div>
 
     </div>
 
   </div>
 
-</div>
-
-</div>
-
 </section>
+
 );
 };
 
