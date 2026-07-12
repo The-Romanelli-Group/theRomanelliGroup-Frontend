@@ -8,7 +8,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
-const SellSmarter = ({
+const FromOurBlog = ({
   category = "",
   subtitle = "Discover expert advice, local market updates and practical guides to help you make smarter real estate decisions.",
 }) => {
@@ -305,7 +305,7 @@ const SellSmarter = ({
 </div>
 
 </section>
-  ),
+);
 };
 
-export default SellSmarter;
+export default FromOurBlog;
