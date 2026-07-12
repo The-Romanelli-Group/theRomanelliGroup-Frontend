@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import apiServices from "../../../Service/apiService";
 import {  ChevronLeft, ChevronRight, Clock3, ArrowUpRight, } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const FromOurBlog = ({
   category = "",
@@ -120,7 +121,11 @@ const FromOurBlog = ({
               "
             >
 
-              <motion.article
+<Link
+  to={`/resources/${blog.slug}`}
+  className="block h-full"
+>
+  <motion.article
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.25 }}
                 className="
@@ -173,17 +178,20 @@ const FromOurBlog = ({
                       {blog.readTime} min read
                     </div>
 
-                    <button className="mt-6 inline-flex items-center gap-2 text-[17px] font-semibold text-[#A61E22] transition-all duration-300 group-hover:gap-3">
+                    <div  className="mt-6 inline-flex items-center gap-2 text-[17px] font-semibold text-[#A61E22] transition-all duration-300
+    group-hover:gap-3
+  "
+>
                       Read Article
                       <ArrowUpRight size={18} />
-                    </button>
+                    </div>
 
                   </div>
 
                 </div>
 
               </motion.article>
-
+</Link>
             </div>
 
           ))}
