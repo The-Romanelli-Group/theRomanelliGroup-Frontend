@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
-import apiServices from "../../../Service/apiServices";
+import apiServices from "../../../Service/apiService";
 import {  ChevronLeft, ChevronRight, Clock3, ArrowUpRight, } from "lucide-react";
 
 const FromOurBlog = ({
