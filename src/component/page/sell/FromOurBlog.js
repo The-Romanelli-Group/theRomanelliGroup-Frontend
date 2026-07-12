@@ -56,10 +56,7 @@ const FromOurBlog = ({
     relative
     overflow-hidden
     py-16 lg:py-20
-    bg-gradient-to-b
-    from-[#1A1414]
-    via-[#161111]
-    to-[#120E0E]
+    bg-[#171010]
 "
 >
   <div className="max-w-7xl mx-auto px-5 lg:px-8">
