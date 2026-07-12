@@ -165,7 +165,7 @@ const FromOurBlog = ({
                     {blog.title}
                   </h3>
 
-                  <p className="mt-4 text-[17px] leading-8 text-gray-600 line-clamp-3 min-h-[84px]">
+                  <p className="mt-4 text-[17px] leading-6 md:leading-7 text-gray-600 line-clamp-3 min-h-[84px]">
                     {blog.excerpt}
                   </p>
 
