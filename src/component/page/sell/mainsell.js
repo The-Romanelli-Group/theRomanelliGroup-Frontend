@@ -3,7 +3,7 @@ import Simplified from "./simplified";
 import ClientSuccess from "../Default Pages/clientSuccess";
 import QuestionAnswer from "../Default Pages/QuestionAnswer/questionAnswer";
 import Footer from "../Default Pages/footer";
-import SellSmarter from "./sellSmarter";
+import FromOurBlog from "./FromOurBlog";
 import Talk from "../Default Pages/talk";
 import GoogleReviews from "../home/GoogleReviews/GoogleReviews";
 
@@ -17,7 +17,10 @@ const MainSell = () => {
 
       <ClientSuccess />
 
-      <SellSmarter />
+      <FromOurBlog
+        category="Seller"
+        subtitle="Selling strategies, pricing advice and expert insights to maximize your home's value."
+      />
 
       <QuestionAnswer onSet="seller" />
 
