@@ -226,11 +226,11 @@ return (
                       {blog.title}
                     </h3>
 
-                    <p className="mt-3 md:mt-4 text-[15px] md:text-[17px] leading-6 md:leading-7 text-gray-600 line-clamp-3 min-h-[72px] md:min-h-[84px]">
+                   <p className="mt-3 md:mt-4 text-[15px] md:text-[17px] leading-6 md:leading-7 text-gray-600 line-clamp-3 min-h-[54px] md:min-h-[72px]">
                       {blog.excerpt}
                     </p>
 
-                    <div className="mt-auto pt-5 md:pt-6 border-t border-gray-100">
+                    <div className="mt-5 border-t border-gray-100 pt-5">
 
                       <div className="flex items-center gap-2 text-sm text-gray-500">
                         <Clock3 size={16} />

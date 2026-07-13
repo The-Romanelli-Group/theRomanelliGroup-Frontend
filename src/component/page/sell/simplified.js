@@ -134,4 +134,4 @@ const Simplified = () => {
   );
 };
 
-export default Simplified;
+export default Simplified; 
