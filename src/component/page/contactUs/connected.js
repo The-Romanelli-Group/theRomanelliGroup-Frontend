@@ -51,92 +51,169 @@ const Connected = () => {
   ];
 
   return (
-    <div>
-      <section className="text-gray-600 px-5 lg:px-24 body-font overflow-hidden bg-backgroundColor">
-        <div className="flex flex-col text-center w-full mt-10 mb-10 text-white">
-          <h1 className="sm:text-4xl text-2xl font-bold title-font">
-            Let’s Stay <span className="italic font-playfair ">Connected</span>
-          </h1>
-          <p className="lg:w-2/3 mx-auto leading-relaxed text-xl mt-5">
-            Whether you’re ready to buy, sell, or simply have questions, we’re here to help every step of the way.
-          </p>
-        </div>
-<div className="container px-4 sm:px-6 lg:px-8 mx-auto py-6">
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-    {contactDetails.map((detail, index) => (
-      <div key={index} className="w-full">
-        <div className="min-h-[250px] sm:min-h-[280px] lg:min-h-[300px] xl:min-h-[300px] w-full p-5 sm:p-6 text-left border-2 bg-white flex flex-col relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:border-red-800/20">
-          
+<section className="bg-white py-16 md:py-20 overflow-hidden">
+
+  <div className="max-w-7xl mx-auto px-5 lg:px-8">
+
+    {/* Header */}
+
+    <div className="max-w-3xl mx-auto text-center">
+
+      <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+        GET IN TOUCH
+      </p>
+
+      <h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-gray-900">
+        Let's Stay{" "}
+        <span className="font-playfair italic font-normal text-[#A61E22]">
+          Connected
+        </span>
+      </h2>
+
+      <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-600">
+        Whether you're buying, selling or simply have questions,
+        our team is here to help every step of the way.
+      </p>
+
+    </div>
+
+    {/* Cards */}
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mt-14">
+
+      {contactDetails.map((detail, index) => (
+
+        <div
+          key={index}
+          className="
+            group
+            h-full
+            rounded-[28px]
+            bg-white
+            border
+            border-gray-200
+            shadow-xl
+            p-8
+            transition-all
+            duration-300
+            hover:-translate-y-2
+            hover:shadow-2xl
+          "
+        >
+
           {/* Icon */}
-          <div className="bg-red-800 text-white p-3 absolute left-4 top-4 w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <img 
-              src={detail.icon} 
+
+          <div
+            className="
+              w-16
+              h-16
+              rounded-full
+              bg-[#A61E22]
+              flex
+              items-center
+              justify-center
+              shadow-lg
+              transition-transform
+              duration-300
+              group-hover:scale-110
+            "
+          >
+
+            <img
+              src={detail.icon}
               alt={detail.title}
-              className="w-6 h-6 sm:w-7 sm:h-7"
+              className="w-7 h-7 object-contain"
             />
+
           </div>
-          
+
           {/* Title */}
-          <h3 className="mt-16 text-lg sm:text-xl font-bold text-gray-900  transition-colors duration-300">
+
+          <h3 className="mt-8 text-2xl font-bold text-gray-900">
+
             {detail.title}
+
           </h3>
-          
+
           {/* Description */}
-          <p className="mt-2 text-sm text-gray-600 leading-relaxed flex-grow">
+
+          <p className="mt-4 text-gray-600 leading-7 min-h-[90px]">
+
             {detail.description}
+
           </p>
-          
-          {/* Action / Social Links */}
-          <div className="mt-4 pt-4 border-t border-gray-100">
+
+          {/* Footer */}
+
+          <div className="mt-auto pt-6 border-t border-gray-100">
+
             {detail.actionLink ? (
+
               <a
                 href={detail.actionLink}
-                target={detail.target || '_self'}
-                className="inline-flex items-center text-black underline font-semibold text-sm sm:text-base  transition-colors duration-200"
-                rel={detail.target === '_blank' ? 'noopener noreferrer' : undefined}
+                target={detail.target || "_self"}
+                rel={detail.target === "_blank" ? "noopener noreferrer" : undefined}
+                className="
+                  inline-flex
+                  items-center
+                  gap-2
+                  font-semibold
+                  text-[#A61E22]
+                  transition-all
+                  duration-300
+                  group-hover:gap-3
+                "
               >
+
                 {detail.action}
-                {detail.target === '_blank' && (
-                  <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                )}
+
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M7 17L17 7M17 7H9M17 7V15"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+
               </a>
-            ) : detail.socialLinks ? (
-              // Social links section
-              <div className="flex items-center space-x-4">
-                {detail.socialLinks.map((link, linkIndex) => (
-                  <a
-                    key={linkIndex}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:opacity-80 transition-opacity duration-200"
-                  >
-                    <img
-                      className="w-7 h-7 sm:w-8 sm:h-8"
-                      src={link.src}
-                      alt={link.alt}
-                    />
-                  </a>
-                ))}
-              </div>
-            ) : (
-              // Regular text action (no link)
-              <span className="text-sm flex gap-2 text-gray-900">
+
+            ) : Array.isArray(detail.action) ? (
+
+              <div className="flex gap-4">
+
                 {detail.action}
-              </span>
+
+              </div>
+
+            ) : (
+
+              <p className="text-sm font-medium text-gray-900">
+
+                {detail.action}
+
+              </p>
+
             )}
+
           </div>
-          
+
         </div>
-      </div>
-    ))}
-  </div>
-</div>
-      </section>
+
+      ))}
+
     </div>
-  );
+
+  </div>
+
+</section>
+);
 };
 
 export default Connected;
