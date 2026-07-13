@@ -72,26 +72,7 @@ const FirstPageSell = () => {
                         question, our team is here to help every step of the way.
                     </p>
 
-                    {/* Mobile Trust Pills */}
-
-                  
-                    {/* Desktop Trust Pills */}
-
-                    <div className="hidden lg:flex flex-wrap gap-4 mt-10">
-
-                        <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-5 py-3 text-white">
-                            ✓ Local Experts
-                        </div>
-
-                        <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-5 py-3 text-white">
-                            ✓ Fast Response
-                        </div>
-
-                        <div className="rounded-full border border-white/10 bg-white/10 backdrop-blur-md px-5 py-3 text-white">
-                            ✓ No Obligation
-                        </div>
-
-                    </div>
+                
 
                 </div>
 
