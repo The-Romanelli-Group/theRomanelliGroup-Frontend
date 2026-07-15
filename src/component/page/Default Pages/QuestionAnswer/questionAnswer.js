@@ -86,194 +86,162 @@ const faqs =
     ? sellerFaqs
     : agentFaqs;
 
-return (
-<section className="py-8 md:py-12 bg-[#171010] overflow-hidden">
+ return (
+  <section className="bg-[#171010] py-8 md:py-12">
+    <div className="max-w-6xl mx-auto px-5">
 
-  <div className="max-w-7xl mx-auto px-5 lg:px-8">
+      {/* Heading */}
 
-    {/* Header */}
+      <div className="max-w-3xl mx-auto text-center">
 
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="max-w-3xl mx-auto text-center"
-    >
+       <h2 className="text-[30px] md:text-5xl leading-tight font-bold text-white">
+          Frequently{" "}
+          <span className="font-playfair italic font-normal text-[#A61E22]">
+            Asked Questions
+          </span>
+        </h2>
 
-      <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
-        FREQUENTLY ASKED QUESTIONS
-      </p>
+       <p className="mt-4 text-[15px] md:text-lg text-gray-300 leading-6 md:leading-7">
+          Find answers to the questions we hear most often about buying,
+          selling and working with The Romanelli Group.
+        </p>
 
-      <h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
+      </div>
 
-        Frequently Asked{" "}
+      {/* Tabs */}
 
-        <span className="font-playfair italic font-normal text-[#A61E22]">
-          Questions
-        </span>
+     <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-8 md:mt-12">
 
-      </h2>
-
-      <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-300">
-
-        Find answers to the questions we hear most often about buying,
-        selling and working with The Romanelli Group.
-
-      </p>
-
-    </motion.div>
-
-    {/* Tabs */}
-
-    <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-8 md:mt-10">
-
-      {[
-        { key: "buyer", label: "For Buyers" },
-        { key: "seller", label: "For Sellers" },
-        { key: "agent", label: "For Agents" },
-      ].map((tab) => (
-
-        <button
-          key={tab.key}
-          onClick={() => {
-            setSelectedArea(tab.key);
-            setOpenIndex(null);
-          }}
-          className={`
-            rounded-full
-            px-6 md:px-7
-            py-2.5 md:py-3
-            text-sm
-            md:text-base
-            font-semibold
-            transition-all
-            duration-300
-            border
-            ${
-              selectedArea === tab.key
-                ? "bg-[#A61E22] text-white border-[#A61E22] shadow-xl"
-                : "border-gray-600 text-gray-300 hover:border-[#A61E22] hover:text-white"
-            }
-          `}
-        >
-          {tab.label}
-        </button>
-
-      ))}
-
-    </div>
-
-    {/* FAQ */}
-
-    <div className="mt-8 md:mt-12 max-w-5xl mx-auto">
-
-      {faqs.map((faq, index) => (
-
-        <div
-          key={index}
-          className="
-            mb-5
-            rounded-[28px]
-            border
-            border-white/10
-            bg-white/5
-            backdrop-blur-sm
-            overflow-hidden
-            transition-all
-            duration-300
-            hover:border-[#A61E22]/30
-          "
-        >
-
+        {[
+          { key: "buyer", label: "For Buyers" },
+          { key: "seller", label: "For Sellers" },
+          { key: "agent", label: "For Agents" },
+        ].map((tab) => (
           <button
-            onClick={() => toggleFAQ(index)}
-            className="
-              w-full
-              flex
-              items-center
-              justify-between
-              px-6 md:px-7
-              py-5 md:py-6
-              text-left
-            "
-          >
-
-            <h3 className="text-lg md:text-xl font-semibold text-white pr-5 leading-6 md:leading-7">
-
-              {faq.question}
-
-            </h3>
-
-            <div
-              className={`
-                w-10
-                h-10
-                md:w-11
-                md:h-11
-                rounded-full
-                border
-                border-white/20
-                flex
-                items-center
-                justify-center
-                flex-shrink-0
-                transition-all
-                duration-300
-                ${
-                  openIndex === index
-                    ? "bg-[#A61E22] border-[#A61E22]"
-                    : ""
-                }
-              `}
-            >
-
-              <Plus
-                size={18}
-                className={`text-white transition-transform duration-300 ${
-                  openIndex === index ? "rotate-45" : ""
-                }`}
-              />
-
-            </div>
-
-          </button>
-
-          <div
+            key={tab.key}
+            onClick={() => {
+              setSelectedArea(tab.key);
+              setOpenIndex(null);
+            }}
             className={`
-              grid
+              rounded-full
+              px-6 md:px-7 
+              py-2.5 md:py-3
+              text-sm
+              md:text-base
+              font-semibold
               transition-all
-              duration-400
-              ease-in-out
+              duration-300
+              border
               ${
-                openIndex === index
-                  ? "grid-rows-[1fr]"
-                  : "grid-rows-[0fr]"
+                selectedArea === tab.key
+                  ? "bg-white text-[#171010] border-white shadow-lg"
+                  : "border-gray-600 text-gray-300 hover:border-white hover:text-white"
               }
             `}
           >
+            {tab.label}
+          </button>
+        ))}
 
-            <div className="overflow-hidden">
+      </div>
 
-              <p className="px-6 md:px-7 pb-6 md:pb-7 text-[15px] md:text-base text-gray-300 leading-6 md:leading-7">
+      {/* FAQ */}
 
-                {faq.answer}
+      <div className="mt-8 md:mt-12 max-w-4xl mx-auto">
 
-              </p>
+        {faqs.map((faq, index) => (
+          <div
+            key={index}
+            className="
+              mb-4
+              rounded-2xl
+              border
+              border-white/10
+              bg-white/5
+              backdrop-blur-sm
+              overflow-hidden
+              transition-all
+              duration-300
+              hover:border-white/20
+            "
+          >
 
+            <button
+              onClick={() => toggleFAQ(index)}
+              className="
+                w-full
+                flex
+                items-center
+                justify-between
+                px-5 md:px-6
+py-4 md:py-5
+                text-left
+              "
+            >
+
+              <h3 className="text-base md:text-xl font-semibold text-white pr-4 md:pr-6 leading-6">
+                {faq.question}
+              </h3>
+
+              <div
+                className={`
+                  w-8 h-8 md:w-9 md:h-9
+                  rounded-full
+                  border
+                  border-white/20
+                  flex
+                  items-center
+                  justify-center
+                  text-white
+                  text-xl
+                  flex-shrink-0
+                  transition-transform
+                  duration-300
+                  ${
+                    openIndex === index
+                      ? "rotate-45 bg-[#A61E22] border-[#A61E22]"
+                      : ""
+                  }
+                `}
+              >
+                          <Plus
+            size={18}
+            className={`transition-transform duration-300 ${
+              openIndex === index ? "rotate-45" : ""
+            }`}
+          />
+              </div>
+
+            </button>
+
+            <div
+              className={`
+                grid
+                transition-all
+                duration-300
+                ease-in-out
+                ${
+                  openIndex === index
+                    ? "grid-rows-[1fr]"
+                    : "grid-rows-[0fr]"
+                }
+              `}
+            >
+              <div className="overflow-hidden">
+               <p className="px-5 md:px-6 pb-5 md:pb-6 text-[15px] md:text-base text-gray-300 leading-6 md:leading-7">
+                  {faq.answer}
+                </p>
+              </div>
             </div>
 
           </div>
+        ))}
 
-        </div>
-
-      ))}
+      </div>
 
     </div>
-
-  </div>
-
-</section>
+  </section>
 );
 };
 
