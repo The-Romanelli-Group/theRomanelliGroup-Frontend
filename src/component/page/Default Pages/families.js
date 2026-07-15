@@ -66,7 +66,7 @@ const Families = () => {
         <div
           key={index}
           className="
-            min-w-[90%]
+           min-w-[88%]
             sm:min-w-[65%]
             lg:min-w-[31%]
             px-4
@@ -82,7 +82,7 @@ const Families = () => {
               border-gray-200
               bg-white
               shadow-xl
-hover:shadow-2xl
+hover:shadow-xl
             transition-all
 duration-300
 hover:-translate-y-2
@@ -103,8 +103,8 @@ hover:-translate-y-2
                   h-full
                   object-cover
                   transition-transform
-                  duration-500
-                  group-hover:scale-[1.03]
+                 duration-700
+group-hover:scale-105
                 "
               />
 
@@ -112,8 +112,8 @@ hover:-translate-y-2
             </div>
 
             {/* Content */}
-            <div className="flex flex-col flex-1 p-5 md:p-6">
-              <div className="text-3xl md:text-4xl text-[#A61E22] leading-none font-playfair">
+            <div className="flex flex-col flex-1 p-6 md:p-7">
+              <div className="text-3xl md:text-5xl text-[#A61E22] leading-none font-playfair">
                 “
               </div>
 
@@ -137,7 +137,7 @@ hover:-translate-y-2
         [index]: !prev[index],
       }))
     }
-    className="mt-2 text-sm font-semibold text-[#A61E22] hover:underline"
+    className="mt-3 text-sm font-semibold text-[#A61E22] hover:underline"
   >
     {expanded[index] ? "Show Less" : "Read More"}
   </button>
@@ -293,10 +293,10 @@ hover:-translate-y-2
         <div
           key={index}
           className="
-            min-w-[90%]
+           min-w-[88%]
             sm:min-w-[65%]
             lg:min-w-[31%]
-            px-4
+            px-3
           "
         >
           <article
@@ -343,12 +343,12 @@ hover:-translate-y-2
     left-4
     bg-[#A61E22]
     text-white
-    text-[10px]
-    md:text-xs
+    text-[11px]
+
     font-semibold
     uppercase
     tracking-wide
-    px-3
+    px-4
     py-2
     rounded-full
     shadow-md
@@ -359,9 +359,9 @@ hover:-translate-y-2
             </div>
 
             {/* Content */}
-           <div className="flex flex-col flex-1 p-5 md:p-6">
+           <div className="flex flex-col flex-1 p-6 md:p-7">
 
-              <div className="text-4xl text-[#A61E22] leading-none font-playfair">
+              <div className="text-5xl text-[#A61E22] leading-none font-playfair">
                 “
               </div>
 
@@ -377,7 +377,7 @@ hover:-translate-y-2
     line-clamp-4
   "
 >
-              >
+              
                 {family.quote}
               </p>
 
@@ -385,7 +385,7 @@ hover:-translate-y-2
 
                 <div className="h-px bg-gray-200 mb-4" />
 
-                <h3 className="font-semibold text-base md:text-lg text-gray-900">
+                <h3 className="font-semibold text-lg text-gray-900">
                   {family.name}
                 </h3>
 
@@ -407,16 +407,18 @@ hover:-translate-y-2
                           whileTap={{ scale: .98 }}
                           onClick={() => (window.location.href = "/contact-us")}
                           className="
-                          rounded-full
-                          bg-[#A61E22]
-                          px-8 md:px-10
-                            py-3 md:py-4
-                            text-sm md:text-base
-                          text-white
-                          font-semibold
-                          shadow-lg
-                          hover:shadow-xl
-                          transition-all
+                         rounded-full
+bg-[#A61E22]
+px-8 md:px-10
+py-3 md:py-4
+text-base
+font-semibold
+text-white
+transition-all
+duration-300
+hover:bg-[#8D181B]
+hover:-translate-y-1
+hover:shadow-xl
                           "
                           >
 
