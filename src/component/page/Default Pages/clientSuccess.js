@@ -44,39 +44,36 @@ const ClientSuccess = () => {
   useEffect(() => {
     fetchData();
   }, []);
-    return (
+ return (
 <section className="py-8 md:py-12 bg-[#171010] overflow-hidden">
 
   <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
-    {/* Heading */}
+    {/* Header */}
 
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: .6 }}
+      transition={{ duration: 0.6 }}
       className="max-w-3xl mx-auto text-center"
     >
 
       <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+        CLIENT SUCCESS
+      </p>
 
-CLIENT SUCCESS
-
-</p>
       <h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
 
         Celebrating Our{" "}
 
         <span className="font-playfair italic font-normal text-[#A61E22]">
-
           Success Stories
-
         </span>
 
       </h2>
 
-      <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-400">
+      <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-300">
 
         Every home sold represents another family reaching their next chapter.
         Here's a look at some of the clients we've been honored to help.
@@ -87,194 +84,183 @@ CLIENT SUCCESS
 
     {/* Gallery */}
 
-    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-7 mt-8 md:mt-12">
+    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-7 mt-8 md:mt-12">
 
-  {Object.entries(allData).map(([id, item], index) => (
+      {Object.entries(allData).map(([id, item], index) => (
 
-    <motion.article
-  key={id}
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{
-    duration: .55,
-    delay: index * .08
-  }}
-  className="
-    group
-    relative
-    overflow-hidden
-    rounded-[28px]
-    shadow-xl
-    h-[420px]
-  "
->
-{/* Image */}
+        <motion.article
+          key={id}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.55,
+            delay: index * 0.08,
+          }}
+          className="
+            group
+            relative
+            overflow-hidden
+            rounded-[28px]
+            border
+            border-white/10
+            shadow-xl
+            hover:shadow-2xl
+            hover:-translate-y-2
+            transition-all
+            duration-300
+            h-[420px]
+          "
+        >
 
-<img
-  src={item.url}
-  alt={item.location}
-  className="
-    absolute
-    inset-0
-    w-full
-    h-full
-    object-cover
-    transition-transform
-    duration-700
-    group-hover:scale-105
-  "
-/>
+          {/* Image */}
 
-{/* Dark Gradient */}
+          <img
+            src={item.url}
+            alt={item.location}
+            className="
+              absolute
+              inset-0
+              w-full
+              h-full
+              object-cover
+              transition-transform
+              duration-700
+              group-hover:scale-105
+            "
+          />
 
-<div
-  className="
-    absolute
-    inset-0
-    bg-gradient-to-t
-    from-black/80
-    via-black/20
-    to-transparent
-  "
-/>
+          {/* Gradient */}
 
-{/* Badge */}
+          <div
+            className="
+              absolute
+              inset-0
+              bg-gradient-to-t
+              from-black/80
+              via-black/20
+              to-transparent
+            "
+          />
 
-<div
-  className="
-    absolute
-    top-5
-    left-5
-    inline-flex
-    items-center
-    gap-2
+          {/* Badge */}
 
-    rounded-full
+          <div
+            className="
+              absolute
+              top-5
+              left-5
+              rounded-full
+              bg-[#A61E22]
+              px-4
+              py-2
+              shadow-lg
+            "
+          >
 
-    bg-white/90
-    backdrop-blur-xl
+            <span
+              className="
+                text-[11px]
+                font-semibold
+                uppercase
+                tracking-wide
+                text-white
+              "
+            >
+              {item.badge || "Client Success"}
+            </span>
 
-    border
-    border-white/40
+          </div>
 
-    px-5
-    py-2.5
+          {/* Location */}
 
-    shadow-xl
-  "
->
+          <div
+            className="
+              absolute
+              bottom-7
+              left-7
+              right-7
+              text-white
+              transition-all
+              duration-500
+              md:group-hover:-translate-y-40
+            "
+          >
 
-  <div className="w-2 h-2 rounded-full bg-[#A61E22]" />
+            <h3 className="text-3xl font-bold leading-tight">
+              {item.location}
+            </h3>
 
-  <span
-    className="
-      text-[11px]
-      md:text-xs
-      font-bold
-      uppercase
-      tracking-[0.18em]
-      text-[#171010]
-    "
-  >
-    {item.badge || "Client Success"}
-  </span>
+          </div>
 
-</div>
+          {/* Hover Panel */}
 
-{/* Location */}
+          <div
+            className="
+              absolute
+              inset-x-0
+              bottom-0
+              bg-white/95
+              backdrop-blur-xl
+              p-7
+              transition-all
+              duration-500
+              translate-y-0
+              md:translate-y-full
+              md:group-hover:translate-y-0
+            "
+          >
 
-<div
-  className="
-    absolute
-    bottom-6
-    left-6
-    right-6
-    text-white
-    transition-all
-    duration-500
-    md:group-hover:-translate-y-36
-  "
->
-  <h3 className="text-2xl font-bold">
-    {item.location}  </h3>
-</div>
-{/* Hover Panel */}
+            <div className="space-y-5">
 
-<div
-  className="
-    absolute
-    left-0
-    right-0
-    bottom-0
+              <div className="flex items-center gap-3">
 
-    bg-white/95
-    backdrop-blur-xl
+                <MapPin
+                  size={18}
+                  className="text-[#A61E22] shrink-0"
+                />
 
-    px-6
-    py-5
+                <span className="font-semibold text-gray-900">
+                  {item.location}
+                </span>
 
-    transition-all
-    duration-500
+              </div>
 
-    translate-y-0
-    md:translate-y-full
-    md:group-hover:translate-y-0
-  "
->
+              <div className="flex items-center gap-3">
 
- <div className="space-y-4">
+                <Home
+                  size={18}
+                  className="text-[#A61E22] shrink-0"
+                />
 
-  <div className="flex items-center gap-3">
+                <span className="text-gray-700">
+                  {item.soldFor}
+                </span>
 
-    <MapPin
-      size={18}
-      className="text-[#A61E22] shrink-0"
-    />
+              </div>
 
-    <span className="font-semibold text-gray-900">
-      {item.location}
-    </span>
+              <div className="flex items-center gap-3">
 
-  </div>
+                <Clock3
+                  size={18}
+                  className="text-[#A61E22] shrink-0"
+                />
 
-  <div className="flex items-center gap-3">
+                <span className="text-gray-700">
+                  {item.soldIn}
+                </span>
 
-    <Home
-      size={18}
-      className="text-[#A61E22] shrink-0"
-    />
+              </div>
 
-    <span className="text-gray-700">
-      {item.soldFor}
-    </span>
+            </div>
 
-  </div>
+          </div>
 
-  <div className="flex items-center gap-3">
+        </motion.article>
 
-    <Clock3
-      size={18}
-      className="text-[#A61E22] shrink-0"
-    />
+      ))}
 
-    <span className="text-gray-700">
-      {item.soldIn}
-    </span>
-
-  </div>
-
-</div>
-
-</div>
-
-</motion.article>
-
-   
-
-  ))}
-
-</div>
+    </div>
 
   </div>
 
