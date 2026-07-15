@@ -77,14 +77,15 @@ const Families = () => {
               group
               h-[520px]
               overflow-hidden
-              rounded-[24px]
+              rounded-[28px]
               border
               border-gray-200
               bg-white
-              shadow-sm
-              hover:shadow-xl
-              transition-all
-              duration-300
+              shadow-xl
+hover:shadow-2xl
+            transition-all
+duration-300
+hover:-translate-y-2
               flex
               flex-col
             "
@@ -163,7 +164,7 @@ const Families = () => {
     return (
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
-          <div className="h-[520px] rounded-[24px] bg-gray-100 animate-pulse" />
+          <div className="h-[520px] rounded-[28px] bg-gray-100 animate-pulse" />
         </div>
       </section>
     );
@@ -303,14 +304,15 @@ const Families = () => {
               group
               h-[520px]
               overflow-hidden
-              rounded-[24px]
+              rounded-[28px]
               border
               border-gray-200
               bg-white
-              shadow-sm
-              hover:shadow-xl
+              shadow-xl
+hover:shadow-2xl
               transition-all
-              duration-300
+duration-300
+hover:-translate-y-2
               flex
               flex-col
             "
