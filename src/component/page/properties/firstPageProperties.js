@@ -300,37 +300,38 @@ const filterCount =
   />
 )}
 
-      <div className="
-              relative
-              z-10
-              container
-              px-4
-              sm:px-5
-              pt-1
-              pb-10
-              md:py-24
-              mx-auto
-              font-Montserrat
-              ">
+      <div
+  className="
+    relative
+    z-10
+    max-w-7xl
+    mx-auto
+    px-5
+    lg:px-8
+    py-10
+    md:py-16
+    lg:py-20
+    font-Montserrat
+">
                 
         {/* Heading */}
-       <h1 className=" text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center max-w-4xl mx-auto leading-tight">
+       <h1 className="text-[30px] md:text-6xl leading-tight font-bold text-white text-center max-w-3xl mx-auto">
   Find Your
-  <span className="block font-playfair italic">
+ <span className="block mt-1 font-playfair italic font-normal text-[#A61E22]">
     Next Home
   </span>
 </h1>
 
-<p className="mt-3 md:mt-5 text-base md:text-xl text-white/80 max-w-2xl mx-auto text-center leading-relaxed">
+<p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-white/80 max-w-2xl mx-auto text-center">
   Search by city, neighborhood, ZIP code, or address across Central Ohio's
   latest MLS listings.
 </p>
        
-     <div className="max-w-4xl mx-auto mt-4 md:mt-6">
+   <div className="max-w-3xl mx-auto mt-8 md:mt-12">
 
- <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-3xl p-5 md:px-8 md:py-6 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
+ <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-[28px] p-7 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
     {/* Buy / Rent */}
-<div className="flex justify-center mb-5">
+<div className="flex justify-center mb-6">
 
   <div className="relative inline-flex bg-white rounded-full p-0.5 shadow-xl">
 
@@ -480,7 +481,7 @@ const filterCount =
     h-12 md:h-16
     bg-white/95
     backdrop-blur-md
-    rounded-2xl
+    rounded-[20px]
     pl-14 md:pl-16
    pr-16 md:pr-20
     text-base md:text-lg
@@ -642,8 +643,7 @@ overflow-y-auto
     bg-[#A61E22]
     hover:bg-[#8d181b]
     text-white
-    rounded-lg
-    md:rounded-xl
+   rounded-2xl
     shadow-lg
     transition-all
     duration-300
