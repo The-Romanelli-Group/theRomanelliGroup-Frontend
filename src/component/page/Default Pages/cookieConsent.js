@@ -28,28 +28,26 @@ const CookieConsent = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 80 }}
           transition={{ duration: 0.35 }}
-          className="fixed inset-x-0 bottom-5 z-[9999] px-5"
+          className="fixed inset-x-0 bottom-5 z-[9999] px-5 lg:px-8"
         >
           <div
             className="
-              max-w-6xl
+              max-w-7xl
               mx-auto
               rounded-[28px]
               border
               border-gray-200
               bg-white/95
               backdrop-blur-xl
-              shadow-2xl
-              p-6
+              shadow-xl
+              p-7
             "
           >
             <div className="flex flex-col lg:flex-row gap-6 lg:items-center lg:justify-between">
-
               {/* Text */}
 
-              <div className="text-sm leading-6 text-gray-600">
-
-                <p className="font-semibold text-gray-900 mb-2">
+              <div className="text-[15px] md:text-lg leading-6 md:leading-7 text-gray-600">
+                <p className="font-bold text-gray-900 mb-2">
                   We value your privacy.
                 </p>
 
@@ -110,13 +108,11 @@ const CookieConsent = () => {
                   Accessibility Policy
                 </Link>
                 .
-
               </div>
 
               {/* Buttons */}
 
-              <div className="flex gap-3 shrink-0">
-
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
                 <button
                   onClick={closeBanner}
                   className="
@@ -125,10 +121,12 @@ const CookieConsent = () => {
                     border-gray-300
                     px-6
                     py-3
-                    font-medium
+                    text-sm
+                    font-semibold
                     text-gray-700
                     hover:bg-gray-100
                     transition-all
+                    duration-300
                   "
                 >
                   Only Necessary
@@ -141,20 +139,19 @@ const CookieConsent = () => {
                     bg-[#A61E22]
                     px-6
                     py-3
+                    text-sm
                     font-semibold
                     text-white
                     shadow-lg
                     hover:shadow-xl
-                    hover:scale-105
-                    active:scale-95
+                    hover:-translate-y-0.5
                     transition-all
+                    duration-300
                   "
                 >
                   Accept All
                 </button>
-
               </div>
-
             </div>
           </div>
         </motion.div>
