@@ -76,7 +76,7 @@ CLIENT SUCCESS
 
       </h2>
 
-      <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-400">
+      <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-300">
 
         Every home sold represents another family reaching their next chapter.
         Here's a look at some of the clients we've been honored to help.
@@ -196,7 +196,7 @@ CLIENT SUCCESS
     md:group-hover:-translate-y-36
   "
 >
-  <h3 className="text-2xl font-bold">
+<h3 className="text-3xl font-bold leading-tight">
     {item.location}  </h3>
 </div>
 {/* Hover Panel */}
@@ -211,8 +211,7 @@ CLIENT SUCCESS
     bg-white/95
     backdrop-blur-xl
 
-    px-6
-    py-5
+    p-7
 
     transition-all
     duration-500
