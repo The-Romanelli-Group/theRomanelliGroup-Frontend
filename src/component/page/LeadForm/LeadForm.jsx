@@ -330,7 +330,7 @@ const submitToAPI = async (source) => {
 
 if (submitted) {
     return (
-       <div className="relative max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-8 text-center">
+       <div className="relative max-w-md mx-auto bg-white rounded-[28px] border border-gray-200 shadow-xl p-7 text-center">
         {onClose && (
     <button
         onClick={onClose}
@@ -356,7 +356,7 @@ if (submitted) {
         {config.successTitle}
     </h2>
 
-    <p className="text-gray-600 leading-7 mt-4">
+    <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-600">
         {config.successMessage}
     </p>
 
@@ -382,7 +382,7 @@ if (submitted) {
         href="tel:+17408163112"
         className="block mt-8"
     >
-        <button className="w-full h-14 rounded-2xl bg-red-700 hover:bg-red-800 text-white font-semibold text-lg transition-all duration-300">
+        <button className="w-full h-14 rounded-full bg-[#A61E22] hover:bg-[#8d181b] text-white text-sm md:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
             📞 Need Help Now? Call Us
         </button>
     </a>
@@ -404,7 +404,7 @@ if (submitted) {
 return (
 <div>
 
-    <div className="relative max-w-md mx-auto bg-white rounded-3xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.15)] pt-8 pb-6 px-6 sticky top-24">
+    <div className="relative max-w-md mx-auto bg-white rounded-[28px] border border-gray-200 shadow-xl p-7 sticky top-24">
 {onClose && (
     <button
         onClick={onClose}
@@ -419,7 +419,7 @@ return (
   
     
 
-   <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+   <h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-gray-900">
 
   {variant === "property" ? (
     <>
@@ -454,7 +454,7 @@ return (
     {/* Property & Sell Subtitle */}
 
     {variant !== "contact" && (
-    <p className="mt-4 text-lg text-gray-500 leading-7 max-w-sm mx-auto">
+    <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-600 max-w-sm mx-auto">
 
         {isSell && step === 2
             ? "Just a few more details so we can prepare a more accurate home valuation."
@@ -505,7 +505,7 @@ return (
                             placeholder="Full Name"
                             value={formData.name}
                             onChange={handleChange}
-                            className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                           className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-[15px] md:text-base text-gray-900 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#A61E22] focus:border-[#A61E22] ${
                                 errors.name
                                     ? "border-red-500"
                                     : "border-gray-300 hover:border-gray-400"
@@ -586,7 +586,7 @@ return (
                             name="reason"
                             value={formData.reason}
                             onChange={handleChange}
-                            className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                            className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-[15px] md:text-base text-gray-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#A61E22] focus:border-[#A61E22] ${
                                 errors.reason
                                     ? "border-red-500"
                                     : "border-gray-300 hover:border-gray-400"
@@ -626,7 +626,7 @@ return (
                             placeholder="Tell us how we can help..."
                             value={formData.message}
                             onChange={handleChange}
-                            className={`w-full rounded-2xl border bg-gray-50 p-5 text-gray-900 placeholder:text-gray-400 transition-all duration-300 resize-none focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                            className={`w-full rounded-2xl border bg-gray-50 p-5 text-[15px] md:text-base text-gray-900 placeholder:text-gray-400 transition-all duration-300 resize-none focus:outline-none focus:ring-2 focus:ring-[#A61E22] focus:border-[#A61E22] ${
                                 errors.message
                                     ? "border-red-500"
                                     : "border-gray-300 hover:border-gray-400"
@@ -684,7 +684,7 @@ return (
                 name="propertyType"
                 value={formData.propertyType}
                 onChange={handleChange}
-                className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-[15px] md:text-base text-gray-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#A61E22] focus:border-[#A61E22] ${
                     errors.propertyType
                         ? "border-red-500"
                         : "border-gray-300 hover:border-gray-400"
@@ -715,7 +715,7 @@ return (
                 name="timeline"
                 value={formData.timeline}
                 onChange={handleChange}
-                className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-gray-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 ${
+                className={`w-full h-14 px-5 rounded-2xl border bg-gray-50 text-[15px] md:text-base text-gray-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#A61E22] focus:border-[#A61E22] ${
                     errors.timeline
                         ? "border-red-500"
                         : "border-gray-300 hover:border-gray-400"
@@ -773,7 +773,7 @@ return (
 
                <button
     onClick={prevStep}
-    className="w-28 h-14 rounded-2xl border border-gray-300 bg-white text-gray-900 font-semibold hover:bg-gray-50 transition-all duration-300 flex items-center justify-center gap-2"
+  className="w-28 h-14 rounded-full border border-gray-300 bg-white text-gray-900 text-sm md:text-base font-semibold hover:bg-gray-50 transition-all duration-300 flex items-center justify-center gap-2"
 >
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -806,7 +806,7 @@ return (
                     }
 
                 }}
-                className="flex-1 h-14 rounded-2xl bg-red-700 hover:bg-red-800 disabled:bg-red-400 disabled:cursor-not-allowed text-white font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center"
+              className="flex-1 h-14 rounded-full bg-[#A61E22] hover:bg-[#8d181b] disabled:bg-[#A61E22]/50 disabled:cursor-not-allowed text-white text-sm md:text-base font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center"
             >
 
                 {isSubmitting ? (
@@ -851,7 +851,7 @@ return (
     className="block mt-3"
 >
 
-            <button className="w-full h-14 rounded-2xl border-2 border-gray-900 bg-white text-gray-900 font-semibold text-lg hover:bg-gray-900 hover:text-white transition-all duration-300">
+            <button className="w-full h-14 rounded-full border-2 border-gray-900 bg-white text-gray-900 text-sm md:text-base font-semibold hover:bg-gray-900 hover:text-white transition-all duration-300">
                 📞 Call Agent
             </button>
 
@@ -890,7 +890,7 @@ return (
 
         <label
             htmlFor="privacyPolicy"
-            className="text-sm leading-6 text-gray-500"
+            className="text-[15px] leading-6 text-gray-500"
         >
 
             By submitting this form, you agree to be contacted by{" "}
