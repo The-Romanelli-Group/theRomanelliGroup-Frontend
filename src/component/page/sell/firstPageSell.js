@@ -51,7 +51,7 @@ const FirstPageSell = () => {
 
         {/* Right */}
         <div>
-          <div className="rounded-[28px] overflow-hidden shadow-2xl">
+         <div className="rounded-[28px] overflow-hidden">
             <LeadForm variant="sell" />
           </div>
         </div>
