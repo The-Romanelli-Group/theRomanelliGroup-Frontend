@@ -172,264 +172,270 @@ const Families = () => {
    return (
 <section className="py-8 md:py-12 bg-white overflow-hidden">
 
-<div className="max-w-7xl mx-auto px-5 lg:px-8">
+  <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
-              <motion.div
-            initial={{opacity:0,y:30}}
-            whileInView={{opacity:1,y:0}}
-            viewport={{once:true}}
-            transition={{duration:.6}}
-            className="max-w-3xl mx-auto text-center"
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: .6 }}
+      className="max-w-3xl mx-auto text-center"
+    >
+
+      <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+        CLIENT STORIES
+      </p>
+
+      <h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-gray-900">
+        Stories From Our{" "}
+        <span className="font-playfair italic font-normal text-[#A61E22]">
+          Clients
+        </span>
+      </h2>
+
+      <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-600">
+        Real experiences from buyers and sellers who trusted The Romanelli Group
+        with one of life's biggest decisions.
+      </p>
+
+    </motion.div>
+
+    <div className="relative mt-8 md:mt-12">
+
+      {/* Left Arrow */}
+
+      <button
+        aria-label="Previous testimonial"
+        onClick={scrollPrev}
+        disabled={!emblaApi}
+        className="
+          hidden
+          md:flex
+          absolute
+          left-[-28px]
+          lg:left-[-60px]
+          top-[42%]
+          -translate-y-1/2
+          z-20
+          w-14
+          h-14
+          rounded-full
+          bg-white/90
+          backdrop-blur-xl
+          shadow-xl
+          items-center
+          justify-center
+          text-gray-800
+          transition-all
+          duration-300
+          hover:bg-[#A61E22]
+          hover:text-white
+          hover:scale-105
+          active:scale-95
+          disabled:opacity-40
+          disabled:cursor-not-allowed
+        "
+      >
+        <ChevronLeft size={24} />
+      </button>
+
+      {/* Right Arrow */}
+
+      <button
+        aria-label="Next testimonial"
+        onClick={scrollNext}
+        disabled={!emblaApi}
+        className="
+          hidden
+          md:flex
+          absolute
+          right-[-28px]
+          lg:right-[-60px]
+          top-[42%]
+          -translate-y-1/2
+          z-20
+          w-14
+          h-14
+          rounded-full
+          bg-white/90
+          backdrop-blur-xl
+          shadow-xl
+          items-center
+          justify-center
+          text-gray-800
+          transition-all
+          duration-300
+          hover:bg-[#A61E22]
+          hover:text-white
+          hover:scale-105
+          active:scale-95
+          disabled:opacity-40
+          disabled:cursor-not-allowed
+        "
+      >
+        <ChevronRight size={24} />
+      </button>
+
+      <div ref={emblaRef} className="overflow-hidden">
+
+        <div className="flex">
+
+          {families.map((family, index) => (
+
+            <div
+              key={index}
+              className="
+                min-w-[90%]
+                sm:min-w-[65%]
+                lg:min-w-[31%]
+                px-4
+              "
             >
 
-        <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+              <article
+                className="
+                  group
+                  h-[520px]
+                  overflow-hidden
+                  rounded-[28px]
+                  border
+                  border-gray-200
+                  bg-white
+                  shadow-xl
+                  hover:shadow-2xl
+                  transition-all
+                  duration-300
+                  flex
+                  flex-col
+                "
+              >
 
-              CLIENT STORIES
+                {/* Image */}
 
-              </p>
+                <div className="relative h-56 overflow-hidden">
 
-            <h2 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-gray-900">
+                  <img
+                    src={family.image}
+                    alt={family.name}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    decoding="async"
+                    className="
+                      w-full
+                      h-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-105
+                    "
+                  />
 
-              Stories From Our{" "}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-              <span className="font-playfair italic font-normal text-[#A61E22]">
+                  <div
+                    className="
+                      absolute
+                      top-4
+                      left-4
+                      inline-flex
+                      rounded-full
+                      bg-[#A61E22]
+                      text-white
+                      text-xs
+                      font-semibold
+                      uppercase
+                      tracking-wide
+                      px-4
+                      py-2
+                    "
+                  >
+                    Happy Client
+                  </div>
 
-              Clients
+                </div>
 
-              </span>
+                {/* Content */}
 
-              </h2>
+                <div className="flex flex-col flex-1 p-7">
 
-                  <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-600">
+                  <div className="text-4xl text-[#A61E22] leading-none font-playfair">
+                    “
+                  </div>
 
-                  Real experiences from buyers and sellers who trusted
-                  The Romanelli Group with one of life's biggest decisions.
-
+                  <p
+                    className="
+                      mt-2
+                      flex-1
+                      italic
+                      text-[15px]
+                      md:text-lg
+                      leading-6
+                      md:leading-7
+                      text-gray-600
+                      line-clamp-4
+                    "
+                  >
+                    {family.quote}
                   </p>
 
-                </motion.div>
+                  <div className="mt-5">
 
-                   <div className="relative mt-8 md:mt-12">
+                    <div className="h-px bg-gray-200 mb-4" />
 
-  {/* Left Arrow */}
-  <button
-  aria-label="Previous testimonial"
-  onClick={scrollPrev}
-  disabled={!emblaApi}
-  className="
-    hidden
-    md:flex
-    absolute
-    left-[-28px]
-    lg:left-[-60px]
-    top-[42%]
-    -translate-y-1/2
-    z-20
-    w-14
-    h-14
-    rounded-full
-    bg-white/90
-    backdrop-blur-xl
-    shadow-2xl
-    items-center
-    justify-center
-    text-gray-800
-    transition-all
-    duration-200
-    hover:bg-[#A61E22]
-    hover:text-white
-    hover:scale-105
-    active:scale-95
-    disabled:opacity-40
-    disabled:cursor-not-allowed
-  "
->
-  <ChevronLeft size={24} />
-</button>
+                    <h3 className="text-3xl font-bold text-gray-900">
+                      {family.name}
+                    </h3>
 
-  {/* Right Arrow */}
-  <button
-  aria-label="Next testimonial"
-  onClick={scrollNext}
-  disabled={!emblaApi}
-  className="
-    hidden
-    md:flex
-    absolute
-    right-[-28px]
-    lg:right-[-60px]
-    top-[42%]
-    -translate-y-1/2
-    z-20
-    w-14
-    h-14
-    rounded-full
-    bg-white/90
-    backdrop-blur-xl
-    shadow-2xl
-    items-center
-    justify-center
-    text-gray-800
-    transition-all
-    duration-200
-    hover:bg-[#A61E22]
-    hover:text-white
-    hover:scale-105
-    active:scale-95
-    disabled:opacity-40
-    disabled:cursor-not-allowed
-  "
->
-  <ChevronRight size={24} />
-</button>
+                  </div>
 
-  <div
-    ref={emblaRef}
-    className="overflow-hidden"
-  >
-    <div className="flex">
-      {families.map((family, index) => (
-        <div
-          key={index}
-          className="
-            min-w-[90%]
-            sm:min-w-[65%]
-            lg:min-w-[31%]
-            px-4
-          "
-        >
-          <article
-            className="
-              group
-              h-[520px]
-              overflow-hidden
-              rounded-[24px]
-              border
-              border-gray-200
-              bg-white
-              shadow-sm
-              hover:shadow-xl
-              transition-all
-              duration-300
-              flex
-              flex-col
-            "
-          >
-            {/* Image */}
-            <div className="relative h-56 overflow-hidden">
-              <img
-                src={family.image}
-                alt={family.name}
-                loading={index === 0 ? "eager" : "lazy"}
-                fetchPriority={index === 0 ? "high" : "auto"}
-                decoding="async"
-                className="
-                  w-full
-                  h-full
-                  object-cover
-                  transition-transform
-                  duration-500
-                  group-hover:scale-[1.03]
-                "
-              />
+                </div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              <div
-  className="
-    absolute
-    top-4
-    left-4
-    bg-[#A61E22]
-    text-white
-    text-[10px]
-    md:text-xs
-    font-semibold
-    uppercase
-    tracking-wide
-    px-3
-    py-2
-    rounded-full
-    shadow-md
-  "
->
-  Happy Client
-</div>
-            </div>
-
-            {/* Content */}
-           <div className="flex flex-col flex-1 p-5 md:p-6">
-
-              <div className="text-4xl text-[#A61E22] leading-none font-playfair">
-                “
-              </div>
-
-              <p
-                className="
-    mt-2
-    flex-1
-    italic
-    text-[15px]
-    md:text-base
-    text-gray-600
-    leading-6 md:leading-7
-    line-clamp-4
-  "
->
-              >
-                {family.quote}
-              </p>
-
-              <div className="mt-5">
-
-                <div className="h-px bg-gray-200 mb-4" />
-
-                <h3 className="font-semibold text-base md:text-lg text-gray-900">
-                  {family.name}
-                </h3>
-
-              
-              </div>
+              </article>
 
             </div>
-          </article>
+
+          ))}
+
         </div>
-      ))}
+
+      </div>
+
     </div>
+
+    {/* CTA */}
+
+    <div className="mt-8 flex justify-center">
+
+      <motion.button
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: .98 }}
+        onClick={() => (window.location.href = "/contact-us")}
+        className="
+          rounded-full
+          bg-[#A61E22]
+          px-8
+          md:px-10
+          py-3
+          md:py-4
+          text-sm
+          md:text-base
+          font-semibold
+          text-white
+          shadow-lg
+          hover:shadow-xl
+          transition-all
+          duration-300
+        "
+      >
+        Become Our Next Success Story
+      </motion.button>
+
+    </div>
+
   </div>
-</div>
-
-                         <div className="mt-6 md:mt-8 flex justify-center">
-
-                          <motion.button
-                          whileHover={{ scale: 1.03 }}
-                          whileTap={{ scale: .98 }}
-                          onClick={() => (window.location.href = "/contact-us")}
-                          className="
-                          rounded-full
-                          bg-[#A61E22]
-                          px-8 md:px-10
-                            py-3 md:py-4
-                            text-sm md:text-base
-                          text-white
-                          font-semibold
-                          shadow-lg
-                          hover:shadow-xl
-                          transition-all
-                          "
-                          >
-
-                          Become Our Next Success Story
-
-                          </motion.button>
-
-                          </div>   {/* CTA */}
-
-</div>   {/* max-w-7xl */}
 
 </section>
-
 );
-
 };
 
 export default Families;
