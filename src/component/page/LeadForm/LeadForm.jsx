@@ -404,7 +404,7 @@ if (submitted) {
 return (
 <div>
 
-    <div className="relative max-w-md mx-auto bg-white rounded-[28px] border border-gray-200 shadow-xl p-7 sticky top-24">
+    <div className="relative max-w-md mx-auto bg-white rounded-[28px] border border-gray-200 p-7 sticky top-24">
 {onClose && (
     <button
         onClick={onClose}
