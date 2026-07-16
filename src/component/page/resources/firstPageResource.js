@@ -20,54 +20,142 @@ const FirstPageResource = () => {
 
     return () => window.removeEventListener("resize", updatePlaceholder); // Cleanup
   }, []);
-  return (
-    <div>
-      <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto font-dmsans">
-        {/* Heading */}
-        <div className="flex flex-col text-center w-full mb-6">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-white mx-auto max-w-4xl px-4">
-            Insights, Tips, and Stories to Empower Your
-            <span className="italic font-playfair">{" "}Real Estate Journey</span>
-          </h1>
-          <p className="mx-auto leading-relaxed font-medium text-base sm:text-xl max-w-2xl">
-            Explore our collection of articles, videos, and expert advice curated just for you.
-          </p>
-        </div>
+ return (
+  <section className="relative py-10 md:py-16 lg:py-20 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-5 lg:px-8">
+      {/* Heading */}
+      <div className="max-w-3xl mx-auto text-center">
+        
+        <h1 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
+          Insights, Tips, and Stories to Empower Your{" "}
+          <span className="font-playfair italic font-normal text-[#A61E22]">
+            Real Estate Journey
+          </span>
+        </h1>
 
-        {/* Toggle & Input Section */}
+        <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-300 max-w-2xl mx-auto">
+          Explore our collection of articles, videos, and expert advice
+          curated to help you buy smarter, sell confidently, and stay ahead
+          of the Central Ohio real estate market.
+        </p>
+      </div>
 
+      {/* Search */}
+      <div className="max-w-3xl mx-auto mt-8 md:mt-12">
+        <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-[28px] p-7 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
+          <div className="relative">
+            <input
+              className="
+                w-full
+                h-12 md:h-16
+                bg-white/95
+                backdrop-blur-md
+                rounded-2xl
+                pl-5
+                pr-44
+                md:pr-52
+                text-base
+                md:text-lg
+                text-gray-900
+                placeholder:text-gray-400
+                border
+                border-white/30
+                shadow-2xl
+                focus:outline-none
+                focus:ring-2
+                focus:ring-[#A61E22]
+                transition-all
+                duration-300
+              "
+              placeholder={placeholder}
+            />
 
-        {/* Search Box */}
-        <div className="relative w-full max-w-2xl mx-auto">
-          <input
-            className="w-full bg-white p-3 pl-4 text-black  focus:outline-none"
-            placeholder={placeholder}
-          />
-          <div className='absolute right-1 top-2 md:top-1 bottom-1'>
-            <button className="bg-gray-100 mr-2 text-black text-xs sm:text-sm px-3 sm:px-4 py-2 border border-gray-200">
-              <div className='flex' onClick={() => { setFilterOpen(true) }}>  Filter  <span className="ml-2 flex items-center">
-                <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <line y1="12.1367" x2="20" y2="12.1367" stroke="black" strokeWidth="1.5" />
-                  <line y1="3.24609" x2="20" y2="3.24609" stroke="black" strokeWidth="1.5" />
-                  <rect x="11.5" y="0.941406" width="5" height="4.33333" stroke="black" />
-                  <rect x="3.5" y="9.83203" width="5" height="4.33333" stroke="black" />
-                  <rect x="4" y="10.2188" width="4" height="3.55556" fill="white" />
-                  <rect x="12" y="1.33203" width="4" height="3.55556" fill="white" />
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+              <button
+                onClick={() => setFilterOpen(true)}
+                className="
+                  h-9
+                  md:h-12
+                  px-4
+                  bg-white
+                  hover:bg-gray-100
+                  text-gray-800
+                  rounded-xl
+                  transition-all
+                  duration-300
+                  flex
+                  items-center
+                  gap-2
+                "
+              >
+                Filter
+
+                <svg
+                  width="18"
+                  height="14"
+                  viewBox="0 0 20 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line
+                    y1="12.1367"
+                    x2="20"
+                    y2="12.1367"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <line
+                    y1="3.24609"
+                    x2="20"
+                    y2="3.24609"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <rect
+                    x="11.5"
+                    y="0.941406"
+                    width="5"
+                    height="4.33333"
+                    stroke="currentColor"
+                  />
+                  <rect
+                    x="3.5"
+                    y="9.83203"
+                    width="5"
+                    height="4.33333"
+                    stroke="currentColor"
+                  />
                 </svg>
-              </span></div>
-            </button>
-            <button className=" bg-red-800 text-white text-xs sm:text-sm px-3 sm:px-4 py-2 ">
-              Search Now
-            </button>
+              </button>
+
+              <button
+                className="
+                  h-9
+                  md:h-12
+                  px-5
+                  bg-[#A61E22]
+                  hover:bg-[#8d181b]
+                  text-white
+                  rounded-xl
+                  transition-all
+                  duration-300
+                "
+              >
+                Search
+              </button>
+            </div>
           </div>
         </div>
       </div>
- <SideModal/>
-
-      {filterOpen && < FilterResource close={() => { setFilterOpen(false) }} />}
     </div>
 
-  )
+    <SideModal />
+
+    {filterOpen && (
+      <FilterResource close={() => setFilterOpen(false)} />
+    )}
+  </section>
+);
 }
 
 export default FirstPageResource
