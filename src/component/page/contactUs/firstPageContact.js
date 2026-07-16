@@ -2,95 +2,74 @@ import SideModal from "../home/sideModal";
 import LeadForm from "../LeadForm/LeadForm";
 
 const FirstPageSell = () => {
-    return (
-    <div className="relative w-full">
+   return (
+  <section className="relative py-10 md:py-16 lg:py-20 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-5 lg:px-8">
+      <div
+        className="
+          grid
+          lg:grid-cols-[1fr_470px]
+          gap-10
+          lg:gap-14
+          items-center
+        "
+      >
+        {/* Left Content */}
 
-        <div className="container mx-auto px-5 pt-8 md:pt-10 lg:pt-14 pb-10 lg:pb-24">
+        <div className="max-w-3xl text-center lg:text-left">
+        {/* 
+          <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+            CONTACT THE ROMANELLI GROUP
+          </p> 
+           */}
 
-            <div className="grid lg:grid-cols-[1fr_470px] gap-8 lg:gap-10 xl:gap-24 items-start">
+          <h1
+            className="
+              mt-3
+              text-[30px]
+              md:text-6xl
+              leading-tight
+              font-bold
+              text-white
+            "
+          >
+            Let's Start{" "}
+            <span className="font-playfair italic font-normal text-[#A61E22]">
+              the Conversation
+            </span>
+          </h1>
 
-                {/* Left Content */}
-
-                <div className="lg:pt-24 xl:pt-28 lg:pr-10 xl:pr-16">
-
-                    <p className="uppercase tracking-[0.35em] text-[#A61E22] text-[11px] md:text-xs font-semibold mb-4 text-center lg:text-left">
-                        CONTACT THE ROMANELLI GROUP
-                    </p>
-
-                    <h1
-                        className="
-                            text-[36px]
-                            sm:text-5xl
-                            lg:text-7xl
-                            font-bold
-                            leading-[1.05]
-                            text-white
-                            text-center
-                            lg:text-left
-                        "
-                    >
-                        Let's Start
-                    </h1>
-
-                    <h2
-                        className="
-                            mt-1
-                            text-[36px]
-                            sm:text-5xl
-                            lg:text-7xl
-                            font-playfair
-                            italic
-                            font-normal
-                            leading-none
-                            text-[#A61E22]
-                            text-center
-                            lg:text-left
-                        "
-                    >
-                        the Conversation
-                    </h2>
-
-                    <p
-                        className="
-                            mt-5
-                            lg:mt-8
-                            text-[16px]
-                            sm:text-lg
-                            lg:text-xl
-                            leading-7
-                            lg:leading-9
-                            text-gray-300
-                            max-w-xl
-                            mx-auto
-                            lg:mx-0
-                            text-center
-                            lg:text-left
-                        "
-                    >
-                        Whether you're buying your first home, selling your current
-                        home, exploring investment opportunities, or simply have a
-                        question, our team is here to help every step of the way.
-                    </p>
-
-                
-
-                </div>
-
-                {/* Form */}
-
-                <div className="w-full lg:justify-self-end mt-2 lg:mt-0">
-
-                    <LeadForm variant="contact" />
-
-                </div>
-
-            </div>
-
+          <p
+            className="
+              mt-4
+              text-[15px]
+              md:text-lg
+              leading-6
+              md:leading-7
+              text-gray-300
+              max-w-2xl
+              mx-auto
+              lg:mx-0
+            "
+          >
+            Whether you're buying your first home, selling your current
+            home, exploring investment opportunities, or simply have a
+            question, our team is here to help every step of the way.
+          </p>
         </div>
 
-        <SideModal />
+        {/* Form */}
 
+        <div className="w-full lg:justify-self-end">
+          <div className="rounded-[28px] overflow-hidden shadow-2xl">
+            <LeadForm variant="contact" />
+          </div>
+        </div>
+      </div>
     </div>
+
+    <SideModal />
+  </section>
 );
 };
 
