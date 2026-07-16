@@ -43,8 +43,7 @@ const FirstPageSell = () => {
               text-gray-300
             "
           >
-            Every home has a story—and every seller deserves a strategy.
-            From pricing your property to negotiating the strongest offer,
+                        From pricing your property to negotiating the strongest offer,
             we help you maximize value while making the selling process
             smooth and stress-free.
           </p>
