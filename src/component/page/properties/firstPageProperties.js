@@ -315,9 +315,9 @@ const filterCount =
 ">
                 
         {/* Heading */}
-       <h1 className="text-[30px] md:text-6xl leading-tight font-bold text-white text-center max-w-3xl mx-auto">
-  Find Your
- <span className="block mt-1 font-playfair italic font-normal text-[#A61E22]">
+      <h1 className="text-[30px] md:text-6xl leading-tight font-bold text-white text-center max-w-3xl mx-auto">
+  Find Your{" "}
+  <span className="font-playfair italic font-normal text-[#A61E22]">
     Next Home
   </span>
 </h1>
