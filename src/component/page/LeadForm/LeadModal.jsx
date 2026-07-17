@@ -24,32 +24,41 @@ const LeadModal = ({
 
     if (!open) return null;
 
-    return (
+return (
 
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-5">
 
-            {/* Overlay */}
+        {/* Overlay */}
 
-            <div
-                onClick={onClose}
-                className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        <div
+            onClick={onClose}
+            className="absolute inset-0 bg-black/55 backdrop-blur-md"
+        />
+
+        {/* Modal */}
+
+        <div
+            className="
+                relative
+                w-full
+                max-w-md
+                max-h-[90vh]
+                overflow-y-auto
+                no-scrollbar
+            "
+        >
+
+            <LeadForm
+                variant={variant}
+                property={property}
+                onClose={onClose}
             />
-
-            {/* Modal */}
-
-            <div className="relative w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto no-scrollbar">
-
-                <LeadForm
-                    variant={variant}
-                    property={property}
-                    onClose={onClose}
-                />
-
-            </div>
 
         </div>
 
-    );
+    </div>
+
+);
 
 };
 

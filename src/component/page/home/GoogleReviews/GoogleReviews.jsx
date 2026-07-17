@@ -197,7 +197,7 @@ const GoogleReviews = () => {
   </div>
 
 </section>
-);
+); 
 };
 
 export default GoogleReviews;
