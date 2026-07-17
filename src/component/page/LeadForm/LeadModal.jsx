@@ -26,7 +26,7 @@ const LeadModal = ({
 
 return (
 
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-5">
+ <div className="fixed inset-0 z-[9999] flex items-start justify-center pt-24 pb-5 px-5 overflow-y-auto">
 
         {/* Overlay */}
 
