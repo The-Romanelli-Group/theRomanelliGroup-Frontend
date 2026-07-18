@@ -21,11 +21,17 @@ const FirstPageResource = () => {
     return () => window.removeEventListener("resize", updatePlaceholder); // Cleanup
   }, []);
  return (
-  <section className="relative py-10 md:py-16 lg:py-20 overflow-hidden">
+  <section className="py-8 md:py-12 overflow-hidden">
     <div className="max-w-7xl mx-auto px-5 lg:px-8">
+
       {/* Heading */}
+
       <div className="max-w-3xl mx-auto text-center">
-        
+
+        <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+          RESOURCES
+        </p>
+
         <h1 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
           Insights, Tips, and Stories to Empower Your{" "}
           <span className="font-playfair italic font-normal text-[#A61E22]">
@@ -34,33 +40,34 @@ const FirstPageResource = () => {
         </h1>
 
         <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-300 max-w-2xl mx-auto">
-          Explore our collection of articles, videos, and expert advice
-          curated to help you buy smarter, sell confidently, and stay ahead
-          of the Central Ohio real estate market.
+          Explore our collection of articles, videos, expert advice, and market
+          insights designed to help you buy smarter, sell confidently, and stay
+          ahead of the Central Ohio real estate market.
         </p>
+
       </div>
 
       {/* Search */}
-      <div className="max-w-3xl mx-auto mt-8 md:mt-12">
-        <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-[28px] p-7 shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
-          <div className="relative">
+
+      <div className="max-w-4xl mx-auto mt-6 md:mt-10">
+
+        <div className="rounded-[28px] border border-white/10 bg-white/10 backdrop-blur-xl p-4 md:p-5 shadow-xl">
+
+          <div className="flex flex-col md:flex-row gap-3">
+
             <input
               className="
-                w-full
-                h-12 md:h-16
-                bg-white/95
-                backdrop-blur-md
+                flex-1
+                h-14
                 rounded-2xl
-                pl-5
-                pr-44
-                md:pr-52
-                text-base
-                md:text-lg
+                border
+                border-gray-200
+                bg-white
+                px-5
+                text-[15px]
+                md:text-base
                 text-gray-900
                 placeholder:text-gray-400
-                border
-                border-white/30
-                shadow-2xl
                 focus:outline-none
                 focus:ring-2
                 focus:ring-[#A61E22]
@@ -70,17 +77,21 @@ const FirstPageResource = () => {
               placeholder={placeholder}
             />
 
-            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+            <div className="flex gap-3">
+
               <button
                 onClick={() => setFilterOpen(true)}
                 className="
-                  h-9
-                  md:h-12
-                  px-4
+                  h-14
+                  px-6
+                  rounded-2xl
+                  border
+                  border-gray-200
                   bg-white
-                  hover:bg-gray-100
                   text-gray-800
-                  rounded-xl
+                  font-medium
+                  hover:border-[#A61E22]
+                  hover:text-[#A61E22]
                   transition-all
                   duration-300
                   flex
@@ -130,23 +141,30 @@ const FirstPageResource = () => {
 
               <button
                 className="
-                  h-9
-                  md:h-12
-                  px-5
+                  h-14
+                  px-8
+                  rounded-2xl
                   bg-[#A61E22]
-                  hover:bg-[#8d181b]
                   text-white
-                  rounded-xl
+                  font-semibold
+                  shadow-lg
+                  hover:bg-[#8E1A1D]
+                  hover:shadow-xl
                   transition-all
                   duration-300
                 "
               >
                 Search
               </button>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
 
     <SideModal />
@@ -154,6 +172,7 @@ const FirstPageResource = () => {
     {filterOpen && (
       <FilterResource close={() => setFilterOpen(false)} />
     )}
+
   </section>
 );
 }
