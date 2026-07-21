@@ -49,253 +49,271 @@ const FilterResource = ({ close }) => {
     setSelectedType(null);
   };
 
-return (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md p-5">
-
-    <div className="w-full max-w-4xl overflow-hidden rounded-[28px] border border-white/10 bg-[#171010] shadow-[0_25px_80px_rgba(0,0,0,.45)]">
-
+return ( 
+<div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 md:p-6" onClick={close} > 
+<div onClick={(e) => e.stopPropagation()} 
+className="w-full max-w-2xl bg-white rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.25)] max-h-[90vh] overflow-y-auto" >
       {/* Header */}
 
-      <div className="border-b border-white/10 px-7 py-6">
+<div className="sticky top-0 z-10 flex items-center justify-between bg-[#A61E22] px-6 py-5 rounded-t-3xl shadow-md">
 
-        <div className="flex items-start justify-between">
+  <div>
 
-          <div>
+    <h2 className="text-2xl md:text-3xl font-bold text-white">
+      Resource Filters
+    </h2>
 
-            <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
-              RESOURCE FILTERS
-            </p>
+    <p className="mt-1 text-sm text-white/80">
+      Filter articles, guides and videos
+    </p>
 
-            <h2 className="mt-2 text-3xl font-bold text-white">
-              Find the Right Content
-            </h2>
+  </div>
 
-            <p className="mt-2 text-gray-400 leading-6 max-w-lg">
-              Filter articles, videos, guides and market updates to quickly
-              discover the resources most relevant to you.
-            </p>
+  <button
+    type="button"
+    onClick={close}
+    className="
+      w-10
+      h-10
+      rounded-full
+      bg-white/15
+      hover:bg-white/25
+      text-white
+      transition-all
+      duration-200
+      flex
+      items-center
+      justify-center
+    "
+  >
+    <span className="text-xl leading-none">&times;</span>
+  </button>
 
-          </div>
-
-          <button
-            onClick={close}
-            className="
-              w-11
-              h-11
-              rounded-full
-              border
-              border-white/10
-              bg-white/5
-              text-gray-300
-              transition-all
-              duration-300
-              hover:bg-[#A61E22]
-              hover:border-[#A61E22]
-              hover:text-white
-            "
-          >
-            ✕
-          </button>
-
-        </div>
-
-      </div>
-
+</div>
       {/* Body */}
 
-      <div className="space-y-10 p-7">
+    <div className="p-5 md:p-6 space-y-6 pb-40">
 
         {/* Content Type */}
 
-        <div>
+      <div>
 
-          <h3 className="text-xl font-semibold text-white mb-5">
-            Content Type
-          </h3>
+  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+    Content Type
+  </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
 
-            {contentTypes.map((property, index) => (
+    {contentTypes.map((property, index) => (
 
-              <button
-                key={index}
-                onClick={() => setSelectedType(property.type)}
-                className={`
-                  rounded-[24px]
-                  border
-                  p-6
-                  transition-all
-                  duration-300
-                  flex
-                  flex-col
-                  items-center
-                  justify-center
-                  hover:-translate-y-1
-                  ${
-                    selectedType === property.type
-                      ? "border-[#A61E22] bg-[#A61E22]/15 shadow-lg"
-                      : "border-white/10 bg-white/5 hover:border-[#A61E22]/50"
-                  }
-                `}
-              >
+      <button
+        key={index}
+        onClick={() => setSelectedType(property.type)}
+        className={`
+          rounded-2xl
+          border
+          p-4
+          flex
+          flex-col
+          items-center
+          justify-center
+          transition-all
+          duration-200
+          ${
+            selectedType === property.type
+              ? "bg-[#A61E22] border-[#A61E22] text-white shadow-lg scale-[1.02]"
+              : "bg-white border-gray-200 text-gray-700 hover:border-[#A61E22] hover:shadow-md"
+          }
+        `}
+      >
 
-                {property.link ? (
+        {property.link ? (
 
-                  <>
-                    <img
-                      src={property.link}
-                      alt={property.type}
-                      className="w-12 h-12 object-contain mb-4"
-                    />
+          <>
+            <img
+              src={property.link}
+              alt={property.type}
+              className={`
+                w-10
+                h-10
+                mb-3
+                object-contain
+                ${
+                  selectedType === property.type
+                    ? "brightness-0 invert"
+                    : ""
+                }
+              `}
+            />
 
-                    <span className="text-white font-semibold text-sm text-center">
-                      {property.type}
-                    </span>
+            <span className="text-sm font-medium text-center leading-snug">
+              {property.type}
+            </span>
 
-                  </>
+          </>
 
-                ) : (
+        ) : (
 
-                  <span className="text-white font-semibold text-lg">
-                    All
-                  </span>
+          <span className="text-lg font-medium">
+            All
+          </span>
 
-                )}
+        )}
 
-              </button>
+      </button>
 
-            ))}
+    ))}
 
-          </div>
+  </div>
 
-        </div>
+</div>
 
+<hr className="border-gray-200" />
         {/* Topics */}
 
-        <div>
+       <div>
 
-          <h3 className="text-xl font-semibold text-white mb-5">
-            Topics
-          </h3>
+  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+    Topics
+  </h3>
 
-          <div className="flex flex-wrap gap-3">
+  <div className="flex flex-wrap gap-3">
 
-            {topics.map((topic, index) => (
+    {topics.map((topic, index) => (
 
-              <button
-                key={index}
-                onClick={() => setSelectedTopic(topic)}
-                className={`
-                  rounded-full
-                  px-6
-                  py-3
-                  text-sm
-                  font-semibold
-                  transition-all
-                  duration-300
-                  ${
-                    selectedTopic === topic
-                      ? "bg-[#A61E22] text-white shadow-lg"
-                      : "border border-white/10 bg-white/5 text-gray-300 hover:border-[#A61E22]"
-                  }
-                `}
-              >
-                {topic}
-              </button>
+      <button
+        key={index}
+        onClick={() => setSelectedTopic(topic)}
+        className={`
+          rounded-full
+          border
+          px-5
+          py-2
+          text-sm
+          md:text-base
+          font-medium
+          transition-all
+          duration-200
+          ${
+            selectedTopic === topic
+              ? "bg-[#A61E22] border-[#A61E22] text-white shadow-md"
+              : "bg-white border-gray-300 text-gray-700 hover:border-[#A61E22] hover:text-[#A61E22]"
+          }
+        `}
+      >
+        {topic}
+      </button>
 
-            ))}
+    ))}
 
-          </div>
+  </div>
 
-        </div>
+</div>
+
+<hr className="border-gray-200" />
 
         {/* Sort */}
 
-        <div>
+       <div>
 
-          <h3 className="text-xl font-semibold text-white mb-5">
-            Sort By
-          </h3>
+  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+    Sort By
+  </h3>
 
-          <div className="flex flex-wrap gap-3">
+  <div className="flex flex-wrap gap-3">
 
-            {sortOptions.map((option, index) => (
+    {sortOptions.map((option, index) => (
 
-              <button
-                key={index}
-                onClick={() => setSelectedSort(option)}
-                className={`
-                  rounded-full
-                  px-6
-                  py-3
-                  text-sm
-                  font-semibold
-                  transition-all
-                  duration-300
-                  ${
-                    selectedSort === option
-                      ? "bg-[#A61E22] text-white shadow-lg"
-                      : "border border-white/10 bg-white/5 text-gray-300 hover:border-[#A61E22]"
-                  }
-                `}
-              >
-                {option}
-              </button>
+      <button
+        key={index}
+        onClick={() => setSelectedSort(option)}
+        className={`
+          rounded-full
+          border
+          px-5
+          py-2
+          text-sm
+          md:text-base
+          font-medium
+          transition-all
+          duration-200
+          ${
+            selectedSort === option
+              ? "bg-[#A61E22] border-[#A61E22] text-white shadow-md"
+              : "bg-white border-gray-300 text-gray-700 hover:border-[#A61E22] hover:text-[#A61E22]"
+          }
+        `}
+      >
+        {option}
+      </button>
 
-            ))}
-
-          </div>
-
-        </div>
-
-      </div>
-
-      {/* Footer */}
-
-      <div className="border-t border-white/10 px-7 py-6 flex flex-col-reverse sm:flex-row sm:justify-end gap-4">
-
-        <button
-          onClick={resetFilters}
-          className="
-            rounded-full
-            border
-            border-white/10
-            bg-white/5
-            px-7
-            py-3
-            text-white
-            font-semibold
-            transition-all
-            duration-300
-            hover:border-[#A61E22]
-          "
-        >
-          Reset Filters
-        </button>
-
-        <button
-          className="
-            rounded-full
-            bg-[#A61E22]
-            px-8
-            py-3
-            text-white
-            font-semibold
-            shadow-lg
-            transition-all
-            duration-300
-            hover:bg-[#8d181b]
-            hover:shadow-xl
-          "
-        >
-          Apply Filters
-        </button>
-
-      </div>
-
-    </div>
+    ))}
 
   </div>
+
+</div>
+      {/* Footer */}
+
+     <div
+  className="
+    sticky
+    bottom-0
+    bg-white/95
+    backdrop-blur-md
+    border-t
+    border-gray-200
+    p-5
+    flex
+    gap-3
+    shadow-[0_-8px_24px_rgba(0,0,0,0.08)]
+  "
+>
+
+  <button
+    type="button"
+    onClick={resetFilters}
+    className="
+      flex-1
+      py-3
+      rounded-xl
+      border
+      border-gray-300
+      text-gray-700
+      font-semibold
+      hover:bg-gray-100
+      transition-all
+      duration-200
+    "
+  >
+    Reset
+  </button>
+
+  <button
+    type="button"
+    onClick={saveSearch}
+    className="
+      flex-1
+      py-3
+      rounded-xl
+      bg-[#A61E22]
+      text-white
+      font-semibold
+      hover:bg-[#8E1A1D]
+      transition-all
+      duration-200
+      shadow-lg
+    "
+  >
+    Apply Filters
+  </button>
+
+</div> {/* Footer */}
+
+</div> {/* Body */}
+
+</div> {/* Modal */}
+
+</div> {/* Overlay */}
 );
 };
 
