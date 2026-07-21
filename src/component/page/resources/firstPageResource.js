@@ -44,11 +44,7 @@ const FirstPageResource = () => {
   font-Montserrat
 ">
 
-  <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
-    RESOURCE CENTER
-  </p>
-
-  <h1 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
+    <h1 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
 
     Insights, Tips, and Stories to Empower Your{" "}
 
