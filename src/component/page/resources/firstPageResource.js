@@ -26,26 +26,39 @@ const FirstPageResource = () => {
 
       {/* Heading */}
 
-     <div className="max-w-4xl mx-auto text-center zIndex [99]">
+     <div
+      className="
+        relative
+        z-10
+        max-w-7xl
+        mx-auto
+        px-5
+        lg:px-8
+        py-10
+        md:py-16
+        lg:py-20
+        font-Montserrat
+    ">
 
-        <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
-          RESOURCES
-        </p>
-
-        <h1 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
-          Insights, Tips, and Stories to Empower Your{" "}
-          <span className="font-playfair italic font-normal text-[#A61E22]">
-            Real Estate Journey
-          </span>
-        </h1>
-
-        <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-300 max-w-2xl mx-auto">
-          Explore our collection of articles, videos, expert advice, and market
+        {/* Heading */}
+             <h1 className="text-[30px] md:text-6xl leading-tight font-bold text-white text-center max-w-3xl mx-auto">
+         Insights, Tips, and Stories to Empower Your{" "}
+         <span className="font-playfair italic font-normal text-[#A61E22]">
+           Real Estate Journey
+         </span>
+       </h1>
+       
+       <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-white/80 max-w-2xl mx-auto text-center">
+         Explore our collection of articles, videos, expert advice, and market
           insights designed to help you buy smarter, sell confidently, and stay
           ahead of the Central Ohio real estate market.
-        </p>
+       </p>
 
-      </div>
+        
+
+      
+          
+       </div>
 
       {/* Search */}
 
