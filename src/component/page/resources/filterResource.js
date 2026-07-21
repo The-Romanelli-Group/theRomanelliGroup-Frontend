@@ -50,46 +50,70 @@ const FilterResource = ({ close }) => {
   };
 
 return (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-5">
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md p-5">
 
-    <div className="w-full max-w-3xl overflow-hidden rounded-[28px] border border-white/10 bg-[#171010] shadow-2xl">
+    <div className="w-full max-w-4xl overflow-hidden rounded-[28px] border border-white/10 bg-[#171010] shadow-[0_25px_80px_rgba(0,0,0,.45)]">
 
       {/* Header */}
 
-      <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
+      <div className="border-b border-white/10 px-7 py-6">
 
-        <div>
-          <p className="uppercase tracking-[0.3em] text-xs font-semibold text-[#A61E22]">
-            Resources
-          </p>
+        <div className="flex items-start justify-between">
 
-          <h2 className="mt-1 text-2xl font-bold text-white">
-            Filter Resources
-          </h2>
+          <div>
+
+            <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+              RESOURCE FILTERS
+            </p>
+
+            <h2 className="mt-2 text-3xl font-bold text-white">
+              Find the Right Content
+            </h2>
+
+            <p className="mt-2 text-gray-400 leading-6 max-w-lg">
+              Filter articles, videos, guides and market updates to quickly
+              discover the resources most relevant to you.
+            </p>
+
+          </div>
+
+          <button
+            onClick={close}
+            className="
+              w-11
+              h-11
+              rounded-full
+              border
+              border-white/10
+              bg-white/5
+              text-gray-300
+              transition-all
+              duration-300
+              hover:bg-[#A61E22]
+              hover:border-[#A61E22]
+              hover:text-white
+            "
+          >
+            ✕
+          </button>
+
         </div>
-
-        <button
-          onClick={close}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-300 transition-all duration-300 hover:bg-[#A61E22] hover:text-white"
-        >
-          ✕
-        </button>
 
       </div>
 
       {/* Body */}
 
-      <div className="space-y-8 p-6">
+      <div className="space-y-10 p-7">
 
         {/* Content Type */}
 
         <div>
 
-          <h3 className="mb-4 text-lg font-semibold text-white">
+          <h3 className="text-xl font-semibold text-white mb-5">
             Content Type
           </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
 
             {contentTypes.map((property, index) => (
 
@@ -97,39 +121,45 @@ return (
                 key={index}
                 onClick={() => setSelectedType(property.type)}
                 className={`
-                  rounded-2xl
+                  rounded-[24px]
                   border
-                  p-4
+                  p-6
                   transition-all
                   duration-300
                   flex
                   flex-col
                   items-center
                   justify-center
+                  hover:-translate-y-1
                   ${
                     selectedType === property.type
-                      ? "border-[#A61E22] bg-[#A61E22]/20"
-                      : "border-white/10 bg-white/5 hover:border-[#A61E22]/60"
+                      ? "border-[#A61E22] bg-[#A61E22]/15 shadow-lg"
+                      : "border-white/10 bg-white/5 hover:border-[#A61E22]/50"
                   }
                 `}
               >
 
                 {property.link ? (
+
                   <>
                     <img
                       src={property.link}
                       alt={property.type}
-                      className="mb-3 h-10 w-10 object-contain"
+                      className="w-12 h-12 object-contain mb-4"
                     />
 
-                    <span className="text-center text-sm font-medium text-white">
+                    <span className="text-white font-semibold text-sm text-center">
                       {property.type}
                     </span>
+
                   </>
+
                 ) : (
-                  <span className="text-lg font-semibold text-white">
+
+                  <span className="text-white font-semibold text-lg">
                     All
                   </span>
+
                 )}
 
               </button>
@@ -144,7 +174,7 @@ return (
 
         <div>
 
-          <h3 className="mb-4 text-lg font-semibold text-white">
+          <h3 className="text-xl font-semibold text-white mb-5">
             Topics
           </h3>
 
@@ -157,16 +187,16 @@ return (
                 onClick={() => setSelectedTopic(topic)}
                 className={`
                   rounded-full
-                  px-5
-                  py-2.5
+                  px-6
+                  py-3
                   text-sm
-                  font-medium
+                  font-semibold
                   transition-all
                   duration-300
                   ${
                     selectedTopic === topic
-                      ? "bg-[#A61E22] text-white"
-                      : "bg-white/5 text-gray-300 border border-white/10 hover:border-[#A61E22]"
+                      ? "bg-[#A61E22] text-white shadow-lg"
+                      : "border border-white/10 bg-white/5 text-gray-300 hover:border-[#A61E22]"
                   }
                 `}
               >
@@ -183,7 +213,7 @@ return (
 
         <div>
 
-          <h3 className="mb-4 text-lg font-semibold text-white">
+          <h3 className="text-xl font-semibold text-white mb-5">
             Sort By
           </h3>
 
@@ -196,16 +226,16 @@ return (
                 onClick={() => setSelectedSort(option)}
                 className={`
                   rounded-full
-                  px-5
-                  py-2.5
+                  px-6
+                  py-3
                   text-sm
-                  font-medium
+                  font-semibold
                   transition-all
                   duration-300
                   ${
                     selectedSort === option
-                      ? "bg-[#A61E22] text-white"
-                      : "bg-white/5 text-gray-300 border border-white/10 hover:border-[#A61E22]"
+                      ? "bg-[#A61E22] text-white shadow-lg"
+                      : "border border-white/10 bg-white/5 text-gray-300 hover:border-[#A61E22]"
                   }
                 `}
               >
@@ -222,17 +252,41 @@ return (
 
       {/* Footer */}
 
-      <div className="flex flex-col-reverse gap-3 border-t border-white/10 px-6 py-5 sm:flex-row sm:justify-end">
+      <div className="border-t border-white/10 px-7 py-6 flex flex-col-reverse sm:flex-row sm:justify-end gap-4">
 
         <button
           onClick={resetFilters}
-          className="rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-[#A61E22]"
+          className="
+            rounded-full
+            border
+            border-white/10
+            bg-white/5
+            px-7
+            py-3
+            text-white
+            font-semibold
+            transition-all
+            duration-300
+            hover:border-[#A61E22]
+          "
         >
-          Reset
+          Reset Filters
         </button>
 
         <button
-          className="rounded-full bg-[#A61E22] px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-[#8E1A1D]"
+          className="
+            rounded-full
+            bg-[#A61E22]
+            px-8
+            py-3
+            text-white
+            font-semibold
+            shadow-lg
+            transition-all
+            duration-300
+            hover:bg-[#8d181b]
+            hover:shadow-xl
+          "
         >
           Apply Filters
         </button>
