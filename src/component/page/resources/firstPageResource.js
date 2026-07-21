@@ -24,148 +24,115 @@ const FirstPageResource = () => {
   <section className="py-8 md:py-12 overflow-hidden">
     <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
-      {/* Heading */}
+     {/* Header */}
 
-     <div
-      className="
-        relative
-        z-10
-        max-w-7xl
-        mx-auto
-        px-5
-        lg:px-8
-        py-10
-        md:py-16
-        lg:py-20
-        font-Montserrat
-    ">
+<div className="max-w-3xl mx-auto text-center">
 
-        {/* Heading */}
-             <h1 className="text-[30px] md:text-6xl leading-tight font-bold text-white text-center max-w-3xl mx-auto">
-         Insights, Tips, and Stories to Empower Your{" "}
-         <span className="font-playfair italic font-normal text-[#A61E22]">
-           Real Estate Journey
-         </span>
-       </h1>
-       
-       <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-white/80 max-w-2xl mx-auto text-center">
-         Explore our collection of articles, videos, expert advice, and market
-          insights designed to help you buy smarter, sell confidently, and stay
-          ahead of the Central Ohio real estate market.
-       </p>
+  <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
+    RESOURCE CENTER
+  </p>
 
-        
+  <h1 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
 
-      
-          
-       </div>
+    Insights, Tips, and Stories to Empower Your{" "}
 
+    <span className="font-playfair italic font-normal text-[#A61E22]">
+      Real Estate Journey
+    </span>
+
+  </h1>
+
+  <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-300">
+
+    Explore our collection of articles, videos, expert advice, and market
+    insights designed to help you buy smarter, sell confidently and stay ahead
+    of the Central Ohio real estate market.
+
+  </p>
+
+</div>
       {/* Search */}
 
-      <div className="max-w-4xl mx-auto mt-6 md:mt-10">
+      <div className="max-w-4xl mx-auto mt-8 md:mt-12">
 
-        <div className="rounded-[28px] border border-white/10 bg-white/10 backdrop-blur-xl p-4 md:p-5 shadow-xl">
+        <div className="bg-white/10
+backdrop-blur-2xl
+border
+border-white/10
+rounded-[28px]
+shadow-xl
+p-5 md:p-7">
 
-          <div className="flex flex-col md:flex-row gap-3">
+        <div className="flex flex-col md:flex-row gap-4">
 
             <input
-              className="
-                flex-1
-                h-14
-                rounded-2xl
-                border
-                border-gray-200
-                bg-white
-                px-5
-                text-[15px]
-                md:text-base
-                text-gray-900
-                placeholder:text-gray-400
-                focus:outline-none
-                focus:ring-2
-                focus:ring-[#A61E22]
-                transition-all
-                duration-300
-              "
-              placeholder={placeholder}
-            />
+  className="
+    flex-1
+    h-12
+    md:h-14
+    rounded-xl
+    bg-white/95
+    border
+    border-white/20
+    px-5
+    text-base
+    md:text-lg
+    text-gray-900
+    placeholder:text-gray-400
+    focus:outline-none
+    focus:ring-2
+    focus:ring-[#A61E22]
+    transition-all
+    duration-300
+  "
+  placeholder="Search articles, guides or videos..."
+/>
 
-            <div className="flex gap-3">
-
+          <div className="flex items-center gap-3">
               <button
-                onClick={() => setFilterOpen(true)}
-                className="
-                  h-14
-                  px-6
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  bg-white
-                  text-gray-800
-                  font-medium
-                  hover:border-[#A61E22]
-                  hover:text-[#A61E22]
-                  transition-all
-                  duration-300
-                  flex
-                  items-center
-                  gap-2
-                "
-              >
-                
+  onClick={() => setFilterOpen(true)}
+  className="
+    relative
+    h-12
+    w-12
+    md:h-14
+    md:w-14
+    rounded-xl
+    bg-white/95
+    border
+    border-white/20
+    flex
+    items-center
+    justify-center
+    hover:border-[#A61E22]
+    hover:bg-white
+    transition-all
+    duration-300
+  "
+>
 
-                <svg
-                  width="18"
-                  height="14"
-                  viewBox="0 0 20 15"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <line
-                    y1="12.1367"
-                    x2="20"
-                    y2="12.1367"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                  <line
-                    y1="3.24609"
-                    x2="20"
-                    y2="3.24609"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                  <rect
-                    x="11.5"
-                    y="0.941406"
-                    width="5"
-                    height="4.33333"
-                    stroke="currentColor"
-                  />
-                  <rect
-                    x="3.5"
-                    y="9.83203"
-                    width="5"
-                    height="4.33333"
-                    stroke="currentColor"
-                  />
-                </svg>
-              </button>
+  <img
+    src={FilterIcon}
+    alt="Filters"
+    className="w-5 h-5 md:w-6 md:h-6 opacity-70"
+  />
 
+</button>
               <button
                 className="
-                  h-14
-                  px-8
-                  rounded-2xl
-                  bg-[#A61E22]
-                  text-white
-                  font-semibold
-                  shadow-lg
-                  hover:bg-[#8E1A1D]
-                  hover:shadow-xl
-                  transition-all
-                  duration-300
-                "
+                 h-12
+md:h-14
+px-6
+md:px-8
+rounded-xl
+bg-[#A61E22]
+text-white
+font-semibold
+shadow-lg
+hover:bg-[#8d181b]
+hover:shadow-xl
+transition-all
+duration-300"
               >
                 Search
               </button>
