@@ -29,16 +29,19 @@ const FirstPageResource = () => {
 
 <div
   className="
-    relative
-    z-10
-    max-w-7xl
-    mx-auto
-    px-5
-    lg:px-8
-    py-10
-    md:py-16
-    lg:py-20
-    font-Montserrat
+  relative
+  z-10
+  max-w-7xl
+  mx-auto
+  px-5
+  lg:px-8
+  pt-10
+  md:pt-16
+  lg:pt-20
+  pb-4
+  md:pb-6
+  lg:pb-8
+  font-Montserrat
 ">
 
   <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
