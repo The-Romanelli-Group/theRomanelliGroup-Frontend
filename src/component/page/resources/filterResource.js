@@ -71,8 +71,11 @@ const FilterResource = ({ close, onSave }) => {
     close();
   };
 
-return ( 
-<div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 md:p-6" onClick={close} > 
+return (
+  <div
+    className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
+    onClick={close}
+  >
 <div onClick={(e) => e.stopPropagation()} 
 className="w-full max-w-2xl bg-white rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.25)] max-h-[90vh] overflow-y-auto" >
       {/* Header */}
@@ -329,13 +332,10 @@ className="w-full max-w-2xl bg-white rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,
     Apply Filters
   </button>
 
-</div> {/* Footer */}
-
-</div> {/* Body */}
-
-</div> {/* Modal */}
-
-</div> {/* Overlay */}
+</div> 
+</div> 
+</div> 
+</div> 
 );
 };
 
