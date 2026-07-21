@@ -66,97 +66,109 @@ const FirstPageResource = () => {
 </div>
       {/* Search */}
 
-      <div className="max-w-4xl mx-auto mt-8 md:mt-12">
+<div className="max-w-4xl mx-auto mt-6 md:mt-8">
 
-        <div className="bg-white/10
-backdrop-blur-2xl
-border
-border-white/10
-rounded-[28px]
-shadow-xl
-p-5 md:p-7">
+  <div className="bg-white/10 backdrop-blur-2xl border border-white/10 rounded-[28px] p-5 md:p-7 shadow-xl">
 
-        <div className="flex flex-col md:flex-row gap-4">
+    <div className="relative w-full">
 
-            <input
-  className="
-    flex-1
-    h-12
-    md:h-14
-    rounded-xl
-    bg-white/95
-    border
-    border-white/20
-    px-5
-    text-base
-    md:text-lg
-    text-gray-900
-    placeholder:text-gray-400
-    focus:outline-none
-    focus:ring-2
-    focus:ring-[#A61E22]
-    transition-all
-    duration-300
-  "
-  placeholder="Search articles, guides or videos..."
-/>
+      {/* Filter Button */}
 
-          <div className="flex items-center gap-3">
-              <button
-  onClick={() => setFilterOpen(true)}
-  className="
-    relative
-    h-12
-    w-12
-    md:h-14
-    md:w-14
-    rounded-xl
-    bg-white/95
-    border
-    border-white/20
-    flex
-    items-center
-    justify-center
-    hover:border-[#A61E22]
-    hover:bg-white
-    transition-all
-    duration-300
-  "
->
+      <button
+        type="button"
+        onClick={() => setFilterOpen(true)}
+        aria-label="Open filters"
+        className="
+          absolute
+          left-2
+          md:left-3
+          top-1/2
+          -translate-y-1/2
+          z-20
+          w-10
+          h-10
+          rounded-full
+          flex
+          items-center
+          justify-center
+          hover:bg-black/5
+          transition-all
+          duration-200
+        "
+      >
+        <img
+          src={FilterIcon}
+          alt="Filters"
+          className="w-5 h-5 md:w-6 md:h-6 opacity-70"
+        />
+      </button>
 
-  <img
-    src={FilterIcon}
-    alt="Filters"
-    className="w-5 h-5 md:w-6 md:h-6 opacity-70"
-  />
+      {/* Search Input */}
 
-</button>
-              <button
-                className="
-                 h-12
-md:h-14
-px-6
-md:px-8
-rounded-xl
-bg-[#A61E22]
-text-white
-font-semibold
-shadow-lg
-hover:bg-[#8d181b]
-hover:shadow-xl
-transition-all
-duration-300"
-              >
-                Search
-              </button>
+      <input
+        className="
+          w-full
+          h-12
+          md:h-16
+          bg-white/95
+          backdrop-blur-md
+          rounded-[20px]
+          pl-14
+          md:pl-16
+          pr-28
+          md:pr-36
+          text-base
+          md:text-lg
+          text-gray-900
+          placeholder:text-base
+          md:placeholder:text-lg
+          placeholder:text-gray-400
+          border
+          border-white/30
+          shadow-lg
+          focus:outline-none
+          focus:ring-2
+          focus:ring-[#A61E22]
+          transition-all
+          duration-300
+        "
+        placeholder="Search articles, guides or videos..."
+      />
 
-            </div>
+      {/* Search Button */}
 
-          </div>
+      <div className="absolute right-2 top-1/2 -translate-y-1/2">
 
-        </div>
+        <button
+          className="
+            h-9
+            md:h-12
+            px-4
+            md:px-6
+            bg-[#A61E22]
+            hover:bg-[#8d181b]
+            text-white
+            rounded-2xl
+            shadow-lg
+            transition-all
+            duration-300
+            hover:scale-[1.02]
+            font-semibold
+            flex
+            items-center
+            justify-center
+          "
+        >
+          Search
+        </button>
 
       </div>
+
+    </div>
+
+  </div>
+
+</div>
 
     </div>
 
