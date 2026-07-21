@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   propertyType1,
   propertyType2,
@@ -9,6 +9,20 @@ const FilterResource = ({ close, onSave }) => {
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [selectedSort, setSelectedSort] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        close();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [close]);
 
   const topics = [
     "Home Buying Tips",
@@ -55,7 +69,7 @@ const FilterResource = ({ close, onSave }) => {
         type: null,
       });
     }
-  }; 
+  };
 
   const saveSearch = () => {
     const filters = {
@@ -73,7 +87,7 @@ const FilterResource = ({ close, onSave }) => {
 
 return (
   <div
-    className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
+    className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-start pt-12 md:pt-20 p-4"
     onClick={close}
   >
 <div onClick={(e) => e.stopPropagation()} 
