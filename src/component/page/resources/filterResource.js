@@ -55,7 +55,7 @@ const FilterResource = ({ close, onSave }) => {
         type: null,
       });
     }
-  };
+  }; 
 
   const saveSearch = () => {
     const filters = {
