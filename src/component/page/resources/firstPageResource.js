@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import FilterResource from './filterResource'
 import SideModal from '../home/sideModal';
-import FilterIcon from "../../assets/filter.png";
+import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
 
 const FirstPageResource = () => {
   const [filterOpen, setFilterOpen] = useState(false)
