@@ -99,7 +99,7 @@ const FirstPageResource = () => {
                   gap-2
                 "
               >
-                Filter
+                
 
                 <svg
                   width="18"
