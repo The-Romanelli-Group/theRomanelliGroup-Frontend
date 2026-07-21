@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   propertyType1,
   propertyType2,
@@ -8,7 +8,7 @@ import {
 const FilterResource = ({ close }) => {
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [selectedSort, setSelectedSort] = useState(null);
-  const [selectedContentType, setSelectedContentType] = useState(null);
+  const [selectedType, setSelectedType] = useState(null);
 
   const topics = [
     "Home Buying Tips",
@@ -31,218 +31,216 @@ const FilterResource = ({ close }) => {
     },
     {
       type: "Blog Posts",
-      Link: propertyType1,
+      link: propertyType1,
     },
     {
-      type: "Media",
-      Link: propertyType2,
+      type: "Instagram Reels",
+      link: propertyType2,
     },
     {
       type: "Case Studies",
-      Link: propertyType3,
+      link: propertyType3,
     },
   ];
 
   const resetFilters = () => {
     setSelectedTopic(null);
     setSelectedSort(null);
-    setSelectedContentType(null);
+    setSelectedType(null);
   };
 
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") close();
-    };
+return (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-5">
 
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, [close]);
+    <div className="w-full max-w-3xl overflow-hidden rounded-[28px] border border-white/10 bg-[#171010] shadow-2xl">
 
-  const filterCount =
-    Number(!!selectedTopic) +
-    Number(!!selectedSort) +
-    Number(!!selectedContentType);
-
-  return (
-  <div
-    className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
-    onClick={close}
-  >
-    <div
-      onClick={(e) => e.stopPropagation()}
-      className="w-full max-w-2xl bg-white rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.25)] max-h-[90vh] overflow-y-auto"
-    >
       {/* Header */}
 
-      <div className="sticky top-0 z-10 flex items-center justify-between bg-[#A61E22] px-6 py-5 rounded-t-3xl shadow-md">
-        <h2 className="text-2xl md:text-3xl font-bold text-white">
-          Filters
-          {filterCount > 0 && (
-            <span className="ml-2 text-lg font-medium text-white/80">
-              ({filterCount})
-            </span>
-          )}
-        </h2>
+      <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
+
+        <div>
+          <p className="uppercase tracking-[0.3em] text-xs font-semibold text-[#A61E22]">
+            Resources
+          </p>
+
+          <h2 className="mt-1 text-2xl font-bold text-white">
+            Filter Resources
+          </h2>
+        </div>
 
         <button
-          type="button"
           onClick={close}
-          className="w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 text-white transition-all duration-200 flex items-center justify-center"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-300 transition-all duration-300 hover:bg-[#A61E22] hover:text-white"
         >
-          <span className="text-xl leading-none">&times;</span>
+          ✕
         </button>
+
       </div>
 
-      {/* Content */}
+      {/* Body */}
 
-      <div className="p-5 md:p-6 space-y-6 pb-40">
+      <div className="space-y-8 p-6">
+
         {/* Content Type */}
 
         <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">
+
+          <h3 className="mb-4 text-lg font-semibold text-white">
             Content Type
           </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {contentTypes.map((contentType, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+            {contentTypes.map((property, index) => (
+
               <button
                 key={index}
-                onClick={() => setSelectedContentType(contentType.type)}
+                onClick={() => setSelectedType(property.type)}
                 className={`
                   rounded-2xl
                   border
                   p-4
+                  transition-all
+                  duration-300
                   flex
                   flex-col
                   items-center
                   justify-center
-                  transition-all
-                  duration-200
                   ${
-                    selectedContentType === contentType.type
-                      ? "bg-[#A61E22] border-[#A61E22] text-white shadow-lg scale-[1.02]"
-                      : "bg-white border-gray-200 text-gray-700 hover:border-[#A61E22] hover:shadow-md"
+                    selectedType === property.type
+                      ? "border-[#A61E22] bg-[#A61E22]/20"
+                      : "border-white/10 bg-white/5 hover:border-[#A61E22]/60"
                   }
                 `}
               >
-                {contentType.Link ? (
+
+                {property.link ? (
                   <>
                     <img
-                      src={contentType.Link}
-                      alt={contentType.type}
-                      className={`w-9 h-9 mb-3 object-contain ${
-                        selectedContentType === contentType.type
-                          ? "brightness-0 invert"
-                          : ""
-                      }`}
+                      src={property.link}
+                      alt={property.type}
+                      className="mb-3 h-10 w-10 object-contain"
                     />
 
-                    <span className="text-sm font-medium text-center leading-snug">
-                      {contentType.type}
+                    <span className="text-center text-sm font-medium text-white">
+                      {property.type}
                     </span>
                   </>
                 ) : (
-                  <span className="text-lg font-semibold">All</span>
+                  <span className="text-lg font-semibold text-white">
+                    All
+                  </span>
                 )}
-              </button>
-            ))}
-          </div>
-        </div>
 
-        <hr className="border-gray-200" />
+              </button>
+
+            ))}
+
+          </div>
+
+        </div>
 
         {/* Topics */}
 
         <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">
+
+          <h3 className="mb-4 text-lg font-semibold text-white">
             Topics
           </h3>
 
           <div className="flex flex-wrap gap-3">
+
             {topics.map((topic, index) => (
+
               <button
                 key={index}
                 onClick={() => setSelectedTopic(topic)}
                 className={`
                   rounded-full
-                  border
                   px-5
-                  py-2
+                  py-2.5
                   text-sm
-                  md:text-base
                   font-medium
                   transition-all
-                  duration-200
+                  duration-300
                   ${
                     selectedTopic === topic
-                      ? "bg-[#A61E22] border-[#A61E22] text-white shadow-md"
-                      : "bg-white border-gray-300 text-gray-700 hover:border-[#A61E22] hover:text-[#A61E22]"
+                      ? "bg-[#A61E22] text-white"
+                      : "bg-white/5 text-gray-300 border border-white/10 hover:border-[#A61E22]"
                   }
                 `}
               >
                 {topic}
               </button>
-            ))}
-          </div>
-        </div>
 
-        <hr className="border-gray-200" />
+            ))}
+
+          </div>
+
+        </div>
 
         {/* Sort */}
 
         <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">
+
+          <h3 className="mb-4 text-lg font-semibold text-white">
             Sort By
           </h3>
 
           <div className="flex flex-wrap gap-3">
+
             {sortOptions.map((option, index) => (
+
               <button
                 key={index}
                 onClick={() => setSelectedSort(option)}
                 className={`
                   rounded-full
-                  border
                   px-5
-                  py-2
+                  py-2.5
                   text-sm
-                  md:text-base
                   font-medium
                   transition-all
-                  duration-200
+                  duration-300
                   ${
                     selectedSort === option
-                      ? "bg-[#A61E22] border-[#A61E22] text-white shadow-md"
-                      : "bg-white border-gray-300 text-gray-700 hover:border-[#A61E22] hover:text-[#A61E22]"
+                      ? "bg-[#A61E22] text-white"
+                      : "bg-white/5 text-gray-300 border border-white/10 hover:border-[#A61E22]"
                   }
                 `}
               >
                 {option}
               </button>
+
             ))}
+
           </div>
+
         </div>
+
       </div>
 
       {/* Footer */}
 
-      <div className="sticky bottom-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-5 flex gap-3 shadow-[0_-8px_24px_rgba(0,0,0,0.08)]">
+      <div className="flex flex-col-reverse gap-3 border-t border-white/10 px-6 py-5 sm:flex-row sm:justify-end">
+
         <button
-          type="button"
           onClick={resetFilters}
-          className="flex-1 py-3 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100 transition-all duration-200"
+          className="rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-[#A61E22]"
         >
           Reset
         </button>
 
         <button
-          type="button"
-          className="flex-1 py-3 rounded-xl bg-[#A61E22] text-white font-semibold hover:bg-[#8E1A1D] transition-all duration-200 shadow-lg"
+          className="rounded-full bg-[#A61E22] px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-[#8E1A1D]"
         >
           Apply Filters
         </button>
+
       </div>
+
     </div>
+
   </div>
 );
 };
