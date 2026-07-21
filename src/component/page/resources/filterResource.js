@@ -5,7 +5,7 @@ import {
   propertyType3,
 } from "../../../assets/allImg";
 
-const FilterResource = ({ close }) => {
+const FilterResource = ({ close, onSave }) => {
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [selectedSort, setSelectedSort] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
@@ -47,6 +47,28 @@ const FilterResource = ({ close }) => {
     setSelectedTopic(null);
     setSelectedSort(null);
     setSelectedType(null);
+
+    if (onSave) {
+      onSave({
+        topic: null,
+        sort: null,
+        type: null,
+      });
+    }
+  };
+
+  const saveSearch = () => {
+    const filters = {
+      topic: selectedTopic,
+      sort: selectedSort,
+      type: selectedType,
+    };
+
+    if (onSave) {
+      onSave(filters);
+    }
+
+    close();
   };
 
 return ( 
