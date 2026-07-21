@@ -26,7 +26,15 @@ const FirstPageResource = () => {
 
       {/* Heading */}
 
-      <div className="max-w-3xl mx-auto text-center">
+     <div
+  className="max-w-3xl mx-auto text-center"
+  style={{
+    background: "red",
+    minHeight: "300px",
+    position: "relative",
+    zIndex: 9999,
+  }}
+>
 
         <p className="uppercase tracking-[0.35em] text-[#A61E22] text-sm font-semibold">
           RESOURCES
