@@ -1,11 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import FilterResource from './filterResource'
-import SideModal from '../home/sideModal';
+import React, { useEffect, useState } from "react";
+import FilterResource from "./filterResource";
+import SideModal from "../home/sideModal";
 import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
 
 const FirstPageResource = () => {
-  const [filterOpen, setFilterOpen] = useState(false)
-  const [placeholder, setPlaceholder] = useState("Enter city");
+  const [filterOpen, setFilterOpen] = useState(false);
+
+  // Search input
+  const [search, setSearch] = useState("");
+
+  // Last submitted search
+  const [activeSearch, setActiveSearch] = useState("");
+
+  // Search filters
+  const [filters, setFilters] = useState({
+    topic: null,
+    sort: "Latest First",
+    type: null,
+  });
+
+  // Responsive placeholder
+  const [placeholder, setPlaceholder] = useState("Search by keyword");
+
+  // Loading state (useful when we hook up real filtering)
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     const updatePlaceholder = () => {
@@ -16,95 +34,130 @@ const FirstPageResource = () => {
       }
     };
 
-    updatePlaceholder(); // Set initial placeholder
-    window.addEventListener("resize", updatePlaceholder); // Update on resize
+    updatePlaceholder();
 
-    return () => window.removeEventListener("resize", updatePlaceholder); // Cleanup
+    window.addEventListener("resize", updatePlaceholder);
+
+    return () => {
+      window.removeEventListener("resize", updatePlaceholder);
+    };
   }, []);
- return (
+
+  // Search handler
+  const handleSearch = () => {
+    setIsSearching(true);
+
+    const trimmedSearch = search.trim();
+    setActiveSearch(trimmedSearch);
+
+    // We'll connect this to the resource grid in the next step.
+    console.log("Search:", trimmedSearch);
+    console.log("Filters:", filters);
+
+    setTimeout(() => {
+      setIsSearching(false);
+    }, 250);
+  };
+
+  // Search on Enter
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  // Receive filters from the modal
+  const handleFilters = (newFilters) => {
+    setFilters(newFilters);
+
+    // Re-run the search whenever filters change
+    setTimeout(() => {
+      handleSearch();
+    }, 0);
+  };
+return (
   <section className="py-8 md:py-12 overflow-hidden">
     <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
-     {/* Header */}
+      {/* Header */}
 
-<div
-  className="
-  relative
-  z-10
-  max-w-7xl
-  mx-auto
-  px-5
-  lg:px-8
-  pt-10
-  md:pt-16
-  lg:pt-20
-  pb-4
-  md:pb-6
-  lg:pb-8
-  font-Montserrat
-">
-
-    <h1 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
-
-    Insights, Tips, and Stories to Empower Your{" "}
-
-    <span className="font-playfair italic font-normal text-[#A61E22]">
-      Real Estate Journey
-    </span>
-
-  </h1>
-
-  <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-300">
-
-    Explore our collection of articles, videos, expert advice, and market
-    insights designed to help you buy smarter, sell confidently and stay ahead
-    of the Central Ohio real estate market.
-
-  </p>
-
-</div>
-      {/* Search */}
-
-<div className="max-w-4xl mx-auto mt-6 md:mt-8">
-
-  <div className="bg-white/10 backdrop-blur-2xl border border-white/10 rounded-[28px] p-5 md:p-7 shadow-xl">
-
-    <div className="relative w-full">
-
-      {/* Filter Button */}
-
-      <button
-        type="button"
-        onClick={() => setFilterOpen(true)}
-        aria-label="Open filters"
+      <div
         className="
-          absolute
-          left-2
-          md:left-3
-          top-1/2
-          -translate-y-1/2
-          z-20
-          w-10
-          h-10
-          rounded-full
-          flex
-          items-center
-          justify-center
-          hover:bg-black/5
-          transition-all
-          duration-200
+          relative
+          z-10
+          max-w-7xl
+          mx-auto
+          px-5
+          lg:px-8
+          pt-10
+          md:pt-16
+          lg:pt-20
+          pb-4
+          md:pb-6
+          lg:pb-8
+          font-Montserrat
         "
       >
-        <img
-          src={FilterIcon}
-          alt="Filters"
-          className="w-5 h-5 md:w-6 md:h-6 opacity-70"
-        />
-      </button>
 
+        <h1 className="mt-3 text-[30px] md:text-6xl leading-tight font-bold text-white">
+          Insights, Tips, and Stories to Empower Your{" "}
+          <span className="font-playfair italic font-normal text-[#A61E22]">
+            Real Estate Journey
+          </span>
+        </h1>
+
+        <p className="mt-4 text-[15px] md:text-lg leading-6 md:leading-7 text-gray-300">
+          Explore our collection of articles, videos, expert advice, and market
+          insights designed to help you buy smarter, sell confidently and stay
+          ahead of the Central Ohio real estate market.
+        </p>
+
+      </div>
+
+      {/* Search */}
+
+      <div className="max-w-4xl mx-auto mt-6 md:mt-8">
+
+        <div className="bg-white/10 backdrop-blur-2xl border border-white/10 rounded-[28px] p-5 md:p-7 shadow-xl">
+
+          <div className="relative w-full">
+
+            {/* Filter Button */}
+
+            <button
+              type="button"
+              onClick={() => setFilterOpen(true)}
+              aria-label="Open filters"
+              className="
+                absolute
+                left-2
+                md:left-3
+                top-1/2
+                -translate-y-1/2
+                z-20
+                w-10
+                h-10
+                rounded-full
+                flex
+                items-center
+                justify-center
+                hover:bg-black/5
+                transition-all
+                duration-200
+              "
+            >
+              <img
+                src={FilterIcon}
+                alt="Filters"
+                className="w-5 h-5 md:w-6 md:h-6 opacity-70"
+              />
+            </button>
       {/* Search Input */}
 
       <input
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        onKeyDown={handleKeyDown}
         className="
           w-full
           h-12
@@ -131,7 +184,7 @@ const FirstPageResource = () => {
           transition-all
           duration-300
         "
-        placeholder="Search articles, guides or videos..."
+        placeholder={placeholder}
       />
 
       {/* Search Button */}
@@ -139,6 +192,9 @@ const FirstPageResource = () => {
       <div className="absolute right-2 top-1/2 -translate-y-1/2">
 
         <button
+          type="button"
+          onClick={handleSearch}
+          disabled={isSearching}
           className="
             h-9
             md:h-12
@@ -146,19 +202,21 @@ const FirstPageResource = () => {
             md:px-6
             bg-[#A61E22]
             hover:bg-[#8d181b]
+            disabled:bg-[#8d181b]/70
             text-white
             rounded-2xl
             shadow-lg
             transition-all
             duration-300
             hover:scale-[1.02]
+            disabled:hover:scale-100
             font-semibold
             flex
             items-center
             justify-center
           "
         >
-          Search
+          {isSearching ? "Searching..." : "Search"}
         </button>
 
       </div>
@@ -167,18 +225,49 @@ const FirstPageResource = () => {
 
   </div>
 
+  {/* Active Search & Filters */}
+
+  {(activeSearch || filters.topic || filters.type) && (
+    <div className="mt-5 flex flex-wrap items-center gap-3">
+
+      {activeSearch && (
+        <span className="rounded-full bg-white/10 border border-white/20 px-4 py-2 text-sm text-white">
+          🔍 {activeSearch}
+        </span>
+      )}
+
+      {filters.type && (
+        <span className="rounded-full bg-[#A61E22] px-4 py-2 text-sm text-white">
+          {filters.type}
+        </span>
+      )}
+
+      {filters.topic && (
+        <span className="rounded-full bg-[#A61E22] px-4 py-2 text-sm text-white">
+          {filters.topic}
+        </span>
+      )}
+
+    </div>
+  )}
+
 </div>
 
     </div>
-
     <SideModal />
 
     {filterOpen && (
-      <FilterResource close={() => setFilterOpen(false)} />
+      <FilterResource
+        close={() => setFilterOpen(false)}
+        onSave={(newFilters) => {
+          handleFilters(newFilters);
+          setFilterOpen(false);
+        }}
+      />
     )}
 
   </section>
 );
-}
+};
 
-export default FirstPageResource
+export default FirstPageResource;
