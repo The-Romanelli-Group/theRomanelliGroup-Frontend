@@ -258,12 +258,13 @@ return (
 
     {filterOpen && (
       <FilterResource
-        close={() => setFilterOpen(false)}
-        onSave={(newFilters) => {
-          handleFilters(newFilters);
-          setFilterOpen(false);
-        }}
-      />
+  close={() => setFilterOpen(false)}
+  initialFilters={filters}
+  onSave={(newFilters) => {
+    handleFilters(newFilters);
+    setFilterOpen(false);
+  }}
+/>
     )}
 
   </section>

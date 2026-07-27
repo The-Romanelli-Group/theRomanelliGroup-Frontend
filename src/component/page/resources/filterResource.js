@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   propertyType1,
   propertyType2,
   propertyType3,
 } from "../../../assets/allImg";
-import React, { useState, useEffect } from "react";
 
-const FilterResource = ({ close, onSave }) => {
-  const [selectedTopic, setSelectedTopic] = useState(null);
-  const [selectedSort, setSelectedSort] = useState(null);
-  const [selectedType, setSelectedType] = useState(null);
+const FilterResource = ({ close, onSave, initialFilters }) => {
+  const [selectedTopic, setSelectedTopic] = useState(
+    initialFilters?.topic ?? null
+  );
+
+  const [selectedSort, setSelectedSort] = useState(
+    initialFilters?.sort ?? "Latest First"
+  );
+
+  const [selectedType, setSelectedType] = useState(
+    initialFilters?.type ?? null
+  );
 
   const topics = [
     "Home Buying Tips",
@@ -44,21 +51,27 @@ const FilterResource = ({ close, onSave }) => {
     },
   ];
 
+  useEffect(() => {
+    if (!initialFilters) return;
+
+    setSelectedTopic(initialFilters.topic ?? null);
+    setSelectedSort(initialFilters.sort ?? "Latest First");
+    setSelectedType(initialFilters.type ?? null);
+  }, [initialFilters]);
+
   const resetFilters = () => {
     setSelectedTopic(null);
-    setSelectedSort(null);
+    setSelectedSort("Latest First");
     setSelectedType(null);
 
     if (onSave) {
       onSave({
         topic: null,
-        sort: null,
+        sort: "Latest First",
         type: null,
       });
     }
-  }; 
-  
-  
+  };
 
   const saveSearch = () => {
     const filters = {
