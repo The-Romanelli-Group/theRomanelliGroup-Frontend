@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   propertyType1,
   propertyType2,
-  propertyType3,
+  
 } from "../../../assets/allImg";
 
 const FilterResource = ({ close, onSave, initialFilters }) => {
@@ -33,23 +33,19 @@ const FilterResource = ({ close, onSave, initialFilters }) => {
     "Oldest First",
   ];
 
-  const contentTypes = [
-    {
-      type: "All",
-    },
-    {
-      type: "Blog Posts",
-      link: propertyType1,
-    },
-    {
-      type: "Instagram Reels",
-      link: propertyType2,
-    },
-    {
-      type: "Case Studies",
-      link: propertyType3,
-    },
-  ];
+ const contentTypes = [
+  {
+    type: "All",
+  },
+  {
+    type: "Blog Posts",
+    link: propertyType1,
+  },
+  {
+    type: "Instagram Reels",
+    link: propertyType2,
+  },
+];
 
   useEffect(() => {
     if (!initialFilters) return;
