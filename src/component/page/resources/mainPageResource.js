@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import Page1 from "../../widgets/page1";
+import Page1 from "../../../widgets/page1";
 import Category from "./category";
 import StayUpdated from "./stayUpdated";
 import Footer from "../Default Pages/footer";
