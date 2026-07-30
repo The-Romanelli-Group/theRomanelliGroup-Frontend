@@ -3,7 +3,7 @@ import FilterResource from "./filterResource";
 import SideModal from "../home/sideModal";
 import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
 
-console.log("FirstPageResource rendered");
+console.log("🚨 UNIQUE TEST 12345");
 
 const FirstPageResource = () => {
   const [filterOpen, setFilterOpen] = useState(false);

@@ -1,21 +1,29 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { time, trend} from '../../../assets/allImg';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { time, trend } from "../../../assets/allImg";
 
 
-const Category = () => {
+const Category = ({ search = "", filters = {} }) => {
+  const navigate = useNavigate();
+
+  // ===========================
+  // State
+  // ===========================
+
   const [selectedArea, setSelectedArea] = useState("all");
-  const [showData, setShowData] = useState([]);
-  const [selectBlog, setSelectBlog] = useState([]);
-  const [selectinstagram, setSelectInstragram] = useState([]);
+
+  const [blogs, setBlogs] = useState([]);
+  const [instagram, setInstagram] = useState([]);
+
   const [visibleItems, setVisibleItems] = useState(6);
 
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   // ===========================
   // Fetch Blogs
   // ===========================
+
   const fetchBlog = async () => {
     try {
       const response = await axios.get(
@@ -23,36 +31,53 @@ const Category = () => {
       );
 
       const mappedBlogs = response.data.data.map((item) => ({
-        id: item.id,
-        media: "blog",
-        type: "image",
-        src:
-          item.Image?.formats?.medium?.url ||
-          item.Image?.url ||
-          "",
-        title: "Blog Post",
-        timing: `${item.Read_Timing} min read`,
-        description: item.Title,
-        longDescription:
-          item.Description
-            ?.replace(/<[^>]+>/g, "")
-            ?.slice(0, 100) || "",
-        button: "Read Now",
-      }));
+  id: item.id,
 
-      setSelectBlog(mappedBlogs);
-    } catch (error) {
-      console.error("Error fetching blogs:", error);
+  media: "blog",
+
+  type: "image",
+
+  src:
+    item.image?.formats?.medium?.url ||
+    item.image?.formats?.large?.url ||
+    item.image?.url ||
+    "",
+
+  title: item.title,
+
+  timing: `${item.readTime} min read`,
+
+  description: item.title,
+
+  longDescription:
+    item.excerpt ||
+    item.content?.replace(/<[^>]+>/g, "").slice(0, 150) ||
+    "",
+
+  category: item.category,
+
+  tags: item.tags,
+
+  featured: item.featured,
+
+  slug: item.slug,
+
+  button: "Read Now",
+
+  createdAt:
+    item.publishedDate || item.createdAt,
+}));
+
+      setBlogs(mappedBlogs);
+    } catch (err) {
+      console.error(err);
     }
   };
 
-  useEffect(() => {
-    fetchBlog();
-  }, []);
+  // ===========================
+  // Fetch Instagram
+  // ===========================
 
-  // ===========================
-  // Fetch Instagram Reels
-  // ===========================
   const fetchInstagramVideos = async () => {
     try {
       const response = await axios.get(
@@ -61,293 +86,331 @@ const Category = () => {
 
       const mappedInstagram = response.data.data.map((item) => ({
         id: item.id,
+
         media: "instagram",
+
         type: "image",
+
         title: "Instagram Reel",
+
         description: item.description,
+
         timing: item.views,
+
         src:
           item.thumbnail?.formats?.medium?.url ||
           item.thumbnail?.url ||
           "",
+
         url: item.reel_link,
+
         button: "Watch on Instagram",
+
+        createdAt: item.createdAt,
       }));
 
-      setSelectInstragram(mappedInstagram);
-    } catch (error) {
-      console.error("Error fetching Instagram reels:", error);
+      setInstagram(mappedInstagram);
+    } catch (err) {
+      console.error(err);
     }
   };
 
+  // ===========================
+  // Initial Load
+  // ===========================
+
   useEffect(() => {
-    fetchInstagramVideos();
+    const load = async () => {
+      setLoading(true);
+
+      await Promise.all([
+        fetchBlog(),
+        fetchInstagramVideos(),
+      ]);
+
+      setLoading(false);
+    };
+
+    load();
   }, []);
 
   // ===========================
-  // Update Resources
+  // Combined Resources
   // ===========================
-  useEffect(() => {
-    if (selectedArea === "instagram") {
-      setShowData(selectinstagram);
-    } else if (selectedArea === "blog") {
-      setShowData(selectBlog);
-    } else {
-      setShowData([...selectBlog, ...selectinstagram]);
-    }
-  }, [selectedArea, selectBlog, selectinstagram]);
 
-  // Reset pagination when changing tabs
+  const allResources = useMemo(() => {
+    return [...blogs, ...instagram];
+  }, [blogs, instagram]);
+
+  // ===========================
+  // Apply Quick Tabs
+  // ===========================
+
+  const tabFilteredResources = useMemo(() => {
+    switch (selectedArea) {
+      case "blog":
+        return blogs;
+
+      case "instagram":
+        return instagram;
+
+      default:
+        return allResources;
+    }
+  }, [
+    selectedArea,
+    blogs,
+    instagram,
+    allResources,
+  ]);
+
+  // ===========================
+  // Apply Hero Search
+  // ===========================
+
+  const filteredResources = useMemo(() => {
+    let data = [...tabFilteredResources];
+
+    // Keyword search
+
+    if (search.trim()) {
+      const keyword = search.toLowerCase();
+
+      data = data.filter((item) => {
+        return (
+          item.description?.toLowerCase().includes(keyword) ||
+          item.longDescription?.toLowerCase().includes(keyword)
+        );
+      });
+    }
+
+    // Content Type
+
+    if (filters.type && filters.type !== "All") {
+      if (filters.type === "Blog Posts") {
+        data = data.filter((x) => x.media === "blog");
+      }
+
+      if (filters.type === "Instagram Reels") {
+        data = data.filter(
+          (x) => x.media === "instagram"
+        );
+      }
+    }
+
+    // Sort
+
+    if (filters.sort === "Latest First") {
+      data.sort(
+        (a, b) =>
+          new Date(b.createdAt) -
+          new Date(a.createdAt)
+      );
+    }
+
+    if (filters.sort === "Oldest First") {
+      data.sort(
+        (a, b) =>
+          new Date(a.createdAt) -
+          new Date(b.createdAt)
+      );
+    }
+
+    return data;
+  }, [tabFilteredResources, search, filters]);
+
+  // ===========================
+  // Reset Pagination
+  // ===========================
+
   useEffect(() => {
     setVisibleItems(6);
-  }, [selectedArea]);
+  }, [filteredResources]);
 
   // ===========================
   // Load More
   // ===========================
+
   const loadMore = () => {
     setVisibleItems((prev) => prev + 6);
   };
 
  return (
-  <div className="bg-backgroundColor py-8 md:py-12">
+  <div className="bg-backgroundColor py-10 md:py-14">
     <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
-      {/* Top Bar */}
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      {/* Header */}
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
 
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
             Browse Resources
           </h2>
 
-          <p className="mt-2 text-[15px] md:text-base text-gray-400">
-            {showData.length} resources available
+          <p className="mt-3 text-gray-400">
+            {filteredResources.length} resources available
           </p>
         </div>
 
         <div className="inline-flex w-fit rounded-full border border-white/10 bg-white/5 backdrop-blur-xl p-1">
-          {["all", "instagram", "blog"].map((tab) => {
-            const label =
-              tab === "all"
-                ? "All"
-                : tab === "instagram"
-                ? "Instagram Reels"
-                : "Articles";
 
-            return (
-              <button
-                key={tab}
-                onClick={() => setSelectedArea(tab)}
-                className={`
-                  rounded-full
-                  px-5
-                  md:px-6
-                  py-2.5
-                  text-sm
-                  md:text-base
-                  font-medium
-                  transition-all
-                  duration-300
-                  ${
-                    selectedArea === tab
-                      ? "bg-[#A61E22] text-white shadow-lg"
-                      : "text-gray-300 hover:text-white"
-                  }
-                `}
-              >
-                {label}
-              </button>
-            );
-          })}
+          {[
+            { value: "all", label: "All" },
+            { value: "instagram", label: "Instagram Reels" },
+            { value: "blog", label: "Articles" },
+          ].map((tab) => (
+
+            <button
+              key={tab.value}
+              onClick={() => setSelectedArea(tab.value)}
+              className={`rounded-full px-6 py-3 text-sm md:text-base font-medium transition-all duration-300
+              ${
+                selectedArea === tab.value
+                  ? "bg-[#A61E22] text-white shadow-lg"
+                  : "text-gray-300 hover:text-white"
+              }`}
+            >
+              {tab.label}
+            </button>
+
+          ))}
+
         </div>
+
       </div>
 
       {/* Grid */}
-      <div className="mt-8 md:mt-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
-          {showData?.slice(0, visibleItems).map((item, idx) => (
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+        {filteredResources
+          .slice(0, visibleItems)
+          .map((item, idx) => (
+
             <div
               key={idx}
-              className="
-                group
-                flex
-                flex-col
-                overflow-hidden
-                rounded-[28px]
-                border
-                border-white/10
-                bg-[#221818]
-                shadow-xl
-                transition-all
-                duration-300
-                hover:-translate-y-2
-                hover:shadow-2xl
-              "
+              className="group overflow-hidden rounded-[30px] border border-white/10 bg-[#221818] transition-all duration-500 hover:-translate-y-2 hover:border-[#A61E22]/30"
             >
-              {/* Media */}
-              <div className="relative h-64 overflow-hidden">
 
-                {item.type === "image" ? (
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    className="
-                      h-full
-                      w-full
-                      object-cover
-                      transition-transform
-                      duration-500
-                      group-hover:scale-105
-                    "
-                  />
-                ) : (
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    className="
-                      h-full
-                      w-full
-                      object-cover
-                      transition-transform
-                      duration-500
-                      group-hover:scale-105
-                    "
-                  >
-                    <source src={item.src} type="video/mp4" />
-                  </video>
-                )}
+              {/* IMAGE */}
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="relative overflow-hidden aspect-[16/10] bg-[#161111]">
+
+                <img
+                  src={item.src}
+                  alt={item.description}
+                  className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-[#221818] via-transparent to-transparent" />
 
                 {/* Type */}
-                <div className="absolute top-5 left-5">
-                  <span className="rounded-full bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white">
-                    {item.media === "blog" ? "Article" : "Reel"}
+
+                <div className="absolute left-5 top-5">
+
+                  <span className="rounded-full bg-black/60 backdrop-blur-md px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white">
+
+                    {item.media === "blog"
+                      ? "Article"
+                      : "Reel"}
+
                   </span>
+
                 </div>
 
                 {/* Timing */}
-                <div className="absolute top-5 right-5">
-                  <span className="flex items-center gap-1.5 rounded-full bg-black/50 backdrop-blur-md px-3 py-1 text-xs text-white">
+
+                <div className="absolute right-5 top-5">
+
+                  <span className="flex items-center gap-2 rounded-full bg-black/60 backdrop-blur-md px-4 py-2 text-xs text-white">
+
                     <img
                       src={item.media === "blog" ? time : trend}
                       alt=""
                       className="w-4 h-4"
                     />
+
                     {item.timing}
+
                   </span>
+
                 </div>
+
               </div>
 
-              {/* Content */}
-              <div className="flex flex-col flex-1 p-7">
+              {/* CONTENT */}
 
-                <h3 className="line-clamp-2 text-xl md:text-2xl font-bold leading-snug text-white transition-colors duration-300 group-hover:text-[#D64B4F]">
+              <div className="p-7 flex flex-col h-full">
+
+                <h3 className="text-2xl font-bold leading-tight text-white transition duration-300 group-hover:text-[#D64B4F] line-clamp-2">
+
                   {item.description}
+
                 </h3>
 
-                <p className="mt-4 flex-1 text-[15px] leading-7 text-gray-300 line-clamp-3">
-                  {item.longDescription
-                    ? item.longDescription
-                    : item.media === "blog"
-                    ? "Discover practical insights, expert advice, and actionable strategies to help you confidently navigate today's real estate journey."
-                    : "Watch quick market updates, expert tips, and behind-the-scenes content from our real estate team."}
+                <p className="mt-4 text-gray-300 leading-8 line-clamp-3">
+
+                  {item.longDescription ||
+                    (item.media === "blog"
+                      ? "Discover practical insights, expert advice and actionable strategies to help you confidently navigate today's real estate market."
+                      : "Watch quick market updates, expert advice and behind-the-scenes moments from our real estate experts.")}
+
                 </p>
 
-                <div className="mt-6">
-                  {item.button === "Read Now" ? (
+                <div className="mt-8">
+
+                  {item.media === "blog" ? (
+
                     <button
                       onClick={() =>
                         navigate(`/resources/blogs/${item.id}`, {
-                          state: { showData },
+                          state: {
+                            showData: filteredResources,
+                          },
                         })
                       }
-                      className="
-                        inline-flex
-                        items-center
-                        gap-2
-                        rounded-full
-                        bg-[#A61E22]
-                        px-6
-                        py-3
-                        text-sm
-                        font-semibold
-                        text-white
-                        shadow-lg
-                        transition-all
-                        duration-300
-                        hover:bg-[#8E1A1D]
-                        hover:shadow-xl
-                      "
+                      className="inline-flex items-center gap-2 rounded-full bg-[#A61E22] px-7 py-3.5 text-white font-semibold transition duration-300 hover:bg-[#8E1A1D]"
                     >
-                      Read Article
-                      <span>→</span>
+                      Read Article →
                     </button>
+
                   ) : (
+
                     <button
-                      onClick={() => window.open(item.url, "_blank")}
-                      className="
-                        inline-flex
-                        items-center
-                        gap-2
-                        rounded-full
-                        bg-[#A61E22]
-                        px-6
-                        py-3
-                        text-sm
-                        font-semibold
-                        text-white
-                        shadow-lg
-                        transition-all
-                        duration-300
-                        hover:bg-[#8E1A1D]
-                        hover:shadow-xl
-                      "
+                      onClick={() =>
+                        window.open(item.url, "_blank")
+                      }
+                      className="inline-flex items-center gap-2 rounded-full bg-[#A61E22] px-7 py-3.5 text-white font-semibold transition duration-300 hover:bg-[#8E1A1D]"
                     >
-                      Watch Reel
-                      <span>→</span>
+                      Watch Reel →
                     </button>
+
                   )}
+
                 </div>
 
               </div>
+
             </div>
+
           ))}
+
+      </div>
+
+      {filteredResources.length > visibleItems && (
+
+        <div className="mt-12 flex justify-center">
+
+          <button
+            onClick={loadMore}
+            className="rounded-full border border-white/20 bg-white/5 px-8 py-3 text-white font-semibold transition hover:bg-[#A61E22] hover:border-[#A61E22]"
+          >
+            Load More
+          </button>
 
         </div>
 
-        {/* Load More */}
-        {showData.length > visibleItems && (
-          <div className="flex justify-center mt-10">
-            <button
-              onClick={loadMore}
-              className="
-                rounded-full
-                border
-                border-white/20
-                bg-white/10
-                backdrop-blur-md
-                px-8
-                py-3
-                text-white
-                font-semibold
-                transition-all
-                duration-300
-                hover:bg-[#A61E22]
-                hover:border-[#A61E22]
-              "
-            >
-              Load More
-            </button>
-          </div>
-        )}
-
-      </div>
+      )}
 
     </div>
   </div>
