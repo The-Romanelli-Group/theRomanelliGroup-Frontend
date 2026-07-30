@@ -77,6 +77,8 @@ const FirstPageResource = () => {
       handleSearch();
     }, 0);
   };
+console.trace("FirstPageResource trace");
+
 return (
   <section className="py-8 md:py-12 overflow-hidden">
     <div className="max-w-7xl mx-auto px-5 lg:px-8">
