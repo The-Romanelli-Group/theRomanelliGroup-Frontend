@@ -41,7 +41,7 @@ export const ResourcesProvider = ({ children }) => {
 
     clearAll,
   };
-
+console.log("ResourcesProvider mounted");
   return (
     <ResourcesContext.Provider value={value}>
       {children}
