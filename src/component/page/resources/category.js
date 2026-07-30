@@ -117,6 +117,132 @@ const Category = ({ resourceState }) => {
       console.error(err);
     }
   };
+  // ===========================
+  // Initial Load
+  // ===========================
+
+  useEffect(() => {
+    const load = async () => {
+      setLoading(true);
+
+      await Promise.all([
+        fetchBlog(),
+        fetchInstagramVideos(),
+      ]);
+
+      setLoading(false);
+    };
+
+    load();
+  }, []);
+
+  // ===========================
+  // Combined Resources
+  // ===========================
+
+  const allResources = useMemo(() => {
+    return [...blogs, ...instagram];
+  }, [blogs, instagram]);
+
+  // ===========================
+  // Apply Quick Tabs
+  // ===========================
+
+  const tabFilteredResources = useMemo(() => {
+    switch (contentType) {
+      case "blog":
+        return blogs;
+
+      case "instagram":
+        return instagram;
+
+      default:
+        return allResources;
+    }
+  }, [
+    contentType,
+    blogs,
+    instagram,
+    allResources,
+  ]);
+
+  // ===========================
+  // Apply Hero Search & Filters
+  // ===========================
+
+  const filteredResources = useMemo(() => {
+    let data = [...tabFilteredResources];
+
+    // Keyword Search
+    if (search.trim()) {
+      const keyword = search.toLowerCase();
+
+      data = data.filter((item) => {
+        return (
+          item.title?.toLowerCase().includes(keyword) ||
+          item.description?.toLowerCase().includes(keyword) ||
+          item.longDescription?.toLowerCase().includes(keyword) ||
+          item.category?.toLowerCase().includes(keyword) ||
+          item.tags?.some((tag) =>
+            tag.toLowerCase().includes(keyword)
+          )
+        );
+      });
+    }
+
+    // Content Type Filter
+    if (filters.type && filters.type !== "All") {
+      if (filters.type === "Blog Posts") {
+        data = data.filter((x) => x.media === "blog");
+      }
+
+      if (filters.type === "Instagram Reels") {
+        data = data.filter((x) => x.media === "instagram");
+      }
+    }
+
+    // Topic Filter
+    if (filters.topic) {
+      data = data.filter(
+        (item) =>
+          item.category === filters.topic ||
+          item.tags?.includes(filters.topic)
+      );
+    }
+
+    // Sorting
+    if (filters.sort === "Latest First") {
+      data.sort(
+        (a, b) =>
+          new Date(b.createdAt) - new Date(a.createdAt)
+      );
+    }
+
+    if (filters.sort === "Oldest First") {
+      data.sort(
+        (a, b) =>
+          new Date(a.createdAt) - new Date(b.createdAt)
+      );
+    }
+
+    return data;
+  }, [tabFilteredResources, search, filters]);
+
+  // ===========================
+  // Reset Pagination
+  // ===========================
+
+  useEffect(() => {
+    setVisibleItems(6);
+  }, [filteredResources]);
+
+  // ===========================
+  // Load More
+  // ===========================
+
+  const loadMore = () => {
+    setVisibleItems((prev) => prev + 6);
+  };
 
 
  return (
