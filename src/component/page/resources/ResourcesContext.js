@@ -1,10 +1,9 @@
 import { createContext, useContext, useState } from "react";
 
-const ResourcesContext = createContext();
+const ResourcesContext = createContext(null);
 
 export const ResourcesProvider = ({ children }) => {
   const [search, setSearch] = useState("");
-
   const [activeSearch, setActiveSearch] = useState("");
 
   const [filters, setFilters] = useState({
@@ -27,27 +26,37 @@ export const ResourcesProvider = ({ children }) => {
     });
   };
 
+  const value = {
+    search,
+    setSearch,
+
+    activeSearch,
+    setActiveSearch,
+
+    filters,
+    setFilters,
+
+    contentType,
+    setContentType,
+
+    clearAll,
+  };
+
   return (
-    <ResourcesContext.Provider
-      value={{
-        search,
-        setSearch,
-
-        activeSearch,
-        setActiveSearch,
-
-        filters,
-        setFilters,
-
-        contentType,
-        setContentType,
-
-        clearAll,
-      }}
-    >
+    <ResourcesContext.Provider value={value}>
       {children}
     </ResourcesContext.Provider>
   );
 };
 
-export const useResources = () => useContext(ResourcesContext);
+export const useResources = () => {
+  const context = useContext(ResourcesContext);
+
+  if (!context) {
+    throw new Error(
+      "useResources must be used inside <ResourcesProvider>."
+    );
+  }
+
+  return context;
+};
