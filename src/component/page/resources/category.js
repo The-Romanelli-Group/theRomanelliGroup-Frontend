@@ -272,7 +272,7 @@ const tabFilteredResources = useMemo(() => {
 
             <button
               key={tab.value}
-              onClick={() => setcontentType(tab.value)}
+              onClick={() => setContentType(tab.value)}
               className={`rounded-full px-6 py-3 text-sm md:text-base font-medium transition-all duration-300
               ${
                contentType === tab.value
