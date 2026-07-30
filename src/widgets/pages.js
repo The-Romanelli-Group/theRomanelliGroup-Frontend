@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Pag2 from "../component/page/home/pag2";
 import FirstPageBuy from "../component/page/buy/firstPageBuy";
 import FirstPageSell from "../component/page/sell/firstPageSell";
@@ -6,35 +6,37 @@ import FirstPageContact from "../component/page/contactUs/firstPageContact";
 import FirstPageProperties from "../component/page/properties/firstPageProperties";
 import FirstPageResource from "../component/page/resources/firstPageResource";
 
-const Pages = ({page}) => {
+const Pages = ({ page, resourceState }) => {
   const renderPage = () => {
-    switch(page) {
+    switch (page) {
       case "Home":
         return <Pag2 />;
+
       case "Buy":
-        return <FirstPageBuy/>;
+        return <FirstPageBuy />;
+
       case "Sell":
-        return <FirstPageSell/>;
+        return <FirstPageSell />;
+
       case "Contact Us":
-        return <FirstPageContact/>;
+        return <FirstPageContact />;
+
       case "Properties":
-        return <FirstPageProperties/>;
+        return <FirstPageProperties />;
+
       case "Resources":
-        return <FirstPageResource/>;
+        return <FirstPageResource resourceState={resourceState} />;
+
       default:
         return <Pag2 />;
     }
   };
 
-  return (
-    <div>
-      {renderPage()}
-    </div>
-  )
+  return <div>{renderPage()}</div>;
 };
 
 export const getVideoUrl = (page) => {
-  switch(page) {
+  switch (page) {
     case "Home":
       return "url1"; // Replace with actual Home video URL
     case "Buy":
@@ -42,6 +44,6 @@ export const getVideoUrl = (page) => {
     default:
       return "url1"; // Default to Home video URL
   }
-}
+};
 
-export default Pages
+export default Pages;

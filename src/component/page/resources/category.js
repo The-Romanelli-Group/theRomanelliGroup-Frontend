@@ -2,24 +2,20 @@ import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { time, trend } from "../../../assets/allImg";
-import { useResources } from "./ResourcesContext";
 
-
-const Category = () => {
+const Category = ({ resourceState }) => {
   const navigate = useNavigate();
-  const {
-  search,
-  filters,
 
-  contentType,
-  setContentType,
-} = useResources();
+  const {
+    search,
+    filters,
+    contentType,
+    setContentType,
+  } = resourceState;
 
   // ===========================
   // State
   // ===========================
-
-
 
   const [blogs, setBlogs] = useState([]);
   const [instagram, setInstagram] = useState([]);
@@ -39,42 +35,41 @@ const Category = () => {
       );
 
       const mappedBlogs = response.data.data.map((item) => ({
-  id: item.id,
+        id: item.id,
 
-  media: "blog",
+        media: "blog",
 
-  type: "image",
+        type: "image",
 
-  src:
-    item.image?.formats?.medium?.url ||
-    item.image?.formats?.large?.url ||
-    item.image?.url ||
-    "",
+        src:
+          item.image?.formats?.medium?.url ||
+          item.image?.formats?.large?.url ||
+          item.image?.url ||
+          "",
 
-  title: item.title,
+        title: item.title,
 
-  timing: `${item.readTime} min read`,
+        timing: `${item.readTime} min read`,
 
-  description: item.title,
+        description: item.title,
 
-  longDescription:
-    item.excerpt ||
-    item.content?.replace(/<[^>]+>/g, "").slice(0, 150) ||
-    "",
+        longDescription:
+          item.excerpt ||
+          item.content?.replace(/<[^>]+>/g, "").slice(0, 150) ||
+          "",
 
-  category: item.category,
+        category: item.category,
 
-  tags: item.tags,
+        tags: item.tags,
 
-  featured: item.featured,
+        featured: item.featured,
 
-  slug: item.slug,
+        slug: item.slug,
 
-  button: "Read Now",
+        button: "Read Now",
 
-  createdAt:
-    item.publishedDate || item.createdAt,
-}));
+        createdAt: item.publishedDate || item.createdAt,
+      }));
 
       setBlogs(mappedBlogs);
     } catch (err) {
@@ -123,127 +118,6 @@ const Category = () => {
     }
   };
 
-  // ===========================
-  // Initial Load
-  // ===========================
-
-  useEffect(() => {
-    const load = async () => {
-      setLoading(true);
-
-      await Promise.all([
-        fetchBlog(),
-        fetchInstagramVideos(),
-      ]);
-
-      setLoading(false);
-    };
-
-    load();
-  }, []);
-
-  // ===========================
-  // Combined Resources
-  // ===========================
-
-  const allResources = useMemo(() => {
-    return [...blogs, ...instagram];
-  }, [blogs, instagram]);
-
-  // ===========================
-  // Apply Quick Tabs
-  // ===========================
-
- 
-
-const tabFilteredResources = useMemo(() => {
-  switch (contentType) {
-    case "blog":
-      return blogs;
-
-    case "instagram":
-      return instagram;
-
-    default:
-      return allResources;
-  }
-}, [
-  contentType,
-  blogs,
-  instagram,
-  allResources,
-]);
-
-  // ===========================
-  // Apply Hero Search
-  // ===========================
-
-  const filteredResources = useMemo(() => {
-    let data = [...tabFilteredResources];
-
-    // Keyword search
-
-    if (search.trim()) {
-      const keyword = search.toLowerCase();
-
-      data = data.filter((item) => {
-        return (
-          item.description?.toLowerCase().includes(keyword) ||
-          item.longDescription?.toLowerCase().includes(keyword)
-        );
-      });
-    }
-
-    // Content Type
-
-    if (filters.type && filters.type !== "All") {
-      if (filters.type === "Blog Posts") {
-        data = data.filter((x) => x.media === "blog");
-      }
-
-      if (filters.type === "Instagram Reels") {
-        data = data.filter(
-          (x) => x.media === "instagram"
-        );
-      }
-    }
-
-    // Sort
-
-    if (filters.sort === "Latest First") {
-      data.sort(
-        (a, b) =>
-          new Date(b.createdAt) -
-          new Date(a.createdAt)
-      );
-    }
-
-    if (filters.sort === "Oldest First") {
-      data.sort(
-        (a, b) =>
-          new Date(a.createdAt) -
-          new Date(b.createdAt)
-      );
-    }
-
-    return data;
-  }, [tabFilteredResources, search, filters]);
-
-  // ===========================
-  // Reset Pagination
-  // ===========================
-
-  useEffect(() => {
-    setVisibleItems(6);
-  }, [filteredResources]);
-
-  // ===========================
-  // Load More
-  // ===========================
-
-  const loadMore = () => {
-    setVisibleItems((prev) => prev + 6);
-  };
 
  return (
   <div className="bg-backgroundColor py-10 md:py-14">

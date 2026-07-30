@@ -1,102 +1,94 @@
 import React, { useEffect, useRef } from "react";
 import {
-    video_url1,
-    video_url2,
-    video_url3,
-    video_url4,
-    video_url5,
+  video_url1,
+  video_url2,
+  video_url3,
+  video_url4,
+  video_url5,
 } from "../assets/allImg";
 import Pages from "./pages";
 
-const Page1 = ({ page }) => {
+const Page1 = ({ page, resourceState }) => {
+  const videoRef = useRef(null);
 
-    const videoRef = useRef(null);
+  let video_url;
 
-    let video_url;
-
-    switch (page) {
-        case "Home":
-            video_url = video_url1;
-            break;
-        case "Buy":
-            video_url = video_url2;
-            break;
-        case "Sell":
-            video_url = video_url3;
-            break;
-        case "Contact Us":
-            video_url = video_url4;
-            break;
-        case "Properties":
-            video_url = video_url5;
-            break;
-        case "Resources":
-            video_url = video_url1;
-            break;
-        default:
-            video_url = video_url1;
-    }
-
-   useEffect(() => {
-  const video = videoRef.current;
-
-  if (!video) return;
-
-  video.muted = true;
-  video.playsInline = true;
-
-  if (!video.currentSrc.includes(video_url.split("/").pop())) {
-    video.src = video_url;
-    video.load();
+  switch (page) {
+    case "Home":
+      video_url = video_url1;
+      break;
+    case "Buy":
+      video_url = video_url2;
+      break;
+    case "Sell":
+      video_url = video_url3;
+      break;
+    case "Contact Us":
+      video_url = video_url4;
+      break;
+    case "Properties":
+      video_url = video_url5;
+      break;
+    case "Resources":
+      video_url = video_url1;
+      break;
+    default:
+      video_url = video_url1;
   }
 
-  const playVideo = () => {
-    video.play().catch(() => {});
-  };
+  useEffect(() => {
+    const video = videoRef.current;
 
-  playVideo();
+    if (!video) return;
 
-  document.addEventListener("visibilitychange", playVideo);
-  window.addEventListener("focus", playVideo);
+    video.muted = true;
+    video.playsInline = true;
 
-  return () => {
-    document.removeEventListener("visibilitychange", playVideo);
-    window.removeEventListener("focus", playVideo);
-  };
-}, [video_url]);
+    if (!video.currentSrc.includes(video_url.split("/").pop())) {
+      video.src = video_url;
+      video.load();
+    }
 
-    return (
+    const playVideo = () => {
+      video.play().catch(() => {});
+    };
 
-        <div className="mainVideo transition-opacity duration-500">
+    playVideo();
 
-           <section className="relative w-full min-h-[78vh] md:min-h-screen flex items-center justify-center text-white body-font">
+    document.addEventListener("visibilitychange", playVideo);
+    window.addEventListener("focus", playVideo);
 
-                <div className="absolute inset-0 w-full h-full">
+    return () => {
+      document.removeEventListener("visibilitychange", playVideo);
+      window.removeEventListener("focus", playVideo);
+    };
+  }, [video_url]);
 
-                    <video
-                        ref={videoRef}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="auto"
-                        disablePictureInPicture
-                        className="w-full h-full object-cover"
-                        />
-                  
+  return (
+    <div className="mainVideo transition-opacity duration-500">
+      <section className="relative w-full min-h-[78vh] md:min-h-screen flex items-center justify-center text-white body-font">
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            disablePictureInPicture
+            className="w-full h-full object-cover"
+          />
 
-                    <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-
-                </div>
-
-                <Pages page={page} />
-
-            </section>
-
+          <div className="absolute inset-0 bg-black bg-opacity-60"></div>
         </div>
 
-    );
-
+        <Pages
+          page={page}
+          resourceState={resourceState}
+        />
+      </section>
+    </div>
+  );
 };
 
 export default Page1;

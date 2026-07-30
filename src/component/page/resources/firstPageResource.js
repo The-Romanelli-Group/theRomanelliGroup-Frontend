@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import FilterResource from "./filterResource";
 import SideModal from "../home/sideModal";
 import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
-import { useResources } from "./ResourcesContext";
 
-const FirstPageResource = () => {
+const FirstPageResource = ({ resourceState }) => {
   const [filterOpen, setFilterOpen] = useState(false);
 
   // Hero-only state
   const [placeholder, setPlaceholder] = useState("Search by keyword");
   const [isSearching, setIsSearching] = useState(false);
 
-  // Shared Resources Context
+  // Shared state from MainPageResource
   const {
     search,
     setSearch,
@@ -24,9 +23,20 @@ const FirstPageResource = () => {
 
     contentType,
     setContentType,
+  } = resourceState;
 
-    clearAll,
-  } = useResources();
+  // Clear all
+  const clearAll = () => {
+    setSearch("");
+    setActiveSearch("");
+    setContentType("all");
+
+    setFilters({
+      topic: null,
+      sort: "Latest First",
+      type: null,
+    });
+  };
 
   // Responsive placeholder
   useEffect(() => {
