@@ -2,16 +2,24 @@ import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { time, trend } from "../../../assets/allImg";
+import { useResources } from "./ResourcesContext";
 
 
-const Category = ({ search = "", filters = {} }) => {
+const Category = () => {
   const navigate = useNavigate();
+  const {
+  search,
+  filters,
+
+  contentType,
+  setContentType,
+} = useResources();
 
   // ===========================
   // State
   // ===========================
 
-  const [selectedArea, setSelectedArea] = useState("all");
+
 
   const [blogs, setBlogs] = useState([]);
   const [instagram, setInstagram] = useState([]);
@@ -146,23 +154,25 @@ const Category = ({ search = "", filters = {} }) => {
   // Apply Quick Tabs
   // ===========================
 
-  const tabFilteredResources = useMemo(() => {
-    switch (selectedArea) {
-      case "blog":
-        return blogs;
+ 
 
-      case "instagram":
-        return instagram;
+const tabFilteredResources = useMemo(() => {
+  switch (contentType) {
+    case "blog":
+      return blogs;
 
-      default:
-        return allResources;
-    }
-  }, [
-    selectedArea,
-    blogs,
-    instagram,
-    allResources,
-  ]);
+    case "instagram":
+      return instagram;
+
+    default:
+      return allResources;
+  }
+}, [
+  contentType,
+  blogs,
+  instagram,
+  allResources,
+]);
 
   // ===========================
   // Apply Hero Search
@@ -262,10 +272,10 @@ const Category = ({ search = "", filters = {} }) => {
 
             <button
               key={tab.value}
-              onClick={() => setSelectedArea(tab.value)}
+              onClick={() => setcontentType(tab.value)}
               className={`rounded-full px-6 py-3 text-sm md:text-base font-medium transition-all duration-300
               ${
-                selectedArea === tab.value
+               contentType === tab.value
                   ? "bg-[#A61E22] text-white shadow-lg"
                   : "text-gray-300 hover:text-white"
               }`}

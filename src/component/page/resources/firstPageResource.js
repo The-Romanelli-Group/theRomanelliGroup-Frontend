@@ -2,31 +2,33 @@ import React, { useEffect, useState } from "react";
 import FilterResource from "./filterResource";
 import SideModal from "../home/sideModal";
 import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
-
-console.log("🚨 UNIQUE TEST 12345");
+import { useResources } from "./ResourcesContext";
 
 const FirstPageResource = () => {
   const [filterOpen, setFilterOpen] = useState(false);
 
-  // Search input
-  const [search, setSearch] = useState("");
-
-  // Last submitted search
-  const [activeSearch, setActiveSearch] = useState("");
-
-  // Search filters
-  const [filters, setFilters] = useState({
-    topic: null,
-    sort: "Latest First",
-    type: null,
-  });
-
-  // Responsive placeholder
+  // Hero-only state
   const [placeholder, setPlaceholder] = useState("Search by keyword");
-
-  // Loading state (useful when we hook up real filtering)
   const [isSearching, setIsSearching] = useState(false);
 
+  // Shared Resources Context
+  const {
+    search,
+    setSearch,
+
+    activeSearch,
+    setActiveSearch,
+
+    filters,
+    setFilters,
+
+    contentType,
+    setContentType,
+
+    clearAll,
+  } = useResources();
+
+  // Responsive placeholder
   useEffect(() => {
     const updatePlaceholder = () => {
       if (window.innerWidth >= 640) {
@@ -49,12 +51,7 @@ const FirstPageResource = () => {
   const handleSearch = () => {
     setIsSearching(true);
 
-    const trimmedSearch = search.trim();
-    setActiveSearch(trimmedSearch);
-
-    // We'll connect this to the resource grid in the next step.
-    console.log("Search:", trimmedSearch);
-    console.log("Filters:", filters);
+    setActiveSearch(search.trim());
 
     setTimeout(() => {
       setIsSearching(false);
@@ -68,16 +65,21 @@ const FirstPageResource = () => {
     }
   };
 
-  // Receive filters from the modal
+  // Receive filters from modal
   const handleFilters = (newFilters) => {
     setFilters(newFilters);
 
-    // Re-run the search whenever filters change
-    setTimeout(() => {
-      handleSearch();
-    }, 0);
+    // Keep quick tabs in sync
+    if (newFilters.type === "Blog Posts") {
+      setContentType("blog");
+    } else if (newFilters.type === "Instagram Reels") {
+      setContentType("instagram");
+    } else {
+      setContentType("all");
+    }
+
+    handleSearch();
   };
-console.trace("FirstPageResource trace");
 
 return (
   <section className="py-8 md:py-12 overflow-hidden">
@@ -229,46 +231,54 @@ return (
 
   </div>
 
-  {/* Active Search & Filters */}
+{/* Active Search & Filters */}
 
-  {(activeSearch || filters.topic || filters.type) && (
-    <div className="mt-5 flex flex-wrap items-center gap-3">
+{(activeSearch || filters.topic || filters.type) && (
+  <div className="mt-5 flex flex-wrap items-center gap-3">
 
-      {activeSearch && (
-        <span className="rounded-full bg-white/10 border border-white/20 px-4 py-2 text-sm text-white">
-          🔍 {activeSearch}
-        </span>
-      )}
+    {activeSearch && (
+      <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white">
+        🔍 {activeSearch}
+      </span>
+    )}
 
-      {filters.type && (
-        <span className="rounded-full bg-[#A61E22] px-4 py-2 text-sm text-white">
-          {filters.type}
-        </span>
-      )}
+    {filters.type && (
+      <span className="rounded-full bg-[#A61E22] px-4 py-2 text-sm font-medium text-white">
+        {filters.type}
+      </span>
+    )}
 
-      {filters.topic && (
-        <span className="rounded-full bg-[#A61E22] px-4 py-2 text-sm text-white">
-          {filters.topic}
-        </span>
-      )}
+    {filters.topic && (
+      <span className="rounded-full bg-[#A61E22] px-4 py-2 text-sm font-medium text-white">
+        {filters.topic}
+      </span>
+    )}
 
-    </div>
-  )}
+    <button
+      onClick={clearAll}
+      className="ml-1 text-sm font-medium text-gray-400 transition-colors duration-300 hover:text-white"
+    >
+      Clear All
+    </button>
+
+  </div>
+)}
 
 </div>
 
     </div>
+
     <SideModal />
 
     {filterOpen && (
       <FilterResource
-  close={() => setFilterOpen(false)}
-  initialFilters={filters}
-  onSave={(newFilters) => {
-    handleFilters(newFilters);
-    setFilterOpen(false);
-  }}
-/>
+        close={() => setFilterOpen(false)}
+        initialFilters={filters}
+        onSave={(newFilters) => {
+          handleFilters(newFilters);
+          setFilterOpen(false);
+        }}
+      />
     )}
 
   </section>

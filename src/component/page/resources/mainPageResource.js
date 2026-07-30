@@ -2,15 +2,20 @@ import React from 'react'
 import Category from './category'
 import StayUpdated from './stayUpdated'
 import Footer from '../Default Pages/footer'
+import { ResourcesProvider } from "./ResourcesContext";
 
 const MainPageResource = () => {
   return (
-    <div>
-        <Category/>
-        <StayUpdated/>
-        <Footer/>
-    </div>
-  )
-}
+    <ResourcesProvider>
+      <FirstPageResource />
 
-export default MainPageResource
+      <Category />
+
+      <StayUpdated />
+
+      <Footer />
+    </ResourcesProvider>
+  );
+};
+
+export default MainPageResource;
