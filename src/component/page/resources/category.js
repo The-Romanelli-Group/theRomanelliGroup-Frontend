@@ -294,7 +294,7 @@ const Category = ({ search = "", filters = {} }) => {
 
               {/* IMAGE */}
 
-              <div className="relative overflow-hidden aspect-[16/10] bg-[#161111]">
+          <div className="relative overflow-hidden aspect-[16/10] bg-[#161111] isolate">
 
                 <img
                   src={item.src}
