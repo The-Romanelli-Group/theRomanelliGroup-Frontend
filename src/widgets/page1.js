@@ -64,11 +64,31 @@ const Page1 = ({ page, resourceState }) => {
     };
   }, [video_url]);
 
- return (
-  <div style={{ color: "white", fontSize: "48px", padding: "100px" }}>
-    PAGE1 TEST
-  </div>
-);
+  return (
+    <div className="mainVideo transition-opacity duration-500">
+      <section className="relative w-full min-h-[78vh] md:min-h-screen flex items-center justify-center text-white body-font">
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            disablePictureInPicture
+            className="w-full h-full object-cover"
+          />
+
+          <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        </div>
+
+        <Pages
+          page={page}
+          resourceState={resourceState}
+        />
+      </section>
+    </div>
+  );
 };
 
 export default Page1;
