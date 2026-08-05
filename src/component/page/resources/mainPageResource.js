@@ -31,7 +31,7 @@ const MainPageResource = () => {
     }),
     [search, activeSearch, filters, contentType]
   );
-
+console.log(resourceState);
   return (
     <>
       <Category resourceState={resourceState} />
