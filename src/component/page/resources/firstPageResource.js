@@ -4,31 +4,25 @@ import SideModal from "../home/sideModal";
 import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
 
 const FirstPageResource = ({ resourceState }) => {
-  const [filterOpen, setFilterOpen] = useState(false);
+  console.log("resourceState:", resourceState);
 
-  // Hero-only state
-  const [placeholder, setPlaceholder] = useState("Search by keyword");
-  const [isSearching, setIsSearching] = useState(false);
+  if (!resourceState) {
+    return <div className="text-white p-10">No resourceState</div>;
+  }
 
-  // Shared state from MainPageResource
- const {
-  search = "",
-  setSearch = () => {},
+  const {
+    search,
+    setSearch,
 
-  activeSearch = "",
-  setActiveSearch = () => {},
+    activeSearch,
+    setActiveSearch,
 
-  filters = {
-    topic: null,
-    sort: "Latest First",
-    type: null,
-  },
-  setFilters = () => {},
+    filters,
+    setFilters,
 
-  contentType = "all",
-  setContentType = () => {},
-} = resourceState;
-
+    contentType,
+    setContentType,
+  } = resourceState;
   // Clear all
   const clearAll = () => {
     setSearch("");
