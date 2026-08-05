@@ -3,26 +3,32 @@ import FilterResource from "./filterResource";
 import SideModal from "../home/sideModal";
 import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
 
-const FirstPageResource = ({ resourceState }) => {
-  console.log("resourceState:", resourceState);
+const FirstPageResource = ({ resourceState = {} }) => {
+  const [filterOpen, setFilterOpen] = useState(false);
 
-  if (!resourceState) {
-    return <div className="text-white p-10">No resourceState</div>;
-  }
+  // Hero-only state
+  const [placeholder, setPlaceholder] = useState("Search by keyword");
+  const [isSearching, setIsSearching] = useState(false);
 
+  // Shared state from MainPageResource
   const {
-    search,
-    setSearch,
+    search = "",
+    setSearch = () => {},
 
-    activeSearch,
-    setActiveSearch,
+    activeSearch = "",
+    setActiveSearch = () => {},
 
-    filters,
-    setFilters,
+    filters = {
+      topic: null,
+      sort: "Latest First",
+      type: null,
+    },
+    setFilters = () => {},
 
-    contentType,
-    setContentType,
+    contentType = "all",
+    setContentType = () => {},
   } = resourceState;
+
   // Clear all
   const clearAll = () => {
     setSearch("");
@@ -78,17 +84,21 @@ const FirstPageResource = ({ resourceState }) => {
     setFilters(newFilters);
 
     // Keep quick tabs in sync
-    if (newFilters.type === "Blog Posts") {
-      setContentType("blog");
-    } else if (newFilters.type === "Instagram Reels") {
-      setContentType("instagram");
-    } else {
-      setContentType("all");
+    switch (newFilters.type) {
+      case "Blog Posts":
+        setContentType("blog");
+        break;
+
+      case "Instagram Reels":
+        setContentType("instagram");
+        break;
+
+      default:
+        setContentType("all");
     }
 
     handleSearch();
   };
-
 return (
   <section className="py-8 md:py-12 overflow-hidden">
     <div className="max-w-7xl mx-auto px-5 lg:px-8">
