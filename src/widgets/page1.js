@@ -63,7 +63,7 @@ const Page1 = ({ page, resourceState }) => {
       window.removeEventListener("focus", playVideo);
     };
   }, [video_url]);
-
+console.log("Page1:", resourceState);
   return (
     <div className="mainVideo transition-opacity duration-500">
       <section className="relative w-full min-h-[78vh] md:min-h-screen flex items-center justify-center text-white body-font">

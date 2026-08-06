@@ -7,6 +7,8 @@ import FirstPageProperties from "../component/page/properties/firstPagePropertie
 import FirstPageResource from "../component/page/resources/firstPageResource";
 
 const Pages = ({ page, resourceState }) => {
+  console.log("PAGES RECEIVED:", resourceState);
+
   const renderPage = () => {
     switch (page) {
       case "Home":
@@ -25,7 +27,13 @@ const Pages = ({ page, resourceState }) => {
         return <FirstPageProperties />;
 
       case "Resources":
-        return <FirstPageResource resourceState={resourceState} />;
+        console.log("PASSING TO FIRSTPAGERESOURCE:", resourceState);
+
+        return (
+          <FirstPageResource
+            resourceState={resourceState}
+          />
+        );
 
       default:
         return <Pag2 />;
