@@ -3,6 +3,9 @@ import FilterResource from "./filterResource";
 import SideModal from "../home/sideModal";
 import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
 
+console.log("FIRST PAGE RESOURCE MOUNTED");
+console.trace("Rendered from:");
+
 const FirstPageResource = ({ resourceState = {} }) => {
   const [filterOpen, setFilterOpen] = useState(false);
 
@@ -28,7 +31,7 @@ const FirstPageResource = ({ resourceState = {} }) => {
     contentType = "all",
     setContentType = () => {},
   } = resourceState;
-  
+
 console.log({
   search,
   activeSearch,
