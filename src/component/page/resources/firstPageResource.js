@@ -28,7 +28,14 @@ const FirstPageResource = ({ resourceState = {} }) => {
     contentType = "all",
     setContentType = () => {},
   } = resourceState;
-
+  
+console.log({
+  search,
+  activeSearch,
+  filters,
+  setSearch,
+  setFilters,
+});
   // Clear all
   const clearAll = () => {
     setSearch("");
