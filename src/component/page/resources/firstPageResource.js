@@ -131,7 +131,7 @@ const FirstPageResource = ({ resourceState = {} }) => {
     handleSearch();
   };
 return (
-  return (
+
   <div className="mainVideo transition-opacity duration-500">
     <section className="relative w-full min-h-[78vh] md:min-h-screen overflow-hidden">
 
