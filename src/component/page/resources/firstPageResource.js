@@ -306,7 +306,6 @@ return (
 
 {(activeSearch || filters.topic || filters.type) && (
   <div className="mt-5 flex flex-wrap items-center gap-3">
-
     {activeSearch && (
       <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white">
         🔍 {activeSearch}
@@ -331,34 +330,33 @@ return (
     >
       Clear All
     </button>
-
   </div>
 )}
 
-</div>
+      </div> {/* Search Card */}
 
-    </div>
+    </div> {/* Search Container */}
 
-<SideModal />
+    <SideModal />
 
-{filterOpen && (
-  <FilterResource
-    close={() => setFilterOpen(false)}
-    initialFilters={filters}
-    onSave={(newFilters) => {
-      handleFilters(newFilters);
-      setFilterOpen(false);
-    }}
-  />
-)}
+    {filterOpen && (
+      <FilterResource
+        close={() => setFilterOpen(false)}
+        initialFilters={filters}
+        onSave={(newFilters) => {
+          handleFilters(newFilters);
+          setFilterOpen(false);
+        }}
+      />
+    )}
 
-      </div> {/* max-w-7xl */}
+        </div> {/* max-w-7xl */}
 
-    </div> {/* hero content */}
+      </div> {/* Hero Content */}
 
-  </section>
+    </section>
 
-</div>
+  </div>
 );
 };
 
