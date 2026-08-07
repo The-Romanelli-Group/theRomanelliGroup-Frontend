@@ -4,8 +4,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Footer from "../Default Pages/footer";
 import Form from "./single Blog/form";
-
-import { time } from "../../../assets/allImg";
+import { time, trend } from "../../../assets/allImg";
 
 const SingleBlog = () => {
   const navigate = useNavigate();
