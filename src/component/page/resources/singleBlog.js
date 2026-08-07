@@ -249,30 +249,45 @@ return (
 
       {/* RIGHT */}
 
-      <aside className="lg:col-span-4">
+    <aside className="lg:col-span-4">
 
-        <div className="sticky top-28">
+  <div className="sticky top-28">
 
-          <div className="rounded-[30px] border border-white/10 bg-white/5 backdrop-blur-xl p-8">
+    <div className="rounded-[30px] border border-white/10 bg-white/5 backdrop-blur-xl p-8">
 
-            <h3 className="text-3xl font-bold text-white">
-              Let's Talk
-            </h3>
+      <span className="inline-flex rounded-full bg-[#A61E22]/15 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-[#D64B4F]">
+        Need Guidance?
+      </span>
 
-            <p className="mt-3 text-gray-400 leading-7">
-              Thinking about buying or selling in Central Ohio?
-              Our team is here to help.
-            </p>
+      <h3 className="mt-6 text-3xl font-bold text-white">
+        Ready to Make Your Next Move?
+      </h3>
 
-            <div className="mt-8">
-              <Form />
-            </div>
+      <p className="mt-4 text-gray-400 leading-8">
+        Whether you're buying your first home, selling your current one, or
+        simply have questions about the Central Ohio market, our team is here to
+        help.
+      </p>
 
-          </div>
+      <button
+        onClick={() => navigate("/contact-us")}
+        className="mt-8 w-full rounded-2xl bg-[#A61E22] py-4 font-semibold text-white transition hover:bg-[#8E1A1D]"
+      >
+        Talk With Our Team
+      </button>
 
-        </div>
+      <button
+        onClick={() => navigate("/properties")}
+        className="mt-4 w-full rounded-2xl border border-white/10 bg-white/5 py-4 font-semibold text-white transition hover:bg-white/10"
+      >
+        Browse Properties
+      </button>
 
-      </aside>
+    </div>
+
+  </div>
+
+</aside>
 
     </div>
 
