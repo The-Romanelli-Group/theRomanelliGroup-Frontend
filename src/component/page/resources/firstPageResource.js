@@ -339,23 +339,26 @@ return (
 
     </div>
 
-    <SideModal />
+<SideModal />
 
-    {filterOpen && (
-      <FilterResource
-        close={() => setFilterOpen(false)}
-        initialFilters={filters}
-        onSave={(newFilters) => {
-          handleFilters(newFilters);
-          setFilterOpen(false);
-        }}
-      />
-    )}
+{filterOpen && (
+  <FilterResource
+    close={() => setFilterOpen(false)}
+    initialFilters={filters}
+    onSave={(newFilters) => {
+      handleFilters(newFilters);
+      setFilterOpen(false);
+    }}
+  />
+)}
 
-          </div>
-      </div>
-    </section>
-  </div>
+      </div> {/* max-w-7xl */}
+
+    </div> {/* hero content */}
+
+  </section>
+
+</div>
 );
 };
 
