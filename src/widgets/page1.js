@@ -8,7 +8,7 @@ import {
 } from "../assets/allImg";
 import Pages from "./pages";
 
-const Page1 = ({ page, resourceState }) => {
+const Page1 = ({ page }) => {
   const videoRef = useRef(null);
 
   let video_url;
@@ -63,7 +63,7 @@ const Page1 = ({ page, resourceState }) => {
       window.removeEventListener("focus", playVideo);
     };
   }, [video_url]);
-console.log("Page1:", resourceState);
+
   return (
     <div className="mainVideo transition-opacity duration-500">
       <section className="relative w-full min-h-[78vh] md:min-h-screen flex items-center justify-center text-white body-font">
@@ -82,10 +82,7 @@ console.log("Page1:", resourceState);
           <div className="absolute inset-0 bg-black bg-opacity-60"></div>
         </div>
 
-        <Pages
-          page={page}
-          resourceState={resourceState}
-        />
+        <Pages page={page} />
       </section>
     </div>
   );

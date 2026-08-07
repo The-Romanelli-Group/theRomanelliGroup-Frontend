@@ -4,11 +4,8 @@ import FirstPageBuy from "../component/page/buy/firstPageBuy";
 import FirstPageSell from "../component/page/sell/firstPageSell";
 import FirstPageContact from "../component/page/contactUs/firstPageContact";
 import FirstPageProperties from "../component/page/properties/firstPageProperties";
-import FirstPageResource from "../component/page/resources/firstPageResource";
 
-const Pages = ({ page, resourceState }) => {
-  console.log("PAGES RECEIVED:", resourceState);
-
+const Pages = ({ page }) => {
   const renderPage = () => {
     switch (page) {
       case "Home":
@@ -26,15 +23,6 @@ const Pages = ({ page, resourceState }) => {
       case "Properties":
         return <FirstPageProperties />;
 
-      case "Resources":
-        console.log("PASSING TO FIRSTPAGERESOURCE:", resourceState);
-
-        return (
-          <FirstPageResource
-            resourceState={resourceState}
-          />
-        );
-
       default:
         return <Pag2 />;
     }
@@ -47,10 +35,12 @@ export const getVideoUrl = (page) => {
   switch (page) {
     case "Home":
       return "url1"; // Replace with actual Home video URL
+
     case "Buy":
       return "url2"; // Replace with actual Buy video URL
+
     default:
-      return "url1"; // Default to Home video URL
+      return "url1";
   }
 };
 

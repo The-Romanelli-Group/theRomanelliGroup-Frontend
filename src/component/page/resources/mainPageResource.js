@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import FirstPageResource from "./firstPageResource";
 import Category from "./category";
 import StayUpdated from "./stayUpdated";
 import Footer from "../Default Pages/footer";
@@ -31,9 +32,11 @@ const MainPageResource = () => {
     }),
     [search, activeSearch, filters, contentType]
   );
-console.log(resourceState);
+
   return (
     <>
+      <FirstPageResource resourceState={resourceState} />
+
       <Category resourceState={resourceState} />
 
       <StayUpdated />

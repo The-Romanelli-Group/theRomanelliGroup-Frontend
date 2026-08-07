@@ -299,9 +299,18 @@ active:scale-[0.98]
 
       {/* Page Content */}
       <div className="pt-16">
-  {!location.pathname.startsWith("/pdf-viewer") && !location.pathname.startsWith("/terms-of-use") && !location.pathname.startsWith("/properties/") && !location.pathname.startsWith("/details/properties") && 
-  !location.pathname.startsWith("/resources/blogs/") && !location.pathname.startsWith("/cookie-policy") && !location.pathname.startsWith("/privacy-policy") && 
-  !location.pathname.startsWith("/dmca-notice") && !location.pathname.startsWith("/fair-housing") && !location.pathname.startsWith("/accessibility-policy") && (
+  {!location.pathname.startsWith("/pdf-viewer") && 
+  !location.pathname.startsWith("/terms-of-use") && 
+  !location.pathname.startsWith("/properties/") && 
+  !location.pathname.startsWith("/details/properties") && 
+  !location.pathname.startsWith("/resources/blogs/") && 
+  !location.pathname.startsWith("/cookie-policy") && 
+  !location.pathname.startsWith("/privacy-policy") && 
+  !location.pathname.startsWith("/dmca-notice") && 
+  !location.pathname.startsWith("/fair-housing") && 
+  !location.pathname.startsWith("/accessibility-policy") && 
+  !location.pathname.startsWith("/resources") &&
+  (
     <Page1 page={activeLink} />
   )}
 </div>
