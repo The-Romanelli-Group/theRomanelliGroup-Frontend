@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FilterResource from "./filterResource";
 import SideModal from "../home/sideModal";
 import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
-
-console.log("FIRST PAGE RESOURCE MOUNTED");
-console.trace("Rendered from:");
+import { video_url1 } from "../../../assets/allImg";
 
 const FirstPageResource = ({ resourceState = {} }) => {
+  const videoRef = useRef(null);
+
   const [filterOpen, setFilterOpen] = useState(false);
 
   // Hero-only state
@@ -32,13 +32,6 @@ const FirstPageResource = ({ resourceState = {} }) => {
     setContentType = () => {},
   } = resourceState;
 
-console.log({
-  search,
-  activeSearch,
-  filters,
-  setSearch,
-  setFilters,
-});
   // Clear all
   const clearAll = () => {
     setSearch("");
@@ -51,6 +44,35 @@ console.log({
       type: null,
     });
   };
+
+  // Video Background
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+
+    if (!video.currentSrc.includes(video_url1.split("/").pop())) {
+      video.src = video_url1;
+      video.load();
+    }
+
+    const playVideo = () => {
+      video.play().catch(() => {});
+    };
+
+    playVideo();
+
+    document.addEventListener("visibilitychange", playVideo);
+    window.addEventListener("focus", playVideo);
+
+    return () => {
+      document.removeEventListener("visibilitychange", playVideo);
+      window.removeEventListener("focus", playVideo);
+    };
+  }, []);
 
   // Responsive placeholder
   useEffect(() => {
@@ -93,7 +115,6 @@ console.log({
   const handleFilters = (newFilters) => {
     setFilters(newFilters);
 
-    // Keep quick tabs in sync
     switch (newFilters.type) {
       case "Blog Posts":
         setContentType("blog");
@@ -110,8 +131,30 @@ console.log({
     handleSearch();
   };
 return (
-  <section className="py-8 md:py-12 overflow-hidden">
-    <div className="max-w-7xl mx-auto px-5 lg:px-8">
+  return (
+  <div className="mainVideo transition-opacity duration-500">
+    <section className="relative w-full min-h-[78vh] md:min-h-screen overflow-hidden">
+
+      {/* Background Video */}
+      <div className="absolute inset-0 w-full h-full">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          disablePictureInPicture
+          className="w-full h-full object-cover"
+        />
+
+        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+      </div>
+
+      {/* Hero Content */}
+      <div className="relative z-10 py-8 md:py-12">
+        <div className="max-w-7xl mx-auto px-5 lg:px-8">
+    
 
       {/* Header */}
 
@@ -309,7 +352,10 @@ return (
       />
     )}
 
-  </section>
+          </div>
+      </div>
+    </section>
+  </div>
 );
 };
 
