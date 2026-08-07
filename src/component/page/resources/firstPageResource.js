@@ -131,8 +131,28 @@ const FirstPageResource = ({ resourceState = {} }) => {
     handleSearch();
   };
 return (
-  <section className="py-8 md:py-12 overflow-hidden">
-    <div className="max-w-7xl mx-auto px-5 lg:px-8">
+  <section className="relative py-8 md:py-12 overflow-hidden min-h-[78vh] md:min-h-screen">
+
+    {/* Background Video */}
+    <div className="absolute inset-0">
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        className="w-full h-full object-cover"
+      />
+
+      <div className="absolute inset-0 bg-black/60"></div>
+    </div>
+
+    {/* Hero Content */}
+    <div className="relative z-10">
+
+      <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
       {/* Header */}
 
@@ -328,7 +348,10 @@ return (
           setFilterOpen(false);
         }}
       />
-    )}
+        )}
+
+      </div>
+    </div>
 
   </section>
 );
