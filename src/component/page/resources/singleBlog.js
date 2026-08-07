@@ -15,6 +15,7 @@ const SingleBlog = () => {
   const relatedResources = location.state?.showData || [];
 
  const [blog, setBlog] = useState(null);
+const [loading, setLoading] = useState(true);
 
 // ==========================================
 // Fetch Blog
@@ -22,6 +23,8 @@ const SingleBlog = () => {
 
 useEffect(() => {
   const fetchBlog = async () => {
+    setLoading(true);
+
     try {
       const response = await axios.get(
         `https://secure-pleasure-8cb8bfce78.strapiapp.com/api/blogs?filters[id][$eq]=${id}&populate=*`
@@ -31,42 +34,39 @@ useEffect(() => {
 
       if (!item) {
         setBlog(null);
-        return;
+      } else {
+        setBlog({
+          id: item.id,
+
+          title: item.title || item.Title || "",
+
+          excerpt: item.excerpt || item.Excerpt || "",
+
+          content: item.content || item.Description || "",
+
+          category: item.category || item.Category || "Real Estate",
+
+          tags: item.tags || [],
+
+          featured: item.featured ?? false,
+
+          readTime: item.readTime || item.Read_Timing || 5,
+
+          publishedDate: item.publishedDate || item.Post_Date,
+
+          image:
+            item.image?.formats?.large?.url ||
+            item.image?.formats?.medium?.url ||
+            item.image?.url ||
+            item.Image?.url ||
+            "",
+        });
       }
-
-      setBlog({
-        id: item.id,
-
-        title: item.title || item.Title || "",
-
-        excerpt: item.excerpt || item.Excerpt || "",
-
-        content: item.content || item.Description || "",
-
-        category: item.category || item.Category || "Real Estate",
-
-        tags: item.tags || [],
-
-        featured: item.featured ?? false,
-
-        readTime:
-          item.readTime ||
-          item.Read_Timing ||
-          5,
-
-        publishedDate:
-          item.publishedDate ||
-          item.Post_Date,
-
-        image:
-          item.image?.formats?.large?.url ||
-          item.image?.formats?.medium?.url ||
-          item.image?.url ||
-          item.Image?.url ||
-          "",
-      });
     } catch (err) {
       console.error("Failed to fetch blog:", err);
+      setBlog(null);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -86,6 +86,16 @@ const relatedBlogs = useMemo(() => {
     )
     .slice(0, 3);
 }, [relatedResources, id]);
+
+// ==========================================
+// Loading
+// ==========================================
+
+if (loading) {
+  return (
+    <div className="min-h-screen bg-backgroundColor" />
+  );
+}
 
 // ==========================================
 // Article Not Found
