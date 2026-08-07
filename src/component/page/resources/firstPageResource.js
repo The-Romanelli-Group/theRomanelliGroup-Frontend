@@ -131,30 +131,8 @@ const FirstPageResource = ({ resourceState = {} }) => {
     handleSearch();
   };
 return (
-
-  <div className="mainVideo transition-opacity duration-500">
-    <section className="relative w-full min-h-[78vh] md:min-h-screen overflow-hidden">
-
-      {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          disablePictureInPicture
-          className="w-full h-full object-cover"
-        />
-
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-      </div>
-
-      {/* Hero Content */}
-      <div className="relative z-10 py-8 md:py-12">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8">
-    
+  <section className="py-8 md:py-12 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
       {/* Header */}
 
@@ -306,6 +284,7 @@ return (
 
 {(activeSearch || filters.topic || filters.type) && (
   <div className="mt-5 flex flex-wrap items-center gap-3">
+
     {activeSearch && (
       <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white">
         🔍 {activeSearch}
@@ -330,12 +309,13 @@ return (
     >
       Clear All
     </button>
+
   </div>
 )}
 
-      </div> {/* Search Card */}
+</div>
 
-    </div> {/* Search Container */}
+    </div>
 
     <SideModal />
 
@@ -350,13 +330,7 @@ return (
       />
     )}
 
-        </div> {/* max-w-7xl */}
-
-      </div> {/* Hero Content */}
-
-    </section>
-
-  </div>
+  </section>
 );
 };
 
