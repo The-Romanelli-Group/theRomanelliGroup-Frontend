@@ -238,7 +238,15 @@ const Category = ({ resourceState }) => {
   const loadMore = () => {
     setVisibleItems((prev) => prev + 6);
   };
-
+console.log({
+  blogs,
+  instagram,
+  allResources,
+  filteredResources,
+  filters,
+  contentType,
+  search,
+});
  return (
   <div className="bg-backgroundColor py-10 md:py-14">
     <div className="max-w-7xl mx-auto px-5 lg:px-8">
