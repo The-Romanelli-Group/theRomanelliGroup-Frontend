@@ -24,11 +24,12 @@
     "yet-another-react-lightbox": "^3.32.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+  "start": "react-scripts start",
+  "sitemap": "node scripts/generate-sitemap.js",
+  "build": "npm run sitemap && react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+},
   "eslintConfig": {
     "extends": [
       "react-app",
