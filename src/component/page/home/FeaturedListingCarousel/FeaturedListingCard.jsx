@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import BedIcon from "../../../../assets/images/illustrations/Bed.svg";
+import { buildPropertySlug } from "../../../../utils/slugify";
 import BathroomIcon from "../../../../assets/images/illustrations/Bathroom.svg";
 import AreaIcon from "../../../../assets/images/illustrations/Area.svg";
 
@@ -24,9 +25,9 @@ const FeaturedListingCard = ({ property }) => {
       property.City || ""
     }, ${property.StateOrProvince || ""}`;
 
-  const handleViewProperty = () => {
+    const handleViewProperty = () => {
   window.open(
-    `/properties/${property.ListingKey}`,
+    `/properties/${buildPropertySlug(address, property.ListingKey)}`,
     "_blank",
     "noopener,noreferrer"
   );

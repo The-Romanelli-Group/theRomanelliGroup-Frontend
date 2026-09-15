@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { bathroom, bed, square } from "../../../../assets/allImg";
+import { buildPropertySlug } from "../../../../utils/slugify";
 
 const RelatedItem = ({ listingKey }) => {
   const [properties, setProperties] = useState([]);
@@ -29,8 +30,8 @@ const RelatedItem = ({ listingKey }) => {
     fetchRelated();
   }, [listingKey]);
 
-  const openProperty = (key) => {
-    window.open(`/properties/${key}`, "_blank");
+   const openProperty = (item) => {
+    window.open(`/properties/${buildPropertySlug(item.UnparsedAddress, item.ListingKey)}`, "_blank");
   };
 
   if (loading) {
@@ -93,7 +94,7 @@ const RelatedItem = ({ listingKey }) => {
         {properties.map((item) => (
           <article
             key={item.ListingKey}
-            onClick={() => openProperty(item.ListingKey)}
+                        onClick={() => openProperty(item)}
             className="
               min-w-[300px]
               lg:min-w-0

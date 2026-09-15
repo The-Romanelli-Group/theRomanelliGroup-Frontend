@@ -1,6 +1,6 @@
-
 import { useLocation, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { buildPropertySlug, extractListingKeyFromSlug } from '../../../utils/slugify';
 import PropertyGallery from "./single/PropertyGallery";
 import LeadForm from '../LeadForm/LeadForm'; 
 import RelatedItem from './single/relatedItem';
@@ -17,8 +17,9 @@ const DetailSingleItem = () => {
   const [showPropertyLeadModal, setShowPropertyLeadModal] = useState(false);
   
   
+  
   // Get data from location.state or sessionStorage
-  let id = routeId;
+  let id = extractListingKeyFromSlug(routeId);
 let listings = [];
 let allData = [];
 console.log("routeId:", routeId);
@@ -214,7 +215,8 @@ const uniqueHighlights = [...new Set(highlights)];
       ? `${seoDescriptionRaw.slice(0, 157)}...`
       : seoDescriptionRaw;
   const seoImage = unique.Media?.[0]?.MediaURL || "https://www.theromanelligroup.com/og-image.jpg";
-  const seoUrl = `https://www.theromanelligroup.com/properties/${id}`;
+  const propertySlug = buildPropertySlug(seoAddress, id);
+  const seoUrl = `https://www.theromanelligroup.com/properties/${propertySlug}`;
 
   return (
     <>

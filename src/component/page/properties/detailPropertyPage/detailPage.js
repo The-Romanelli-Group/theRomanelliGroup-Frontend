@@ -8,6 +8,7 @@ import useFilteredProperties from './hook/useFilterProperties';
 import { usePropertySearch } from '../api/getCheckProperty';
 import { locationIcon } from '../../../../assets/allImg';
 import { ChevronDown } from 'lucide-react';
+import { buildPropertySlug } from '../../../../utils/slugify';
 
 const DetailPage = () => {
   const location = useLocation();
@@ -56,7 +57,7 @@ const DetailPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleGetitem = (id) => {
+    const handleGetitem = (id, address) => {
     const listings = alldata;
     const allData = data?.value || [];
 
@@ -87,7 +88,7 @@ const DetailPage = () => {
       })
     );
 
-    window.open(`/properties/${id}`, "_blank");
+    window.open(`/properties/${buildPropertySlug(address, id)}`, "_blank");
   };
   const handlePageChange = (page) => {
   setCurrentPage(page);
@@ -304,7 +305,7 @@ const DetailPage = () => {
 {currentProperties.map((item) => (
   <div
     key={item.id}
-    onClick={() => handleGetitem(item.id)}
+      onClick={() => handleGetitem(item.id, item.location)}
     className="
       group
       bg-white
