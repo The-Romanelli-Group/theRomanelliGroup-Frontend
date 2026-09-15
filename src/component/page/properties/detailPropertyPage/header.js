@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import DoubleRangeSlider from '../priceRange'
 import { ChevronDown, Filter } from 'lucide-react';
-import { usePropertySearch } from '../api/getCheckProperty';
+import { usePropertySearch, buildPropertySearchParams } from '../api/getCheckProperty';
 import { useNavigate } from 'react-router-dom';
 import DetailFilter from './detailFilter';
 import LoadingScreen from '../../../../loading/loadingScreen';
@@ -196,7 +196,7 @@ const parseWithGoogle = (searchText) => {
     const data = await checkProperty(apiFilters);
     setLoading(false);
     if (data) {
-      navigate(`/details/properties`, { state: { data, filters: updatedFilters } });
+      navigate(`/details/properties?${buildPropertySearchParams(updatedFilters).toString()}`, { state: { data, filters: updatedFilters } });
     }
   };
 
@@ -215,10 +215,10 @@ const parseWithGoogle = (searchText) => {
     setLocalFilters(updatedFilters);
     setDropdownOpen('');
     setLoading(true);
-    const data = await checkProperty(updatedFilters);
+   const data = await checkProperty(updatedFilters);
     setLoading(false);
     if (data) {
-      navigate(`/details/properties`, { state: { data, filters: updatedFilters } });
+      navigate(`/details/properties?${buildPropertySearchParams(updatedFilters).toString()}`, { state: { data, filters: updatedFilters } });
     }
   };
 
@@ -248,11 +248,11 @@ const parseWithGoogle = (searchText) => {
 
     setDropdownOpen('');
     setLoading(true);
-    const data = await checkProperty(finalFilters);
+        const data = await checkProperty(finalFilters);
     setLoading(false);
     
     if (data) {
-      navigate(`/details/properties`, { state: { data, filters: finalFilters } });
+      navigate(`/details/properties?${buildPropertySearchParams(finalFilters).toString()}`, { state: { data, filters: finalFilters } });
     }
   };
 
@@ -281,10 +281,10 @@ const parseWithGoogle = (searchText) => {
     if (f.sqftMin === 0) delete apiFilters.sqftMin;
     if (f.sqftMax === 15001) delete apiFilters.sqftMax;
     
-    const data = await checkProperty(apiFilters);
+        const data = await checkProperty(apiFilters);
     setLoading(false)
     if (data) {
-      navigate(`/details/properties`, { state: { data, filters: f } });
+      navigate(`/details/properties?${buildPropertySearchParams(f).toString()}`, { state: { data, filters: f } });
     }
   };
   return (

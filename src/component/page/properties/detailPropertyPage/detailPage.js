@@ -13,13 +13,15 @@ const DetailPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { data, filters: initialFilters } = location.state || {};
+  const { data: stateData, filters: initialFilters } = location.state || {};
 
   const ITEMS_PER_PAGE = 10;
 
   const [loading, setLoading] = useState(false);
+  const [restoring, setRestoring] = useState(!stateData && !!location.search);
 
   const [filters, setFilters] = useState(initialFilters || {});
+  const [data, setData] = useState(stateData || null);
 
   const [sortOption, setSortOption] = useState("Recently Updated");
   const [open, setOpen] = useState(false);
@@ -34,8 +36,25 @@ const DetailPage = () => {
     "Price: High to Low",
   ];
 
-  const alldata = useFilteredProperties(data, filters);
+   const alldata = useFilteredProperties(data, filters);
   const { checkProperty } = usePropertySearch();
+
+  // Fallback: reconstruct results from the URL when this page loads without
+  // router state (a fresh visit, a reload, a shared link, or a crawler).
+  useEffect(() => {
+    if (stateData || !location.search) return;
+
+    const urlFilters = Object.fromEntries(new URLSearchParams(location.search));
+    setFilters(urlFilters);
+
+    checkProperty(urlFilters).then((results) => {
+      setRestoring(false);
+      if (results) {
+        setData(results);
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleGetitem = (id) => {
     const listings = alldata;
@@ -125,6 +144,17 @@ const DetailPage = () => {
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
+
+    // Restoring results from a shared/reloaded URL
+  if (restoring) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center max-w-md px-6">
+          <p className="text-gray-600">Loading your search results…</p>
+        </div>
+      </div>
+    );
+  }
 
   // Empty state
   if (!data) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import FilterPage from "./filter";
 import { useNavigate } from "react-router-dom";
-import { usePropertySearch } from "./api/getCheckProperty";
+import { usePropertySearch, buildPropertySearchParams } from "./api/getCheckProperty";
 import LoadingScreen from "../../../loading/loadingScreen";
 import SideModal from "../home/sideModal";
 import FilterIcon from "../../../assets/images/illustrations/Filter.svg";
@@ -170,9 +170,9 @@ const parseWithGoogle = (searchText) => {
       return;
     }
 
-    setLoading(null);
+        setLoading(null);
 
-    navigate("/details/properties", {
+    navigate(`/details/properties?${buildPropertySearchParams(finalFilters).toString()}`, {
       state: {
         data,
         filters: finalFilters,
@@ -189,7 +189,6 @@ const parseWithGoogle = (searchText) => {
 };
 
   const handleSearch = async () => {
-
   if (!filters.searchCity) {
     alert("Please enter a city");
     return;
@@ -236,7 +235,7 @@ const parseWithGoogle = (searchText) => {
 
     setLoading(null);
 
-    navigate("/details/properties", {
+    navigate(`/details/properties?${buildPropertySearchParams(finalFilters).toString()}`, {
       state: {
         data,
         filters: finalFilters,
@@ -251,6 +250,7 @@ const parseWithGoogle = (searchText) => {
   }
 
 };
+
 
 const handleSuggestionSelect = (suggestion) => {
   if (!placesService.current) return;
