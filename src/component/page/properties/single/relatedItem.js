@@ -113,9 +113,10 @@ const RelatedItem = ({ listingKey }) => {
           >
             <div className="relative overflow-hidden">
 
-              <img
+                           <img
                 src={item.Media?.[0]?.MediaURL}
                 alt={item.UnparsedAddress}
+                loading="lazy"
                 className="
                   h-60
                   w-full

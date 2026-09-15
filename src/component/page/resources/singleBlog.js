@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import Footer from "../Default Pages/footer";
 import Form from "./single Blog/form";
@@ -129,8 +130,53 @@ if (!blog) {
     </>
   );
 }
+// Dynamic SEO for this specific article (overrides the generic defaults
+// rendered by <SEOHead />, which mounts earlier in the tree).
+const seoTitle = blog.title
+  ? `${blog.title} | The Romanelli Group`
+  : "Real Estate Resources | The Romanelli Group";
+const seoDescriptionRaw =
+  blog.excerpt ||
+  blog.content?.replace(/<[^>]+>/g, "").slice(0, 160) ||
+  "Real estate insights and advice from The Romanelli Group.";
+const seoDescription =
+  seoDescriptionRaw.length > 160
+    ? `${seoDescriptionRaw.slice(0, 157)}...`
+    : seoDescriptionRaw;
+const seoImage = blog.image || "https://www.theromanelligroup.com/og-image.jpg";
+const seoUrl = `https://www.theromanelligroup.com/resources/blogs/${id}`;
+
 return (
 <>
+  <Helmet prioritizeSeoTags>
+    <title>{seoTitle}</title>
+    <meta name="description" content={seoDescription} />
+    <link rel="canonical" href={seoUrl} />
+    <meta property="og:title" content={seoTitle} />
+    <meta property="og:description" content={seoDescription} />
+    <meta property="og:image" content={seoImage} />
+    <meta property="og:url" content={seoUrl} />
+    <meta property="og:type" content="article" />
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: blog.title,
+        description: seoDescription,
+        image: seoImage,
+        url: seoUrl,
+        datePublished: blog.publishedDate || undefined,
+        author: {
+          "@type": "Organization",
+          name: "The Romanelli Group",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "The Romanelli Group",
+        },
+      })}
+    </script>
+  </Helmet>
   {/* ================================================= */}
   {/* HERO */}
   {/* ================================================= */}
@@ -382,6 +428,7 @@ return (
               <img
                 src={item.src}
                 alt={item.title}
+                   loading="lazy"
                 className="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-105"
               />
 

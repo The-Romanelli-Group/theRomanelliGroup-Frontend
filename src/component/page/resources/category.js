@@ -327,9 +327,10 @@ console.log({
 
                   <div className="relative overflow-hidden aspect-[16/10] bg-[#161111] isolate">
 
-                    <img
+                                        <img
                       src={item.src}
                       alt={item.description}
+                      loading="lazy"
                       className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
                     />
 

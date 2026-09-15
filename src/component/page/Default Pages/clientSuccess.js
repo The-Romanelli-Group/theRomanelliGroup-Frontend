@@ -114,6 +114,7 @@ CLIENT SUCCESS
 <img
   src={item.url}
   alt={item.location}
+  loading="lazy"
   className="
     absolute
     inset-0
