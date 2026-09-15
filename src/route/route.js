@@ -42,10 +42,11 @@ const AccessComponent = () => {
     <>
       <HelmetProvider>
         <Router>
-        <KeyboardNavigation />
-        {!isPolicyPage && <Navbar />}
-        <ScrollToTop />
-        <main id="main-content" tabIndex="-1">
+       <KeyboardNavigation />
+{!isPolicyPage && <Navbar />}
+<ScrollToTop />
+<SEOHead />
+<main id="main-content" tabIndex="-1">
         <Routes>
           {/* Public Route */}
           <Route path="/" element={<PublicRoute />}>
@@ -72,7 +73,7 @@ const AccessComponent = () => {
           </Route>
         </Routes>
         </main>
-          <SEOHead />
+         
                  <CookieConsent />
         </Router>
       </HelmetProvider>

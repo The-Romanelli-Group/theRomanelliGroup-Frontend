@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { seoMetadata } from "../utils/seoMetadata";
 import { jsonLdData } from "../utils/jsonLdData";
 
-const BASE_URL = "https://theromanelligroup.com";
+const BASE_URL = "https://www.theromanelligroup.com";
 
 const SEOHead = React.memo(() => {
   const location = useLocation();

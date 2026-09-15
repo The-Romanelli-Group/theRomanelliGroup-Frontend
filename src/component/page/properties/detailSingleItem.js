@@ -1,5 +1,6 @@
 
 import { useLocation, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import PropertyGallery from "./single/PropertyGallery";
 import LeadForm from '../LeadForm/LeadForm'; 
 import RelatedItem from './single/relatedItem';
@@ -193,8 +194,57 @@ if (remarks.includes("public water"))
 
 const uniqueHighlights = [...new Set(highlights)];
 
+  // Dynamic SEO for this specific listing (overrides the generic defaults
+  // rendered by <SEOHead />, which mounts earlier in the tree).
+  const seoAddress =
+    unique.UnparsedAddress ||
+    [unique.StreetNumber, unique.StreetName].filter(Boolean).join(" ");
+  const seoCity = unique.City ? `${unique.City}, ${unique.StateOrProvince || "OH"}` : "Central Ohio";
+  const seoPriceText = unique.ListPrice
+    ? `$${unique.ListPrice.toLocaleString()}`
+    : null;
+  const seoTitle = seoAddress
+    ? `${seoAddress}, ${seoCity}${seoPriceText ? ` | ${seoPriceText}` : ""} | The Romanelli Group`
+    : "Property Details | The Romanelli Group";
+  const seoDescriptionRaw =
+    unique.PublicRemarks ||
+    `${unique.BedroomsTotal || ""} bed, ${unique.BathroomsTotalInteger || ""} bath home in ${seoCity}.`;
+  const seoDescription =
+    seoDescriptionRaw.length > 160
+      ? `${seoDescriptionRaw.slice(0, 157)}...`
+      : seoDescriptionRaw;
+  const seoImage = unique.Media?.[0]?.MediaURL || "https://www.theromanelligroup.com/og-image.jpg";
+  const seoUrl = `https://www.theromanelligroup.com/properties/${id}`;
+
   return (
-    
+    <>
+    <Helmet prioritizeSeoTags>
+      <title>{seoTitle}</title>
+      <meta name="description" content={seoDescription} />
+      <link rel="canonical" href={seoUrl} />
+      <meta property="og:title" content={seoTitle} />
+      <meta property="og:description" content={seoDescription} />
+      <meta property="og:image" content={seoImage} />
+      <meta property="og:url" content={seoUrl} />
+      <meta property="og:type" content="website" />
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SingleFamilyResidence",
+          name: seoAddress || "Property Listing",
+          description: seoDescription,
+          image: seoImage,
+          url: seoUrl,
+          ...(seoPriceText && {
+            offers: {
+              "@type": "Offer",
+              price: unique.ListPrice,
+              priceCurrency: "USD",
+            },
+          }),
+        })}
+      </script>
+    </Helmet>
     <div className="pt-8 sm:px-4 md:px-6 px-2 lg:px-24">
       {/* Carousel Section */}
       <div className="mb-6 md:mb-8">
@@ -691,11 +741,10 @@ py-2
   variant="property"
   property={unique}
 />
-          <Footer/>
-          </div> 
-
-    
+                   <Footer/>
+          </div>
+    </>
   )
 }
 
-export default DetailSingleItem; 
+export default DetailSingleItem;
