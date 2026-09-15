@@ -119,9 +119,9 @@ const Connected = () => {
             "
           >
 
-            <img
+                       <img
               src={detail.icon}
-              alt={detail.title}
+              alt=""
               className="w-7 h-7 object-contain"
             />
 

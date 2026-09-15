@@ -299,6 +299,7 @@ const DetailPage = () => {
         <img
           src={item.image}
           alt={item.heading}
+            loading="lazy"
           className="
             w-full
             h-full

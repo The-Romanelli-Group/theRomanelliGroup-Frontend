@@ -77,6 +77,7 @@ const Succeed = () => {
             <img
               src={image1_url}
               alt="Buying a home"
+               loading="lazy"
               className="
                 w-full
                 h-[460px]
@@ -109,6 +110,7 @@ const Succeed = () => {
             <img
               src={image2_url}
               alt="Real estate"
+                loading="lazy"
               className="
                 w-full
                 h-[300px]

@@ -22,7 +22,7 @@ const Footer = () => {
     ];
   return (
   <>
-    <header
+     <footer
       className={`text-gray-600 body-font ${
         location?.pathname === "/resources" ||
         location?.pathname.startsWith("/properties/") ||
@@ -228,7 +228,7 @@ const Footer = () => {
 
         </div>
       </div>
-    </header>
+    </footer>
   </>
 );
 }
