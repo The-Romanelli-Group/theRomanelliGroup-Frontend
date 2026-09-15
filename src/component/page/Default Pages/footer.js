@@ -195,7 +195,7 @@ const Footer = () => {
                   : "text-white"
               }`}
             >
-              © 2024 - The Romanelli Group
+                           © {new Date().getFullYear()} - The Romanelli Group
             </p>
           </div>
 
