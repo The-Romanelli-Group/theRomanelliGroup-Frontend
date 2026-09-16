@@ -37,8 +37,21 @@ const DetailPage = () => {
     "Price: High to Low",
   ];
 
-   const alldata = useFilteredProperties(data, filters);
+      const alldata = useFilteredProperties(data, filters);
   const { checkProperty } = usePropertySearch();
+
+  // Keep local state in sync whenever a new search actually navigates here
+  // (React Router assigns a fresh location.key per navigation, even when the
+  // path itself doesn't change) — otherwise re-searching from the Header
+  // while already on this page updates the URL/state but not what's shown.
+  useEffect(() => {
+    if (stateData) {
+      setData(stateData);
+      setFilters(initialFilters || {});
+      setRestoring(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.key]);
 
   // Fallback: reconstruct results from the URL when this page loads without
   // router state (a fresh visit, a reload, a shared link, or a crawler).
@@ -57,7 +70,7 @@ const DetailPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-    const handleGetitem = (id, address) => {
+  const handleGetitem = (id, address) => {
     const listings = alldata;
     const allData = data?.value || [];
 
