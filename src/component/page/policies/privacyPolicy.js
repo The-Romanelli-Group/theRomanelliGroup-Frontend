@@ -223,7 +223,7 @@ const PrivacyPolicy = () => {
             
             <div className="">
               <p className=""><strong>The Romanelli Group</strong></p>
-              <p>Email: <a href="mailto:theromanelligroup@gmail.com" className="text-blue-600 hover:text-blue-800">ptheromanelligroup@gmail.com</a></p>
+              <p>Email: <a href="mailto:theromanelligroup@gmail.com" className="text-blue-600 hover:text-blue-800">theromanelligroup@gmail.com</a></p>
             </div>
           </div>
         </div>
