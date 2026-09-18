@@ -36,7 +36,7 @@ const AccessComponent = () => {
     return () => window.removeEventListener('popstate', handleLocationChange);
   }, []);
 
-    const isPolicyPage = ['/pdf-viewer'].includes(location);
+  const isPolicyPage = ['/cookie-policy', '/terms-of-use', '/privacy-policy', '/dmca-notice', '/fair-housing', '/accessibility-policy','/pdf-viewer'].includes(location);
 
   return (
     <>
