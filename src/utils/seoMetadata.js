@@ -15,7 +15,7 @@ export const seoMetadata = {
       "Helping Central Ohio families buy and sell with confidence through local expertise, integrity, and exceptional service.",
 
     ogImage:
-      "https://theromanelligroup.com/og-image.jpg",
+      "https://www.theromanelligroup.com/og-image.jpg",
   },
 
   "/buy": {
@@ -34,7 +34,7 @@ export const seoMetadata = {
       "Find your dream home with trusted local experts serving Central Ohio.",
 
     ogImage:
-      "https://theromanelligroup.com/og-image.jpg",
+      "https://www.theromanelligroup.com/og-image.jpg",
   },
 
   "/sell": {
@@ -53,7 +53,7 @@ export const seoMetadata = {
       "Maximize your home's value with trusted Central Ohio real estate experts.",
 
     ogImage:
-      "https://theromanelligroup.com/og-image.jpg",
+      "https://www.theromanelligroup.com/og-image.jpg",
   },
 
   "/contact-us": {
@@ -72,7 +72,7 @@ export const seoMetadata = {
       "We're here to help you buy, sell, or invest with confidence.",
 
     ogImage:
-      "https://theromanelligroup.com/og-image.jpg",
+      "https://www.theromanelligroup.com/og-image.jpg",
   },
 
   "/properties": {
@@ -91,7 +91,7 @@ export const seoMetadata = {
       "Explore homes for sale throughout Central Ohio.",
 
     ogImage:
-      "https://theromanelligroup.com/og-image.jpg",
+      "https://www.theromanelligroup.com/og-image.jpg",
   },
 
   "/resources": {
@@ -110,6 +110,66 @@ export const seoMetadata = {
       "Expert real estate insights, buying guides, and market updates for Central Ohio.",
 
     ogImage:
-      "https://theromanelligroup.com/og-image.jpg",
+      "https://www.theromanelligroup.com/og-image.jpg",
+  },
+
+  "/privacy-policy": {
+    title: "Privacy Policy | The Romanelli Group",
+    description: "Privacy Policy for The Romanelli Group.",
+    keywords: "",
+    ogTitle: "Privacy Policy | The Romanelli Group",
+    ogDescription: "Privacy Policy for The Romanelli Group.",
+    ogImage: "https://www.theromanelligroup.com/og-image.jpg",
+    noindex: true,
+  },
+
+  "/terms-of-use": {
+    title: "Terms of Use | The Romanelli Group",
+    description: "Terms of Use for The Romanelli Group.",
+    keywords: "",
+    ogTitle: "Terms of Use | The Romanelli Group",
+    ogDescription: "Terms of Use for The Romanelli Group.",
+    ogImage: "https://www.theromanelligroup.com/og-image.jpg",
+    noindex: true,
+  },
+
+  "/cookie-policy": {
+    title: "Cookie Policy | The Romanelli Group",
+    description: "Cookie Policy for The Romanelli Group.",
+    keywords: "",
+    ogTitle: "Cookie Policy | The Romanelli Group",
+    ogDescription: "Cookie Policy for The Romanelli Group.",
+    ogImage: "https://www.theromanelligroup.com/og-image.jpg",
+    noindex: true,
+  },
+
+  "/dmca-notice": {
+    title: "DMCA Notice | The Romanelli Group",
+    description: "DMCA Notice for The Romanelli Group.",
+    keywords: "",
+    ogTitle: "DMCA Notice | The Romanelli Group",
+    ogDescription: "DMCA Notice for The Romanelli Group.",
+    ogImage: "https://www.theromanelligroup.com/og-image.jpg",
+    noindex: true,
+  },
+
+  "/fair-housing": {
+    title: "Fair Housing | The Romanelli Group",
+    description: "Fair Housing statement for The Romanelli Group.",
+    keywords: "",
+    ogTitle: "Fair Housing | The Romanelli Group",
+    ogDescription: "Fair Housing statement for The Romanelli Group.",
+    ogImage: "https://www.theromanelligroup.com/og-image.jpg",
+    noindex: true,
+  },
+
+  "/accessibility-policy": {
+    title: "Accessibility Policy | The Romanelli Group",
+    description: "Accessibility Policy for The Romanelli Group.",
+    keywords: "",
+    ogTitle: "Accessibility Policy | The Romanelli Group",
+    ogDescription: "Accessibility Policy for The Romanelli Group.",
+    ogImage: "https://www.theromanelligroup.com/og-image.jpg",
+    noindex: true,
   },
 };

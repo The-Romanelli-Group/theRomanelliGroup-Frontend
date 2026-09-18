@@ -167,7 +167,7 @@ const PrivacyPolicy = () => {
             </ul>
             
             <p className="mb-4 font-semibold">How to submit a request:</p>
-            <p className="mb-4">Email us at <a href="mailto:privacy@theromanelligroup.com" className="text-blue-600 hover:text-blue-800">privacy@theromanelligroup.com</a></p>
+            <p className="mb-4">Email us at <a href="mailto:theromanelligroup@gmail.com" className="text-blue-600 hover:text-blue-800">theromanelligroup@gmail.com</a></p>
             
             <p className="mb-4">Your request must include:</p>
             <ul className="list-disc pl-6 mb-6 space-y-1">
@@ -223,7 +223,7 @@ const PrivacyPolicy = () => {
             
             <div className="">
               <p className=""><strong>The Romanelli Group</strong></p>
-              <p>Email: <a href="mailto:privacy@theromanelligroup.com" className="text-blue-600 hover:text-blue-800">privacy@theromanelligroup.com</a></p>
+              <p>Email: <a href="mailto:theromanelligroup@gmail.com" className="text-blue-600 hover:text-blue-800">ptheromanelligroup@gmail.com</a></p>
             </div>
           </div>
         </div>

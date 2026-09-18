@@ -31,7 +31,10 @@ const SEOHead = React.memo(() => {
       <meta name="description" content={metadata.description} />
       <meta name="keywords" content={metadata.keywords} />
       <meta name="author" content="The Romanelli Group" />
-      <meta name="robots" content="index, follow" />
+      <meta
+        name="robots"
+        content={metadata.noindex ? "noindex, nofollow" : "index, follow"}
+      />
       <meta httpEquiv="Content-Language" content="en-US" />
 
       <link rel="canonical" href={canonicalUrl} />
